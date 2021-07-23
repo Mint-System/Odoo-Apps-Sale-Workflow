@@ -1,4 +1,4 @@
-# Odoo Apps: Purchase Workflow
+# Odoo Apps: Sale Workflow
 
 Collection of sale model related modules.
 
