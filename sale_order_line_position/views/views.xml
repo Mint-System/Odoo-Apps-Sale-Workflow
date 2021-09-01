@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record model="ir.ui.view" id="sale_order_line_position.document_list">
+    <field name="name">Document List</field>
+    <field name="model">sale_order_line_position.document</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="value"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="sale_order_line_position.document_action">
+    <field name="name">Document Action</field>
+    <field name="res_model">sale_order_line_position.document</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record model="ir.actions.server" id="sale_order_line_position.document_server_action">
+    <field name="name">Document Server Action</field>
+    <field name="model_id" ref="model_sale_order_line_position_document"/>
+    <field name="state">code</field>
+    <field name="code">
+      action = {
+        "type": "ir.actions.act_window",
+        "view_mode": "tree,form",
+        "res_model": model._name,
+      }
+    </field>
+  </record>
+
+  <menuitem name="sale_order_line_position" id="sale_order_line_position.menu_root"/>
+
+  <menuitem name="Documents" id="sale_order_line_position.documents_menu" parent="sale_order_line_position.menu_root"/>
+  <menuitem name="Configurations" id="sale_order_line_position.configuration_menu" parent="sale_order_line_position.menu_root"/>
+
+  <menuitem name="Documents" id="sale_order_line_position.document_menu" parent="sale_order_line_position.documents_menu" action="sale_order_line_position.action"/>
+  <menuitem name="Server to list" id="sale_order_line_position.server_action_menu" parent="sale_order_line_position.configuration_menu" action="sale_order_line_position.server_action"/>
+
+</odoo>
