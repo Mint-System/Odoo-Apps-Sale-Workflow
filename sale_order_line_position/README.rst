@@ -6,12 +6,18 @@
 Sale Order Line Position
 ========================
 
-Use sale order line position for linked delivery order and outgoing invoice.
+Use sale order line position for linked delivery orders and outgoing invoices.
 
 .. image:: ./static/description/icon.png
   :height: 100
   :width: 100
   :alt: Icon
+
+Usage
+~~~~~
+
+Use the ``sale_order_id.get_position(product_id)`` method in linked reports.
+
 
 Configuration
 ~~~~~~~~~~~~~
