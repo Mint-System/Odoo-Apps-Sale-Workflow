@@ -18,7 +18,6 @@ Usage
 
 Use the ``sale_order_id.get_position(product_id)`` method in linked reports.
 
-
 Configuration
 ~~~~~~~~~~~~~
 
