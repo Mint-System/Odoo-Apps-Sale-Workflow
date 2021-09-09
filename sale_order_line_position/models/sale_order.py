@@ -1,4 +1,4 @@
-from odoo import fields, models, _
+from odoo import fields, models, _, api
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
@@ -11,8 +11,9 @@ class SaleOrder(models.Model):
                 line.position = position
 
     # Set position on create
+    @api.model
     def create(self, values):
-        res = super(SaleOrder, self).create(values)
+        res = super().create(values)
 
         # If order lines are given, set position
         if values.get('order_line'):
@@ -22,7 +23,7 @@ class SaleOrder(models.Model):
 
     # Set position on update
     def write(self, values):
-        res = super(SaleOrder, self).write(values)
+        return super().write(values)
 
         # If order lines are given, set position
         if values.get('order_line'):
