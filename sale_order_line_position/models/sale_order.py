@@ -23,9 +23,9 @@ class SaleOrder(models.Model):
 
     # Set position on update
     def write(self, values):
-        return super().write(values)
+        res = super().write(values)
 
-        # If order lines are given, set position
+        # If order lines are given set position
         if values.get('order_line'):
             self.set_position()
 
