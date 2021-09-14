@@ -14,20 +14,14 @@ class SaleOrder(models.Model):
     @api.model
     def create(self, values):
         res = super().create(values)
-
-        # If order lines are given, set position
-        if values.get('order_line'):
-            res.set_position()
+        res.set_position()
 
         return res
 
     # Set position on update
     def write(self, values):
         res = super().write(values)
-
-        # If order lines are given set position
-        if values.get('order_line'):
-            self.set_position()
+        self.set_position()
 
         return res
 
