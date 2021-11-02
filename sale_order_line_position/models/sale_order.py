@@ -25,12 +25,14 @@ class SaleOrder(models.Model):
 
         return res
 
-    def get_position(self, product_id):
+    def get_position(self, product_id, product_uom_qty):
         self.ensure_one()
-        for line in self.order_line.filtered(lambda l: l.product_id == product_id):
+        if product_uom_qty:
+            lines = self.order_line.filtered(lambda l: l.product_id == product_id and l.product_uom_qty == product_uom_qty)
+        else:
+            lines = self.order_line.filtered(lambda l: l.product_id == product_id )
+        for line in lines:
             return line.position
-        
-        return 0
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
