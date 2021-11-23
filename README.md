@@ -19,3 +19,6 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_order_line_position](sale_order_line_position/)                     | Use sale order line position for linked delivery orders and outgoing invoices. |
 | [sale_order_default_commitment_date](sale_order_default_commitment_date/) | Default vaule for the commitment date on sale order.                           |
 | [sale_order_contact_person](sale_order_contact_person/)                   | Set contact person on sale order.                                              |
+| [sale_order_delivery_note](sale_order_delivery_note/)                     | Add note that is printed on sale order and delivery slip report.               |
+
+
