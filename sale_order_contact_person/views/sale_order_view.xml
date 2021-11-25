@@ -22,9 +22,6 @@
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="partner_contact_id" attrs="{'readonly': [('state','not in',('draft','sent'))]}"/>
             </xpath>
-            <!-- <xpath expr="//field[@name='partner_shipping_id']" position="after">
-                <field name="partner_contact_shipping_id" groups="sale.group_delivery_invoice_address" attrs="{'readonly': [('state','not in',('draft','sent'))]}"/>
-            </xpath> -->
         </field>
     </record>
 
