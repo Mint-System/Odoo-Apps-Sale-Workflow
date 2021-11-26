@@ -13,15 +13,6 @@ Module summary.
   :width: 100
   :alt: Icon
 
-Usage
-~~~~~
-
-Clone module into Odoo addon directory.
-
-.. code-block:: bash
-
-    git clone git@github.com:mint-system/odoo-app-sale-blanket-order-send.git ./addons/sale_blanket_order_send
-
 Configuration
 ~~~~~~~~~~~~~
 
