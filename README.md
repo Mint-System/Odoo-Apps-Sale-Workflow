@@ -22,3 +22,4 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_order_delivery_note](sale_order_delivery_note/)                     | Add note that is printed on sale order and delivery slip report.               |
 | [sale_blanket_order_contact_person](sale_blanket_order_contact_person/)   | Set contact person on sale order.                                              |
 | [sale_blanket_order_send](sale_blanket_order_send/)                       | Workflow with send blanket order by e-mail.                                    |
+| [sale_order_line_default_packaging](sale_order_line_default_packaging/)   | Sets the first packaging of the product as default.                            |
