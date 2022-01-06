@@ -15,6 +15,5 @@ class SaleOrderLine(models.Model):
             # .filtered(
             #     lambda p: (p.qty == 0.0) or (self.product_uom_qty <= p.qty > 0.0)
             # )
-            _logger.warning(packaging_ids)
             self.product_packaging = packaging_ids[0] if packaging_ids else False
         

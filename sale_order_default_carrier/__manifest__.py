@@ -1,14 +1,14 @@
 {
-    "name": "Sale Order Line Default Packaging",
+    "name": "Sale Order Default Carrier",
     "summary": """
-        Sets the first packaging of the product as default.
+        Set sale order carrier from partner.
     """,
     "author": "Mint System GmbH, Odoo Community Association (OCA)",
     "website": "https://www.mint-system.ch",
     "category": "Sale",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.0",
     "license": "AGPL-3",
-    "depends": ["sale_management", "stock"],
+    "depends": ["sale", "delivery"],
     "installable": True,
     "application": False,
     "auto_install": False,
