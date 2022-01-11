@@ -15,5 +15,8 @@ class SaleOrderLine(models.Model):
             # .filtered(
             #     lambda p: (p.qty == 0.0) or (self.product_uom_qty <= p.qty > 0.0)
             # )
-            self.product_packaging = packaging_ids[0] if packaging_ids else False
+            packaing_id = packaging_ids[0] if packaging_ids else False
+            if packaing_id.qty:
+                self.product_uom_qty = packaing_id.qty
+            self.product_packaging = packaing_id
         
