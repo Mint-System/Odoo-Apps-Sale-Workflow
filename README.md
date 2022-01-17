@@ -24,3 +24,4 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_blanket_order_send](sale_blanket_order_send/)                       | Workflow with send blanket order by e-mail.                                    |
 | [sale_order_line_default_packaging](sale_order_line_default_packaging/)   | Sets the first packaging of the product as default.                            |
 | [sale_order_default_carrier](sale_order_default_carrier/)                 | Set sale order carrier from partner.                                           |
+| [sale_blanket_order_comment](sale_blanket_order_comment/)                 | Kommentarfeld für Verkaufs- und Rahmenauftrag.                                 |
