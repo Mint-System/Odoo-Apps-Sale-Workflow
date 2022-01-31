@@ -6,7 +6,7 @@
 Sale Order Line Date Propagate
 ==============================
 
-This module ensure that line order date are propagated to stock pickings.
+This module ensures that line order dates are propagated to stock pickings.
 
 .. image:: ./static/description/icon.png
   :height: 100

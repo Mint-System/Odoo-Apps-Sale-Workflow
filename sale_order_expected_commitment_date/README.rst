@@ -2,11 +2,11 @@
     :target: http://www.gnu.org/licenses/gpl-3.0-standalone.html
     :alt: License: GPL-3
 
-==================================
-Sale Order Default Commitment Date
-==================================
+===================================
+Sale Order Expected Commitment Date
+===================================
 
-Default vaule for the commitment date on sale order.
+If empty set commitment date equal to expected date.
 
 .. image:: ./static/description/icon.png
   :height: 100
