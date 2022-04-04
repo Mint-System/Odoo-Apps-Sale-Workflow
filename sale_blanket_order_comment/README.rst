@@ -6,9 +6,11 @@
 Sale Blanket Order Comment
 ==========================
 
-Kommentarfeld für Verkaufs- und Rahmenauftrag.
+Comment field for sale and blanket order.
 
-.. image:: ./static/description/icon.png
+For a detailed documentation have a look at https://www.odoo-wiki.org/.
+
+.. image:: https://raw.githubusercontent.com/Mint-System/Wiki/master/assets/icon-box.png
   :height: 100
   :width: 100
   :alt: Icon
@@ -21,8 +23,8 @@ Configuration
 Maintainer
 ==========
 
-.. image:: https://www.mint-system.ch/theme_mint_system/static/img/logo.svg
-   :target: https://www.mint-system.ch
+.. image:: https://raw.githubusercontent.com/Mint-System/Wiki/master/assets/mint-system-logo.png
+  :target: https://www.mint-system.ch
 
 This module is maintained by Mint System GmbH.
 

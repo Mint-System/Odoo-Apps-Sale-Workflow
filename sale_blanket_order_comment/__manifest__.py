@@ -1,7 +1,7 @@
 {
     "name": "Sale Blanket Order Comment",
     "summary": """
-        Kommentarfeld für Verkaufs- und Rahmenauftrag.
+        Comment field for sale and blanket order.
     """,
     "author": "Mint System GmbH, Odoo Community Association (OCA)",
     "website": "https://www.mint-system.ch",
@@ -13,4 +13,5 @@
     "installable": True,
     "application": False,
     "auto_install": False,
+    "images": ["images/screen.png"],
 }

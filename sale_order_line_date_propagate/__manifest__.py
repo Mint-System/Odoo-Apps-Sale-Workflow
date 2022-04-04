@@ -11,4 +11,5 @@
     "depends": ["sale_order_line_date"],
     "installable": True,
     "application": False,
+    "images": ["images/screen.png"],
 }
