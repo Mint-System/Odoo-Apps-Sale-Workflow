@@ -16,6 +16,7 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | [sale_order_line_date_propagate](sale_order_line_date_propagate/)           | This module ensures that line order dates are propagated to stock pickings.    |
 | [sale_blanket_order_notes](sale_blanket_order_notes/)                       | Notes for sale blanket and sale orders.                                        |
+| [sale_order_notes](sale_order_notes/)                                       | Notes for sale orders.                                                         |
 | [sale_order_line_position](sale_order_line_position/)                       | Use sale order line position for linked delivery orders and outgoing invoices. |
 | [sale_order_default_commitment_date](sale_order_default_commitment_date/)   | Default vaule for the commitment date on sale order.                           |
 | [sale_order_contact_person](sale_order_contact_person/)                     | Set contact person on sale order.                                              |
