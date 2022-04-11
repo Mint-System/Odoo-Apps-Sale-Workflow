@@ -1,24 +1,17 @@
 {
-    'name': "Sale Order Contact Person",
-
-    'summary': """
+    "name": "Sale Order Contact Person",
+    "summary": """
         Set contact person on sale order.
     """,
-    
-    'author': 'Mint System GmbH, Odoo Community Association (OCA)',
-    'website': 'https://www.mint-system.ch',
-    'category': 'Sale',
-    'version': '14.0.1.1.0',
-    'license': 'AGPL-3',
-    
-    'depends': ['sale'],
-
-    'data': [
-        'views/sale_order_view.xml',
-    ],
-
-    'installable': True,
-    'application': False,
-    'auto_install': False,
+    "author": "Mint System GmbH, Odoo Community Association (OCA)",
+    "website": "https://www.mint-system.ch",
+    "category": "Sale",
+    "version": "14.0.1.1.0",
+    "license": "AGPL-3",
+    "depends": ["sale"],
+    "data": ["views/sale_order_view.xml"],
+    "installable": True,
+    "application": False,
+    "auto_install": False,
     "images": ["images/screen.png"],
 }
