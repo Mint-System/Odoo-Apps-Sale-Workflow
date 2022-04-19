@@ -15,15 +15,6 @@ For a detailed documentation have a look at https://www.odoo-wiki.org/.
   :width: 100
   :alt: Icon
 
-Usage
-~~~~~
-
-Clone module into Odoo addon directory.
-
-.. code-block:: bash
-
-    git clone git@github.com:mint-system/odoo-app-sale-blanket-order-analytic.git ./addons/sale_blanket_order_analytic
-
 Configuration
 ~~~~~~~~~~~~~
 
