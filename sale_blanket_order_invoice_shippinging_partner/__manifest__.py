@@ -1,15 +1,15 @@
 {
-    "name": "Sale Blanket Order Send",
+    "name": "Sale Blanket Order Invoice Shipping Partner",
     "summary": """
-        Send blanket order by e-mail.
+        Set invoice and shipping partner on sale order.
     """,
     "author": "Mint System GmbH, Odoo Community Association (OCA)",
     "website": "https://www.mint-system.ch",
     "category": "Sale",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.0.0",
     "license": "AGPL-3",
-    "depends": ["sale_blanket_order_date_confirmed"],
-    "data": ["data/mail_data.xml", "views/sale_blanket_order.xml"],
+    "depends": ["sale_blanket_order", "delivery"],
+    "data": ["views/view_blanket_order_form.xml"],
     "installable": True,
     "application": False,
     "auto_install": False,
