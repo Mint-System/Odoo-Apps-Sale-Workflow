@@ -35,3 +35,4 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_blanket_order_carrier](sale_blanket_order_carrier/)                                         | Set carrier on sale blanket order.                                             |
 | [sale_blanket_order_extended](sale_blanket_order_extended/)                                       | Copy additional fields from blanket to sale order.                             |
 | [sale_blanket_order_commitment_date](sale_blanket_order_commitment_date/)                         | Copies the blanket order line scheduled date to sale line commitment date.     |
+| [sale_blanket_order_discount](sale_blanket_order_discount/)                                       | Define discount on sale blanket order line.                                    |
