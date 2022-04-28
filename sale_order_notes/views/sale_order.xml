@@ -5,11 +5,14 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <field name="arch" type="xml">
-                <field name="payment_term_id" position="after">
-                    <field name="carrier_id" />
-                </field>
-            </field>
+            <xpath expr="//sheet/notebook" position="inside">
+                <page string="Notes">
+                    <group name="notes">
+                        <field name="note_header" />
+                        <field name="note_footer"/>
+                    </group>
+                </page>
+            </xpath>
         </field>
     </record>
 </odoo>
