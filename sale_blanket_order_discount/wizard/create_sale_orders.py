@@ -8,7 +8,6 @@ class BlanketOrderWizard(models.TransientModel):
 
     def _prepare_so_line_vals(self, line):
         res = super(BlanketOrderWizard, self)._prepare_so_line_vals(line)
-        _logger.warning(line)
         res.update(
             {
                 "discount": line.discount
