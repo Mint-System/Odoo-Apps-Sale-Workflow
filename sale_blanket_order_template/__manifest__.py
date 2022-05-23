@@ -1,15 +1,15 @@
 {
-    "name": "Sale Order Notes",
+    "name": "Sale Blanket Order Template",
     "summary": """
-        Notes for sale orders.
+        Setup sale blanket order template.
     """,
     "author": "Mint System GmbH, Odoo Community Association (OCA)",
     "website": "https://www.mint-system.ch",
     "category": "Sale",
-    "version": "14.0.1.2.0",
+    "version": "14.0.1.0.0",
     "license": "AGPL-3",
-    "depends": ["sale"],
-    "data": ["views/sale_order.xml"],
+    "depends": ["sale_blanket_order_notes", "sale_order_template_notes"],
+    "data": ["views/sale_blanket_order.xml"],
     "installable": True,
     "application": False,
     "auto_install": False,

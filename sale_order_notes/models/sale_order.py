@@ -6,5 +6,5 @@ _logger = logging.getLogger(__name__)
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    note_header = fields.Html()
-    note_footer = fields.Html()
+    note_header = fields.Html(translate=True)
+    note_footer = fields.Html(translate=True)
