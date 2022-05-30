@@ -12,8 +12,9 @@ class BlanketOrder(models.Model):
     @api.onchange('sale_order_template_id')
     def onchange_sale_order_template_id(self):
 
-        template = self.sale_order_template_id.with_context(lang=self.partner_id.lang)
-
+        # template = self.sale_order_template_id.with_context(lang=self.partner_id.lang)
+        template = self.sale_order_template_id
+        
         if not self.note_header or self.note_header == '<p><br></p>':
             self.note_header = template.note_header
 
