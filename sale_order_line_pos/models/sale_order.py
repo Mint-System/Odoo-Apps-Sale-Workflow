@@ -1,4 +1,7 @@
 from odoo import fields, models, _, api
+import logging
+_logger = logging.getLogger(__name__)
+
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
@@ -25,7 +28,7 @@ class SaleOrder(models.Model):
 
         return res
 
-    def get_position(self, product_id, product_uom_qty):
+    def get_position(self, product_id, product_uom_qty=False):
         self.ensure_one()
         if product_uom_qty:
             lines = self.order_line.filtered(lambda l: l.product_id == product_id and l.product_uom_qty == product_uom_qty)
@@ -33,6 +36,8 @@ class SaleOrder(models.Model):
             lines = self.order_line.filtered(lambda l: l.product_id == product_id )
         for line in lines:
             return line.position
+        
+        return 0
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
