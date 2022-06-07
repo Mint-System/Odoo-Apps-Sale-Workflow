@@ -6,10 +6,10 @@
     "author": "Mint System GmbH, Odoo Community Association (OCA)",
     "website": "https://www.mint-system.ch",
     "category": "Sales",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "license": "AGPL-3",
     "depends": [
-        "sale_blanket_order_invoice_shippinging_partner",
+        "sale_blanket_order_invoice_shipping_partner",
         "sale_blanket_order_cancel_state",
         "sale_blanket_order_contact_person",
         "sale_blanket_order_stock_terms",
