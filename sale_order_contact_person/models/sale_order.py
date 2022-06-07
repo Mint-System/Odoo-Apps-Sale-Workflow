@@ -1,4 +1,6 @@
 from odoo import api, fields, models
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class SaleOrder(models.Model):
@@ -15,3 +17,10 @@ class SaleOrder(models.Model):
         }
         self.update(values)
         return res
+
+    def _create_invoices(self, grouped=False, final=False, date=None):
+        moves = super()._create_invoices(grouped=grouped, final=final, date=date)
+        moves.write({
+            'partner_sale_id': self.partner_contact_id.id
+        })
+        return moves
