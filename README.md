@@ -38,6 +38,7 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_order_line_date_propagate](sale_order_line_date_propagate) |         This module ensures that line order dates are propagated to stock pickings. |
 | [sale_order_line_default_packaging](sale_order_line_default_packaging) |         Sets the first packaging of the product as default. |
 | [sale_order_line_description_name](sale_order_line_description_name) |         Use product name without default code if sale description is not set. |
+| [sale_order_line_name_get](sale_order_line_name_get) |         Use product name in sale order display name before description. |
 | [sale_order_line_not_billable](sale_order_line_not_billable) |         Set product as not billable and ensure its filtered when invoicing the sale order. |
 | [sale_order_line_pos](sale_order_line_pos) |         Use sale order line position for linked delivery orders and outgoing invoices. |
 | [sale_order_notes](sale_order_notes) |         Notes for sale orders. |
