@@ -16,7 +16,7 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | --- | --- |
 | [sale_blanket_order_cancel_state](sale_blanket_order_cancel_state) |         Adds a cancel state to sale blanket order. |
 | [sale_blanket_order_carrier](sale_blanket_order_carrier) |         Set carrier on sale blanket order. |
-| [sale_blanket_order_comment](sale_blanket_order_comment) |         Comment field for sale and blanket order. |
+| [sale_blanket_order_comment](sale_blanket_order_comment) |         Comment field for sale blanket order. |
 | [sale_blanket_order_commitment_date](sale_blanket_order_commitment_date) |         Copies the blanket order line scheduled date to sale line commitment date. |
 | [sale_blanket_order_contact_person](sale_blanket_order_contact_person) |         Set contact person on sale order. |
 | [sale_blanket_order_crm_tags](sale_blanket_order_crm_tags) |         Add CRM tags to sale blanket order. |
@@ -30,6 +30,7 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_blanket_order_send](sale_blanket_order_send) |         Send blanket order by e-mail. |
 | [sale_blanket_order_stock_terms](sale_blanket_order_stock_terms) |         Set incoterm and shipping policy on blanket order. |
 | [sale_blanket_order_template](sale_blanket_order_template) |         Setup sale blanket order template. |
+| [sale_order_comment](sale_order_comment) |         Comment field for sale order. |
 | [sale_order_contact_person](sale_order_contact_person) |         Set contact person on sale order. |
 | [sale_order_default_carrier](sale_order_default_carrier) |         Set sale order carrier from partner. |
 | [sale_order_default_commitment_date](sale_order_default_commitment_date) |         Default vaule for the commitment date on sale order. |

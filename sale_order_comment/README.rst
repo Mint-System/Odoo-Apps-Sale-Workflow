@@ -2,11 +2,11 @@
     :target: http://www.gnu.org/licenses/gpl-3.0-standalone.html
     :alt: License: GPL-3
 
-==========================
-Sale Blanket Order Comment
-==========================
+==================
+Sale Order Comment
+==================
 
-Comment field for sale blanket order.
+Comment field for sale order.
 
 For a detailed documentation have a look at https://www.odoo-wiki.org/.
 
