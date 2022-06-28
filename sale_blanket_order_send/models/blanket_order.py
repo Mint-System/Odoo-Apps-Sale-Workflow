@@ -54,7 +54,6 @@ class BlanketOrder(models.Model):
             'force_email': True,
         }
         compose_form_id = ir_model_data.get_object_reference('mail', 'email_compose_message_wizard_form')[1]
-        _logger.warning(ctx)
         return {
             'name': _('Compose Email'),
             'type': 'ir.actions.act_window',
