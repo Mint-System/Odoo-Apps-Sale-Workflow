@@ -26,6 +26,7 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_blanket_order_invoice_shipping_partner](sale_blanket_order_invoice_shipping_partner) |         Set invoice and shipping partner on sale order. |
 | [sale_blanket_order_line_description](sale_blanket_order_line_description) |         Copy description field for order lines to sale order. |
 | [sale_blanket_order_notes](sale_blanket_order_notes) |         Notes for sale blanket and sale orders. |
+| [sale_blanket_order_readonly_states_extended](sale_blanket_order_readonly_states_extended) |         Sets readonly states for other sale blanket order modules. |
 | [sale_blanket_order_readonly_states](sale_blanket_order_readonly_states) |         Override readonly states. |
 | [sale_blanket_order_send](sale_blanket_order_send) |         Send blanket order by e-mail. |
 | [sale_blanket_order_stock_terms](sale_blanket_order_stock_terms) |         Set incoterm and shipping policy on blanket order. |

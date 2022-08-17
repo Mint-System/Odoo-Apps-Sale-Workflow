@@ -25,7 +25,4 @@ class BlanketOrder(models.Model):
     user_id = fields.Many2one(states=READONLY_STATES)
     team_id = fields.Many2one(states=READONLY_STATES)
     company_id = fields.Many2one(states=READONLY_STATES)
-    partner_invoice_id = fields.Many2one(states=READONLY_STATES)
-    partner_shipping_id = fields.Many2one(states=READONLY_STATES)
-    partner_contact_id = fields.Many2one(states=READONLY_STATES)
     picking_policy = fields.Selection(states=READONLY_STATES)
