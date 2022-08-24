@@ -43,5 +43,6 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_order_line_name_get](sale_order_line_name_get) |         Use product name in sale order display name before description. |
 | [sale_order_line_not_billable](sale_order_line_not_billable) |         Set product as not billable and ensure its filtered when invoicing the sale order. |
 | [sale_order_line_pos](sale_order_line_pos) |         Use sale order line position for linked delivery orders and outgoing invoices. |
+| [sale_order_line_purchase_margin](sale_order_line_purchase_margin) |         Calculate sale line margin from linked purchase. |
 | [sale_order_notes](sale_order_notes) |         Notes for sale orders. |
 | [sale_order_template_notes](sale_order_template_notes) |         Set notes on sale order templates. |
