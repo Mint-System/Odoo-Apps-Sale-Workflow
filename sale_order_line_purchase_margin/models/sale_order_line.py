@@ -1,15 +1,21 @@
-from odoo import api, models
+from statistics import mean
+from odoo import api, models, fields
 import logging
 _logger = logging.getLogger(__name__)
-from statistics import mean
 
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    @api.depends('product_id', 'company_id', 'currency_id', 'product_uom', 'purchase_line_ids')
-    def _compute_purchase_price(self):
+    stock_purchase_line_ids = fields.Many2many('purchase.order.line', compute='_compute_stock_purchase_lines', store=False)
+
+    def _compute_stock_purchase_lines(self):
         """Get average price from linked purchase order lines."""
-        super()._compute_purchase_price()
-        for line in self.filtered('purchase_line_ids'):
-            line.purchase_price = mean(line.purchase_line_ids.mapped('price_unit'))
+        for line in self.filtered('product_id'):
+            stock_purchase_line_ids = []
+            purchase_ids = line.order_id._get_purchase_orders()
+            if purchase_ids:
+                stock_purchase_line_ids = purchase_ids.order_line.filtered(lambda l: l.product_id == line.product_id)
+                if stock_purchase_line_ids:
+                    line.purchase_price = mean(stock_purchase_line_ids.mapped('price_unit'))
+            line.stock_purchase_line_ids = stock_purchase_line_ids
