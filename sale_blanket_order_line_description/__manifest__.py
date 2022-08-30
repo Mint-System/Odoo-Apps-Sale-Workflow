@@ -1,12 +1,12 @@
 {
     "name": "Sale Blanket Order Line Description",
     "summary": """
-        Copy description field for order lines to sale order.
+        Copy description field of order lines to sale order.
     """,
     "author": "Mint System GmbH, Odoo Community Association (OCA)",
     "website": "https://www.mint-system.ch",
     "category": "Sales",
-    "version": "14.0.1.1.1",
+    "version": "14.0.1.2.0",
     "license": "AGPL-3",
     "depends": ["sale_blanket_order"],
     "data": ["views/view_blanket_order_form.xml"],

@@ -6,7 +6,7 @@
 Sale blanket order line description
 ===================================
 
-Copy description field for order lines to sale order.
+Copy description field of order lines to sale order.
 
 For a detailed documentation have a look at https://www.odoo-wiki.org/.
 
