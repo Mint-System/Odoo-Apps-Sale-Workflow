@@ -11,7 +11,7 @@ class SaleOrderLine(models.Model):
 
     def _compute_stock_purchase_lines(self):
         """Get average price from linked purchase order lines."""
-        for line in self.filtered('product_id'):
+        for line in self:
             stock_purchase_line_ids = []
             purchase_ids = line.order_id._get_purchase_orders()
             if purchase_ids:
