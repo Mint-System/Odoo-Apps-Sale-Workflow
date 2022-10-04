@@ -8,7 +8,7 @@
     <field name="arch" type="xml">
 
       <xpath expr="//button[@name='set_to_draft']" position="after">
-        <button name="action_order_send" string="Send by Email" type="object" states="draft,sent" class="btn-primary"/>
+        <button name="action_order_send" string="Send by Email" type="object" states="draft,sent,open" class="btn-primary"/>
       </xpath>
 
       <field name="state" position="attributes">

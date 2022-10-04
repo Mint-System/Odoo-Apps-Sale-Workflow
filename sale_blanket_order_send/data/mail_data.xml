@@ -3,7 +3,7 @@
     <record id="email_template_sale_blanket_order" model="mail.template">
         <field name="name">Sale Blanket Order: Send by email</field>
         <field name="model_id" ref="sale_blanket_order.model_sale_blanket_order"/>
-        <field name="subject">Blanket order ${object.name or 'n/a' } ready for review</field>
+        <field name="subject">Blanket Order ${object.name or 'n/a' } ready for review</field>
         <field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
         <field name="partner_to">${object.partner_id.id}</field>
             <field name="body_html" type="html">
@@ -19,7 +19,7 @@ Do not hesitate to contact us if you have any questions.
 </div>
         </field>
         <field name="report_template" ref="sale_blanket_order.report_blanket_order"/>
-        <field name="report_name">blanket order ${(object.name or 'n/a').replace('/','_')}</field>
+        <field name="report_name">blanket_order_${(object.name or 'n/a').replace('/','_')}</field>
         <field name="lang">${object.partner_id.lang}</field>
         <field name="auto_delete" eval="True"/>
     </record>
