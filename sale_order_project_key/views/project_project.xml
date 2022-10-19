@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="edit_project" model="ir.ui.view">
+    <field name="name">sale_order_project_key.edit_project</field>
+    <field name="model">project.project</field>
+    <field name="priority">50</field>
+    <field name="inherit_id" ref="project.edit_project" />
+    <field name="arch" type="xml">
+
+        <xpath expr="//page[@name='billing_employee_rate']//field[@name='sale_order_id']" position="attributes">
+            <attribute name="invisible">0</attribute>
+        </xpath>
+
+    </field>
+  </record>
+
+</odoo>
