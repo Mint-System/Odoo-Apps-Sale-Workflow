@@ -24,7 +24,7 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_blanket_order_discount](sale_blanket_order_discount) |         Define discount on sale blanket order line. |
 | [sale_blanket_order_extended](sale_blanket_order_extended) |         Copy additional fields from blanket to sale order. |
 | [sale_blanket_order_invoice_shipping_partner](sale_blanket_order_invoice_shipping_partner) |         Set invoice and shipping partner on sale order. |
-| [sale_blanket_order_line_description](sale_blanket_order_line_description) |         Copy description field for order lines to sale order. |
+| [sale_blanket_order_line_description](sale_blanket_order_line_description) |         Copy description field of order lines to sale order. |
 | [sale_blanket_order_notes](sale_blanket_order_notes) |         Notes for sale blanket and sale orders. |
 | [sale_blanket_order_readonly_states_extended](sale_blanket_order_readonly_states_extended) |         Sets readonly states for other sale blanket order modules. |
 | [sale_blanket_order_readonly_states](sale_blanket_order_readonly_states) |         Override readonly states. |
@@ -44,5 +44,6 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_order_line_not_billable](sale_order_line_not_billable) |         Set product as not billable and ensure its filtered when invoicing the sale order. |
 | [sale_order_line_pos](sale_order_line_pos) |         Use sale order line position for linked delivery orders and outgoing invoices. |
 | [sale_order_line_purchase_margin](sale_order_line_purchase_margin) |         Calculate sale line margin from linked purchase. |
+| [sale_order_mrp_production_cancel](sale_order_mrp_production_cancel) |         Cancel linked manufacturing order when sale order is cancelled. |
 | [sale_order_notes](sale_order_notes) |         Notes for sale orders. |
 | [sale_order_template_notes](sale_order_template_notes) |         Set notes on sale order templates. |
