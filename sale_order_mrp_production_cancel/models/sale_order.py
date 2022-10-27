@@ -13,7 +13,6 @@ class SaleOrderLine(models.Model):
         mrp_production_ids = procurement_groups.stock_move_ids.created_production_id.procurement_group_id.mrp_production_ids |\
             procurement_groups.mrp_production_ids
         
-        _logger.warning(mrp_production_ids)
         mrp_production_ids.action_cancel()
 
         return super().action_cancel()
