@@ -5,5 +5,3 @@ _logger = logging.getLogger(__name__)
 
 class Project(models.Model):
     _inherit = 'project.project'
-
-    

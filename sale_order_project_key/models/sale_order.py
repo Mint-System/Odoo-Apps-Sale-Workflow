@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -23,3 +23,11 @@ class SaleOrder(models.Model):
             })
         
         return res
+
+    @api.onchange('project_id')
+    def _onchange_project_id(self):
+        if self.project_id and self.project_id.code != '/':
+            self.name = self.project_id.code
+        else:
+            self.name = _('New')
+        
