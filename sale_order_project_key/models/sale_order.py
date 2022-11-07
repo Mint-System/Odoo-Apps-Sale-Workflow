@@ -27,4 +27,13 @@ class SaleOrder(models.Model):
             self.name = self.project_id.code
         else:
             self.name = _('New')
+
         
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
+
+    project_id = fields.Many2one(compute='_compute_project_id', store=True)
+
+    @api.depends('order_id.project_id')
+    def _compute_project_id(self):
+        self.project_id =  self.order_id.project_id
