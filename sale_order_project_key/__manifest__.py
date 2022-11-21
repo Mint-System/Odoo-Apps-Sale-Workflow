@@ -1,12 +1,12 @@
 {
     "name": "Sale Order Project Key",
     "summary": """
-        Use number of linked project as sale order name.
+        Link name and analytic account with the assigned project.
     """,
     "author": "Mint System GmbH, Odoo Community Association (OCA)",
     "website": "https://www.mint-system.ch",
     "category": "Sales",
-    "version": "15.0.1.2.0",
+    "version": "15.0.1.2.1",
     "license": "AGPL-3",
     "depends": ["sale_timesheet", "project_key_link_type"],
     "data": ["views/sale_order.xml", "views/project_project.xml"],

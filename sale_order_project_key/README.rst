@@ -6,7 +6,7 @@
 Sale Order Project Key
 ======================
 
-Use number of linked project as sale order name.
+Link name and analytic account with the assigned project.
 
 For a detailed documentation have a look at https://www.odoo-wiki.org/.
 

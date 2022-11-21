@@ -14,10 +14,15 @@ class SaleOrder(models.Model):
             self.project_id.write({
                 'partner_id': self.partner_id.id,
             })
-        # Write partner to projec tasks
+        # Write partner to project tasks
         for task in self.project_id.task_ids.filtered(lambda t: not t.partner_id):
             task.write({
                 'partner_id': self.partner_id.id,
+            })
+        # Write analytic account to linked projects
+        if self.project_ids:
+            self.project_ids.write({
+                'analytic_account_id': self.analytic_account_id.id,
             })
         return res 
 
@@ -27,6 +32,8 @@ class SaleOrder(models.Model):
             self.name = self.project_id.code
         else:
             self.name = _('New')
+        if self.project_id:
+            self.analytic_account_id = self.project_id.analytic_account_id
 
         
 class SaleOrderLine(models.Model):

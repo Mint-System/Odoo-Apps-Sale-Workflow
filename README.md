@@ -14,4 +14,4 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 
 | Module | Summary |
 | --- | --- |
-| [sale_order_project_key](sale_order_project_key) |         Use number of linked project as sale order name. |
+| [sale_order_project_key](sale_order_project_key) |         Link name and analytic account with the assigned project. |

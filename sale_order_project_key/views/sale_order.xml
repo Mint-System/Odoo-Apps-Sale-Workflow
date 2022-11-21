@@ -9,12 +9,16 @@
 
       <field name="project_id" position="attributes">
         <attribute name="attrs">{'invisible': False}</attribute>
-        <!-- <attribute name="domain">[('allow_billable', '=', True)]</attribute> -->
       </field>
 
       <field name="sale_order_template_id" position="before">
         <field name="project_id" position="move" />
       </field>
+
+      <xpath expr="//field[@name='name']" position="attributes">
+        <attribute name="readonly">0</attribute>
+        <attribute name="attrs">{'readonly': [('project_id', '=', False)]}</attribute>
+      </xpath>
 
     </field>
   </record>
