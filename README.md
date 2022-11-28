@@ -14,4 +14,5 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 
 | Module | Summary |
 | --- | --- |
+| [sale_order_contact_person](sale_order_contact_person) |         Set contact person on sale order. |
 | [sale_order_project_key](sale_order_project_key) |         Link name and analytic account with the assigned project. |
