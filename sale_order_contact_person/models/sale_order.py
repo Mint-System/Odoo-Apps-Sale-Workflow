@@ -20,7 +20,8 @@ class SaleOrder(models.Model):
 
     def _create_invoices(self, grouped=False, final=False, date=None):
         moves = super()._create_invoices(grouped=grouped, final=final, date=date)
-        moves.write({
-            'partner_sale_id': self.partner_contact_id.id
-        })
+        if 'partner_sale_id' in self.env['account.move']._fields:
+            moves.write({
+                'partner_sale_id': self.partner_contact_id.id
+            })
         return moves
