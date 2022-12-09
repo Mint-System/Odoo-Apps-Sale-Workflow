@@ -17,8 +17,8 @@ msgstr ""
 
 #. module: sale_order_contact_person
 #: model:ir.model.fields,field_description:sale_order_contact_person.field_sale_order__partner_contact_id
-msgid "Contact Person"
-msgstr "Kontaktperson"
+msgid "Sale Contact Address"
+msgstr "Verkaufsadresse"
 
 #. module: sale_order_contact_person
 #: model:ir.model.fields,field_description:sale_order_contact_person.field_sale_order__display_name
