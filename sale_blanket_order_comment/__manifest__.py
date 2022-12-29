@@ -6,7 +6,7 @@
     "author": "Mint System GmbH, Odoo Community Association (OCA)",
     "website": "https://www.mint-system.ch",
     "category": "Sale",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.2.0",
     "license": "AGPL-3",
     "depends": ["sale_blanket_order", "sale_order_comment"],
     "data": ["views/sale_blanket_order.xml"],
