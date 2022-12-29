@@ -2,11 +2,11 @@
     :target: http://www.gnu.org/licenses/gpl-3.0-standalone.html
     :alt: License: GPL-3
 
-===========================
-Sale Blanket Order Extended
-===========================
+=========================
+Sale Blanket Order Fiscal
+=========================
 
-Copy additional fields from blanket to sale order.
+Copy fiscal position from blanket to sale order.
 
 For a detailed documentation have a look at https://www.odoo-wiki.org/.
 

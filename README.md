@@ -22,12 +22,13 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_blanket_order_crm_tags](sale_blanket_order_crm_tags) |         Add CRM tags to sale blanket order. |
 | [sale_blanket_order_date_confirmed](sale_blanket_order_date_confirmed) |         Set confirmation date on sale blanket order. |
 | [sale_blanket_order_discount](sale_blanket_order_discount) |         Define discount on sale blanket order line. |
-| [sale_blanket_order_extended](sale_blanket_order_extended) |         Copy additional fields from blanket to sale order. |
+| [sale_blanket_order_fiscal](sale_blanket_order_fiscal) |         Copy fiscal position from blanket to sale order. |
 | [sale_blanket_order_invoice_shipping_partner](sale_blanket_order_invoice_shipping_partner) |         Set invoice and shipping partner on sale order. |
 | [sale_blanket_order_line_description](sale_blanket_order_line_description) |         Copy description field of order lines to sale order. |
 | [sale_blanket_order_notes](sale_blanket_order_notes) |         Notes for sale blanket and sale orders. |
 | [sale_blanket_order_readonly_states_extended](sale_blanket_order_readonly_states_extended) |         Sets readonly states for other sale blanket order modules. |
 | [sale_blanket_order_readonly_states](sale_blanket_order_readonly_states) |         Override readonly states. |
+| [sale_blanket_order_reference](sale_blanket_order_reference) |         Copy customer reference from blanket to sale order. |
 | [sale_blanket_order_send](sale_blanket_order_send) |         Send blanket order by e-mail. |
 | [sale_blanket_order_stock_terms](sale_blanket_order_stock_terms) |         Set incoterm and shipping policy on blanket order. |
 | [sale_blanket_order_template](sale_blanket_order_template) |         Setup sale blanket order template. |

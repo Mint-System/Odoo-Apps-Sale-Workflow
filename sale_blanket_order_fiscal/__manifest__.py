@@ -1,7 +1,7 @@
 {
-    "name": "Sale Blanket Order Extended",
+    "name": "Sale Blanket Order Fiscal",
     "summary": """
-        Copy additional fields from blanket to sale order.
+        Copy fiscal position from blanket to sale order.
     """,
     "author": "Mint System GmbH, Odoo Community Association (OCA)",
     "website": "https://www.mint-system.ch",
@@ -9,7 +9,7 @@
     "version": "14.0.1.0.0",
     "license": "AGPL-3",
     "depends": ["sale_blanket_order"],
-    "data": ["views/view_blanket_order_form.xml"],
+    "data": ["views/blanket_order.xml"],
     "installable": True,
     "application": False,
     "auto_install": False,
