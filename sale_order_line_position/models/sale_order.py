@@ -37,4 +37,4 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    position = fields.Integer("Pos", readonly=True)
+    position = fields.Char("Pos", readonly=True)

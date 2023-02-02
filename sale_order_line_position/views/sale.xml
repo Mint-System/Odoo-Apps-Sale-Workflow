@@ -7,7 +7,7 @@
     <field name="inherit_id" ref="sale.view_order_form" />
     <field name="arch" type="xml">
       <xpath expr="//field[@name='order_line']/tree[1]/field[@name='sequence']" position="after">
-        <field name="position" />
+        <field name="position" optional="show" />
       </xpath>
     </field>
   </record>
