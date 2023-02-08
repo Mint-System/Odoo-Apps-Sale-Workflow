@@ -1,6 +1,7 @@
 from odoo import api, fields, models, _
 import logging
 _logger = logging.getLogger(__name__)
+from odoo.osv import expression
 
 
 class SaleOrder(models.Model):
@@ -26,16 +27,35 @@ class SaleOrder(models.Model):
             })
         return res 
 
-    @api.onchange('project_id')
-    def _onchange_project_id(self):
-        if self.project_id and self.project_id.code != '/':
-            self.name = self.project_id.code
-        else:
-            self.name = _('New')
-        if self.project_id:
-            self.analytic_account_id = self.project_id.analytic_account_id
+    def name_get(self):
+        res = super(SaleOrder, self).name_get()
+        for rec in self.filtered(lambda r: r.project_id and r.partner_id):
+            # Remove existing entry
+            res = list(filter(lambda t: t[0] != rec.id, res))
+            res.append((rec.id, '[%s] %s - %s' % (rec.project_id.code, rec.name, rec.partner_id.name)))
+        return res
 
-        
+    @api.model
+    def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
+        # Search in project code and partner name
+        if operator == 'ilike' and not (name or '').strip():
+            domain = []
+        elif operator in ('ilike', 'like', '=', '=like', '=ilike'):
+            domain = expression.AND([
+                args or [],
+                ['|', ('name', operator, name),'|', ('project_id.code', operator, name), ('partner_id.name', operator, name)]
+            ])
+        return self._search(domain, limit=limit, access_rights_uid=name_get_uid)
+
+    # @api.onchange('project_id')
+    # def _onchange_project_id(self):
+    #     if self.project_id and self.project_id.code != '/':
+    #         self.name = self.project_id.code
+    #     else:
+    #         self.name = _('New')
+    #     if self.project_id:
+    #         self.analytic_account_id = self.project_id.analytic_account_id
+
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
