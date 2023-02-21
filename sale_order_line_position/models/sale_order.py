@@ -10,7 +10,10 @@ class SaleOrder(models.Model):
         for order in self:
             position = 0
             for line in order.order_line.filtered(lambda l: not l.display_type):
-                position += 1
+                if line.product_id.repeat_sale_line_position:
+                    position += 0
+                else: 
+                    position += 1
                 line.position = position
 
     @api.model

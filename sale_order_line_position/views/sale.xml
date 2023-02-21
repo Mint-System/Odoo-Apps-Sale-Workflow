@@ -7,7 +7,7 @@
     <field name="inherit_id" ref="sale.view_order_form" />
     <field name="arch" type="xml">
       <xpath expr="//field[@name='order_line']/tree[1]/field[@name='sequence']" position="after">
-        <field name="position" optional="show" />
+        <field name="position" optional="show" attrs="{'column_invisible': [('parent.id', '=', False)]}" />
       </xpath>
     </field>
   </record>
@@ -19,6 +19,6 @@
     <field name="binding_view_types">form</field>
     <field name="state">code</field>
     <field name="code">for rec in records: rec.set_position()</field>
-</record>
+  </record>
 
 </odoo>
