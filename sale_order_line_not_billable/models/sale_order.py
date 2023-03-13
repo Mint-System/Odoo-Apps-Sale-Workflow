@@ -9,7 +9,6 @@ class SaleOrder(models.Model):
     def _get_invoiceable_lines(self, final=False):
         """Filter lines with non billable products."""
         invoiceable_lines = super()._get_invoiceable_lines(final=final)
-        _logger.warning("filter lines")
         return invoiceable_lines.filtered(lambda l: l.product_id.billable)
 
 class SaleOrderLine(models.Model):
