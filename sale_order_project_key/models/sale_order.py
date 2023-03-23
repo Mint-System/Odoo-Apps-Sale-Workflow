@@ -63,4 +63,5 @@ class SaleOrderLine(models.Model):
 
     @api.depends('order_id.project_id')
     def _compute_project_id(self):
-        self.project_id =  self.order_id.project_id
+        for rec in self:
+            rec.project_id = rec.order_id.project_id
