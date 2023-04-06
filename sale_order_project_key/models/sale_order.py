@@ -47,15 +47,6 @@ class SaleOrder(models.Model):
             ])
         return self._search(domain, limit=limit, access_rights_uid=name_get_uid)
 
-    # @api.onchange('project_id')
-    # def _onchange_project_id(self):
-    #     if self.project_id and self.project_id.code != '/':
-    #         self.name = self.project_id.code
-    #     else:
-    #         self.name = _('New')
-    #     if self.project_id:
-    #         self.analytic_account_id = self.project_id.analytic_account_id
-
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
