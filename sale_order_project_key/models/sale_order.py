@@ -8,7 +8,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     def _action_confirm(self):
-        """Propagate saleder order data to linked project."""
+        """Propagate sale order data to linked project."""
         res = super()._action_confirm()
         # Write partner to project
         if self.project_id and not self.project_id.partner_id:
@@ -46,6 +46,14 @@ class SaleOrder(models.Model):
                 ['|', ('name', operator, name),'|', ('project_id.code', operator, name), ('partner_id.name', operator, name)]
             ])
         return self._search(domain, limit=limit, access_rights_uid=name_get_uid)
+
+    def action_view_task(self):
+        """Remove sale order default search from context."""
+        res = super().action_view_task()
+        if res.get('context'):
+            res['context'].pop('search_default_sale_order_id', False)
+        return res
+
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
