@@ -6,7 +6,7 @@
 Sale Order Multi Pricelist
 ==========================
 
-Select partner pricelist based on commitment date.
+Select partner pricelist based on order date.
 
 For a detailed documentation have a look at https://www.odoo-wiki.org/sale-order-multi-pricelist.html.
 
