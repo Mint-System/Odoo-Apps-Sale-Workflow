@@ -19,7 +19,8 @@ class SaleOrderLine(models.Model):
             r.applied_on == '3_global' or 
             (r.applied_on == '0_product_variant' and r.product_id == self.product_id ) or 
             (r.applied_on == '1_product' and r.product_tmpl_id == self.product_template_id )
-        )
+        ).sorted(lambda r: r.sequence)
+        
         if rule_ids:
             
             # Get pricelist rule filtered by date                
@@ -35,6 +36,8 @@ class SaleOrderLine(models.Model):
 
             # Select first rule with date and otherwise first rule without date
             rule_id = (rule_ids_with_date and rule_ids_with_date[0]) or (rule_ids_without_date and rule_ids_without_date[0])
+
+            _logger.warning([rule_id.name, rule_ids_with_date, rule_ids_without_date])
 
             # Apply fixed price discount
             if rule_id.price_discount != 0:
