@@ -12,7 +12,7 @@ class SaleOrderLine(models.Model):
         '''Filter and apply pricelist rule with fixed discount.'''
 
         # Read filter date from context
-        date = self._context.get('date') or self.order_id.commitment_date or fields.Datetime.now()
+        date = self._context.get('date') or self.order_id.date_order or fields.Datetime.now() # or self.order_id.commitment_date
 
         # Filter rules from pricelist
         rule_ids = self.order_id.pricelist_id.item_ids.filtered(lambda r: 
