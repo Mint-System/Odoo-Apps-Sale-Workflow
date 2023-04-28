@@ -7,7 +7,7 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
 
-    @api.onchange('product_id')
+    @api.onchange('product_id', 'price_unit')
     def _onchange_price_rule(self):
         '''Filter and apply pricelist rule with fixed discount.'''
 
@@ -37,7 +37,7 @@ class SaleOrderLine(models.Model):
             # Select first rule with date and otherwise first rule without date
             rule_id = (rule_ids_with_date and rule_ids_with_date[0]) or (rule_ids_without_date and rule_ids_without_date[0])
 
-            _logger.warning([rule_id.name, rule_ids_with_date, rule_ids_without_date])
+            # _logger.warning([rule_id.name, rule_ids_with_date, rule_ids_without_date])
 
             # Apply fixed price discount
             if rule_id.price_discount != 0:
