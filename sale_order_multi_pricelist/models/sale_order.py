@@ -6,9 +6,9 @@ _logger = logging.getLogger(__name__)
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    @api.onchange('partner_id', 'date_order')
+    @api.onchange('partner_id', 'commitment_date','date_order')
     def onchange_partner_id(self):        
-        partner_id = self.partner_id.with_context(date=self.date_order)        
+        partner_id = self.partner_id.with_context(date=self.commitment_date or self.date_order)        
         values = {
             'pricelist_id': partner_id.property_product_pricelist and partner_id.property_product_pricelist.id or False,
         }       
