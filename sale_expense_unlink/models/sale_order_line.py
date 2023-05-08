@@ -9,5 +9,4 @@ class SaleOrderLine(models.Model):
     def _check_line_unlink(self):
         """Filter expense lines that can be deleted."""
         res = super()._check_line_unlink()
-        _logger.warning(res)
         return res.filtered(lambda line: not line.is_expense or line.qty_invoiced > 0)
