@@ -38,13 +38,13 @@ class SaleOrderLine(models.Model):
             rule_ids = rule_ids_with_date or rule_ids_without_date
 
             # Get pricelist rule filtered by minimum quantity
-            rule_ids_with_min_qty = rule_ids.filtered(lambda l: l.min_quantity and (l.min_quantity <= self.product_uom_qty)).sorted(lambda r: r.min_quantity)[-1]
+            rule_ids_with_min_qty = rule_ids.filtered(lambda l: l.min_quantity and (l.min_quantity <= self.product_uom_qty)).sorted(lambda r: r.min_quantity)
 
             # Get rules without minimum quantity
             rule_ids_without_min_qty = rule_ids.filtered(lambda l: not l.min_quantity)
 
             # Select first rule with minimum quantity, otherwise first rule without minimum quantity
-            rule_id = (rule_ids_with_min_qty and rule_ids_with_min_qty[0]) or (rule_ids_without_min_qty and rule_ids_without_min_qty[0])
+            rule_id = (rule_ids_with_min_qty and rule_ids_with_min_qty[-1][0]) or (rule_ids_without_min_qty and rule_ids_without_min_qty[0])
 
             # Apply fixed price discount
             if rule_id.price_discount != 0:
