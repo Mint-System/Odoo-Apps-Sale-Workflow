@@ -7,16 +7,14 @@ class ProductPricelist(models.Model):
     _inherit = 'product.pricelist'
 
 
-    def _get_fixed_discount(self, proudct_id, product_uom_qty, date=None):
+    def _get_fixed_discount(self, product_id, product_uom_qty, date=None):
         """This method returns the fixed discount value."""
-        
-        product_template_id = proudct_id.product_tmpl_id
 
         # Filter rules from pricelist
         rule_ids = self.item_ids.filtered(lambda r: 
             r.applied_on == '3_global' or 
             (r.applied_on == '0_product_variant' and r.product_id == product_id ) or 
-            (r.applied_on == '1_product' and r.product_tmpl_id == product_template_id)
+            (r.applied_on == '1_product' and r.product_tmpl_id == proudct_id.product_tmpl_id)
         ).sorted(lambda r: r.sequence)
         
         if rule_ids:
