@@ -6,7 +6,7 @@
     "author": "Mint System GmbH, Odoo Community Association (OCA)",
     "website": "https://www.mint-system.ch",
     "category": "Sales",
-    "version": "16.0.1.0.1",
+    "version": "16.0.1.0.2",
     "license": "AGPL-3",
     "depends": ["sale", "product_pricelist_fixed_discount"],
     "installable": True,
