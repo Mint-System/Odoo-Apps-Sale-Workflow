@@ -32,6 +32,8 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_blanket_order_send](sale_blanket_order_send) |         Send blanket order by e-mail. |
 | [sale_blanket_order_stock_terms](sale_blanket_order_stock_terms) |         Set incoterm and shipping policy on blanket order. |
 | [sale_blanket_order_template](sale_blanket_order_template) |         Setup sale blanket order template. |
+| [sale_expense_link](sale_expense_link) |         Link expense ande sale order line. |
+| [sale_expense_unlink](sale_expense_unlink) |         Allow deletion of sale order expense lines. |
 | [sale_order_check_price](sale_order_check_price) |         Prevent sale order confirmation if line price is zero. |
 | [sale_order_comment](sale_order_comment) |         Comment field for sale order. |
 | [sale_order_contact_person](sale_order_contact_person) |         Set contact person on sale order. |

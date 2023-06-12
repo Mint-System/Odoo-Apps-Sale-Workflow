@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_expense_sheet_form" model="ir.ui.view">
+        <field name="name">sale_expense_link.view_hr_expense_sheet_form</field>
+        <field name="model">hr.expense.sheet</field>
+        <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form" />
+        <field name="arch" type="xml">
+            <button name="reset_expense_sheets" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('can_reset', '=', False), ('state', 'not in', ['submit', 'cancel', 'done'])]}</attribute>
+            </button>
+        </field>
+    </record>
+</odoo>
