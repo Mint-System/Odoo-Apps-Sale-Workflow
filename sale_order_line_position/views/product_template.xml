@@ -8,7 +8,7 @@
     <field name="arch" type="xml">
       <data>
         <field name="description_sale" position="after">
-          <field name="repeat_sale_line_position"/>
+          <field name="repeat_sale_line_position" widget="boolean_toggle"/>
         </field>
       </data>
     </field>
@@ -21,7 +21,7 @@
     <field name="arch" type="xml">
       <data>
         <field name="description_sale" position="after">
-          <field name="repeat_sale_line_position"/>
+          <field name="repeat_sale_line_position" widget="boolean_toggle"/>
         </field>
       </data>
     </field>
