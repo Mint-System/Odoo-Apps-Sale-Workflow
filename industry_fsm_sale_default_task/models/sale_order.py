@@ -2,12 +2,21 @@ from odoo import api, models, fields, _
 import logging
 _logger = logging.getLogger(__name__)
 
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order'
+
+    def action_confirm(self):
+        res = super().action_confirm()
+        for rec in self:
+            for line in rec.order_line:
+                line._set_default_task()
+        return res
+
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-
-    def _set_default_task(self, values):
+    def _set_default_task(self, values=[]):
         """Search for first fsm line of sale order and use task as default."""
         if 'task_id' not in values:
             for line in self.filtered(lambda l: not l.task_id and l.product_id.detailed_type in ['consu', 'product']):
