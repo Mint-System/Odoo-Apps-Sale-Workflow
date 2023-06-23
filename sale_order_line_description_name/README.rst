@@ -6,7 +6,7 @@
 Sale Order Line Description Name
 ================================
 
-Use product name without default code if sale description is not set.
+Use product name without default code in sale order line.
 
 For a detailed documentation have a look at https://www.odoo-wiki.org/.
 
