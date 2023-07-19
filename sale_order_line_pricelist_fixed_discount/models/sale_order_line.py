@@ -45,9 +45,7 @@ class SaleOrderLine(models.Model):
 
             # Select first rule with minimum quantity, otherwise first rule without minimum quantity
             rule_id = (rule_ids_with_min_qty and rule_ids_with_min_qty[-1][0]) or (rule_ids_without_min_qty and rule_ids_without_min_qty[0])
-
+            
             # Apply fixed price discount
-            if rule_id.price_discount != 0:
-
-                # self.price_unit = rule_id.fixed_price
+            if rule_id:
                 self.discount = rule_id.price_discount
