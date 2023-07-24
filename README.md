@@ -52,4 +52,5 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_order_mrp_production_cancel](sale_order_mrp_production_cancel) |         Cancel linked manufacturing order when sale order is cancelled. |
 | [sale_order_multi_pricelist](sale_order_multi_pricelist) |         Select partner pricelist based on order date. |
 | [sale_order_notes](sale_order_notes) |         Notes for sale orders. |
+| [sale_order_sale_partner](sale_order_sale_partner) |         Set sale contact on sale order. |
 | [sale_order_template_notes](sale_order_template_notes) |         Set notes on sale order templates. |
