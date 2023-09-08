@@ -1,5 +1,5 @@
-from odoo import fields, models, _, api
 import logging
+from odoo import fields, models, _, api
 _logger = logging.getLogger(__name__)
 
 
@@ -15,6 +15,4 @@ class SaleOrderLine(models.Model):
         date = self._context.get('date') or self.order_id.commitment_date or self.order_id.date_order
 
         # Apply fixed price discount
-        price_discount = self.order_id.pricelist_id._get_fixed_discount(self.product_id, self.product_uom_qty, date)
-        if price_discount != 0.0:
-            self.discount = price_discount
+        self.discount = self.order_id.pricelist_id._get_fixed_discount(self.product_id, self.product_uom_qty, date)
