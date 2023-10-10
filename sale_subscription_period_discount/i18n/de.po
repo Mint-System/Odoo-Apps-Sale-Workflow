@@ -38,7 +38,7 @@ msgstr ""
 #. module: sale_subscription_period_discount
 #: model:ir.model.fields,field_description:sale_subscription_period_discount.field_sale_temporal_period_discount__day
 msgid "Day"
-msgstr ""
+msgstr "Tag"
 
 #. module: sale_subscription_period_discount
 #: model:ir.model.fields.selection,name:sale_subscription_period_discount.selection__sale_temporal_period_discount__month__12

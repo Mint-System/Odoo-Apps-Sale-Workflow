@@ -14,7 +14,7 @@ class SaleOrderRecurrence(models.Model):
     )
 
     def get_period_discount(self, date=fields.Date.today()):
-        return self.period_discount_ids.filtered(lambda p: date <= p.date)[:1]
+        return self.period_discount_ids.filtered(lambda p: p.from_date <= date)[:1]
 
 
 class SaleOrderPeriodDiscount(models.Model):
@@ -24,7 +24,7 @@ class SaleOrderPeriodDiscount(models.Model):
 
     sequence = fields.Integer()
     name = fields.Char(compute="_compute_name")
-    date = fields.Date(compute="_compute_date")
+    from_date = fields.Date(compute="_compute_from_date")
     recurrence_id = fields.Many2one("sale.temporal.recurrence", required=True)
     day = fields.Integer(default=1, required=True)
     month = fields.Selection(
@@ -47,9 +47,9 @@ class SaleOrderPeriodDiscount(models.Model):
     )
     discount = fields.Float(string="Discount (%)", digits="Discount", required=True)
 
-    def _compute_date(self):
+    def _compute_from_date(self):
         for discount in self:
-            discount.date = datetime.date(
+            discount.from_date = datetime.date(
                 fields.Date.today().year, int(discount.month), discount.day
             )
 
