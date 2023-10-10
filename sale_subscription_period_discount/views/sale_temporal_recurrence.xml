@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="sale_temporal_recurrence_view_form" model="ir.ui.view">
+    <field name="name">sale_subscription_period_discount.sale_temporal_recurrence_view_form</field>
+    <field name="model">sale.temporal.recurrence</field>
+    <field name="inherit_id" ref="sale_temporal.sale_temporal_recurrence_view_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//sheet/group" position="after">
+        <group>
+          <field name="period_discount_ids" >
+            <tree editable="bottom">
+				<field name="sequence" widget="handle"/>
+                <field name="day"/>
+                <field name="month"/>
+                <field name="discount"/>
+            </tree>
+          </field>
+        </group>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>

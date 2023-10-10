@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_temporal_period_discount_sale_user,sale_temporal_period_discount.sale.manager,model_sale_temporal_period_discount,base.group_user,1,0,0,0
+access_sale_temporal_period_discount_sale_manager,sale_temporal_period_discount.sale.user,model_sale_temporal_period_discount,sales_team.group_sale_manager,1,1,1,1

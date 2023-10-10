@@ -1,10 +1,12 @@
 import logging
-from odoo import fields, models, _, api
+
+from odoo import models
+
 _logger = logging.getLogger(__name__)
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     # @api.depends('partner_id')
     # def _compute_partner_invoice_id(self):

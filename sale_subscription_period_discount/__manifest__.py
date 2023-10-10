@@ -1,14 +1,18 @@
 {
-    "name": "Sale Order Invoice Shipping Partner Restrict",
+    "name": "Sale Subscription Period Discount",
     "summary": """
-        Apply valid invoice and shipping addresses only.
+        Apply discounts on subscription periods.
     """,
     "author": "Mint System GmbH, Odoo Community Association (OCA)",
     "website": "https://www.mint-system.ch",
     "category": "Sales",
     "version": "16.0.1.0.0",
-    "license": "AGPL-3",
-    "depends": ["sale"],
+    "license": "OPL-1",
+    "depends": ["sale_subscription"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/sale_temporal_recurrence.xml",
+    ],
     "installable": True,
     "application": False,
     "auto_install": False,
