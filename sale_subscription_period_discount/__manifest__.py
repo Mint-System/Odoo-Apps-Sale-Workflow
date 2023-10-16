@@ -12,6 +12,7 @@
     "data": [
         "security/ir.model.access.csv",
         "views/sale_temporal_recurrence.xml",
+        "views/sale_subscription.xml",
     ],
     "installable": True,
     "application": False,

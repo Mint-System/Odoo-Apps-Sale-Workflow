@@ -6,14 +6,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 13:12+0000\n"
-"PO-Revision-Date: 2023-10-10 13:12+0000\n"
+"POT-Creation-Date: 2023-10-16 15:47+0000\n"
+"PO-Revision-Date: 2023-10-16 15:47+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: sale_subscription_period_discount
+#. odoo-python
+#: code:addons/sale_subscription_period_discount/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"\n"
+"%s to %s"
+msgstr "%s bis %s"
 
 #. module: sale_subscription_period_discount
 #: model:ir.model.fields.selection,name:sale_subscription_period_discount.selection__sale_temporal_period_discount__month__4
@@ -59,6 +68,11 @@ msgstr ""
 #: model:ir.model.fields.selection,name:sale_subscription_period_discount.selection__sale_temporal_period_discount__month__2
 msgid "February"
 msgstr "Februar"
+
+#. module: sale_subscription_period_discount
+#: model:ir.model.fields,field_description:sale_subscription_period_discount.field_sale_temporal_period_discount__from_date
+msgid "From Date"
+msgstr ""
 
 #. module: sale_subscription_period_discount
 #: model:ir.model.fields,field_description:sale_subscription_period_discount.field_sale_temporal_period_discount__id
@@ -118,7 +132,7 @@ msgstr ""
 #. module: sale_subscription_period_discount
 #: model:ir.model.fields.selection,name:sale_subscription_period_discount.selection__sale_temporal_period_discount__month__11
 msgid "November"
-msgstr "November"
+msgstr ""
 
 #. module: sale_subscription_period_discount
 #: model:ir.model.fields.selection,name:sale_subscription_period_discount.selection__sale_temporal_period_discount__month__10
@@ -126,6 +140,7 @@ msgid "October"
 msgstr "Oktober"
 
 #. module: sale_subscription_period_discount
+#: model:ir.model,name:sale_subscription_period_discount.model_sale_temporal_period_discount
 #: model:ir.model.fields,field_description:sale_subscription_period_discount.field_sale_temporal_recurrence__period_discount_ids
 msgid "Period Discount"
 msgstr "Zeitbasierter Rabatt"
@@ -141,11 +156,26 @@ msgid "Sale temporal Recurrence"
 msgstr "Zeitlich begrenzter wiederkehrender Verkauf"
 
 #. module: sale_subscription_period_discount
+#: model:ir.model,name:sale_subscription_period_discount.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_subscription_period_discount
+#: model:ir.model,name:sale_subscription_period_discount.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Verkaufsauftragszeile"
+
+#. module: sale_subscription_period_discount
 #: model:ir.model.fields.selection,name:sale_subscription_period_discount.selection__sale_temporal_period_discount__month__9
 msgid "September"
 msgstr ""
 
 #. module: sale_subscription_period_discount
-#: model:ir.model,name:sale_subscription_period_discount.model_sale_temporal_period_discount
-msgid "sale.temporal.period_discount"
+#: model:ir.model.fields,field_description:sale_subscription_period_discount.field_sale_order__start_date
+msgid "Start Date"
+msgstr "Startdatum"
+
+#. module: sale_subscription_period_discount
+#: model:ir.model.fields,help:sale_subscription_period_discount.field_sale_order__start_date
+msgid "The start date indicate when the subscription periods begin."
 msgstr ""

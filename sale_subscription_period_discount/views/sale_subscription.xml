@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="sale_subscription_order_view_form" model="ir.ui.view">
+    <field name="name">sale_subscription_period_discount.sale_subscription_order_view_form</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale_subscription.sale_subscription_order_view_form"/>
+    <field name="arch" type="xml">
+
+        <field name="start_date" position="after">
+            <field name="last_invoice_date" groups="sales_team.group_sale_manager" attrs="{'invisible': ['|', ('stage_category', 'not in', ['progress', 'paused']) , ('recurrence_id', '=', False)]}"/>
+        </field>
+
+    </field>
+</record>
+</odoo>
