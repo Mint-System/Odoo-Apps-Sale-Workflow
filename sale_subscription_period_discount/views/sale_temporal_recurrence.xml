@@ -10,7 +10,7 @@
         <group>
           <field name="period_discount_ids" >
             <tree editable="bottom">
-				<field name="sequence" widget="handle"/>
+              <field name="from_date" optional="hide"/>
                 <field name="day"/>
                 <field name="month"/>
                 <field name="discount"/>
