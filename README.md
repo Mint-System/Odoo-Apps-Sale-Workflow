@@ -19,6 +19,7 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_expense_unlink](sale_expense_unlink) |         Allow deletion of sale order expense lines. |
 | [sale_order_contact_person](sale_order_contact_person) |         Set contact person on sale order. |
 | [sale_order_line_description_name](sale_order_line_description_name) |         Use product name without default code in sale order line. |
+| [sale_order_line_form_action](sale_order_line_form_action) |         Adds a button to open a sale order line in the form view. |
 | [sale_order_line_name_get](sale_order_line_name_get) |         Use product name in sale order display name before description. |
 | [sale_order_line_position](sale_order_line_position) |         Show position numbers on sale order lines. |
 | [sale_order_project_key](sale_order_project_key) |         Link name and analytic account with the assigned project. |
