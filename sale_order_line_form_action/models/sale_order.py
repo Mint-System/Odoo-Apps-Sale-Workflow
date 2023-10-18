@@ -8,7 +8,7 @@ class SaleOrderLine(models.Model):
         self.ensure_one()
         view = self.env.ref("sale_order_line_form_action.sale_order_line_view_form")
         return {
-            "name": _("Order Position"),
+            "name": _("Sale Order Line"),
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "res_model": "sale.order.line",

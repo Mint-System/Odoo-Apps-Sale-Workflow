@@ -1,10 +1,11 @@
 import logging
+
 _logger = logging.getLogger(__name__)
-from odoo import api, fields, models
+from odoo import models
 
 
 class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
 
     def _check_line_unlink(self):
         """Filter expense lines that can be deleted."""
