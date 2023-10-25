@@ -22,6 +22,7 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_order_line_form_action](sale_order_line_form_action) |         Adds a button to open a sale order line in the form view. |
 | [sale_order_line_name_get](sale_order_line_name_get) |         Use product name in sale order display name before description. |
 | [sale_order_line_position](sale_order_line_position) |         Show position numbers on sale order lines. |
+| [sale_order_notes](sale_order_notes) |         Notes for sale orders. |
 | [sale_order_project_key](sale_order_project_key) |         Link name and analytic account with the assigned project. |
 | [sale_order_sale_partner](sale_order_sale_partner) |         Set sale contact on sale order. |
 | [sale_product_set_search](sale_product_set_search) |         Search product set by name and reference. |
