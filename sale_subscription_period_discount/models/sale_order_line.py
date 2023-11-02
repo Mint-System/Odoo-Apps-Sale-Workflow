@@ -21,7 +21,7 @@ class SaleOrderLine(models.Model):
             lang_code = self.order_id.partner_id.lang
             start_date = self.order_id.start_date
             format_start_date = format_date(self.env, start_date, lang_code=lang_code)
-            end_date = datetime.date(fields.Date.today().year + 1, 12, 31)
+            end_date = datetime.date(fields.Date.today().year, 12, 31)
             format_end_date = format_date(self.env, end_date, lang_code=lang_code)
 
             description = "%s - %s" % (
@@ -33,7 +33,7 @@ class SaleOrderLine(models.Model):
                 {
                     "name": description,
                     "subscription_start_date": start_date,
-                    "subscription_end_date": end_date
+                    "subscription_end_date": datetime.date(fields.Date.today().year + 1, 12, 31)
                     - get_timedelta(
                         self.order_id.recurrence_id.duration,
                         self.order_id.recurrence_id.unit,
