@@ -18,7 +18,7 @@ msgstr ""
 #. module: sale_order_comment
 #: model:ir.model.fields,field_description:sale_order_comment.field_sale_order__comment
 msgid "Comment"
-msgstr "Referenz"
+msgstr "Kommentar"
 
 #. module: sale_order_comment
 #: model:ir.model.fields,field_description:sale_order_comment.field_sale_order__display_name
