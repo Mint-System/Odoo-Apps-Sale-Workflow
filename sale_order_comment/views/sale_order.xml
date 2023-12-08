@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form_comment" model="ir.ui.view">
+        <field name="name">sale_blanket_order_comment.view_order_form_comment</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="client_order_ref" position="after">
+                <field name="comment" />
+            </field>
+        </field>
+    </record>
+</odoo>

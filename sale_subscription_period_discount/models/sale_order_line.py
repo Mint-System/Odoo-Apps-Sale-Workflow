@@ -33,7 +33,9 @@ class SaleOrderLine(models.Model):
                 {
                     "name": description,
                     "subscription_start_date": start_date,
-                    "subscription_end_date": datetime.date(fields.Date.today().year + 1, 12, 31)
+                    "subscription_end_date": datetime.date(
+                        fields.Date.today().year + 1, 12, 31
+                    )
                     - get_timedelta(
                         self.order_id.recurrence_id.duration,
                         self.order_id.recurrence_id.unit,
