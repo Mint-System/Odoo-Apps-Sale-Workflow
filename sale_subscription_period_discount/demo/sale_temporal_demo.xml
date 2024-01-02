@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+    <record id="discount_october" model="sale.temporal.period_discount">
+        <field name="recurrence_id" ref="sale_temporal.recurrence_yearly" />
+        <field name="day">1</field>
+        <field name="month">10</field>
+        <field name="discount">100</field>
+    </record>
+    <record id="discount_july" model="sale.temporal.period_discount">
+        <field name="recurrence_id" ref="sale_temporal.recurrence_yearly" />
+        <field name="day">1</field>
+        <field name="month">07</field>
+        <field name="discount">50</field>
+    </record>
+</odoo>
