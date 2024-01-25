@@ -74,7 +74,7 @@ msgstr "Februar"
 #. module: sale_subscription_period_discount
 #: model:ir.model.fields,field_description:sale_subscription_period_discount.field_sale_temporal_period_discount__from_date
 msgid "From Date"
-msgstr ""
+msgstr "Anfangsdatum"
 
 #. module: sale_subscription_period_discount
 #: model:ir.model.fields,field_description:sale_subscription_period_discount.field_sale_temporal_period_discount__id

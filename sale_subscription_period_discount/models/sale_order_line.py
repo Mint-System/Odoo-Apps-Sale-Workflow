@@ -19,10 +19,18 @@ class SaleOrderLine(models.Model):
             or self.order_id.subscription_management == "upsell"
         ):
             lang_code = self.order_id.partner_id.lang
-            start_date = self.order_id.start_date
-            format_start_date = format_date(self.env, start_date, lang_code=lang_code)
-            end_date = datetime.date(fields.Date.today().year, 12, 31)
+
+            # The end_date is always the end of the year set in next_invoice_date
+            next_invoice_date = self.order_id.next_invoice_date
+            end_date = datetime.date(next_invoice_date.year, 12, 31)
             format_end_date = format_date(self.env, end_date, lang_code=lang_code)
+
+            # If the start_date older than the year in next_invoice_date, set it
+            # to the beginning of the year in next_invoice_date.
+            start_date = self.order_id.start_date
+            if start_date.year != next_invoice_date.year:
+                start_date = datetime.date(next_invoice_date.year, 1, 1)
+            format_start_date = format_date(self.env, start_date, lang_code=lang_code)
 
             description = "%s - %s" % (
                 self.name,
