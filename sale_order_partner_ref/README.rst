@@ -6,7 +6,7 @@
 Sale Order Partner Ref
 ======================
 
-Module summary.
+Show and filter the customer ref in sale order list.
 
 For a detailed documentation have a look at https://www.odoo-wiki.org/sale-order-partner-ref.html
 

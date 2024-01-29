@@ -20,4 +20,8 @@ class SaleOrder(models.Model):
     @api.depends("partner_id")
     def _compute_partner_membership_id(self):
         for order in self:
-            order.partner_membership_id = order.partner_id.address_get(['membership'])['membership'] if order.partner_id else False
+            order.partner_membership_id = (
+                order.partner_id.address_get(["membership"])["membership"]
+                if order.partner_id
+                else False
+            )

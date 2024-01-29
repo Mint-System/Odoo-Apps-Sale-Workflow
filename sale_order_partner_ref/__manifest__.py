@@ -9,9 +9,7 @@
     "version": "16.0.1.0.0",
     "license": "AGPL-3",
     "depends": ["sale"],
-    "data": [
-        "views/sale_order.xml"
-    ],
+    "data": ["views/sale_order.xml"],
     "installable": True,
     "application": False,
     "auto_install": False,
