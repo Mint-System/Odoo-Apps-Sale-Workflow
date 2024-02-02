@@ -25,3 +25,15 @@ class SaleOrder(models.Model):
                 if order.partner_id
                 else False
             )
+
+
+class SaleOrderLine(models.Model):
+    _inherit = "sale.order.line"
+
+    partner_membership_id = fields.Many2one(
+        related="order_id.partner_membership_id",
+        string="Membership Contact Address",
+        store=True,
+        index=True,
+        precompute=True,
+    )

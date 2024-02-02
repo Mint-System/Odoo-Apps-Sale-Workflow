@@ -7,7 +7,7 @@
     "website": "https://www.mint-system.ch",
     "category": "Sale",
     "version": "16.0.1.0.0",
-    "license": "AGPL-3",
+    "license": "OPL-1",
     "depends": ["sale_subscription"],
     "installable": True,
     "application": False,

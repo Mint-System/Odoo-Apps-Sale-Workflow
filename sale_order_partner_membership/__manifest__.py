@@ -9,7 +9,7 @@
     "version": "16.0.1.0.0",
     "license": "AGPL-3",
     "depends": ["sale", "partner_type_membership"],
-    "data": ["views/sale_order.xml"],
+    "data": ["views/sale_order.xml", "views/product_template.xml"],
     "installable": True,
     "application": False,
     "auto_install": False,

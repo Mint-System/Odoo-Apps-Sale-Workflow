@@ -1,14 +1,14 @@
 {
-    "name": "Sale Subscription Partner Pricelist",
+    "name": "Sale Order Partner Pricelist",
     "summary": """
-        Grant pricelist access with sale subscription.
+        Grant pricelist access with sale order.
     """,
     "author": "Mint System GmbH, Odoo Community Association (OCA)",
     "website": "https://www.mint-system.ch",
     "category": "Sales",
     "version": "16.0.1.0.0",
     "license": "AGPL-3",
-    "depends": ["sale_subscription"],
+    "depends": ["sale"],
     "data": ["views/product_template.xml"],
     "installable": True,
     "application": False,

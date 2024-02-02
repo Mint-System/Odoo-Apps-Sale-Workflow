@@ -2,22 +2,13 @@
     :target: http://www.gnu.org/licenses/gpl-3.0-standalone.html
     :alt: License: GPL-3
 
-===================================
-Sale Subscription Partner Pricelist
-===================================
+============================
+Sale Order Partner Pricelist
+============================
 
-Module summary.
+Grant pricelist access with sale order.
 
 For a detailed documentation have a look at https://www.odoo-wiki.org/sale-subscription-partner-pricelist.html
-
-Usage
-~~~~~
-
-Clone module into Odoo addon directory.
-
-.. code-block:: bash
-
-    git clone git@github.com:mint-system/odoo-app-sale-subscription-partner-pricelist.git ./addons/sale_subscription_partner_pricelist
 
 Configuration
 ~~~~~~~~~~~~~

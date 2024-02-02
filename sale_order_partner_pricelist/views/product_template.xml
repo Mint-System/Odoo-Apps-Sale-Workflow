@@ -7,8 +7,8 @@
         <field name="arch" type="xml">
 
             <page name="sales" position="inside">
-                <group attrs="{'invisible': ['|', ('sale_ok', '=', False), ('recurring_invoice', '=', False)]}">
-                    <group string="Subscription Pricelist" name="partner_pricelist">
+                <group attrs="{'invisible': [('sale_ok', '=', False)]}">
+                    <group string="Partner Pricelist" name="partner_pricelist">
                         <field colspan="2" name="pricelist_id" />
                     </group>
                 </group>
