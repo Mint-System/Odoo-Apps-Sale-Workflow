@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="partner_shipping_id" position="attributes">
-                <attribute name="groups">account.group_shipping_address</attribute>
+                <attribute name="groups">sale_partner_shipping_group.group_shipping_address</attribute>
             </field>
         </field>
     </record>
