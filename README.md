@@ -19,8 +19,9 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_order_invoice_shipping_partner_restrict](sale_order_invoice_shipping_partner_restrict) |         Apply valid invoice and shipping addresses only. |
 | [sale_order_line_pricelist_fixed_discount](sale_order_line_pricelist_fixed_discount) |         Add discount from pricelist with fixed price. |
 | [sale_order_partner_membership](sale_order_partner_membership) |         Set membership address on sale order. |
+| [sale_order_partner_pricelist](sale_order_partner_pricelist) |         Grant pricelist access with sale order. |
 | [sale_order_partner_ref](sale_order_partner_ref) |         Show and filter the customer ref in sale order list. |
 | [sale_order_sale_partner](sale_order_sale_partner) |         Set sale contact on sale order. |
+| [sale_partner_shipping_group](sale_partner_shipping_group) |         Access group for shipping address on sale orders and invoices. |
 | [sale_subscription_disable_tokenization](sale_subscription_disable_tokenization) |         Do not force payment tokenization for order with subscriptions. |
-| [sale_subscription_partner_pricelist](sale_subscription_partner_pricelist) |         Grant pricelist access with sale order. |
 | [sale_subscription_period_discount](sale_subscription_period_discount) |         Apply discounts on subscription periods. |
