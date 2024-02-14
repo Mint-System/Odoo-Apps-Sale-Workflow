@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_partner_shipping_group,sale_partner_shipping_group,base.model_res_partner,group_shipping_address,1,0,0,0

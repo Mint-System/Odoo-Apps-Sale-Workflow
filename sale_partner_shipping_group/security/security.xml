@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account.group_shipping_address" model="res.groups">
+        <field name="name">Access group for shipping address on sale orders</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+    <record id="res_partner_rule_shipping_address_group" model="ir.rule">
+        <field name="name">Access group for shipping address on sale orders</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="groups" eval="[(4, ref('account.group_shipping_address'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+</odoo>
