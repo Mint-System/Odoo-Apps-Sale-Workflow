@@ -6,8 +6,8 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
-            <field name="partner_id" position="after">
-              <field name="partner_shipping_id" groups="account.group_shipping_address" attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'out_receipt'))], 'readonly': [('state', '!=', 'draft')]}"/>
+            <field name="partner_shipping_id" position="attributes">
+                <attribute name="groups">account.group_shipping_address</attribute>
             </field>
         </field>
     </record>

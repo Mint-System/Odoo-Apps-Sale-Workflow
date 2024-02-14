@@ -10,7 +10,7 @@
     "license": "AGPL-3",
     "depends": ["base"],
     "data": [
-        "security/ir.model.access.csv",
+        "security/security.xml",
         "views/account_move.xml",
         "views/sale_order.xml"
     ],

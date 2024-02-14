@@ -6,8 +6,8 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <field name="partner_invoice_id" position="after">
-                <field name="partner_shipping_id" groups="account.group_shipping_address" context="{'default_type':'delivery'}" options='{"always_reload": True}'/>
+            <field name="partner_shipping_id" position="attributes">
+                <attribute name="groups">account.group_shipping_address</attribute>
             </field>
         </field>
     </record>
