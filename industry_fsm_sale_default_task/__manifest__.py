@@ -7,7 +7,7 @@
     "website": "https://www.mint-system.ch",
     "category": "Services",
     "version": "16.0.1.1.0",
-    "license": "AGPL-3",
+    "license": "OPL-1",
     "depends": ["industry_fsm_sale"],
     "installable": True,
     "application": False,
