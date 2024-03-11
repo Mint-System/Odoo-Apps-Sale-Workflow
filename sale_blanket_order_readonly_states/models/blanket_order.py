@@ -1,18 +1,20 @@
-from odoo import fields, models, api, _
 import logging
+
+from odoo import fields, models
+
 _logger = logging.getLogger(__name__)
 
 
 class BlanketOrder(models.Model):
-    _inherit = ['sale.blanket.order']
+    _inherit = ["sale.blanket.order"]
 
     READONLY_STATES = {
-        'draft': [('readonly', False)],
-        'sent': [('readonly', False)],
-        'open': [('readonly', False)],
-        'done': [('readonly', True)],
-        'expired': [('readonly', True)],
-        'cancel': [('readonly', True)],
+        "draft": [("readonly", False)],
+        "sent": [("readonly", False)],
+        "open": [("readonly", False)],
+        "done": [("readonly", True)],
+        "expired": [("readonly", True)],
+        "cancel": [("readonly", True)],
     }
 
     partner_id = fields.Many2one(states=READONLY_STATES)

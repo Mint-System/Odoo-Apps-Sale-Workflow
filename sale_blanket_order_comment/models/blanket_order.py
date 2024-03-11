@@ -1,8 +1,7 @@
-from xml.etree.ElementTree import Comment
-from odoo import api, fields, models, _
+from odoo import fields, models
 
 
 class BlanketOrder(models.Model):
-    _inherit = 'sale.blanket.order'
+    _inherit = "sale.blanket.order"
 
     comment = fields.Text(tracking=True)

@@ -8,7 +8,9 @@
     "category": "Sales",
     "version": "16.0.1.0.0",
     "license": "AGPL-3",
-    "depends": ["sale_blanket_order_cancel_state",],
+    "depends": [
+        "sale_blanket_order_cancel_state",
+    ],
     "data": ["views/view_blanket_order_form.xml"],
     "installable": True,
     "application": False,

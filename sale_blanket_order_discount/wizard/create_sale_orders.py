@@ -1,18 +1,16 @@
-from odoo import _, api, fields, models
 import logging
+
+from odoo import api, fields, models
+
 _logger = logging.getLogger(__name__)
 
 
 class BlanketOrderWizard(models.TransientModel):
-    _inherit= "sale.blanket.order.wizard"
+    _inherit = "sale.blanket.order.wizard"
 
     def _prepare_so_line_vals(self, line):
         res = super(BlanketOrderWizard, self)._prepare_so_line_vals(line)
-        res.update(
-            {
-                "discount": line.discount
-            }
-        )
+        res.update({"discount": line.discount})
         return res
 
     @api.model
@@ -41,7 +39,7 @@ class BlanketOrderWizard(models.TransientModel):
                     "product_uom": bol.product_uom,
                     "qty": bol.remaining_uom_qty,
                     "partner_id": bol.partner_id,
-                    "discount": bol.discount
+                    "discount": bol.discount,
                 },
             )
             for bol in bo_lines.filtered(lambda l: l.remaining_uom_qty != 0.0)
@@ -56,7 +54,8 @@ class BlanketOrderWizard(models.TransientModel):
         default=_default_lines_discount,
     )
 
+
 class BlanketOrderWizardLine(models.TransientModel):
     _inherit = "sale.blanket.order.wizard.line"
 
-    discount = fields.Float(string='Discount (%)', digits='Discount', default=0.0)
+    discount = fields.Float(string="Discount (%)", digits="Discount", default=0.0)
