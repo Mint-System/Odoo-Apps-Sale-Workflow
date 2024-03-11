@@ -1,0 +1,90 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_blanket_order_send
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-04 06:50+0000\n"
+"PO-Revision-Date: 2022-10-04 06:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_blanket_order_send
+#: model:mail.template,body_html:sale_blanket_order_send.email_template_sale_blanket_order
+msgid ""
+"<div>\n"
+"Dear ${object.partner_id.name},\n"
+"<br/>\n"
+"<br/>\n"
+"Your blanket order <strong>${object.name}</strong> is ready for review.\n"
+"<br/>\n"
+"<br/>\n"
+"Do not hesitate to contact us if you have any questions.\n"
+"<br/>\n"
+"</div>\n"
+"        "
+msgstr ""
+
+#. module: sale_blanket_order_send
+#: model:ir.model,name:sale_blanket_order_send.model_sale_blanket_order
+msgid "Blanket Order"
+msgstr "Rahmenauftrag"
+
+#. module: sale_blanket_order_send
+#: model:mail.template,subject:sale_blanket_order_send.email_template_sale_blanket_order
+msgid "Blanket Order ${object.name or 'n/a' } ready for review"
+msgstr "Rahmenauftrag ${object.name or 'n/a' } ist bereit zur Freigabe"
+
+#. module: sale_blanket_order_send
+#: code:addons/sale_blanket_order_send/models/blanket_order.py:0
+#, python-format
+msgid "Compose Email"
+msgstr "E-Mail Verfassen"
+
+#. module: sale_blanket_order_send
+#: model:ir.model.fields,field_description:sale_blanket_order_send.field_sale_blanket_order__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: sale_blanket_order_send
+#: code:addons/sale_blanket_order_send/models/blanket_order.py:0
+#: code:addons/sale_blanket_order_send/models/blanket_order.py:0
+#, python-format
+msgid "Draft"
+msgstr "Entwurf"
+
+#. module: sale_blanket_order_send
+#: model:ir.model.fields,field_description:sale_blanket_order_send.field_sale_blanket_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_blanket_order_send
+#: model:ir.model.fields,field_description:sale_blanket_order_send.field_sale_blanket_order____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: sale_blanket_order_send
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order_send.view_blanket_order_form_send
+msgid "Send by Email"
+msgstr "Per E-Mail Versenden"
+
+#. module: sale_blanket_order_send
+#: model:ir.model.fields.selection,name:sale_blanket_order_send.selection__sale_blanket_order__state__sent
+msgid "Sent"
+msgstr "Gesendet"
+
+#. module: sale_blanket_order_send
+#: model:ir.model.fields,field_description:sale_blanket_order_send.field_sale_blanket_order__state
+msgid "State"
+msgstr "Bundesland"
+
+#. module: sale_blanket_order_send
+#: model:mail.template,report_name:sale_blanket_order_send.email_template_sale_blanket_order
+msgid "blanket_order_${(object.name or 'n/a').replace('/','_')}"
+msgstr "Rahmenauftrag_${(object.name or 'n/a').replace('/','_')}"
