@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_blanket_order_form" model="ir.ui.view">
+        <field name="name">sale_blanket_order_invoice_shipping_partner.view_blanket_order_form</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field
+                    name="partner_invoice_id"
+                    groups="account.group_delivery_invoice_address"
+                    context="{'default_type':'invoice'}"
+                    options='{"always_reload": True}'
+                />
+                <field
+                    name="partner_shipping_id"
+                    groups="account.group_delivery_invoice_address"
+                    context="{'default_type':'delivery'}"
+                    options='{"always_reload": True}'
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
