@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="view_blanket_order_form_stock_term" model="ir.ui.view">
+    <field name="name">view_blanket_order_form_stock_term</field>
+    <field name="model">sale.blanket.order</field>
+    <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//group[@name='invoicing']" position="after">
+        <group name="sale_shipping" string="Shipping">
+          <field name="incoterm" widget="selection" groups="sale_stock.group_display_incoterm"/>
+          <field name="picking_policy" required="True"/>
+        </group>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>
