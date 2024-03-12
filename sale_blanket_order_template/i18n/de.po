@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_blanket_order_template
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-23 11:31+0000\n"
+"PO-Revision-Date: 2022-05-23 11:31+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_blanket_order_template
+#: model:ir.model,name:sale_blanket_order_template.model_sale_blanket_order
+msgid "Blanket Order"
+msgstr "Rahmenauftrag"
+
+#. module: sale_blanket_order_template
+#: model:ir.model.fields,field_description:sale_blanket_order_template.field_sale_blanket_order__sale_order_template_id
+msgid "Blanket Order Template Reference"
+msgstr ""
+
+#. module: sale_blanket_order_template
+#: model:ir.model.fields,field_description:sale_blanket_order_template.field_sale_blanket_order__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: sale_blanket_order_template
+#: model:ir.model.fields,field_description:sale_blanket_order_template.field_sale_blanket_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_blanket_order_template
+#: model:ir.model.fields,field_description:sale_blanket_order_template.field_sale_blanket_order____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
