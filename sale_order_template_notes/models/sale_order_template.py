@@ -1,4 +1,5 @@
-from odoo import api, fields, models, _
+from odoo import fields, models
+
 
 class SaleOrderTemplate(models.Model):
     _inherit = "sale.order.template"

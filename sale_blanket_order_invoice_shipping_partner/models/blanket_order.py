@@ -1,4 +1,4 @@
-from odoo import fields, models, api
+from odoo import api, fields, models
 
 
 class BlanketOrder(models.Model):
@@ -8,7 +8,7 @@ class BlanketOrder(models.Model):
         "res.partner",
         string="Invoice Address",
         readonly=True,
-        #required=True,
+        # required=True,
         states={"draft": [("readonly", False)]},
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
@@ -16,7 +16,7 @@ class BlanketOrder(models.Model):
         "res.partner",
         string="Delivery Address",
         readonly=True,
-        #required=True,
+        # required=True,
         states={"draft": [("readonly", False)]},
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
@@ -33,7 +33,7 @@ class BlanketOrder(models.Model):
             self.partner_invoice_id = False
             self.partner_shipping_id = False
             return
-        
+
         addr = self.partner_id.address_get(["delivery", "invoice"])
         values = {
             "partner_invoice_id": addr["invoice"],

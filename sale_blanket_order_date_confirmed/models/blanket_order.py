@@ -1,5 +1,4 @@
-from datetime import date
-from odoo import api, fields, models, _
+from odoo import fields, models
 
 
 class BlanketOrder(models.Model):
@@ -17,5 +16,5 @@ class BlanketOrder(models.Model):
         # Calling super ensures that the original confirmation logic is preserved
         res = super(BlanketOrder, self).action_confirm()
         # Set the confirmation date to today upon confirming the order
-        self.write({'date_confirmed': fields.Date.today()})
+        self.write({"date_confirmed": fields.Date.today()})
         return res

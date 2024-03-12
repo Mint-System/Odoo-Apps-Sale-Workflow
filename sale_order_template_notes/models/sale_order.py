@@ -1,11 +1,14 @@
-from odoo import api, fields, models, _
 import logging
+
+from odoo import api, models
+
 _logger = logging.getLogger(__name__)
+
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.onchange('sale_order_template_id')
+    @api.onchange("sale_order_template_id")
     def _onchange_sale_order_template_id(self):
         res = super(SaleOrder, self)._onchange_sale_order_template_id()
         # if notes are set in template overwrite the order notes

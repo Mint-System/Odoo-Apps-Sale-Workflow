@@ -1,4 +1,4 @@
-from odoo import fields, models, api
+from odoo import api, fields, models
 
 
 class BlanketOrder(models.Model):
@@ -17,7 +17,7 @@ class BlanketOrder(models.Model):
         help="If you deliver all products at once, the delivery order will be scheduled based on the greatest product lead time. Otherwise, it will be based on the shortest.",
     )
 
-    @api.onchange('partner_id')
+    @api.onchange("partner_id")
     def _onchange_partner_id(self):
         res = super().onchange_partner_id()
         if not self.incoterm and self.partner_id.sale_incoterm_id:
