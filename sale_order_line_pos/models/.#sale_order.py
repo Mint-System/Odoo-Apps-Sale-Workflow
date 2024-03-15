@@ -1,1 +1,0 @@
-laszlokr@mintsystem.7597:1710488118
