@@ -22,6 +22,7 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_blanket_order_date_confirmed](sale_blanket_order_date_confirmed) |         Set confirmation date on sale blanket order. |
 | [sale_blanket_order_discount](sale_blanket_order_discount) |         Define discount on sale blanket order line. |
 | [sale_blanket_order_invoice_shipping_partner](sale_blanket_order_invoice_shipping_partner) |         Set invoice and shipping partner on sale order. |
+| [sale_blanket_order_line_description](sale_blanket_order_line_description) |         Copy description field of order lines to sale order. |
 | [sale_blanket_order_notes](sale_blanket_order_notes) |         Notes for sale blanket and sale orders. |
 | [sale_blanket_order_readonly_states](sale_blanket_order_readonly_states) |         Override readonly states. |
 | [sale_blanket_order_reference](sale_blanket_order_reference) |         Copy customer reference from blanket to sale order. |
@@ -41,4 +42,5 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_order_template_notes](sale_order_template_notes) |         Set notes on sale order templates. |
 | [sale_partner_shipping_group](sale_partner_shipping_group) |         Access group for shipping address on sale orders and invoices. |
 | [sale_subscription_disable_tokenization](sale_subscription_disable_tokenization) |         Do not force payment tokenization for order with subscriptions. |
+| [sale_subscription_partner_pricelist](sale_subscription_partner_pricelist) |         Grant pricelist access with sale subscription. |
 | [sale_subscription_period_discount](sale_subscription_period_discount) |         Apply discounts on subscription periods. |

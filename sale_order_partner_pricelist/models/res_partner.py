@@ -9,8 +9,14 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     property_product_pricelist = fields.Many2one(
-        compute="_compute_product_pricelist", store=True
+        compute="_compute_product_pricelist", store=True, tracking=True
     )
+
+    def get_sale_order_line_domain(self, all_partners):
+        return [
+            ("order_partner_id", "in", all_partners.ids),
+            ("state", "in", ["sale"]),
+        ]
 
     def _compute_product_pricelist(self):
         """
@@ -26,12 +32,8 @@ class ResPartner(models.Model):
                 else (partner + partner.child_ids)
             )
 
-            sale_order_lines = self.env["sale.order.line"].search(
-                [
-                    ("order_partner_id", "in", all_partners.ids),
-                    ("state", "in", ["sale"]),
-                ]
-            )
+            domain = partner.get_sale_order_line_domain(all_partners)
+            sale_order_lines = self.env["sale.order.line"].search(domain)
 
             if sale_order_lines:
 
