@@ -12,7 +12,7 @@ class ResPartner(models.Model):
         compute="_compute_product_pricelist", store=True, tracking=True
     )
 
-    def get_sale_order_line_domain(self, all_partners):
+    def get_sale_order_line_pricelist_domain(self, all_partners):
         return [
             ("order_partner_id", "in", all_partners.ids),
             ("state", "in", ["sale"]),
@@ -32,7 +32,7 @@ class ResPartner(models.Model):
                 else (partner + partner.child_ids)
             )
 
-            domain = partner.get_sale_order_line_domain(all_partners)
+            domain = partner.get_sale_order_line_pricelist_domain(all_partners)
             sale_order_lines = self.env["sale.order.line"].search(domain)
 
             if sale_order_lines:

@@ -12,9 +12,6 @@ class ResPartner(models.Model):
         compute="_compute_product_pricelist", store=True
     )
 
-    def get_sale_order_line_domain(self, all_partners):
-        return [
-            ("order_partner_id", "in", all_partners.ids),
-            ("state", "!=", ["draft"]),
-            ("order_id.stage_category", "=", "progress"),
-        ]
+    def get_sale_order_line_pricelist_domain(self, all_partners):
+        domain = super().get_sale_order_line_pricelist_domain(all_partners)
+        return domain + [("order_id.stage_category", "=", "progress")]
