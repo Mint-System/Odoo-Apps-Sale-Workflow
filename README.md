@@ -16,6 +16,7 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | --- | --- |
 | [industry_fsm_sale_default_task](industry_fsm_sale_default_task) |         Additional sale order lines will be linked with field service project task. |
 | [sale_blanket_order_cancel_state](sale_blanket_order_cancel_state) |         Adds a cancel state to sale blanket order. |
+| [sale_blanket_order_carrier](sale_blanket_order_carrier) |         Set carrier on sale blanket order. |
 | [sale_blanket_order_comment](sale_blanket_order_comment) |         Comment field for sale blanket order. |
 | [sale_blanket_order_contact_person](sale_blanket_order_contact_person) |         Set contact person on sale order. |
 | [sale_blanket_order_crm_tags](sale_blanket_order_crm_tags) |         Add CRM tags to sale blanket order. |
@@ -30,7 +31,6 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_blanket_order_stock_terms](sale_blanket_order_stock_terms) |         Set incoterm and shipping policy on blanket order. |
 | [sale_blanket_order_template](sale_blanket_order_template) |         Setup sale blanket order template. |
 | [sale_order_comment](sale_order_comment) |         Comment field for sale order. |
-| [sale_order_contact_person](sale_order_contact_person) |         Set contact person on sale order. |
 | [sale_order_invoice_shipping_partner_restrict](sale_order_invoice_shipping_partner_restrict) |         Apply valid invoice and shipping addresses only. |
 | [sale_order_line_position](sale_order_line_position) |         Show position numbers on sale order lines. |
 | [sale_order_line_pricelist_fixed_discount](sale_order_line_pricelist_fixed_discount) |         Add discount from pricelist with fixed price. |
