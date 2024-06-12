@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
   <record id="view_blanket_order_form_send" model="ir.ui.view">
@@ -8,7 +8,13 @@
     <field name="arch" type="xml">
 
       <xpath expr="//button[@name='set_to_draft']" position="after">
-        <button name="action_order_send" string="Send by Email" type="object" states="draft,sent,open" class="btn-primary"/>
+        <button
+                    name="action_order_send"
+                    string="Send by Email"
+                    type="object"
+                    states="draft,sent,open"
+                    class="btn-primary"
+                />
       </xpath>
 
       <field name="state" position="attributes">

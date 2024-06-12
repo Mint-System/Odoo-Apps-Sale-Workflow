@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
   <record id="view_blanket_order_form_contact_person" model="ir.ui.view">
@@ -7,7 +7,7 @@
     <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form" />
     <field name="arch" type="xml">
       <xpath expr="//field[@name='partner_id']" position="after">
-        <field name="partner_contact_id"/>
+        <field name="partner_contact_id" />
       </xpath>
     </field>
   </record>

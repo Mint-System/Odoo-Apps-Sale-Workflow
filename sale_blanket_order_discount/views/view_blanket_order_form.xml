@@ -6,7 +6,13 @@
         <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form" />
         <field name="arch" type="xml">
             <field name="price_subtotal" position="before">
-               <field name="discount" string="Disc.%" groups="product.group_discount_per_so_line" optional="show" widget="product_discount"/>
+               <field
+                    name="discount"
+                    string="Disc.%"
+                    groups="product.group_discount_per_so_line"
+                    optional="show"
+                    widget="product_discount"
+                />
             </field>
         </field>
     </record>

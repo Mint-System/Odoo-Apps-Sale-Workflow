@@ -1,15 +1,15 @@
 {
-    "name": "Sale Blanket Order Carrier",
+    "name": "Sale Order Line Temporary Price",
     "summary": """
-        Set carrier on sale blanket order.
+        Custom unit price valid for first invoice.
     """,
     "author": "Mint System GmbH, Odoo Community Association (OCA)",
     "website": "https://www.mint-system.ch",
-    "category": "Uncategorized",
+    "category": "Sales",
     "version": "16.0.1.0.0",
     "license": "AGPL-3",
-    "depends": ["sale_blanket_order", "delivery"],
-    "data": ["views/view_blanket_order_form.xml", "views/view_order_form.xml"],
+    "depends": ["sale"],
+    "data": ["views/sale_order.xml"],
     "installable": True,
     "application": False,
     "auto_install": False,

@@ -9,7 +9,7 @@
                 <page string="Notes">
                     <group name="notes">
                         <field name="note_header" />
-                        <field name="note_footer"/>
+                        <field name="note_footer" />
                     </group>
                 </page>
             </xpath>
