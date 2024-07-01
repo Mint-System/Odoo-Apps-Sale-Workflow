@@ -6,7 +6,7 @@
 Sale Order Sale Partner
 =======================
 
-Set sale contact on Sales Order.
+Set sale contact on sales order.
 
 For a detailed documentation have a look at
 https://www.odoo-wiki.org/sale-order-sale-partner.html

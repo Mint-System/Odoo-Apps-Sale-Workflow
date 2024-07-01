@@ -1,7 +1,7 @@
 {
     "name": "Sale Blanket Order Contact Person",
     "summary": """
-        Set contact person on Blanket Order.
+        Set contact person on blanket order.
     """,
     "author": "Mint System GmbH, Odoo Community Association (OCA)",
     "website": "https://www.mint-system.ch",

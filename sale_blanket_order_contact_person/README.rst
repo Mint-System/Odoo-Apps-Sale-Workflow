@@ -6,7 +6,7 @@
 Sale Blanket Order Contact Person
 =================================
 
-Set contact person on Blanket Order.
+Set contact person on blanket order.
 
 For a detailed documentation have a look at
 https://www.odoo-wiki.org/sale-blanket-order-contact-person.html
