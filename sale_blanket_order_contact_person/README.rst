@@ -3,7 +3,7 @@
     :alt: License: GPL-3
 
 =================================
-Sale blanket Order Contact Person
+Sale Blanket Order Contact Person
 =================================
 
 Set contact person on Blanket Order.
