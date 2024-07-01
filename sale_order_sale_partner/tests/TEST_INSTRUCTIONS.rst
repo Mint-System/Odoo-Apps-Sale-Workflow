@@ -1,0 +1,6 @@
+- In the Contacts app open Azure Interior contact
+- In the Contacts & Addresses tab press Add button to add a new contact
+- Choose "Sale Contact Address" and fill in the details
+- Save changes
+- Open Sales>Orders and create a new Sales Order for Azure interior
+- The Sale Contact Address field will be automatically set according to the new Contact

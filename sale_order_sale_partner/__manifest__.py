@@ -1,7 +1,7 @@
 {
     "name": "Sale Order Sale Partner",
     "summary": """
-        Set sale contact on sale order.
+        Set sale contact on Sales Order.
     """,
     "author": "Mint System GmbH, Odoo Community Association (OCA)",
     "website": "https://www.mint-system.ch",

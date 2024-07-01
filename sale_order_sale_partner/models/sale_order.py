@@ -20,11 +20,11 @@ class SaleOrder(models.Model):
     @api.depends("partner_id")
     def _compute_partner_sale_id(self):
         for order in self:
-            order.partner_sale_id = (
-                self.partner_id.address_get(["sale"])["sale"]
-                if order.partner_id
-                else False
-            )
+            if order.partner_id:
+                address = order.partner_id.address_get(["sale"])
+                order.partner_sale_id = address.get("sale", False)
+            else:
+                order.partner_sale_id = False
 
     def _create_invoices(self, grouped=False, final=False, date=None):
         moves = super()._create_invoices(grouped=grouped, final=final, date=date)
