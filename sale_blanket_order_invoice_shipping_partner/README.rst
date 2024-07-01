@@ -8,12 +8,8 @@ Sale Blanket Order Invoice Shipping Partner
 
 Set invoice and shipping partner on sale order.
 
-For a detailed documentation have a look at https://www.odoo-wiki.org/.
-
-.. image:: https://raw.githubusercontent.com/Mint-System/Wiki/master/assets/icon-box.png
-  :height: 100
-  :width: 100
-  :alt: Icon
+For a detailed documentation have a look at
+https://www.odoo-wiki.org/sale-order-invoice-shipping-partner.html
 
 Configuration
 ~~~~~~~~~~~~~
