@@ -1,0 +1,3 @@
+- Open Sales>Order>Blanket Orders
+- Create a new Blanket Order, press confirm
+- With the module installed, changes can still be made until a Sales Order is issued
