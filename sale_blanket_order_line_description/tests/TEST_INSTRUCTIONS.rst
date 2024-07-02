@@ -1,0 +1,3 @@
+- Open Settings>Technical>Parameters>System Parameters
+- Create a new system parameter with key sale.blanket.order.line.hide_default_code and value "True"
+-
