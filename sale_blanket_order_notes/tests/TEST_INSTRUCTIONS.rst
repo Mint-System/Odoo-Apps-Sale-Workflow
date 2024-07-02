@@ -1,0 +1,5 @@
+- Open Sales>Orders>Blanket Orders
+- Create a new Blanket Order
+- In the Notes tab create a new note
+- Confirm the Blanket Order and create a Sales Order from it
+- The note content from the Blanket Order is copied to the Sales Order
