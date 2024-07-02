@@ -8,12 +8,8 @@ Sale Blanket Order Cancel State
 
 Adds a cancel state to sale blanket order.
 
-For a detailed documentation have a look at https://www.odoo-wiki.org/.
-
-.. image:: https://raw.githubusercontent.com/Mint-System/Wiki/master/assets/icon-box.png
-  :height: 100
-  :width: 100
-  :alt: Icon
+For a detailed documentation have a look at
+https://www.odoo-wiki.org/sale-blanket-order-cancel-state.html
 
 Configuration
 ~~~~~~~~~~~~~
