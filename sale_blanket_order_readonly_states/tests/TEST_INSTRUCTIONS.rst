@@ -1,3 +1,5 @@
 - Open Sales>Order>Blanket Orders
-- Create a new Blanket Order, press confirm
-- With the module installed, changes can still be made until a Sales Order is issued
+- Create a new Blanket Order
+- With the module installed, changes can still be made to some fields until a Sales Order is issued
+- To verify, confirm the Blanket Order
+- Change the Validity Date of the Blanket Order and save changes
