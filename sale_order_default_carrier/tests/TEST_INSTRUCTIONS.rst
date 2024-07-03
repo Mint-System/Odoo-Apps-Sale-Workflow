@@ -1,0 +1,5 @@
+- Open a contact for Gemini Furniture, in Sale&Purchase under the Sales set a Delivery Method - Local Delivery
+- Open Sales > Order > Sales Orders
+- Create a new Sales Order for Gemini Furniture, the Delivery Method field will take the set delivery method as default
+- Go back the the contact and change the Delivery Method to - The Poste
+- Create another Sales Order for Gemini Furniture, the default delivery method is changed to the one newly set on the contact
