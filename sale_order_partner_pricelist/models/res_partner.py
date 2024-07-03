@@ -11,6 +11,9 @@ class ResPartner(models.Model):
     property_product_pricelist = fields.Many2one(
         compute="_compute_product_pricelist", store=True, tracking=True
     )
+    membership_sale_line_id = fields.Many2one(
+        "sale.order.line", compute="_compute_product_pricelist", store=True
+    )
 
     def get_sale_order_line_pricelist_domain(self, all_partners):
         return [
@@ -42,11 +45,13 @@ class ResPartner(models.Model):
                 )[:1]
 
                 if pricelist_line:
+                    partner.membership_sale_line_id = pricelist_line
                     partner.property_product_pricelist = (
                         pricelist_line.product_id.pricelist_id
                     )
 
             else:
+                partner.membership_sale_line_id = False
                 partner.property_product_pricelist = self.env[
                     "product.pricelist"
                 ].search([], limit=1)
