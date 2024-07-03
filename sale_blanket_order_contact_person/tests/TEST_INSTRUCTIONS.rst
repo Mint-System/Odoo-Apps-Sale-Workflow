@@ -1,0 +1,8 @@
+- In the Contacts app open Azure Interior contact
+- In the Contacts & Addresses tab press Add button to add a new contact
+- Choose "Sale Contact Address" and fill in the details
+- Save changes
+- Open Sales>Blanket Orders and create a new Blanket Order for Azure interior
+- The Sale Contact Address field will be automatically set according to the new Contact
+- Confirm the Blanket Order and create a Sales Order from it
+- Open the Sales Order, the Sale Contact Address must be same as on the Blanket Order

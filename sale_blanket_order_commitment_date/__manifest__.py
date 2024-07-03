@@ -1,15 +1,14 @@
 {
-    "name": "Sale Order Sale Partner",
+    "name": "Sale Blanket Order Commitment Date",
     "summary": """
-        Set sale contact on sales order.
+        Copies the blanket order line scheduled date to sale line commitment date.
     """,
     "author": "Mint System GmbH, Odoo Community Association (OCA)",
     "website": "https://www.mint-system.ch",
-    "category": "Sale",
+    "category": "Uncategorized",
     "version": "16.0.1.0.0",
     "license": "AGPL-3",
-    "depends": ["sale", "partner_type_sale"],
-    "data": ["views/sale_order.xml"],
+    "depends": ["sale_blanket_order", "sale_order_line_date"],
     "installable": True,
     "application": False,
     "auto_install": False,

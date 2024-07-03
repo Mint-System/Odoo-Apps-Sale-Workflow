@@ -14,6 +14,6 @@ class SaleOrder(models.Model):
 
         # Copy contact person if blanket order is passed
         if res.blanket_order_id:
-            res.partner_contact_id = res.blanket_order_id.partner_contact_id
+            res.partner_sale_id = res.blanket_order_id.partner_sale_id
 
         return res

@@ -1,0 +1,4 @@
+- Open Sales>Blanket Orders
+- Open or create a new Blanket Order
+- In the "Other Information" tab, there is a new field tags
+- Set the appropriate tags and save the changes

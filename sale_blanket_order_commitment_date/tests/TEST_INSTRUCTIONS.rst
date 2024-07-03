@@ -1,0 +1,6 @@
+- Open Sales>Order>Blanket Orders
+- Create a new Blanket Order
+- On the product line set a Scheduled date
+- Complete the Blanket Order form and confirm it
+- Create a Sales Order from the Blanket Order
+- The Delivery Date on the Sales Order will match the Scheduled date set in the Blanket Order

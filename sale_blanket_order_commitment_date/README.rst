@@ -2,14 +2,14 @@
     :target: http://www.gnu.org/licenses/gpl-3.0-standalone.html
     :alt: License: GPL-3
 
-===============================
-Sale Blanket Order Cancel State
-===============================
+==================================
+Sale Blanket Order Commitment Date
+==================================
 
-Adds a cancel state to sale blanket order.
+Copies the blanket order line scheduled date to sale line commitment date.
 
 For a detailed documentation have a look at
-https://www.odoo-wiki.org/sale-blanket-order-cancel-state.html
+https://www.odoo-wiki.org/sale-blanket-order-commitment-date.html
 
 Configuration
 ~~~~~~~~~~~~~
