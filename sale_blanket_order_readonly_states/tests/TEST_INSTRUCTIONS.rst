@@ -1,4 +1,3 @@
-- Open Sales>Order>Blanket Orders
-- Create a new Blanket Order
-- To verify, confirm the Blanket Order
-- Change the Validity Date of the Blanket Order and save changes
+- Open Sales > Order > Blanket Orders
+- Create a new blanket order and confirm it
+- Change validity date of the order
