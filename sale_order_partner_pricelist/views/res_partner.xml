@@ -8,9 +8,7 @@
         <field name="priority">99</field>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='property_product_pricelist']" position="after">
-                <field
-                    name="membership_sale_line_id"
-                />
+                <field name="membership_sale_line_id" />
             </xpath>
         </field>
     </record>
