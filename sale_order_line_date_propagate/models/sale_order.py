@@ -1,0 +1,36 @@
+import logging
+
+from dateutil.relativedelta import relativedelta
+
+from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
+
+
+class SaleOrderLine(models.Model):
+    _inherit = "sale.order.line"
+
+    commitment_date = fields.Datetime(compute="_compute_commitment_date", store=True)
+
+    @api.depends("order_id.commitment_date")
+    def _compute_commitment_date(self):
+        for line in self:
+            line.commitment_date = (
+                line.order_id.commitment_date if line.order_id else False
+            )
+
+    def action_confirm(self):
+        """Update commitment_date on each sale order line move"""
+        result = super(SaleOrder, self).action_confirm()
+        if result:
+            for order_line in self.order_line:
+                for move in order_line.move_ids:
+                    move.write(
+                        {
+                            "date": (
+                                order_line.commitment_date or fields.Datetime.now()
+                            )
+                            - relativedelta(days=self.company_id.security_lead)
+                        }
+                    )
+        return result
