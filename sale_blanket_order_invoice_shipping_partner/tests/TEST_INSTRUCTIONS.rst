@@ -1,0 +1,4 @@
+- Add current user to the group Delivery Address
+- Open Deco Addict contact, add a Delivery Address
+- Open Sales>Orders>Blanket Orders
+- Create a new Blanket Order for Deco Addict, the Shippind Address field was added and the address from the contact is used
