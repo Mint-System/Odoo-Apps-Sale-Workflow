@@ -18,7 +18,8 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_blanket_order_cancel_state](sale_blanket_order_cancel_state) |         Adds a cancel state to sale blanket order. |
 | [sale_blanket_order_carrier](sale_blanket_order_carrier) |         Set carrier on sale blanket order. |
 | [sale_blanket_order_comment](sale_blanket_order_comment) |         Comment field for sale blanket order. |
-| [sale_blanket_order_contact_person](sale_blanket_order_contact_person) |         Set contact person on sale order. |
+| [sale_blanket_order_commitment_date](sale_blanket_order_commitment_date) |         Copies the blanket order line scheduled date to sale line commitment date. |
+| [sale_blanket_order_contact_person](sale_blanket_order_contact_person) |         Set contact person on blanket order. |
 | [sale_blanket_order_crm_tags](sale_blanket_order_crm_tags) |         Add CRM tags to sale blanket order. |
 | [sale_blanket_order_date_confirmed](sale_blanket_order_date_confirmed) |         Set confirmation date on sale blanket order. |
 | [sale_blanket_order_discount](sale_blanket_order_discount) |         Define discount on sale blanket order line. |
@@ -32,6 +33,7 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_blanket_order_template](sale_blanket_order_template) |         Setup sale blanket order template. |
 | [sale_order_comment](sale_order_comment) |         Comment field for sale order. |
 | [sale_order_invoice_shipping_partner_restrict](sale_order_invoice_shipping_partner_restrict) |         Apply valid invoice and shipping addresses only. |
+| [sale_order_line_date_propagate](sale_order_line_date_propagate) |         This module ensures that line order dates are propagated to stock pickings. |
 | [sale_order_line_position](sale_order_line_position) |         Show position numbers on sale order lines. |
 | [sale_order_line_pricelist_fixed_discount](sale_order_line_pricelist_fixed_discount) |         Add discount from pricelist with fixed price. |
 | [sale_order_line_temporary_price](sale_order_line_temporary_price) |         Custom unit price valid for first invoice. |
@@ -39,7 +41,7 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_order_partner_membership](sale_order_partner_membership) |         Set membership address on sale order. |
 | [sale_order_partner_pricelist](sale_order_partner_pricelist) |         Grant pricelist access with sale order. |
 | [sale_order_partner_ref](sale_order_partner_ref) |         Show and filter the customer ref in sale order list. |
-| [sale_order_sale_partner](sale_order_sale_partner) |         Set sale contact on sale order. |
+| [sale_order_sale_partner](sale_order_sale_partner) |         Set sale contact on sales order. |
 | [sale_order_template_notes](sale_order_template_notes) |         Set notes on sale order templates. |
 | [sale_partner_shipping_group](sale_partner_shipping_group) |         Access group for shipping address on sale orders and invoices. |
 | [sale_subscription_disable_tokenization](sale_subscription_disable_tokenization) |         Do not force payment tokenization for order with subscriptions. |
