@@ -8,12 +8,8 @@ Sale Order Template Notes
 
 Set notes on sale order templates.
 
-For a detailed documentation have a look at https://www.odoo-wiki.org/.
-
-.. image:: https://raw.githubusercontent.com/Mint-System/Wiki/master/assets/icon-box.png
-  :height: 100
-  :width: 100
-  :alt: Icon
+For a detailed documentation have a look at
+https://www.odoo-wiki.org/sale-order-template-notes.html
 
 Configuration
 ~~~~~~~~~~~~~
