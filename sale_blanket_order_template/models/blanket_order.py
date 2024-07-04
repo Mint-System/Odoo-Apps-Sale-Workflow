@@ -10,7 +10,6 @@ class BlanketOrder(models.Model):
 
     sale_order_template_id = fields.Many2one(
         "sale.order.template",
-        "Blanket Order Template Reference",
         ondelete="cascade",
         index=True,
     )

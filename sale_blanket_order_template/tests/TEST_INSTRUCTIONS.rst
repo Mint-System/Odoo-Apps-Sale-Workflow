@@ -1,0 +1,6 @@
+- Open Sales > Configuration > Quotation Templates
+- Create a new template, in the Notes tab enter a note
+- Open Sales > Orders > Blanket Order
+- Create a new Blanket Order
+- In the new field choose a Quotation Template
+- Some fields will be carried from the template to the Blanket Order, in the Notes tab the notes from the template are copied
