@@ -1,0 +1,3 @@
+- Open Sales > Order > Blanket Orders
+- Create a new blanket order and confirm it
+- Change validity date of the order

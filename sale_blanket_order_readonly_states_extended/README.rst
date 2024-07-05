@@ -2,14 +2,14 @@
     :target: http://www.gnu.org/licenses/gpl-3.0-standalone.html
     :alt: License: GPL-3
 
-========================
-Sale Blanket Order Notes
-========================
+===========================================
+Sale Blanket Order Readonly States Extended
+===========================================
 
-Notes for sale blanket and sale orders.
+Sets readonly state for other sale blanket order modules.
 
 For a detailed documentation have a look at
-https://www.odoo-wiki.org/sale-blanket-order-notes.html
+https://www.odoo-wiki.org/sale-blanket-order-readonly-states-extended.html
 
 Configuration
 ~~~~~~~~~~~~~
