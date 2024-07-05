@@ -1,0 +1,4 @@
+- Open Sales > Orders > Sales Orders
+- Create a new Sale Order
+- In the Notes tab create a new note
+- Confirm the Sales Order, the note is saved
