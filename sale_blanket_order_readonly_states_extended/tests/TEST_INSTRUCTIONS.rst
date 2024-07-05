@@ -1,0 +1,5 @@
+- Add current user to the group "Delivery Address"
+- Open Lumber Inc contact, set the invoice address and delivery address
+- Open Sales>Order>Blanket Orders
+- Create a new Blanket Order for Lumber Inc, press confirm
+- With the module installed, the Invoice Address and Delivery Address can still be changed after the Blanket Order was confirmed
