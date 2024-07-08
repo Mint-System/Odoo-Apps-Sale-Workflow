@@ -7,17 +7,16 @@ from odoo import api, fields, models
 _logger = logging.getLogger(__name__)
 
 
-class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
 
-    commitment_date = fields.Datetime(compute="_compute_commitment_date", store=True)
-
-    @api.depends("order_id.commitment_date")
-    def _compute_commitment_date(self):
-        for line in self:
-            line.commitment_date = (
-                line.order_id.commitment_date if line.order_id else False
-            )
+    @api.depends("commitment_date")
+    def _compute_order_line_commitment_date(self):
+        """Always update commitment_date on sale order lines"""
+        for order in self:
+            if order.commitment_date:
+                for line in order.order_line:
+                    line.commitment_date = order.commitment_date
 
     def action_confirm(self):
         """Update commitment_date on each sale order line move"""
