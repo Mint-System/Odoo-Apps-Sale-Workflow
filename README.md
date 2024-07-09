@@ -34,6 +34,7 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_blanket_order_template](sale_blanket_order_template) |         Setup sale blanket order template. |
 | [sale_order_comment](sale_order_comment) |         Comment field for sale order. |
 | [sale_order_invoice_shipping_partner_restrict](sale_order_invoice_shipping_partner_restrict) |         Apply valid invoice and shipping addresses only. |
+| [sale_order_line_date_propagate](sale_order_line_date_propagate) |         This module ensures that line order dates are propagated to stock pickings. |
 | [sale_order_line_position](sale_order_line_position) |         Show position numbers on sale order lines. |
 | [sale_order_line_pricelist_fixed_discount](sale_order_line_pricelist_fixed_discount) |         Add discount from pricelist with fixed price. |
 | [sale_order_line_temporary_price](sale_order_line_temporary_price) |         Custom unit price valid for first invoice. |
