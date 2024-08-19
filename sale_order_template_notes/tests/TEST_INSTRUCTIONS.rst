@@ -1,0 +1,6 @@
+- Open Sales > Configuration > Quotation Templates
+- Create a new template, in the Notes tab enter a note
+- Open Sales > Orders > Orders
+- Create a new Sales Order
+- In the Quotation Template field choose a newly created template
+- The notes are copied from the template to the Sales Order, visible under Notes tab
