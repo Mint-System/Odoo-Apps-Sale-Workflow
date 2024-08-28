@@ -1,0 +1,6 @@
+- Open Setting > Technical > System Parameters
+- Create a new system parameter with key sale_blanket_order_fiscal.copy_fiscal and value True
+- Open Sales > Order > Blanket Order and create a new blanket order
+- In the Other Information tab set the Fiscal Position to Suisse national (+Liechtenstein)
+- Confirm the Blanket Order and create a Sales Order from it, in the Other Info tab the Fiscal Position is copied from the Blanket Order
+- To disable copying the Fiscal Position from the Blanket Order, set the system parameter to False
