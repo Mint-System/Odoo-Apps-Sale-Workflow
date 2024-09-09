@@ -1,0 +1,2 @@
+- Open Sales > Orders > Order and create a new Sales Order for Deco Addict and product [FURN_8855] Drawer
+- In the sale order line, in the description field the internal reference [FURN_8855] will be dropped
