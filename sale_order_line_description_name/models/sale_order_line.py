@@ -1,7 +1,9 @@
 import logging
-from odoo import api, models, fields
+
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
@@ -19,4 +21,4 @@ class SaleOrderLine(models.Model):
             elif line.product_id and not line.name:
                 line.name = line.product_id.name
             else:
-                line.name = ''
+                line.name = ""

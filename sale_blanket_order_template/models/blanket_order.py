@@ -1,5 +1,6 @@
 import logging
-from odoo import api, fields, models
+
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -19,8 +20,8 @@ class BlanketOrder(models.Model):
         for order in self:
             template = self.sale_order_template_id
 
-            if not order.note_header or order.note_header == '<p><br></p>':
+            if not order.note_header or order.note_header == "<p><br></p>":
                 order.note_header = template.note_header
 
-            if not order.note_footer or order.note_footer == '<p><br></p>':
+            if not order.note_footer or order.note_footer == "<p><br></p>":
                 order.note_footer = template.note_footer
