@@ -6,7 +6,9 @@ class SaleOrderLine(models.Model):
 
     def action_show_details(self):
         self.ensure_one()
-        view = self.env.ref("sale_order_line_form_action.sale_order_line_view_form")
+        view = self.env.ref(
+            "sale_order_line_form_action.sale_order_line_view_form_editable"
+        )
         return {
             "name": _("Sale Order Line"),
             "type": "ir.actions.act_window",
