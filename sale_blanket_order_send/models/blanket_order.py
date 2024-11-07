@@ -6,22 +6,22 @@ _logger = logging.getLogger(__name__)
 
 
 class BlanketOrder(models.Model):
-    _inherit = ["sale.blanket.order"]
+    _inherit = "sale.blanket.order"
 
     state = fields.Selection(
         selection_add=[("sent", "Sent"), ("open",)], ondelete={"sent": "cascade"}
     )
 
     # Generate name from sequence on create
-    @api.model
-    def create(self, vals):
-        if vals.get("name", _("Draft")) == _("Draft"):
-            sequence_obj = self.env["ir.sequence"]
-            if self.company_id:
-                sequence_obj = sequence_obj.with_company(self.company_id.id)
-            vals["name"] = sequence_obj.next_by_code("sale.blanket.order")
-
-        return super(BlanketOrder, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("name", _("Draft")) == _("Draft"):
+                sequence_obj = self.env["ir.sequence"]
+                if self.env.company:
+                    sequence_obj = sequence_obj.with_company(self.env.company.id)
+                vals["name"] = sequence_obj.next_by_code("sale.blanket.order")
+        return super(BlanketOrder, self).create(vals_list)
 
     # Do not generate name from sequence on confirm
     def action_confirm(self):
@@ -38,7 +38,6 @@ class BlanketOrder(models.Model):
     def action_order_send(self):
         # Opens a wizard to compose an email, with relevant mail template loaded by default
         self.ensure_one()
-        self.env.context.get("lang")
         ir_model_data = self.env["ir.model.data"]
         template_id = ir_model_data.check_object_reference(
             "sale_blanket_order_send", "email_template_sale_blanket_order"
@@ -49,7 +48,7 @@ class BlanketOrder(models.Model):
         ctx = {
             "default_model": "sale.blanket.order",
             "active_model": "sale.blanket.order",
-            "default_res_id": self.ids[0],
+            "default_res_ids": self.ids,
             "active_id": self.ids[0],
             "default_use_template": bool(template_id),
             "default_template_id": template_id,
