@@ -8,7 +8,9 @@
         <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form" />
         <field name="arch" type="xml">
             <button name="set_to_draft" position="attributes">
-                <attribute name="states">expired,done,cancel</attribute>
+                <attribute
+                    name="invisible"
+                >state not in ['expired', 'done', 'cancel']</attribute>
             </button>
         </field>
     </record>
