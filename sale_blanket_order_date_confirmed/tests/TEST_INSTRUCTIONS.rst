@@ -1,0 +1,3 @@
+- Open Sales>Blanket Orders
+- Create a new Blanket Order, fill in the details and press confirm
+- A new field "Date Confirmed" is added and reflects the today's date
