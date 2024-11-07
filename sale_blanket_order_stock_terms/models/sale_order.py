@@ -13,7 +13,6 @@ class SaleOrder(models.Model):
         orders = super(SaleOrder, self).create(vals_list)
 
         for order in orders:
-            # Copy incoterm and shipping policy if blanket order exists
             if order.blanket_order_id:
                 if order.blanket_order_id.incoterm:
                     order.incoterm = order.blanket_order_id.incoterm

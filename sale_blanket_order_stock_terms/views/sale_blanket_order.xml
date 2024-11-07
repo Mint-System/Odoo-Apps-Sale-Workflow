@@ -7,8 +7,12 @@
         <field name="arch" type="xml">
             <xpath expr="//group[@name='invoicing']" position="after">
                 <group name="sale_shipping" string="Shipping">
-                    <field name="incoterm" widget="selection"/>
-                    <field name="picking_policy" required="True" readonly="state != 'draft'"/>
+                    <field name="incoterm" widget="selection" />
+                    <field
+                        name="picking_policy"
+                        required="True"
+                        readonly="state != 'draft'"
+                    />
                 </group>
             </xpath>
         </field>
