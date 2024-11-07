@@ -9,12 +9,12 @@
 
       <xpath expr="//button[@name='set_to_draft']" position="after">
         <button
-          name="action_order_send"
-          string="Send by Email"
-          type="object"
-          class="btn-primary"
-          invisible="state not in ('draft', 'sent', 'open')"
-        />
+                    name="action_order_send"
+                    string="Send by Email"
+                    type="object"
+                    class="btn-primary"
+                    invisible="state not in ('draft', 'sent', 'open')"
+                />
       </xpath>
 
       <field name="state" position="attributes">
