@@ -14,4 +14,5 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 
 | Module | Summary |
 | --- | --- |
-| [*](*) |  |
+| [sale_blanket_order_contact_person](sale_blanket_order_contact_person) |         Set contact person on blanket order. |
+| [sale_order_sale_partner](sale_order_sale_partner) |         Set sale contact on sales order. |
