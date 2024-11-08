@@ -1,0 +1,5 @@
+- Open Products > Products and create a new product "Product"
+- Set the cost to $10 and price to $100
+- Open Purchases > Orders and create a new purchase order for 10 units of "Product"
+- Open Sales > Orders and create a new sales order for "Product"
+- New fields "Cost", "Margin" and "Margin (%)" can be shown, the margin is calculated based on cost and selling price
