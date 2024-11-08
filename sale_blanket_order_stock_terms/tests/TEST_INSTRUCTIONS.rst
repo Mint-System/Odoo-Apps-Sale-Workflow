@@ -1,0 +1,5 @@
+- Add current user to group "Technical / Display incoterms on Sales Order and related invoices"
+- Open contact for Deco Addict
+- Open Sale&Purchase tab, under Sales set the Default Incoterm field to "FREE ON BOARD"
+- Open Sales>Order>Blanket Orders
+- Create a new Blanket Order for Deco Addict, in the Other Information tab under Shipping group, the default Incoterm from the contact is set
