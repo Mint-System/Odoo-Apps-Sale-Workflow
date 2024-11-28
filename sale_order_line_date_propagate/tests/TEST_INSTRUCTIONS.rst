@@ -1,0 +1,7 @@
+- Open Sales > Order > Sales Orders
+- Create a Sales Order
+- In the Other Information tab set the Delivery Date
+- The Delivery Date will be reflected in the Sales Order lines
+- Open the stock picking (delivery), the delivery date is the same as set on the Sales Order
+- Change the Delivery Date in the Information Tab of the Sales Order again
+- The new delivery date is propagated to the Sales Order lines and the stock picking Scheduled Date
