@@ -14,6 +14,8 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 
 | Module | Summary |
 | --- | --- |
+| [sale_blanket_order_contact_person](sale_blanket_order_contact_person) |         Set contact person on blanket order. |
+| [sale_order_sale_partner](sale_order_sale_partner) |         Set sale contact on sales order. |
 | [sale_blanket_order_cancel_state](sale_blanket_order_cancel_state) |         Adds a cancel state to sale blanket order. |
 | [sale_blanket_order_date_confirmed](sale_blanket_order_date_confirmed) |         Set confirmation date on sale blanket order. |
 | [sale_blanket_order_discount](sale_blanket_order_discount) |         Define discount on sale blanket order line. |
