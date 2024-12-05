@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="generator" content="Docutils 0.21.2: https://docutils.sourceforge.io/" />
+<meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
 <title>README.rst</title>
 <style type="text/css">
 
 /* Minimal style sheet for the HTML output of Docutils.                    */
 /*                                                                         */
 /* :Author: Günter Milde, based on html4css1.css by David Goodger          */
-/* :Id: $Id: minimal.css 9545 2024-02-17 10:37:56Z milde $                                                               */
-/* :Copyright: © 2015, 2021 Günter Milde.                                  */
+/* :Id: $Id: minimal.css 8642 2021-03-26 13:51:14Z milde $               */
+/* :Copyright: © 2015 Günter Milde.                                        */
 /* :License: Released under the terms of the `2-Clause BSD license`_,      */
 /*    in short:                                                            */
 /*                                                                         */
@@ -23,10 +23,11 @@
 /*                                                                         */
 /* .. _2-Clause BSD license: http://www.spdx.org/licenses/BSD-2-Clause     */
 
-/* This CSS3 stylesheet defines rules for Docutils elements without        */
-/* HTML equivalent. It is required to make the document semantics visible. */
-/*                                                                         */
-/* .. _validates: http://jigsaw.w3.org/css-validator/validator$link        */
+/* This CSS2.1_ stylesheet defines rules for Docutils elements without    */
+/* HTML equivalent. It is required to make the document semantic visible. */
+/*                                                                        */
+/* .. _CSS2.1: http://www.w3.org/TR/CSS2                                  */
+/* .. _validates: http://jigsaw.w3.org/css-validator/validator$link       */
 
 /* titles */
 p.topic-title,
@@ -51,15 +52,14 @@ p.sidebar-subtitle {
 h1 + p.subtitle {
   font-size: 1.6em;
 }
-a.toc-backref {
-  color: inherit;
+h2 + p.section-subtitle, a.toc-backref {
+  color: black;
   text-decoration: none;
 }
 
 /* Warnings, Errors */
 .system-messages h2,
 .system-message-title,
-pre.problematic,
 span.problematic {
   color: red;
 }
@@ -71,9 +71,6 @@ span.problematic {
 }
 /* do not wrap at hyphens and similar: */
 .literal > span.pre { white-space: nowrap; }
-
-/* keep line-breaks (\n) visible */
-.pre-wrap { white-space: pre-wrap; }
 
 /* Lists */
 
@@ -88,11 +85,13 @@ span.problematic {
 /* Nested Paragraphs */
 p:first-child { margin-top: 0; }
 p:last-child { margin-bottom: 0; }
-details > p:last-child { margin-bottom: 1em; }
+td > p, th > p { margin-bottom: 0; }
 
 /* Table of Contents */
-.contents ul.auto-toc { /* section numbers present */
+.topic.contents { margin: 0.5em 0; }
+.topic.contents ul.auto-toc {
   list-style-type: none;
+  padding-left: 1.5em;
 }
 
 /* Enumerated Lists */
@@ -111,32 +110,23 @@ dt .classifier:before {
 }
 /* Field Lists and similar */
 /* bold field name, content starts on the same line */
-dl.field-list,
-dl.option-list,
-dl.docinfo {
-  display: flow-root;
-}
 dl.field-list > dt,
 dl.option-list > dt,
-dl.docinfo > dt {
+dl.docinfo > dt,
+dl.footnote > dt,
+dl.citation > dt {
   font-weight: bold;
   clear: left;
   float: left;
   margin: 0;
   padding: 0;
-  padding-right: 0.25em;
+  padding-right: 0.5em;
 }
 /* Offset for field content (corresponds to the --field-name-limit option) */
 dl.field-list > dd,
 dl.option-list > dd,
 dl.docinfo > dd {
   margin-left:  9em; /* ca. 14 chars in the test examples, fit all Docinfo fields */
-}
-/* start nested lists on new line */
-dd > dl:first-child,
-dd > ul:first-child,
-dd > ol:first-child {
-  clear: left;
 }
 /* start field-body on a new line after long field names */
 dl.field-list > dd > *:first-child,
@@ -145,6 +135,11 @@ dl.option-list > dd > *:first-child
   display: inline-block;
   width: 100%;
   margin: 0;
+}
+/* field names followed by a colon */
+dl.field-list > dt:after,
+dl.docinfo > dt:after {
+  content: ":";
 }
 
 /* Bibliographic Fields (docinfo) */
@@ -159,54 +154,23 @@ dl.option-list > dt { font-weight: normal; }
 span.option { white-space: nowrap; }
 
 /* Footnotes and Citations  */
-
-.footnote, .citation { margin: 1em 0; } /* default paragraph skip (Firefox) */
-/* hanging indent */
-.citation { padding-left: 2em; }
-.footnote { padding-left: 1.7em; }
-.footnote.superscript { padding-left: 1.0em; }
-.citation > .label { margin-left: -2em; }
-.footnote > .label { margin-left: -1.7em; }
-.footnote.superscript > .label { margin-left: -1.0em; }
-
-.footnote > .label + *,
-.citation > .label + * {
-  display: inline-block;
-  margin-top: 0;
-  vertical-align: top;
-}
-.footnote > .backrefs + *,
-.citation > .backrefs + * {
-  margin-top: 0;
-}
-.footnote > .label + p, .footnote > .backrefs + p,
-.citation > .label + p, .citation > .backrefs + p {
-  display: inline;
-  vertical-align: inherit;
-}
-
-.backrefs { user-select: none; }
-.backrefs > a { font-style: italic; }
-
-/* superscript footnotes */
-a[role="doc-noteref"].superscript,
-.footnote.superscript > .label,
-.footnote.superscript > .backrefs {
+dl.footnote.superscript > dd { margin-left: 1em; }
+dl.footnote.brackets > dd { margin-left: 2em; }
+dl.footnote > dt { font-weight: normal; }
+a.footnote-reference.brackets:before,
+dt.label > span.brackets:before { content: "["; }
+a.footnote-reference.brackets:after,
+dt.label > span.brackets:after { content: "]"; }
+a.footnote-reference.superscript,
+dl.footnote.superscript > dt.label {
   vertical-align: super;
-  font-size: smaller;
-  line-height: 1;
+  font-size: small;
 }
-a[role="doc-noteref"].superscript > .fn-bracket,
-.footnote.superscript > .label > .fn-bracket {
-  /* hide brackets in display but leave for copy/paste */
-  display: inline-block;
-  width: 0;
-  overflow: hidden;
+dt.label > span.fn-backref {
+  margin-left: 0.2em;
+  font-weight: normal;
 }
-[role="doc-noteref"].superscript + [role="doc-noteref"].superscript {
-  padding-left: 0.15em; /* separate consecutive footnote references */
-  /* TODO: unfortunately, "+" also selects with text between the references. */
-}
+dt.label > span.fn-backref > a { font-style: italic; }
 
 /* Alignment */
 .align-left   {
@@ -214,6 +178,7 @@ a[role="doc-noteref"].superscript > .fn-bracket,
   margin-right: auto;
 }
 .align-center {
+  clear: both;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -233,13 +198,23 @@ table.align-left, table.align-center, table.align-right {
 }
 
 /* Text Blocks */
-.topic { margin: 1em 2em; }
+blockquote,
+div.topic,
+aside.topic {
+  margin: 1em 2em;
+}
 .sidebar,
 .admonition,
 .system-message {
-  margin: 1em 2em;
   border: thin solid;
+  margin: 1em 2em;
   padding: 0.5em 1em;
+}
+.sidebar {
+  width: 30%;
+  max-width: 26em;
+  float: right;
+  clear: right;
 }
 div.line-block { display: block; }
 div.line-block div.line-block, pre { margin-left: 2em; }
@@ -265,7 +240,7 @@ td, th {
   padding-right: 0.5em /* separate table cells */
 }
 
-table > caption, figcaption {
+table > caption {
   text-align: left;
   margin-top: 0.2em;
   margin-bottom: 0.2em;
@@ -274,32 +249,19 @@ table.captionbelow {
   caption-side: bottom;
 }
 
-/* MathML (see "math.css" for --math-output=HTML) */
-math .boldsymbol { font-weight: bold; }
-math.boxed, math .boxed {padding: 0.25em; border: thin solid; }
-/* style table similar to AMS "align" or "aligned" environment: */
-mtable.cases > mtr > mtd { text-align: left; }
-mtable.ams-align > mtr > mtd { padding-left: 0; padding-right: 0; }
-mtable.ams-align > mtr > mtd:nth-child(2n) { text-align: left; }
-mtable.ams-align > mtr > mtd:nth-child(2n+1) { text-align: right; }
-mtable.ams-align > mtr > mtd:nth-child(2n+3) { padding-left: 2em; }
-.mathscr mi, mi.mathscr {
-  font-family: STIX, XITSMathJax_Script, rsfs10,
-               "Asana Math", Garamond, cursive;
-}
-
 /* Document Header and Footer */
 header { border-bottom: 1px solid black; }
 footer { border-top: 1px solid black; }
 
 /* Images are block-level by default in Docutils */
 /* New HTML5 block elements: set display for older browsers */
-img, svg, header, footer, main, aside, nav, section, figure, video, details {
+img, header, section, footer, aside, nav, main, article, figure, video {
   display: block;
 }
-svg { width: auto; height: auto; }  /* enable scaling of SVG images */
 /* inline images */
-p img, p svg, p video { display: inline; }
+p img, p video, figure img, figure video {
+  display: inline;
+}
 
 </style>
 <style type="text/css">
@@ -308,7 +270,7 @@ p img, p svg, p video { display: inline; }
 /* Rules for easy reading and pre-defined style variants.                  */
 /*                                                                         */
 /* :Author: Günter Milde, based on html4css1.css by David Goodger          */
-/* :Id: $Id: plain.css 9615 2024-04-06 13:28:15Z milde $                                                               */
+/* :Id: $Id: plain.css 8636 2021-03-19 00:23:33Z milde $                                                               */
 /* :Copyright: © 2015 Günter Milde.                                        */
 /* :License: Released under the terms of the `2-Clause BSD license`_,      */
 /*    in short:                                                            */
@@ -320,7 +282,7 @@ p img, p svg, p video { display: inline; }
 /*    This file is offered as-is, without any warranty.                    */
 /*                                                                         */
 /* .. _2-Clause BSD license: http://www.spdx.org/licenses/BSD-2-Clause     */
-/* .. _CSS3: https://www.w3.org/Style/CSS/                                 */
+/* .. _CSS3: http://www.w3.org/TR/CSS3                                     */
 
 
 /* Document Structure */
@@ -330,10 +292,9 @@ p img, p svg, p video { display: inline; }
 body {
   margin: 0;
   background-color: #dbdbdb;
-  --field-indent: 9em; /* default indent of fields in field lists */
 }
 main, footer, header {
-  line-height:1.6;
+  line-height:1.3;
   /* avoid long lines --> better reading */
   /* optimum is 45…75 characters/line <http://webtypography.net/2.1.2> */
   /* OTOH: lines should not be too short because of missing hyphenation, */
@@ -351,21 +312,6 @@ footer, header {
   border: none;
 }
 
-/* Table of Contents */
-ul.auto-toc > li > p {
-  padding-left: 1em;
-  text-indent: -1em;
-}
-nav.contents ul {
-  padding-left: 1em;
-}
-main > nav.contents ul ul ul ul:not(.auto-toc) {
-  list-style-type: '\2B29\ ';
-}
-main > nav.contents ul ul ul ul ul:not(.auto-toc) {
-  list-style-type: '\2B1D\ ';
-}
-
 /* Transitions */
 hr.docutils {
   width: 80%;
@@ -377,55 +323,49 @@ hr.docutils {
 /* Paragraphs */
 
 /* vertical space (parskip) */
-p, ol, ul, dl, li,
-.footnote, .citation,
-div > math,
+p, ol, ul, dl, li, dd,
+div.line-block,
+div.topic,
 table {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
+p:first-child { margin-top: 0; }
+/* (:last-child is new in CSS 3) */
+p:last-child  { margin-bottom: 0; }
 
 h1, h2, h3, h4, h5, h6,
-dd, details > p:last-child {
+dl > dd {
   margin-bottom: 0.5em;
 }
 
 /* Lists */
 /* ===== */
 
+/* Separate list entries in compound lists */
+dl > dd, ol > li,
+
 /* Definition Lists */
 /* Indent lists nested in definition lists */
+/* (:only-child is new in CSS 3)           */
 dd > ul:only-child, dd > ol:only-child { padding-left: 1em; }
 
 /* Description Lists */
 /* styled like in most dictionaries, encyclopedias etc. */
-dl.description {
-  display: flow-root;
-}
 dl.description > dt {
   font-weight: bold;
   clear: left;
   float: left;
   margin: 0;
   padding: 0;
-  padding-right: 0.3em;
-}
-dl.description > dd:after {
-  display: table;
-  content: "";
-  clear: left; /* clearfix for empty descriptions */
+  padding-right: 0.5em;
 }
 
 /* Field Lists */
 
-dl.field-list > dd,
-dl.docinfo > dd {
-  margin-left: var(--field-indent); /* adapted in media queries or HTML */
-}
-
 /* example for custom field-name width */
 dl.field-list.narrow > dd {
-  --field-indent: 5em;
+  margin-left: 5em;
 }
 /* run-in: start field-body on same line after long field names */
 dl.field-list.run-in > dd p {
@@ -434,8 +374,8 @@ dl.field-list.run-in > dd p {
 
 /* Bibliographic Fields */
 
-/* generally, bibliographic fields use dl.docinfo */
-/* but dedication and abstract are placed into divs */
+/* generally, bibliographic fields use special definition list dl.docinfo */
+/* but dedication and abstract are placed into "topic" divs */
 div.abstract p.topic-title {
   text-align: center;
 }
@@ -448,10 +388,6 @@ div.dedication p.topic-title {
   font-style: normal;
 }
 
-/* disclosures */
-details { padding-left: 1em; }
-summary { margin-left: -1em; }
-
 /* Text Blocks */
 /* =========== */
 
@@ -461,10 +397,14 @@ pre.math, pre.code {
   font-family: monospace;
 }
 
-/* Block Quotes and Topics */
-bockquote { margin: 1em 2em; }
+/* Block Quotes */
+blockquote > table,
+div.topic > table {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 blockquote p.attribution,
-.topic p.attribution {
+div.topic p.attribution {
   text-align: right;
   margin-left: 20%;
 }
@@ -504,9 +444,10 @@ table.numbered > caption:before {
 /* ----------------------- */
 
 /* line on the left */
-.footnote-list {
-  border-left: solid thin;
-  padding-left: 0.25em;
+dl.footnote {
+  padding-left: 1ex;
+  border-left: solid;
+  border-left-width: thin;
 }
 
 /* Directives */
@@ -520,9 +461,7 @@ table.numbered > caption:before {
 /* let content flow to the side of aligned images and figures */
 figure.align-left,
 img.align-left,
-svg.align-left,
 video.align-left,
-div.align-left,
 object.align-left {
   clear: left;
   float: left;
@@ -530,9 +469,7 @@ object.align-left {
 }
 figure.align-right,
 img.align-right,
-svg.align-right,
 video.align-right,
-div.align-right,
 object.align-right {
   clear: right;
   float: right;
@@ -564,19 +501,16 @@ div.error {
 aside.sidebar {
   width: 30%;
   max-width: 26em;
-  float: right;
-  clear: right;
   margin-left: 1em;
-  margin-right: -1%;
-  background-color: #fffffa;
+  margin-right: -2%;
+  background-color: #ffffee;
 }
-
 
 /* Code */
 pre.code { padding: 0.7ex }
 pre.code, code { background-color: #eeeeee }
 /* basic highlighting: for a complete scheme, see */
-/* https://docutils.sourceforge.io/sandbox/stylesheets/ */
+/* http://docutils.sourceforge.net/sandbox/stylesheets/ */
 pre.code .comment, code .comment { color: #5C6576 }
 pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
 pre.code .literal.string, code .literal.string { color: #0C5404 }
@@ -584,6 +518,8 @@ pre.code .name.builtin, code .name.builtin { color: #352B84 }
 pre.code .deleted, code .deleted { background-color: #DEB0A1}
 pre.code .inserted, code .inserted { background-color: #A3D289}
 
+/* Math */
+/* styled separately (see math.css for math-output=HTML) */
 
 /* Epigraph           */
 /* Highlights         */
@@ -593,8 +529,6 @@ pre.code .inserted, code .inserted { background-color: #A3D289}
 
 /* Inline Markup */
 /* ============= */
-
-sup, sub { line-height: 0.8; } /* do not add leading for lines with sup/sub */
 
 /* Inline Literals                                          */
 /* possible values: normal, nowrap, pre, pre-wrap, pre-line */
@@ -608,7 +542,7 @@ a { text-decoration: none; }
 /* Internal Targets       */
 /*   span.target.internal */
 /* Footnote References    */
-/*   a[role="doc-noteref"] */
+/*   a.footnote-reference */
 /* Citation References    */
 /*   a.citation-reference */
 
@@ -618,11 +552,9 @@ a { text-decoration: none; }
 <main>
 
 
-<a class="reference external image-reference" href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">
-<img alt="License: GPL-3" src="https://img.shields.io/badge/licence-GPL--3-blue.svg" />
-</a>
+<a class="reference external image-reference" href="http://www.gnu.org/licenses/gpl-3.0-standalone.html"><img alt="License: GPL-3" src="https://img.shields.io/badge/licence-GPL--3-blue.svg" /></a>
 <section id="sale-blanket-order-contact-person">
-<h2>Sale blanket Order Contact Person</h2>
+<h2>Sale Blanket Order Contact Person</h2>
 <p>Set contact person on blanket order.</p>
 <p>For a detailed documentation have a look at
 <a class="reference external" href="https://www.odoo-wiki.org/sale-blanket-order-contact-person.html">https://www.odoo-wiki.org/sale-blanket-order-contact-person.html</a></p>
@@ -633,9 +565,7 @@ a { text-decoration: none; }
 </ul>
 <section id="maintainer">
 <h4>Maintainer</h4>
-<a class="reference external image-reference" href="https://www.mint-system.ch">
-<img alt="https://raw.githubusercontent.com/Mint-System/Wiki/master/assets/mint-system-logo.png" src="https://raw.githubusercontent.com/Mint-System/Wiki/master/assets/mint-system-logo.png" />
-</a>
+<a class="reference external image-reference" href="https://www.mint-system.ch"><img alt="https://raw.githubusercontent.com/Mint-System/Wiki/master/assets/mint-system-logo.png" src="https://raw.githubusercontent.com/Mint-System/Wiki/master/assets/mint-system-logo.png" /></a>
 <p>This module is maintained by Mint System GmbH.</p>
 <p>For support and more information, please visit <a class="reference external" href="https://www.mint-system.ch">our Website</a>.</p>
 </section>
