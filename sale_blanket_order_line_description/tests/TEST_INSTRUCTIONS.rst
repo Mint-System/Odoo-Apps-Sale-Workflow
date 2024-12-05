@@ -1,0 +1,6 @@
+- Open Settings > Technical > Parameters > System Parameters
+- Create a new system parameter with key sale.blanket.order.line.hide_default_code and value "True"
+- Open a product Drawer and set the sales description there
+- Create a new Blanket Order and add the Drawer product, the new description will be visible, and can be modified in the Blanket Order as well
+- Confirm the Blanket Order and create a Sales Order, the description is copied there as well
+- In case only the sales description is needed, set the system parameter sale.blanket.order.line.sale_description_only to True

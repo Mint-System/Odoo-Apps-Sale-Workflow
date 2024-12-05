@@ -1,0 +1,5 @@
+- Open the Sale app
+- Under "Orders" menu open "Blanket Orders"
+- Create a new blanket order
+- A "Cancel" button will appear
+- If the button is pressed, the new state "Cancelled" will be activated and the order switch to this state

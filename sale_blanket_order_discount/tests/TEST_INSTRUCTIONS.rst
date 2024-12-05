@@ -1,0 +1,5 @@
+- Make sure the current user in the group Technical - Discount on lines
+- Open Sales > Orders > Blanket Orders and create a new blanket order for Deco Addict
+- On the order lines a discount can be set for each product
+- Set the dicscount amount and confirm the Blanket Order, create a Sales Order from it
+- Check that the discount is copied from the Blanket Order to the Sales Order
