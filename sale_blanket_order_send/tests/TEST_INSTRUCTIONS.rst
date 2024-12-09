@@ -1,0 +1,6 @@
+- Open Sales>Orders>Blanket Orders
+- Create a new Blanket Order
+- When details are filled in, press "Send by email" button
+- A dialog will open for editing the email, edit accrodingly and press send
+- The email will be sent and is shown in Chatter
+- The status of the Blanket Order is changed to "Sent"
