@@ -1,0 +1,2 @@
+- Open Sales > Orders > Orders and open a Sales Order
+- The new field Pos is visible, under actions choose "Set position numbers", the position numbers will be assigned
