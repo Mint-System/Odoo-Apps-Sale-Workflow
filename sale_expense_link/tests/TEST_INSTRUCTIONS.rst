@@ -1,0 +1,4 @@
+- Open expense "BreakFast"
+- Invoice to customer "S00016"
+- Create report, then approve and post report
+- Click on "Sale Order Lines"

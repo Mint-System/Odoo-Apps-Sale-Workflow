@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_hr_expense_sheet_form" model="ir.ui.view">
+        <field name="name">sale_expense_link.view_hr_expense_sheet_form</field>
+        <field name="model">hr.expense.sheet</field>
+        <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_open_so_lines"
+                    class="oe_stat_button"
+                    icon="fa-dollar"
+                    type="object"
+                    attrs="{'invisible': ['|', ('state', 'not in', ['approve', 'post', 'done']), ('account_move_id', '=', False)]}"
+                >
+                    <span>Sale Order Lines</span>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
