@@ -41,6 +41,7 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_order_line_date_propagate](sale_order_line_date_propagate) |         This module ensures that line order dates are propagated to stock pickings. |
 | [sale_order_line_description_name](sale_order_line_description_name) |         Use product name without default code in sale order line. |
 | [sale_order_line_form_action](sale_order_line_form_action) |         Adds a button to open a sale order line in the form view. |
+| [sale_order_line_name_get](sale_order_line_name_get) |         Use product name in sale order display name before description. |
 | [sale_order_line_position](sale_order_line_position) |         Show position numbers on sale order lines. |
 | [sale_order_line_pricelist_fixed_discount](sale_order_line_pricelist_fixed_discount) |         Add discount from pricelist with fixed price. |
 | [sale_order_line_temporary_price](sale_order_line_temporary_price) |         Custom unit price valid for first invoice. |
