@@ -3,7 +3,7 @@
     "summary": """
         Copy description field of order lines to sale order.
     """,
-    "author": "Mint System GmbH, Odoo Community Association (OCA)",
+    "author": "Mint System GmbH",
     "website": "https://www.mint-system.ch",
     "category": "Sales",
     "version": "14.0.1.2.0",

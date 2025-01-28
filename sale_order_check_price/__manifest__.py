@@ -3,7 +3,7 @@
     "summary": """
         Prevent sale order confirmation if line price is zero.
     """,
-    "author": "Mint System GmbH, Odoo Community Association (OCA)",
+    "author": "Mint System GmbH",
     "website": "https://www.mint-system.ch",
     "category": "Sales",
     "version": "14.0.1.0.0",

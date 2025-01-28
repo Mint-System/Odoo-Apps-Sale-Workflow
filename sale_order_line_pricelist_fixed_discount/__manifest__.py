@@ -3,7 +3,7 @@
     "summary": """
         Add discount from pricelist with fixed price.
     """,
-    "author": "Mint System GmbH, Odoo Community Association (OCA)",
+    "author": "Mint System GmbH",
     "website": "https://www.mint-system.ch",
     "category": "Sales",
     "version": "14.0.1.3.2",

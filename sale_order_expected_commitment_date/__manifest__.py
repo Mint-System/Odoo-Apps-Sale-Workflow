@@ -3,7 +3,7 @@
     "summary": """
         If empty set commitment date equal to expected date.
     """,
-    "author": "Mint System GmbH, Odoo Community Association (OCA)",
+    "author": "Mint System GmbH",
     "website": "https://www.mint-system.ch",
     "category": "Sale",
     "version": "14.0.1.1.0",
