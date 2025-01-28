@@ -3,7 +3,7 @@
     "summary": """
         Show and filter the customer ref in sale order list.
     """,
-    "author": "Mint System GmbH, Odoo Community Association (OCA)",
+    "author": "Mint System GmbH",
     "website": "https://www.mint-system.ch",
     "category": "Sales",
     "version": "16.0.1.0.0",

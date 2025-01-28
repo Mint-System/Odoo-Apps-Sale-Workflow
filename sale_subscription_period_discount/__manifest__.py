@@ -3,7 +3,7 @@
     "summary": """
         Apply discounts on subscription periods.
     """,
-    "author": "Mint System GmbH, Odoo Community Association (OCA)",
+    "author": "Mint System GmbH",
     "website": "https://www.mint-system.ch",
     "category": "Sales",
     "version": "16.0.1.2.1",

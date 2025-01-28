@@ -3,7 +3,7 @@
     "summary": """
         Send blanket order by e-mail.
     """,
-    "author": "Mint System GmbH, Odoo Community Association (OCA)",
+    "author": "Mint System GmbH",
     "website": "https://www.mint-system.ch",
     "category": "Sale",
     "version": "16.0.1.0.0",

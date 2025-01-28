@@ -3,7 +3,7 @@
     "summary": """
         Use product name without default code in sale order line.
     """,
-    "author": "Mint System GmbH, Odoo Community Association (OCA)",
+    "author": "Mint System GmbH",
     "website": "https://www.mint-system.ch",
     "category": "Sales",
     "version": "16.0.1.0.0",
