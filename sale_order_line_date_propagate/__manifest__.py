@@ -3,7 +3,7 @@
     "summary": """
         This module ensures that line order dates are propagated to stock pickings.
     """,
-    "author": "Mint System GmbH, Odoo Community Association (OCA)",
+    "author": "Mint System GmbH, Mint System GmbH",
     "website": "https://www.mint-system.ch",
     "category": "Manufacturing",
     "version": "17.0.1.0.0",
