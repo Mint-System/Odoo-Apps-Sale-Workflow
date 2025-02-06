@@ -6,7 +6,7 @@
 Sale Expense Link
 =================
 
-Link expense ande sale order line.
+Link expense and sale order line.
 
 For a detailed documentation have a look at https://www.odoo-wiki.org/sale-expense-description-date.html
 
