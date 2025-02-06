@@ -6,7 +6,7 @@
 Sale Product Set Search
 =======================
 
- Search product set by name and reference.
+Search product set by name and reference.
 
 For a detailed documentation have a look at https://www.odoo-wiki.org/sale-product-set-search.html
 
