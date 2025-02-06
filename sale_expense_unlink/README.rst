@@ -8,16 +8,12 @@ Sale Expense Unlink
 
 Allow deletion of sale order expense lines.
 
-For a detailed documentation have a look at https://www.odoo-wiki.org/sale-expense-description-date.html
+For a detailed documentation have a look at https://www.odoo-wiki.org/sale-expense-unlink.html
 
 .. image:: https://raw.githubusercontent.com/Mint-System/Wiki/master/assets/icon-box.png
   :height: 100
   :width: 100
   :alt: Icon
-
-.. code-block:: bash
-
-    git clone git@github.com:mint-system/odoo-app-sale-expense-description-date.git ./addons/sale_expense_description_date
 
 Configuration
 ~~~~~~~~~~~~~
