@@ -1,7 +1,7 @@
 {
     "name": "Sale Expense Link",
     "summary": """
-        Link expense ande sale order line.
+        Link expense and sale order line.
     """,
     "author": "Mint System GmbH",
     "website": "https://www.mint-system.ch",
