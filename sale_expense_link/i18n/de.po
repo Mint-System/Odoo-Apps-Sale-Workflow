@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_expense_link
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-22 10:37+0000\n"
+"PO-Revision-Date: 2024-12-22 10:37+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_expense_link
+#: model:ir.model.fields,field_description:sale_expense_link.field_hr_expense__account_move_line_ids
+msgid "Account Move Line"
+msgstr ""
+
+#. module: sale_expense_link
+#: model:ir.model,name:sale_expense_link.model_hr_expense
+msgid "Expense"
+msgstr "Aufwand"
+
+#. module: sale_expense_link
+#: model:ir.model,name:sale_expense_link.model_hr_expense_sheet
+msgid "Expense Report"
+msgstr "Spesenabrechnung"
+
+#. module: sale_expense_link
+#. odoo-python
+#: code:addons/sale_expense_link/models/hr_expense.py:0
+#: model_terms:ir.ui.view,arch_db:sale_expense_link.view_hr_expense_sheet_form
+#, python-format
+msgid "Sale Order Lines"
+msgstr "Kundenauftragszeilen"
+
+#. module: sale_expense_link
+#: model:ir.model.fields,field_description:sale_expense_link.field_hr_expense__so_line_ids
+msgid "So Line"
+msgstr ""
