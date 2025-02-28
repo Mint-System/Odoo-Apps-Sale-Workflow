@@ -1,0 +1,6 @@
+- Open expense "BreakFast"
+- Invoice to customer "S00016"
+- Create report, then approve and post report
+- Check if sale order lines are created
+- Then unpost the sheet
+- Check if sale order lines have been deleted
