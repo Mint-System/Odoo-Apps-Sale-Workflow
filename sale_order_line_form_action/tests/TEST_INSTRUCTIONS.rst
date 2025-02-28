@@ -5,4 +5,6 @@ Setup:
 
 Check Button:
 
-- Check if "Show Details" button is present
+- Check if "Show Details" button (list icon) in sale order line is present
+- Click "Show Details"
+- Check if Pop-up with sale order line appears

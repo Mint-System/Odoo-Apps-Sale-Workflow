@@ -24,6 +24,7 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_blanket_order_stock_terms](sale_blanket_order_stock_terms) |         Set incoterm and shipping policy on blanket order. |
 | [sale_expense_description_date](sale_expense_description_date) |         Append date of expense to sale order line description. |
 | [sale_order_line_date_propagate](sale_order_line_date_propagate) |         This module ensures that line order dates are propagated to stock pickings. |
+| [sale_order_line_form_action](sale_order_line_form_action) |         Adds a button to open a sale order line in the form view. |
 | [sale_order_line_position](sale_order_line_position) |         Show position numbers on sale order lines. |
 | [sale_order_line_purchase_margin](sale_order_line_purchase_margin) |         Calculate sale line margin from linked purchase. |
 | [sale_order_notes](sale_order_notes) |         Notes for sale orders. |
