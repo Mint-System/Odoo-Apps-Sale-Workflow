@@ -28,5 +28,7 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_order_line_position](sale_order_line_position) |         Show position numbers on sale order lines. |
 | [sale_order_line_purchase_margin](sale_order_line_purchase_margin) |         Calculate sale line margin from linked purchase. |
 | [sale_order_notes](sale_order_notes) |         Notes for sale orders. |
+| [sale_order_project_key](sale_order_project_key) |         Link name and analytic account with the assigned project. |
 | [sale_order_sale_partner](sale_order_sale_partner) |         Set sale contact on sales order. |
 | [sale_order_template_notes](sale_order_template_notes) |         Set notes on sale order templates. |
+| [sale_timesheet_total_validated](sale_timesheet_total_validated) |         Link only validated timesheet entries in sale order. |
