@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
     @api.depends(
         "company_id.project_time_mode_id",
         "company_id.timesheet_encode_uom_id",
-        "order_line.timesheet_ids"
+        "order_line.timesheet_ids",
     )
     def _compute_timesheet_total_duration(self):
         """Filter validated analytic lines"""
