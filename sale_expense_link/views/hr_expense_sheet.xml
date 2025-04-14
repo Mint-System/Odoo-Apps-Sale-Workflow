@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form" />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
-                <field name="account_move_ids" invisible="1"/>
+                <field name="account_move_ids" invisible="1" />
                 <button
                     name="action_open_so_lines"
                     class="oe_stat_button"
