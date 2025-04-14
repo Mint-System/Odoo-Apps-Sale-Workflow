@@ -9,10 +9,8 @@ from odoo.osv import expression
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-
     def _action_confirm(self):
         """Propagate sale order data to linked project."""
-        print("############### _action_confirm")
         res = super()._action_confirm()
         # Write partner to project
         if self.project_id and not self.project_id.partner_id:
@@ -37,17 +35,15 @@ class SaleOrder(models.Model):
             )
         return res
 
-
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            if 'project_id' in vals and vals['project_id']:
-                project = self.env['project.project'].browse(vals['project_id'])
+            if "project_id" in vals and vals["project_id"]:
+                project = self.env["project.project"].browse(vals["project_id"])
                 if project.code:
-                    vals['name'] = f"{project.code}"    
+                    vals["name"] = f"{project.code}"
 
         return super().create(vals_list)
-        
 
     def name_get(self):
         res = super(SaleOrder, self).name_get()

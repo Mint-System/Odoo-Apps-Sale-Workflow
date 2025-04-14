@@ -3,9 +3,11 @@ Setup:
 - Install sale_order_project_key
 - Create new project with a code or add code to existing project.
 - Create new sale order and assign project with code to it.
+- Create produckt (service) and set 'Create on Order' to 'Project & Task'.
 
 Check appearance of project code:
 
 - If saved check if project code is set as sale order name.
 - Check if sale order client appears as client on corresponding project.
-- If saler order is validated sale order tasks button should show corresponding tasks.
+- If sale order is validated services on timesheet added to sale order appear as project tasks.
+- Check if task button on sale order shows project tasks.
