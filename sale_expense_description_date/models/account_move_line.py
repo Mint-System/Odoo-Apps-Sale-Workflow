@@ -17,7 +17,7 @@ class AccountMoveLine(models.Model):
             date_format = lang and lang.date_format or "%m/%d/%Y"
             res.update(
                 {
-                    "name": self.name 
+                    "name": self.name
                     + " (%s)" % self.expense_id.date.strftime(date_format)
                 }
             )
