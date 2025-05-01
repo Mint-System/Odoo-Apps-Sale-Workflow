@@ -4,7 +4,8 @@ from collections import defaultdict
 from odoo import api, models
 
 _logger = logging.getLogger(__name__)
-from odoo.addons.sale_timesheet_enterprise.models.sale import DEFAULT_INVOICED_TIMESHEET
+from odoo.addons.sale_timesheet_enterprise.models.sale import \
+    DEFAULT_INVOICED_TIMESHEET
 
 
 class SaleOrder(models.Model):
