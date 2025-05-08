@@ -17,6 +17,5 @@ class SaleOrder(models.Model):
             pickings = order.picking_ids.filtered(
                 lambda x: x.picking_type_code == "outgoing"
             )
-            _logger.warning([pickings, order.picking_ids])
             pickings.write({"owner_id": order.partner_id.id})
         return res
