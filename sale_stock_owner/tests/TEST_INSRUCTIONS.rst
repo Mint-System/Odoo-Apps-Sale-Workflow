@@ -1,0 +1,9 @@
+- In settings activate stock locations and consignment
+- Create a sale order for "Deco Addict" (or another company)
+- Add a new product "Switch" with 10 quantities
+- Set quantity 1 on the so line and confirm
+- Open the delivery and check if owner is assigned to client 
+- Confirm
+- Ensure the product is in the customer location
+- Then make return for the delivery
+- Ensure the product quantity is WH/Stock not assigned to the customer
