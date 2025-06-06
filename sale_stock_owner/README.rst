@@ -10,11 +10,6 @@ Assign customer as owner to deliveries and inventory.
 
 For a detailed documentation have a look at https://www.odoo-wiki.org/sale-stock-owner.html.
 
-.. image:: https://raw.githubusercontent.com/Mint-System/Wiki/master/assets/icon-box.png
-  :height: 100
-  :width: 100
-  :alt: Icon
-
 Configuration
 ~~~~~~~~~~~~~
 
