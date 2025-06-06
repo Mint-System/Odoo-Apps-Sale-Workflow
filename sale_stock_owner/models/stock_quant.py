@@ -23,8 +23,9 @@ class StockQuant(models.Model):
         If adjustment is internal do not assign owner_id.
         This will ensure that a delivered quantity will balance with the incoming quantity.
         """
-        if location_id.usage == "internal":
+        if location_id.usage == "internal" and quantity < 0.0:
             owner_id = False
+
         return super()._update_available_quantity(
             product_id, location_id, quantity, lot_id, package_id, owner_id, in_date
         )

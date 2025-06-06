@@ -1,5 +1,5 @@
 {
-    "name": "Sale Owner Owner",
+    "name": "Sale Stock Owner",
     "summary": """
         Assign customer as owner to deliveries and inventory.
     """,
