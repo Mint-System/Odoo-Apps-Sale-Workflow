@@ -9,7 +9,7 @@
     "version": "15.0.1.0.0",
     "license": "AGPL-3",
     "depends": ["sale_stock"],
-    "data": ["views/stock_picking_views.xml"],
+    "data": ["views/stock_picking_views.xml", "views/stock_location_views.xml"],
     "installable": True,
     "application": False,
     "auto_install": False,
