@@ -1,4 +1,0 @@
-- Enable sale order line description settings
-- Add sale description to product "Accoustic Blockscreen"
-- Create sale order with "Accoustic Blockscreen"
-- Check that only sale description is added

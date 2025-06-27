@@ -10,6 +10,7 @@
     "version": "18.0.1.0.0",
     "license": "OPL-1",
     "depends": ["sale", "helm"],
+    "data": ["views/sale_order_views.xml"],
     "installable": True,
     "application": False,
     "auto_install": False,
