@@ -1,7 +1,8 @@
 import logging
 
-_logger = logging.getLogger(__name__)
 from odoo import fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class SaleOrder(models.Model):
@@ -10,4 +11,4 @@ class SaleOrder(models.Model):
     project_name = fields.Char()
     domain = fields.Char()
     consuling_partner_id = fields.Char()
-    cluster_id = fields.Many2One("kubectl.cluster")
+    cluster_id = fields.Many2one("kubectl.cluster")
