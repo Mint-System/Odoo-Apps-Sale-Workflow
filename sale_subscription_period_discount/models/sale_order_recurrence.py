@@ -9,15 +9,13 @@ _logger = logging.getLogger(__name__)
 class SaleOrderRecurrence(models.Model):
     _inherit = "sale.temporal.recurrence"
 
-    period_discount_ids = fields.One2many(
-        "sale.temporal.period_discount", "recurrence_id"
-    )
+    period_discount_ids = fields.One2many("sale.temporal.period_discount", "recurrence_id")
 
     def get_period_discount(self, date=fields.Date.today()):
-        """Return first matching discount starting from date until end of year."""
-        return self.period_discount_ids.filtered(
-            lambda p: p.from_date <= date and p.from_date.year == date.year
-        )[:1]
+        """
+        Return first matching discount starting from date until end of year.
+        """
+        return self.period_discount_ids.filtered(lambda p: p.from_date <= date and p.from_date.year == date.year)[:1]
 
 
 class SaleOrderPeriodDiscount(models.Model):
@@ -52,16 +50,8 @@ class SaleOrderPeriodDiscount(models.Model):
     @api.depends("day", "month")
     def _compute_from_date(self):
         for discount in self:
-            discount.from_date = datetime.date(
-                fields.Date.today().year, int(discount.month), discount.day
-            )
+            discount.from_date = datetime.date(fields.Date.today().year - 1, int(discount.month), discount.day)
 
     def _compute_name(self):
         for discount in self:
-            discount.name = (
-                str(fields.Date.today().year)
-                + "-"
-                + str(discount.month)
-                + "-"
-                + str(discount.day)
-            )
+            discount.name = str(fields.Date.today().year - 1) + "-" + str(discount.month) + "-" + str(discount.day)

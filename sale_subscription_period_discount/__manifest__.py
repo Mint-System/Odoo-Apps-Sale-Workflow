@@ -4,7 +4,7 @@
         Apply discounts on subscription periods.
     """,
     "author": "Mint System GmbH",
-    "website": "https://www.mint-system.ch",
+    "website": "https://www.mint-system.ch/",
     "category": "Sales",
     "version": "16.0.1.2.1",
     "license": "OPL-1",
