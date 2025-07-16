@@ -10,7 +10,7 @@ class SaleOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        res = super(SaleOrder, self).create(vals)
+        res = super().create(vals)
 
         # Copy contact person if blanket order is passed
         if res.blanket_order_id:

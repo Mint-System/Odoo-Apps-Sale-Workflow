@@ -9,9 +9,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     orig_price_unit = fields.Float("Original Price")
-    temp_price_unit = fields.Float(
-        "Temporary Price", inverse="_inverse_temp_price_unit"
-    )
+    temp_price_unit = fields.Float("Temporary Price", inverse="_inverse_temp_price_unit")
 
     def _inverse_temp_price_unit(self):
         """

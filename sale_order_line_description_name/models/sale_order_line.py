@@ -15,9 +15,7 @@ class SaleOrderLine(models.Model):
         for line in self:
             if line.product_id and line.name:
                 if line.product_id.display_name and line.product_id.name:
-                    line.name = line.name.replace(
-                        line.product_id.display_name, line.product_id.name
-                    )
+                    line.name = line.name.replace(line.product_id.display_name, line.product_id.name)
             elif line.product_id and not line.name:
                 line.name = line.product_id.name
             else:

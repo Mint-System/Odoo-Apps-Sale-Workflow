@@ -10,11 +10,9 @@ class BlanketOrderWizard(models.TransientModel):
     _inherit = "sale.blanket.order.wizard"
 
     def _prepare_so_vals(self, *kwargs):
-        res = super(BlanketOrderWizard, self)._prepare_so_vals(*kwargs)
+        res = super()._prepare_so_vals(*kwargs)
         copy_ref = ast.literal_eval(
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param("sale_blanket_order_reference.copy_ref", "False")
+            self.env["ir.config_parameter"].sudo().get_param("sale_blanket_order_reference.copy_ref", "False")
         )
         if copy_ref:
             res.update(

@@ -20,15 +20,13 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         """Update commitment_date on each sale order line move"""
-        result = super(SaleOrder, self).action_confirm()
+        result = super().action_confirm()
         if result:
             for order_line in self.order_line:
                 for move in order_line.move_ids:
                     move.write(
                         {
-                            "date": (
-                                order_line.commitment_date or fields.Datetime.now()
-                            )
+                            "date": (order_line.commitment_date or fields.Datetime.now())
                             - relativedelta(days=self.company_id.security_lead)
                         }
                     )

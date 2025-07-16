@@ -22,13 +22,8 @@ class SaleOrderLine(models.Model):
     def _set_default_task(self, values=[]):
         """Search for first fsm line of sale order and use task as default."""
         if "task_id" not in values:
-            for line in self.filtered(
-                lambda l: not l.task_id
-                and l.product_id.detailed_type in ["consu", "product"]
-            ):
-                order_line_ids = self.order_id.order_line.filtered(
-                    lambda l: l.task_id.is_fsm
-                )[:1]
+            for line in self.filtered(lambda l: not l.task_id and l.product_id.detailed_type in ["consu", "product"]):
+                order_line_ids = self.order_id.order_line.filtered(lambda l: l.task_id.is_fsm)[:1]
                 if order_line_ids:
                     line.write({"task_id": order_line_ids.task_id.id})
 

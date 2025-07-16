@@ -9,7 +9,7 @@ class BlanketOrderWizard(models.TransientModel):
     _inherit = "sale.blanket.order.wizard"
 
     def _prepare_so_line_vals(self, line):
-        res = super(BlanketOrderWizard, self)._prepare_so_line_vals(line)
+        res = super()._prepare_so_line_vals(line)
         res.update({"discount": line.discount})
         return res
 

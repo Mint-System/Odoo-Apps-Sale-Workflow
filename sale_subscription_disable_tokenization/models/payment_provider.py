@@ -2,7 +2,6 @@ from odoo import api, models
 
 
 class PaymentProvider(models.Model):
-
     _inherit = "payment.provider"
 
     @api.model

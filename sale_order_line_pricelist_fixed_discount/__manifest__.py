@@ -4,7 +4,7 @@
         Add discount from pricelist with fixed price.
     """,
     "author": "Mint System GmbH",
-    "website": "https://www.mint-system.ch",
+    "website": "https://www.mint-system.ch/",
     "category": "Sales",
     "version": "16.0.1.0.3",
     "license": "AGPL-3",

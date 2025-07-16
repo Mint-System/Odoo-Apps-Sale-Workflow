@@ -4,7 +4,7 @@
         Do not force payment tokenization for order with subscriptions.
     """,
     "author": "Mint System GmbH",
-    "website": "https://www.mint-system.ch",
+    "website": "https://www.mint-system.ch/",
     "category": "Sale",
     "version": "16.0.1.0.0",
     "license": "OPL-1",

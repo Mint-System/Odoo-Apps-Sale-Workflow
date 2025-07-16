@@ -10,7 +10,7 @@ class SaleOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        sale_order = super(SaleOrder, self).create(vals)
+        sale_order = super().create(vals)
 
         # Copy note fields from blanket order
         if sale_order.blanket_order_id:

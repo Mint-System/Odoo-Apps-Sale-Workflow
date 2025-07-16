@@ -9,7 +9,7 @@ class BlanketOrderWizard(models.TransientModel):
     _inherit = "sale.blanket.order.wizard"
 
     def _prepare_so_vals(self, *kwargs):
-        res = super(BlanketOrderWizard, self)._prepare_so_vals(*kwargs)
+        res = super()._prepare_so_vals(*kwargs)
         res.update(
             {
                 "partner_invoice_id": self.blanket_order_id.partner_invoice_id.id,
