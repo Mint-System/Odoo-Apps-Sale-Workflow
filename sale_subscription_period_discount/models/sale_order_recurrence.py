@@ -45,13 +45,18 @@ class SaleOrderPeriodDiscount(models.Model):
         required=True,
         default=1,
     )
+    year = fields.Integer(default=0, required=True, help="This number will be added to the current year.")
     discount = fields.Float(string="Discount (%)", digits="Discount", required=True)
 
     @api.depends("day", "month")
     def _compute_from_date(self):
         for discount in self:
-            discount.from_date = datetime.date(fields.Date.today().year - 1, int(discount.month), discount.day)
+            discount.from_date = datetime.date(
+                fields.Date.today().year + discount.year, int(discount.month), discount.day
+            )
 
     def _compute_name(self):
         for discount in self:
-            discount.name = str(fields.Date.today().year - 1) + "-" + str(discount.month) + "-" + str(discount.day)
+            discount.name = (
+                str(fields.Date.today().year + discount.year) + "-" + str(discount.month) + "-" + str(discount.day)
+            )
