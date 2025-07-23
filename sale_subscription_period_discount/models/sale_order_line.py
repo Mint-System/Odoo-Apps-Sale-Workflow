@@ -16,7 +16,16 @@ class SaleOrderLine(models.Model):
         If it is the first invoice update the start and end date.
         """
         res = super()._prepare_invoice_line(**optional_values)
-        if self.order_id.invoice_count == 0 and (
+
+        # Check if no unpaid invoices exist.
+        invoice_line_count = len(
+            self.invoice_lines.filtered(
+                lambda l: l.move_type == "out_invoice" and l.move_id.payment_state not in ["not_paid", "reversed"]
+            )
+        )
+
+        # Ensure order is recurring
+        if invoice_line_count == 0 and (
             self.temporal_type == "subscription" or self.order_id.subscription_management == "upsell"
         ):
             lang_code = self.order_id.partner_id.lang
