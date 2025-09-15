@@ -1,17 +1,17 @@
 # Odoo Apps: Sale Workflow
 
-Collection of sale model related modules.
+Odoo modules extending the `sale` module.
 
 ## Usage
 
-Clone module into Odoo addon directory.
+Clone this repo into the Odoo addons directory.
 
 ```bash
-git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_workflow
+git clone git@github.com:Mint-System/Odoo-Apps-sale_workflow.git ./addons/sale_workflow
 ```
 
 ## Available modules
 
 | Module | Summary |
-| --- | --- |
-| [sale_helm](sale_helm) |         Sell services and assign hosting provider and consulting partner. |
+| ------ | ------- |
+|        |         |

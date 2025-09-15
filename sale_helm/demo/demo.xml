@@ -14,7 +14,7 @@
             eval="(DateTime.today() - relativedelta(days=1)).strftime('%Y-%m-%d %H:%M')"
         />
         <field name="project_name">restic</field>
-        <field name="domain">odoo.restic.ch</field>
+        <field name="domain">restic.local</field>
         <field name="consulting_partner_id" ref="helm.res_partner_mint_system_demo" />
         <field name="cluster_id" ref="kubectl.kubectl_cluster_kind_demo" />
     </record>
