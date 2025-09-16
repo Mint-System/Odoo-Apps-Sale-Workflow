@@ -42,13 +42,14 @@ class SaleOrder(models.Model):
         """
         res = super().action_confirm()
         for order in self.filtered("chart_ids"):
-            namespace_id = self.env["kubectl.namespace"].create(
+            namespace_id = self.env["kubectl.namespace"].get_or_create(
                 {"name": order.project_name, "cluster_id": order.cluster_id.id}
             )
             for line in order.order_line:
                 release_id = line.product_id.chart_id.create_release(namespace_id, order.partner_id)
-                release_id.action_install()
                 line.release_id = release_id
+                release_id._compute_values()
+                release_id.action_install()
         return res
 
     def action_view_release(self):
