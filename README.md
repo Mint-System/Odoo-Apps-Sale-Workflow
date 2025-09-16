@@ -13,5 +13,5 @@ git clone git@github.com:Mint-System/Odoo-Apps-sale_workflow.git ./addons/sale_w
 ## Available modules
 
 | Module | Summary |
-| ------ | ------- |
-|        |         |
+| --- | --- |
+| [sale_helm](sale_helm) |         Sell services and assign hosting provider and consulting partner. |

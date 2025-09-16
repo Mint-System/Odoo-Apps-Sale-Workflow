@@ -5,6 +5,19 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
+
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+                <button
+                    type="object"
+                    name="action_view_release"
+                    class="oe_stat_button"
+                    icon="fa-key"
+                    invisible="release_count == 0"
+                >
+                    <field name="release_count" widget="statinfo" string="Releases" />
+                </button>
+            </xpath>
+
             <page name="other_information" position="before">
                 <page string="Helm" name="helm">
                     <group>
