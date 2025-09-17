@@ -11,7 +11,7 @@ class SaleOrder(models.Model):
 
     project_name = fields.Char(inverse="_inverse_project_name")
     domain = fields.Char()
-    consulting_partner_id = fields.Many2one("res.partner")
+    consulting_partner_id = fields.Many2one("res.partner", domain="[('helm_product_ids','!=',False)]")
     cluster_id = fields.Many2one("kubectl.cluster")
     chart_ids = fields.One2many("helm.chart", compute="_compute_chart_ids")
     release_ids = fields.Many2many("helm.release", compute="_compute_release_ids", store=True)
