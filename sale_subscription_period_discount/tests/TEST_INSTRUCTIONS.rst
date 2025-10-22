@@ -1,0 +1,6 @@
+- Create a yearly subscription
+- Confirm and invoice
+- Show the discounts column in invoice line table
+- Check if the applied discount matches the period discount definition of the yearly subscription plan
+- Create a pdf of the infoice
+- Check if the formatting of description is correct.

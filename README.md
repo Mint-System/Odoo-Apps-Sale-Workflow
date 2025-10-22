@@ -14,4 +14,4 @@ git clone git@github.com:Mint-System/Odoo-Apps-sale_workflow.git ./addons/sale_w
 
 | Module | Summary |
 | --- | --- |
-| [*](*) |  |
+| [sale_subscription_period_discount](sale_subscription_period_discount) |         Apply discounts on subscription periods. |

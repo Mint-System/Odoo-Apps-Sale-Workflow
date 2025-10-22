@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_subscription_plan_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >sale_subscription_period_discount.sale_subscription_plan_view_form</field>
+        <field name="model">sale.subscription.plan</field>
+        <field
+            name="inherit_id"
+            ref="sale_subscription.sale_subscription_plan_view_form"
+        />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Period Discount">
+                    <group>
+                        <field name="period_discount_ids" nolabel="1">
+                            <list editable="bottom">
+                                <field name="from_date" optional="show" />
+                                <field name="day" />
+                                <field name="month" />
+                                <field name="year" />
+                                <field name="discount" />
+                            </list>
+                        </field>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
