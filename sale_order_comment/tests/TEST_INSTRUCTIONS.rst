@@ -1,0 +1,4 @@
+- Open Sales > Order > Blanket Orders
+- Create a Sale Order, under the Other Information tab, there is a Comment field
+- Write a comment and save changes
+- Edit the comment, a message will be posted in the Chatter

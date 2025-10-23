@@ -13,5 +13,6 @@ git clone git@github.com:Mint-System/Odoo-Apps-Sale-Workflow.git ./addons/sale_w
 ## Available modules
 
 | Module | Summary |
-| ------ | ------- |
-|        |         |
+| --- | --- |
+| [sale_order_comment](sale_order_comment) |         Comment field for sale order. |
+| [sale_subscription_period_discount](sale_subscription_period_discount) |         Apply discounts on subscription periods. |
