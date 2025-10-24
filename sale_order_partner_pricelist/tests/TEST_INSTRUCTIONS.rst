@@ -1,0 +1,5 @@
+- Create a sale order with customer "Deco Addict"
+- Create and add product "Sozialinfo-Mitgliedschaft Basic"
+- Open the product and create and set "Mitglied Basic" in the Sales tab
+- Confirm the sale order and open the customer
+- Check if the correct pricelist is set in the Sales & Purchase tab

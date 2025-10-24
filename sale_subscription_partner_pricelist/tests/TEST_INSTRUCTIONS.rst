@@ -1,0 +1,7 @@
+- Create a sale order with customer "Deco Addict"
+- Create and add product "Sozialinfo-Mitgliedschaft Basic" and recurrence "Yearly"
+- Open the product and create and set "Mitglied Basic" in the Sales tab
+- Confirm the sale order and open the customer
+- Check if the correct pricelist is set in the Sales & Purchase tab
+- Go to Subscriptions and move the create sale order to the closed column
+- Open the customer and check if the pricelist has been reset
