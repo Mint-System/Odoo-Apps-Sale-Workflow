@@ -1,0 +1,4 @@
+- Open contact "Deco Addict"
+- Set "Floyd Steward" as membership contact
+- Create a new sale order for "Deco Addict"
+- Ensure "Floyd Steward" is set as memberhip contact
