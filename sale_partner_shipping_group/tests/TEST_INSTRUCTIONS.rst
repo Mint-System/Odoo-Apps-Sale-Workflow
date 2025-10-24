@@ -1,4 +1,4 @@
 - Open private tab and login with demo user
 - Check that demo user cannot view shipping address on sale order
 - As admin assign demo user to "Zugriffsgruppe für Lieferadresse" group
-- As demo user reload the page and check if shipping address is visible.
+- As demo user reload the page and check if shipping address is visible

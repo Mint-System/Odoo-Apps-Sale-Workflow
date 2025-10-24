@@ -1,0 +1,3 @@
+- Open contact "Deco Addict" and set ref to "test"
+- Open sale order list view and search for ref "test"
+- Ensure 2 sale orders are shown

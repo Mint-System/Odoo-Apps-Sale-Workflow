@@ -16,5 +16,7 @@ git clone git@github.com:Mint-System/Odoo-Apps-Sale-Workflow.git ./addons/sale_w
 | --- | --- |
 | [sale_order_comment](sale_order_comment) |         Comment field for sale order. |
 | [sale_order_partner_pricelist](sale_order_partner_pricelist) |         Grant pricelist access with sale order. |
+| [sale_order_partner_ref](sale_order_partner_ref) |         Show and filter the customer ref in sale order list. |
+| [sale_partner_shipping_group](sale_partner_shipping_group) |         Access group for shipping address on sale orders and invoices. |
 | [sale_subscription_partner_pricelist](sale_subscription_partner_pricelist) |         Grant pricelist access with sale subscription. |
 | [sale_subscription_period_discount](sale_subscription_period_discount) |         Apply discounts on subscription periods. |
