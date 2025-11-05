@@ -1,0 +1,6 @@
+- Open the contact of Gemini Furniture
+- In the contact form open the Sales & Purchase tab
+- Set the field Delivery Method, for example Post
+- Create a a new Blanket Sale Order under Sales>Orders>Blanket Orders
+- Choose Gemini Furniture as customer
+- The delivery method is automatically set according to delivery method chosen in the contact

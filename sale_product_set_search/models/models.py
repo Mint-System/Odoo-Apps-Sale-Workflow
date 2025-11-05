@@ -10,10 +10,18 @@ class ProductSet(models.Model):
     _inherit = "product.set"
 
     @api.model
-    def _name_search(self, name, args=None, operator='ilike', limit=100, order=None, name_get_uid=None):
-    # def _name_search(
-    #     self, name, args=None, operator="ilike", limit=100, name_get_uid=None
-    # ):
+    def _name_search(
+        self,
+        name,
+        args=None,
+        operator="ilike",
+        limit=100,
+        order=None,
+        name_get_uid=None,
+    ):
+        # def _name_search(
+        #     self, name, args=None, operator="ilike", limit=100, name_get_uid=None
+        # ):
         args = args or []
         if operator == "ilike" and not (name or "").strip():
             domain = []
