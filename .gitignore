@@ -74,3 +74,4 @@ default.vim
 
 # OCA rules
 !static/lib/
+tmp
