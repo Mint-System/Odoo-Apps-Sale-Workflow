@@ -1,0 +1,5 @@
+- In developer mode open Settings>Technical>Parameters>System Parameters
+- Create a new system parameter: sale_blanket_order_comment.copy_comment with a value set to True
+- Open a Sale Blanket Order, under the Other Information tab, there is a Comment field
+- Write a comment and save changes, a message will be posted in the Chatter
+- If changes are made to the comment, it will be reflected in the Chatter as well
