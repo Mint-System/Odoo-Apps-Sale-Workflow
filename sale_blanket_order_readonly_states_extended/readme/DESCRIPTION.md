@@ -1,0 +1,1 @@
+Sets readonly states for other sale blanket order modules.
