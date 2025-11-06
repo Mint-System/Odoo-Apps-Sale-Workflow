@@ -1,8 +1,14 @@
 import logging
 
-from odoo import models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
+
+
+class PickingType(models.Model):
+    _inherit = "stock.picking.type"
+
+    clear_owner = fields.Boolean(default=False)
 
 
 class StockPicking(models.Model):
@@ -27,7 +33,7 @@ class StockPicking(models.Model):
     def _action_done(self):
         res = super()._action_done()
         for picking in self:
-            if picking.picking_type_id.name == 'Returns': # better: code
+            if picking.picking_type_id.clear_owner:
                 loc_id = picking.location_dest_id.id
                 picking._set_or_remove_owner(loc_id, action='remove')
             elif (picking.owner_id and picking.location_id.clear_owner):
