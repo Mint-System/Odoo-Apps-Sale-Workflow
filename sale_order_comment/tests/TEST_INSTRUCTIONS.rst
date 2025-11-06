@@ -1,4 +1,4 @@
-- Open Sales > Orders. 
+- Open Sales > Orders.
 - Create a Sale Order, under the Other Information tab, there is a Comment field
 - Write a comment and save changes
 - Edit and modify the comment, a message will be posted in the Chatter

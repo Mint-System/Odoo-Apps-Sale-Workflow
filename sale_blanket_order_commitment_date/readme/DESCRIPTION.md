@@ -1,0 +1,1 @@
+Copies the blanket order line scheduled date to sale line commitment date.
