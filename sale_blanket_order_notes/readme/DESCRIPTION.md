@@ -1,0 +1,1 @@
+Notes for sale blanket and sale orders.
