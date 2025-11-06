@@ -1,0 +1,1 @@
+Set invoice and shipping partner on sale order.
