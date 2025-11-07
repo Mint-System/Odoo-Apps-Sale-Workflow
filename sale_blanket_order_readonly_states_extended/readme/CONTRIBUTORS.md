@@ -1,1 +1,1 @@
-* Ulrich Kilian <uk@science-and-more.de>
+- Ulrich Kilian <uk@science-and-more.de>
