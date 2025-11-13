@@ -1,0 +1,1 @@
+Adds a button to open a sale order line in the form view.

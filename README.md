@@ -15,6 +15,7 @@ git clone git@github.com:Mint-System/Odoo-Apps-Sale-Workflow.git ./addons/sale_w
 | Module | Summary |
 | --- | --- |
 | [sale_order_comment](sale_order_comment) |         Comment field for sale order. |
+| [sale_order_line_form_action](sale_order_line_form_action) |         Adds a button to open a sale order line in the form view. |
 | [sale_order_partner_membership](sale_order_partner_membership) |         Set membership address on sale order. |
 | [sale_order_partner_pricelist](sale_order_partner_pricelist) |         Grant pricelist access with sale order. |
 | [sale_order_partner_ref](sale_order_partner_ref) |         Show and filter the customer ref in sale order list. |
