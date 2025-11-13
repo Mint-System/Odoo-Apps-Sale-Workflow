@@ -1,0 +1,18 @@
+[project]
+name = "odoo-apps-sale-workflow"
+version = "18.0.20251113.0"
+dependencies = [
+    "odoo-addon-sale_order_comment==18.0.*",
+    "odoo-addon-sale_order_line_form_action==18.0.*",
+    "odoo-addon-sale_order_partner_membership==18.0.*",
+    "odoo-addon-sale_order_partner_pricelist==18.0.*",
+    "odoo-addon-sale_order_partner_ref==18.0.*",
+    "odoo-addon-sale_subscription_disable_tokenization==18.0.*",
+    "odoo-addon-sale_subscription_partner_pricelist==18.0.*",
+    "odoo-addon-sale_subscription_period_discount==18.0.*",
+]
+classifiers=[
+    "Programming Language :: Python",
+    "Framework :: Odoo",
+    "Framework :: Odoo :: 18.0",
+]
