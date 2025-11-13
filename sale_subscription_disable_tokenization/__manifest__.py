@@ -1,14 +1,14 @@
 {
-    "name": "Sale Subscriptions Partner Pricelist",
+    "name": "Sale Subscription Disable Tokenization",
     "summary": """
-        Grant pricelist access with sale subscription.
+        Do not force payment tokenization for order with subscriptions.
     """,
     "author": "Mint System GmbH",
     "website": "https://github.com/Mint-system/",
-    "category": "Sales",
+    "category": "Sale",
     "version": "18.0.1.0.0",
     "license": "OPL-1",
-    "depends": ["sale_subscription", "sale_order_partner_pricelist"],
+    "depends": ["sale_subscription"],
     "installable": True,
     "application": False,
     "auto_install": False,

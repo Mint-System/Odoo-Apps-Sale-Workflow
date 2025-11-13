@@ -1,0 +1,5 @@
+- Install website_sale module
+- Install "Wire Transfer" payment provider
+- Open website and add "Car Leasing"
+- Go to checkout
+- Ensure that the "Wire Transfer" payment option is shown
