@@ -12,9 +12,7 @@ class BlanketOrderWizard(models.TransientModel):
     def _prepare_so_vals(self, *kwargs):
         res = super()._prepare_so_vals(*kwargs)
         copy_comment = ast.literal_eval(
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param("sale_blanket_order_comment.copy_comment", "False")
+            self.env["ir.config_parameter"].sudo().get_param("sale_blanket_order_comment.copy_comment", "False")
         )
         if copy_comment:
             res.update(

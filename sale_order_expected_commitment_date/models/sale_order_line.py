@@ -13,4 +13,3 @@ class SaleOrderLine(models.Model):
         _logger.warning(["SET COMMITMENT DATE", self._expected_date()])
         if self.product_id:
             self.write({"commitment_date": self._expected_date()})
-
