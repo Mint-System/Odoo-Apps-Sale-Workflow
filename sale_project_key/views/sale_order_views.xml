@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="name">sale_project_link.view_sales_order_filter</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field
+                    name="project_key"
+                    string="Project Key"
+                    filter_domain="[('project_key', 'ilike', self)]"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">sale_project_link.view_order_tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="project_key" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_quotation_tree_with_onboarding" model="ir.ui.view">
+        <field name="name">sale_project_link.view_quotation_tree_with_onboarding</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="project_key" />
+            </field>
+        </field>
+    </record>
+</odoo>

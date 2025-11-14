@@ -19,11 +19,7 @@ class SaleOrderLine(models.Model):
             stock_purchase_line_ids = []
             purchase_ids = line.order_id._get_purchase_orders()
             if purchase_ids:
-                stock_purchase_line_ids = purchase_ids.order_line.filtered(
-                    lambda l: l.product_id == line.product_id
-                )
+                stock_purchase_line_ids = purchase_ids.order_line.filtered(lambda l: l.product_id == line.product_id)
                 if stock_purchase_line_ids:
-                    line.purchase_price = mean(
-                        stock_purchase_line_ids.mapped("price_unit")
-                    )
+                    line.purchase_price = mean(stock_purchase_line_ids.mapped("price_unit"))
             line.stock_purchase_line_ids = stock_purchase_line_ids

@@ -14,8 +14,6 @@ class SaleOrder(models.Model):
         """
         res = super()._action_confirm()
         for order in self:
-            pickings = order.picking_ids.filtered(
-                lambda x: x.picking_type_code == "outgoing"
-            )
+            pickings = order.picking_ids.filtered(lambda x: x.picking_type_code == "outgoing")
             pickings.write({"owner_id": order.partner_id.id})
         return res

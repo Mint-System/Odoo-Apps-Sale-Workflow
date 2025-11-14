@@ -1,13 +1,13 @@
 # Odoo Apps: Sale Workflow
 
-Collection of sale model related modules.
+Odoo modules extending the `sale` module.
 
 ## Usage
 
-Clone module into Odoo addon directory.
+Clone this repo into the Odoo addons directory.
 
 ```bash
-git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_workflow
+git clone git@github.com:Mint-System/Odoo-Apps-Sale-Workflow.git ./addons/sale_workflow
 ```
 
 ## Available modules
@@ -35,4 +35,7 @@ git clone git@github.com:mint-system/odoo-apps-sale-workflow.git ./addons/sale_w
 | [sale_order_sale_partner](sale_order_sale_partner) |         Set sale contact on sales order. |
 | [sale_order_template_notes](sale_order_template_notes) |         Set notes on sale order templates. |
 | [sale_product_set_search](sale_product_set_search) |         Search product set by name and reference. |
+| [sale_project_key](sale_project_key) |         Show project key on sale order. |
+| [sale_project_link](sale_project_link) |         Select existing project for sale quote. |
+| [sale_stock_owner](sale_stock_owner) |         Assign customer as owner to deliveries and inventory. |
 | [sale_timesheet_total_validated](sale_timesheet_total_validated) |         Link only validated timesheet entries in sale order. |

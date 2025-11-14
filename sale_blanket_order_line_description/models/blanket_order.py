@@ -15,18 +15,12 @@ class BlanketOrderLine(models.Model):
 
         # Get params
         hide_default_code = ast.literal_eval(
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param("sale.blanket.order.line.hide_default_code", "False")
+            self.env["ir.config_parameter"].sudo().get_param("sale.blanket.order.line.hide_default_code", "False")
         )
         sale_description_only = ast.literal_eval(
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param("sale.blanket.order.line.sale_description_only", "False")
+            self.env["ir.config_parameter"].sudo().get_param("sale.blanket.order.line.sale_description_only", "False")
         )
-        description_sale = self.product_id.with_context(
-            lang=self.order_id.partner_id.lang
-        ).description_sale
+        description_sale = self.product_id.with_context(lang=self.order_id.partner_id.lang).description_sale
 
         # Apply options
         if hide_default_code:

@@ -33,8 +33,7 @@ class SaleOrder(models.Model):
         self.ensure_one()
         if product_uom_qty:
             lines = self.order_line.filtered(
-                lambda l: l.product_id == product_id
-                and l.product_uom_qty == product_uom_qty
+                lambda l: l.product_id == product_id and l.product_uom_qty == product_uom_qty
             )
         else:
             lines = self.order_line.filtered(lambda l: l.product_id == product_id)

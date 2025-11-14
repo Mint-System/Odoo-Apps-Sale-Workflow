@@ -8,9 +8,7 @@ _logger = logging.getLogger(__name__)
 class BlanketOrder(models.Model):
     _inherit = "sale.blanket.order"
 
-    state = fields.Selection(
-        selection_add=[("sent", "Sent"), ("open",)], ondelete={"sent": "cascade"}
-    )
+    state = fields.Selection(selection_add=[("sent", "Sent"), ("open",)], ondelete={"sent": "cascade"})
 
     # Generate name from sequence on create
     @api.model_create_multi
@@ -21,7 +19,7 @@ class BlanketOrder(models.Model):
                 if self.env.company:
                     sequence_obj = sequence_obj.with_company(self.env.company.id)
                 vals["name"] = sequence_obj.next_by_code("sale.blanket.order")
-        return super(BlanketOrder, self).create(vals_list)
+        return super().create(vals_list)
 
     # Do not generate name from sequence on confirm
     def action_confirm(self):
@@ -56,9 +54,7 @@ class BlanketOrder(models.Model):
             "mark_bo_as_sent": True,
             "force_email": True,
         }
-        compose_form_id = ir_model_data.check_object_reference(
-            "mail", "email_compose_message_wizard_form"
-        )[1]
+        compose_form_id = ir_model_data.check_object_reference("mail", "email_compose_message_wizard_form")[1]
         return {
             "name": _("Compose Email"),
             "type": "ir.actions.act_window",
@@ -73,9 +69,5 @@ class BlanketOrder(models.Model):
     @api.returns("mail.message", lambda value: value.id)
     def message_post(self, **kwargs):
         if self.env.context.get("mark_bo_as_sent"):
-            self.filtered(lambda o: o.state == "draft").with_context(
-                tracking_disable=True
-            ).write({"state": "sent"})
-        return super(
-            BlanketOrder, self.with_context(mail_post_autofollow=True)
-        ).message_post(**kwargs)
+            self.filtered(lambda o: o.state == "draft").with_context(tracking_disable=True).write({"state": "sent"})
+        return super(BlanketOrder, self.with_context(mail_post_autofollow=True)).message_post(**kwargs)

@@ -14,7 +14,7 @@ class BlanketOrder(models.Model):
 
     def action_confirm(self):
         # Calling super ensures that the original confirmation logic is preserved
-        res = super(BlanketOrder, self).action_confirm()
+        res = super().action_confirm()
         # Set the confirmation date to today upon confirming the order
         self.write({"date_confirmed": fields.Date.today()})
         return res

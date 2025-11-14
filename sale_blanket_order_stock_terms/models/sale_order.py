@@ -10,7 +10,7 @@ class SaleOrder(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        orders = super(SaleOrder, self).create(vals_list)
+        orders = super().create(vals_list)
 
         for order in orders:
             if order.blanket_order_id:

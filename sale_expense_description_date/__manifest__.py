@@ -4,7 +4,7 @@
         Append date of expense to sale order line description.
     """,
     "author": "Mint System GmbH",
-    "website": "https://www.mint-system.ch",
+    "website": "https://www.mint-system.ch/",
     "category": "Sales",
     "version": "17.0.1.1.0",
     "license": "AGPL-3",

@@ -31,14 +31,7 @@ class StockQuant(models.Model):
                 ctx.pop("quants_cache")
             owner_id = None
             return super(StockQuant, self.with_context(ctx))._update_available_quantity(
-                product_id,
-                location_id,
-                quantity,
-                reserved_quantity,
-                lot_id,
-                package_id,
-                owner_id,
-                in_date,
+                product_id, location_id, quantity, reserved_quantity, lot_id, package_id, owner_id, in_date
             )
         else:
             return super()._update_available_quantity(

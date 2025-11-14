@@ -4,7 +4,7 @@
         Set notes on sale order templates.
     """,
     "author": "Mint System GmbH, Mint System GmbH",
-    "website": "https://www.mint-system.ch",
+    "website": "https://www.mint-system.ch/",
     "category": "Sales",
     "version": "17.0.1.0.0",
     "license": "AGPL-3",

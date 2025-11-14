@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="name">sale_project_link.view_sales_order_filter</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field
+                    name="project_id"
+                    string="Project"
+                    filter_domain="[('project_id', 'ilike', self)]"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale_project_link.view_order_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="sale_order_template_id" position="after">
+                <field name="project_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">sale_project_link.view_order_tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="project_id" domain="[('partner_id', '=', partner_id)]" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_quotation_tree_with_onboarding" model="ir.ui.view">
+        <field name="name">sale_project_link.view_quotation_tree_with_onboarding</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="project_id" domain="[('partner_id', '=', partner_id)]" />
+            </field>
+        </field>
+    </record>
+</odoo>

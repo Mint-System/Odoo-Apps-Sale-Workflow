@@ -15,12 +15,8 @@ class SaleOrder(models.Model):
     def _compute_notes(self):
         for order in self:
             if order.sale_order_template_id:
-                order.note_header = (
-                    order.sale_order_template_id.note_header or order.note_header
-                )
-                order.note_footer = (
-                    order.sale_order_template_id.note_footer or order.note_footer
-                )
+                order.note_header = order.sale_order_template_id.note_header or order.note_header
+                order.note_footer = order.sale_order_template_id.note_footer or order.note_footer
             else:
                 order.note_header = order.note_header
                 order.note_footer = order.note_footer

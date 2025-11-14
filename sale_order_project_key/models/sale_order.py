@@ -1,9 +1,8 @@
 import logging
 
-from odoo import api, fields, models
+from odoo import models
 
 _logger = logging.getLogger(__name__)
-from odoo.osv import expression
 
 
 class SaleOrder(models.Model):
@@ -11,6 +10,7 @@ class SaleOrder(models.Model):
 
     def _action_confirm(self):
         """Propagate sale order data to linked project."""
+
         res = super()._action_confirm()
         # Write partner to project
         if self.project_id and not self.project_id.partner_id:
@@ -34,67 +34,3 @@ class SaleOrder(models.Model):
                 }
             )
         return res
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            if "project_id" in vals and vals["project_id"]:
-                project = self.env["project.project"].browse(vals["project_id"])
-                if project.code:
-                    vals["name"] = f"{project.code}"
-
-        return super().create(vals_list)
-
-    def name_get(self):
-        res = super(SaleOrder, self).name_get()
-        for rec in self.filtered(lambda r: r.project_id and r.partner_id):
-            # Remove existing entry
-            res = list(filter(lambda t: t[0] != rec.id, res))
-            res.append(
-                (
-                    rec.id,
-                    "[%s] %s - %s"
-                    % (rec.project_id.code, rec.name, rec.partner_id.name),
-                )
-            )
-        return res
-
-    @api.model
-    def _name_search(
-        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
-    ):
-        # Search in project code and partner name
-        if operator == "ilike" and not (name or "").strip():
-            domain = []
-        elif operator in ("ilike", "like", "=", "=like", "=ilike"):
-            domain = expression.AND(
-                [
-                    args or [],
-                    [
-                        "|",
-                        ("name", operator, name),
-                        "|",
-                        ("project_id.code", operator, name),
-                        ("partner_id.name", operator, name),
-                    ],
-                ]
-            )
-        return self._search(domain, limit=limit, access_rights_uid=name_get_uid)
-
-    def action_view_task(self):
-        """Remove sale order default search from context."""
-        res = super().action_view_task()
-        if res.get("context"):
-            res["context"].pop("default_sale_order_id", False)
-        return res
-
-
-class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
-
-    project_id = fields.Many2one(compute="_compute_project_id", store=True)
-
-    @api.depends("order_id.project_id")
-    def _compute_project_id(self):
-        for rec in self:
-            rec.project_id = rec.order_id.project_id
