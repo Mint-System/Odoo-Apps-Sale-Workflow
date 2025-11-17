@@ -32,7 +32,7 @@
         <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="project_id" domain="[('partner_id', '=', partner_id)]" />
+                <field name="project_id" />
             </field>
         </field>
     </record>
@@ -43,7 +43,7 @@
         <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="project_id" domain="[('partner_id', '=', partner_id)]" />
+                <field name="project_id" />
             </field>
         </field>
     </record>
