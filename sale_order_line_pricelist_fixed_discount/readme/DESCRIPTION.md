@@ -1,0 +1,1 @@
+Add discount from pricelist with fixed price.
