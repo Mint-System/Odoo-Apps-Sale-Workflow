@@ -1,6 +1,6 @@
 import logging
 
-from odoo import api, fields, models
+from odoo import models
 
 _logger = logging.getLogger(__name__)
 
@@ -8,21 +8,15 @@ _logger = logging.getLogger(__name__)
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    fixed_discount = fields.Float(compute="_compute_fixed_discount", store=True)
-
-    @api.depends(
-        "product_id",
-        "product_uom",
-        "product_uom_qty",
-        "order_id.date_order",
-        "order_id.date_order",
-    )
-    def _compute_fixed_discount(self):
-        """Filter and apply pricelist rule with fixed discount."""
-
+    def _compute_discount(self):
+        """
+        Filter and apply pricelist rule with fixed discount.
+        """
+        res = super()._compute_discount()
         for line in self:
             # Read filter date from context
             date = self._context.get("date") or line.order_id.commitment_date or line.order_id.date_order
 
             # Apply fixed price discount
-            line.discount = line.order_id.pricelist_id._get_fixed_discount(line.product_id, line.product_uom_qty, date)
+            line.discount = line.order_id.pricelist_id._get_percent_price(line.product_id, line.product_uom_qty, date)
+        return res

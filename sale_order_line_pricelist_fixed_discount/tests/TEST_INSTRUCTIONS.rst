@@ -1,0 +1,6 @@
+- Enable "Pricelists" settings option
+- Enable "Discounts" settings option
+- Open pricelist default
+- Add fixed price 100 with 20% discount for all products
+- Create a sale order
+- Ensure the discount is applied

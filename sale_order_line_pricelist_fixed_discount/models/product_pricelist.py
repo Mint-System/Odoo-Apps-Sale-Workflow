@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 class ProductPricelist(models.Model):
     _inherit = "product.pricelist"
 
-    def _get_fixed_discount(self, product_id, product_uom_qty, date=None):
+    def _get_percent_price(self, product_id, product_uom_qty, date=None):
         """This method returns the fixed discount value."""
 
         # Filter rules from pricelist
@@ -45,7 +45,7 @@ class ProductPricelist(models.Model):
                 rule_ids_without_min_qty and rule_ids_without_min_qty[0]
             )
 
-            return rule_id.price_discount or 0.0
+            return rule_id.percent_price or 0.0
 
         else:
             return 0.0
