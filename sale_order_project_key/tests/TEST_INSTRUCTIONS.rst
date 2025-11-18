@@ -1,7 +1,11 @@
-- Create new project with a code or add code to existing project.
-- Create new sale order and assign project with code to it.
-- Create produckt (service) and set 'Create on Order' to 'Project & Task'.
-- If saved check if project code is set as sale order name.
-- Check if sale order client appears as client on corresponding project.
-- If sale order is validated services on timesheet added to sale order appear as project tasks.
-- Check if task button on sale order shows project tasks.
+- Create new billable project "Service" with key "P0001".
+- Create new sale order for "Deco Addict".
+- Assign the created project.
+- Add service product "Implementation"
+- Set "Create on Order" to "Project & Task"
+- Check if project is visible in sale order list view
+- Confirm the sale order
+- Click on project link
+- Ensure now new project has been created
+- Ensure "Deco Addict" is set as customer
+- Create a task in the project
