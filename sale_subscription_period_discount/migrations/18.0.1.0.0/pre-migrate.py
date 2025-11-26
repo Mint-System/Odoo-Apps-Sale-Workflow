@@ -1,4 +1,4 @@
-from odoo.addons.upgrade_util import util
+from odoo.upgrade import util
 
 
 def migrate(cr, version):
