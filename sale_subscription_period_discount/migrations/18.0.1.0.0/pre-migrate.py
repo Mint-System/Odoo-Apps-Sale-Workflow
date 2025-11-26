@@ -8,10 +8,6 @@ def migrate(cr, version):
 
     util.rename_xmlid(
         cr,
-        [
-            (
-                "sale_subscription.sale_temporal_recurrence_view_form",
-                "sale_subscription.sale_subscription_plan_view_form",
-            ),
-        ],
+        "sale_subscription.sale_temporal_recurrence_view_form",
+        "sale_subscription.sale_subscription_plan_view_form"
     )
