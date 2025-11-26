@@ -25,7 +25,7 @@ class SaleSubscriptionPeriodDiscount(models.Model):
 
     name = fields.Char(compute="_compute_name")
     from_date = fields.Date(compute="_compute_from_date")
-    plan_id = fields.Many2one("sale.subscription.plan", required=True)
+    plan_id = fields.Many2one("sale.subscription.plan")
     day = fields.Integer(default=1, required=True)
     month = fields.Selection(
         [
