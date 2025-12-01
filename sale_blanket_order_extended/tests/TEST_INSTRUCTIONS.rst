@@ -1,0 +1,4 @@
+- Create Sale Blanket Order.
+- Choose some values for fields "Fiscal Position" and "Customer Reference".
+- Create Sale Order from Blanket Order.
+- Check if values are copied to corresponding fields on sale order.

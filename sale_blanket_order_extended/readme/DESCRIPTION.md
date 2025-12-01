@@ -1,0 +1,1 @@
+Copy additional fields from blanket to sale order.
