@@ -46,3 +46,18 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     position = fields.Char("Pos", readonly=True)
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('is_expense') and vals.get('order_id') and not vals.get('position'):
+                order_id = vals.get('order_id')
+                order = self.env['sale.order'].browse(order_id)
+                positions = [
+                    int(p) for p in order.order_line.mapped('position') if p
+                ]
+                max_position = max(positions, default=0)
+                vals['position'] = max_position + 1
+
+        res = super().create(vals_list)
+        return res
