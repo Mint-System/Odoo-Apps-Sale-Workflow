@@ -1,0 +1,1 @@
+Copy fiscal position from blanket to sale order.
