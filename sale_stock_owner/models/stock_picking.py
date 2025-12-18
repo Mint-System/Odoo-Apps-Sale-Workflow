@@ -14,7 +14,7 @@ class PickingType(models.Model):
 class StockPicking(models.Model):
     _inherit = "stock.picking"
 
-    def _set_or_remove_owner(self, location_id, action='set'):
+    def _set_or_remove_owner(self, location_id, action="set"):
         picking = self
         for line in picking.move_line_ids:
             stock_quants = self.env["stock.quant"].search(
@@ -25,9 +25,9 @@ class StockPicking(models.Model):
                 ]
             )
             _logger.warning(f"stock quants: {stock_quants}")
-            if action == 'remove':
+            if action == "remove":
                 stock_quants.write({"owner_id": False})
-            elif action == 'set':
+            elif action == "set":
                 stock_quants.write({"owner_id": picking.owner_id.id})
 
     def _action_done(self):
@@ -35,13 +35,12 @@ class StockPicking(models.Model):
         for picking in self:
             if picking.picking_type_id.clear_owner:
                 loc_id = picking.location_dest_id.id
-                picking._set_or_remove_owner(loc_id, action='remove')
-            elif (picking.owner_id and picking.location_id.clear_owner):
+                picking._set_or_remove_owner(loc_id, action="remove")
+            elif picking.owner_id and picking.location_id.clear_owner:
                 loc_id = picking.location_id.id
-                picking._set_or_remove_owner(location_id=loc_id, action='remove')
+                picking._set_or_remove_owner(location_id=loc_id, action="remove")
             elif picking.owner_id and not picking.location_id.clear_owner:
                 loc_id = picking.location_id.id
-                picking._set_or_remove_owner(location_id=loc_id, action='set')
-
+                picking._set_or_remove_owner(location_id=loc_id, action="set")
 
         return res

@@ -1,0 +1,1 @@
+Copy customer reference from blanket to sale order.

@@ -1,0 +1,7 @@
+- Go to Settings > Technical > System Parameters
+- Create System Parameter "sale_blanket_order_reference.copy_ref"
+- Set value to "True"
+- Create new Blanket Order with arbitrary product
+- Enter a Customer Referenz
+- Create Sale Order from Blanket Order
+- Check if Customer Reference is copied to Sale Order
