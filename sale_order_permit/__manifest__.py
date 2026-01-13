@@ -18,6 +18,7 @@
     "data": [
         "views/product_template_views.xml",
         "views/sale_order_views.xml",
+        "views/product_pricelist_views.xml"
     ],
     "installable": True,
     "application": False,

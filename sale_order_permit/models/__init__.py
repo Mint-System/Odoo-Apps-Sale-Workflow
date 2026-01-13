@@ -1,1 +1,1 @@
-from . import product_template, sale_order_line
+from . import product_template, sale_order_line, product_pricelist
