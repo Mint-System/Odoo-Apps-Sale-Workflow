@@ -1,1 +1,7 @@
-from . import product_template, sale_order_line, product_pricelist, res_partner
+from . import (
+    product_pricelist,
+    product_template,
+    res_partner,
+    sale_order,
+    sale_order_line,
+)
