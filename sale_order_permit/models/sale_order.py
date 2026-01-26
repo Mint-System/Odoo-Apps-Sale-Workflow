@@ -14,7 +14,8 @@ class SaleOrder(models.Model):
 
         seq = self.env.ref("sale_order_permit.seq_permit_number")
         for order in self:
-            if not order.partner_id.permit_number:
+            product = order.order_line[0].product_id
+            if not order.partner_id.permit_number and product.duration == "year":
                 order.partner_id.permit_number = seq.next_by_id()
 
         return res
