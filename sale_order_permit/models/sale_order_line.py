@@ -40,7 +40,7 @@ class SaleOrderLine(models.Model):
         # limits per duration
         limits = {
             "year": 1,
-            "week": 2,
+            "week": 1,
             "day": 5,
         }
 
@@ -137,7 +137,7 @@ class SaleOrderLine(models.Model):
                 current_date = line.date_from
                 valid_days = 0
 
-                while valid_days < 7:
+                while valid_days < 6:
                     current_date += timedelta(days=1)
 
                     # Skip non valid days
