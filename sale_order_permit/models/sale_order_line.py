@@ -224,9 +224,17 @@ class SaleOrderLine(models.Model):
         return super().write(vals)
 
     def _normalize_date_from(self, date_from, duration):
+        if not date_from:
+            return date_from
+
+        # Convert string to date if needed
+        if isinstance(date_from, str):
+            date_from = fields.Date.from_string(date_from)
+
         if duration == "year":
             date_from = date_from.replace(
                 month=1,
                 day=1,
             )
+
         return date_from
