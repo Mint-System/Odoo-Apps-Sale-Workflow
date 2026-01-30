@@ -1,7 +1,8 @@
 import logging
-from datetime import timedelta
+from datetime import date
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -10,6 +11,23 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     def action_confirm(self):
+        # no sale order if date is after March 31
+        today = date.today()
+        limit_date = date(today.year, 3, 31)
+
+        for order in self:
+            product = order.order_line[0].product_id
+            for line in order.order_line:
+                if (
+                    product.duration == "year"
+                    and line.date_from
+                    and line.date_from > limit_date
+                ):
+                    raise ValidationError(
+                        _("Sie können kein Jahrespatent mehr nach dem (%s) kaufen.")
+                        % limit_date
+                    )
+
         res = super().action_confirm()
 
         seq = self.env.ref("sale_order_permit.seq_permit_number")
