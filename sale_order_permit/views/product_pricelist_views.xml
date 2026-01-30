@@ -7,8 +7,9 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='active']" position="after">
                 <field name="is_dummy"/>
+                <field name="public_category_ids"
+                    widget="many2many_tags"/>
             </xpath>
         </field>
     </record>
 </odoo>
-

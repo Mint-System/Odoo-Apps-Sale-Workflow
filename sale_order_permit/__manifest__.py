@@ -14,6 +14,7 @@
         "sale",
         "base_partner_sequence",
         "partner_contact_birthdate",
+        "website_sale",
     ],
     "data": [
         "views/product_template_views.xml",

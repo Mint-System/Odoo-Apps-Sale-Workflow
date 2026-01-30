@@ -34,6 +34,54 @@ class SaleOrderLine(models.Model):
     #             line.date_from = datetime(year, 1, 1)
     #         else:
     #             line.date_from = fields.Datetime.now()
+    #
+    @api.constrains("product_id", "date_from", "order_id.partner_id")
+    def _check_permit_limits(self):
+        # limits per duration
+        limits = {
+            "year": 1,
+            "week": 2,
+            "day": 5,
+        }
+
+        for line in self:
+            if not line.product_id or not line.date_from:
+                continue
+
+            duration = line.product_id.duration
+
+            if duration not in limits:
+                continue
+
+            partner = line.order_id.partner_id
+            if not partner:
+                continue
+
+            year = line.date_from.year
+
+            date_start = date(year, 1, 1)
+            date_end = date(year, 12, 31)
+
+            domain = [
+                ("id", "!=", line.id),
+                ("product_id.duration", "=", duration),
+                ("date_from", ">=", date_start),
+                ("date_from", "<=", date_end),
+                ("order_id.partner_id", "=", partner.id),
+                ("order_id.state", "in", ["sale", "done"]),
+            ]
+
+            count = self.search_count(domain)
+
+            # include the current line
+            if count + 1 > limits[duration]:
+                raise ValidationError(
+                    _(
+                        "This customer already reached the limit for %s permits "
+                        "for year %s (maximum: %s)."
+                    )
+                    % (duration, year, limits[duration])
+                )
 
     @api.onchange("date_from", "product_id")
     def _onchange_date_from_year(self):
