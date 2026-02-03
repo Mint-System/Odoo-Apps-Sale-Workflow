@@ -1,14 +1,33 @@
 import logging
 from datetime import date
 
-from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+
+from odoo import _, api, fields, models
 
 _logger = logging.getLogger(__name__)
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
+
+    @api.constrains("order_line", "order_line.product_id", "order_line.product_uom_qty")
+    def _check_only_one_permit_product(self):
+        for order in self:
+            permit_lines = order.order_line.filtered(
+                lambda l: l.product_id.product_tmpl_id.duration
+                and l.product_uom_qty > 0
+            )
+
+            if len(permit_lines) > 1:
+                raise ValidationError(
+                    _("Sie können nur ein Patent pro Bestellung haben.")
+                )
+
+            if any(l.product_uom_qty > 1 for l in permit_lines):
+                raise ValidationError(
+                    _("Sie können max. 1 Einheit eines Patents pro Bestellung haben.")
+                )
 
     def action_confirm(self):
         # no sale order if date is after March 31
@@ -35,5 +54,60 @@ class SaleOrder(models.Model):
             product = order.order_line[0].product_id
             if not order.partner_id.permit_number and product.duration == "year":
                 order.partner_id.permit_number = seq.next_by_id()
+
+        return res
+
+    def _verify_updated_quantity(self, order_line, product_id, new_qty, **kwargs):
+        new_qty, warning = super()._verify_updated_quantity(
+            order_line, product_id, new_qty, **kwargs
+        )
+
+        self.ensure_one()
+
+        product = self.env["product.product"].browse(product_id)
+        tmpl = product.product_tmpl_id
+
+        # Only apply the rule for permit products
+        if not tmpl.duration:
+            return new_qty, warning
+
+        # Allow removing the line
+        if new_qty <= 0:
+            return new_qty, warning
+
+        # quantity of a permit product is max 1
+        if new_qty > 1:
+            raise UserError(
+                _("Sie können nur max. eine Einheit eines Patents im Warenkorb haben.")
+            )
+
+        # only one duration product in the cart
+        existing_permit_lines = self.order_line.filtered(
+            lambda l: l.product_id.product_tmpl_id.duration
+            and (not order_line or l.id != order_line.id)
+            and l.product_uom_qty > 0
+        )
+
+        if existing_permit_lines:
+            raise UserError(_("Sie können nur ein Patent im Warenkorb haben."))
+
+        return new_qty, warning
+
+    def _cart_update(self, product_id, line_id=None, add_qty=0, set_qty=0, **kwargs):
+        res = super()._cart_update(
+            product_id, line_id=line_id, add_qty=add_qty, set_qty=set_qty, **kwargs
+        )
+
+        permit_lines = self.order_line.filtered(
+            lambda l: l.product_id.product_tmpl_id.duration and l.product_uom_qty > 0
+        )
+
+        if len(permit_lines) > 1:
+            raise UserError(_("Sie können nur ein Patent im Warenkorb haben."))
+
+        if any(l.product_uom_qty > 1 for l in permit_lines):
+            raise UserError(
+                _("Sie können nur eine Einheit eines Patents in den Warenkorb legen.")
+            )
 
         return res
