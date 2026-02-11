@@ -47,13 +47,15 @@ class SaleOrder(models.Model):
                         % limit_date
                     )
 
-        res = super().action_confirm()
 
         seq = self.env.ref("sale_order_permit.seq_permit_number")
         for order in self:
             product = order.order_line[0].product_id
             if not order.partner_id.permit_number and product.duration == "year":
                 order.partner_id.permit_number = seq.next_by_id()
+
+        res = super().action_confirm()
+
 
         return res
 
