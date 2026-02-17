@@ -1,5 +1,6 @@
 import logging
 from datetime import date
+from psycopg2 import IntegrityError, errorcodes
 
 from odoo.exceptions import UserError, ValidationError
 
@@ -29,6 +30,42 @@ class SaleOrder(models.Model):
                     _("Sie können max. 1 Einheit eines Patents pro Bestellung haben.")
                 )
 
+    def _assign_permit_number(self):
+        self.ensure_one()
+
+        partner = self.partner_id
+        if not partner or partner.permit_number:
+            return
+
+        seq = self.env.ref("sale_order_permit.seq_permit_number")
+
+        attempts = 0
+        while attempts < 10:
+            attempts += 1
+
+            number = seq.next_by_id()
+
+            try:
+                with self.env.cr.savepoint():
+                    partner.permit_number = number
+
+                    # force SQL
+                    self.env['res.partner'].flush_model(['permit_number'])
+
+                return
+
+            except IntegrityError as e:
+                if getattr(e, 'pgcode', None) != errorcodes.UNIQUE_VIOLATION:
+                    raise
+                # duplicate → retry with a NEW number
+                continue
+
+        raise RuntimeError(
+            "Could not generate a unique permit number for partner %s"
+            % partner.display_name
+        )
+
+
     def action_confirm(self):
         # no sale order if date is after March 31
         today = date.today()
@@ -48,11 +85,10 @@ class SaleOrder(models.Model):
                     )
 
 
-        seq = self.env.ref("sale_order_permit.seq_permit_number")
         for order in self:
             product = order.order_line[0].product_id
             if not order.partner_id.permit_number and product.duration == "year":
-                order.partner_id.permit_number = seq.next_by_id()
+                order._assign_permit_number()
 
         res = super().action_confirm()
 
