@@ -65,6 +65,10 @@ class SaleOrder(models.Model):
             % partner.display_name
         )
 
+    def action_confirm_save_only(self):
+        # do nothing on purpose
+        return True
+
 
     def action_confirm(self):
         # no sale order if date is after March 31
