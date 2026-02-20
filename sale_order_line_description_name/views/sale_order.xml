@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form_show_name" model="ir.ui.view">
+        <field name="name">sale_order_line_description_name.view_order_form_show_name</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']"
+                   position="attributes">
+                <attribute name="context">{'from_sale_line': True, 'partner_id': parent.partner_id, 'quantity': product_uom_qty,'pricelist': parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id, 'default_lst_price': price_unit, 'default_description_sale': name}</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_template_id']"
+                   position="attributes">
+                   <attribute name="context">{'from_sale_line': True, 'partner_id': parent.partner_id, 'quantity': product_uom_qty, 'pricelist': parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id, 'default_list_price': price_unit, 'default_description_sale': name }</attribute>    
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
+
