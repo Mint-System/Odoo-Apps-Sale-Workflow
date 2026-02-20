@@ -8,8 +8,8 @@
             <xpath expr="//sheet/notebook" position="inside">
                 <page string="Notes">
                     <group name="notes">
-                        <field name="note_header" />
-                        <field name="note_footer" />
+                        <field name="note_header" widget="html"/>
+                        <field name="note_footer" widget="html"/>
                     </group>
                 </page>
             </xpath>
