@@ -8,10 +8,8 @@ _logger = logging.getLogger(__name__)
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    name = fields.Text(compute="_compute_name", store=True)
-
-    @api.depends("product_id")
     def _compute_name(self):
+        res = super()._compute_name()
         for line in self:
             if line.product_id and line.name:
                 if line.product_id.display_name and line.product_id.name:
