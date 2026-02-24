@@ -4,4 +4,3 @@ DURATION_SELECTION = [
     ("year", "Year"),
     ("none", ""),
 ]
-

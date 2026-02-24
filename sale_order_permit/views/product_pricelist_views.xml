@@ -3,12 +3,11 @@
     <record id="product_pricelist_view" model="ir.ui.view">
         <field name="name">product.pricelist.form.inherit.dummy</field>
         <field name="model">product.pricelist</field>
-        <field name="inherit_id" ref="product.product_pricelist_view"/>
+        <field name="inherit_id" ref="product.product_pricelist_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='active']" position="after">
-                <field name="is_dummy"/>
-                <field name="public_category_ids"
-                    widget="many2many_tags"/>
+                <field name="is_dummy" />
+                <field name="public_category_ids" widget="many2many_tags" />
             </xpath>
         </field>
     </record>

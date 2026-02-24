@@ -1,10 +1,11 @@
 import logging
 
-from odoo import models, fields, api
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
 from .config import DURATION_SELECTION
+
 
 class ProductTemplate(models.Model):
     _inherit = "product.template"

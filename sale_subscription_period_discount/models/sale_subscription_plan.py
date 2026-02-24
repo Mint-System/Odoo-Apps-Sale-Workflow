@@ -43,7 +43,7 @@ class SaleSubscriptionPeriodDiscount(models.Model):
             ("12", "December"),
         ],
         required=True,
-        default=1,
+        default="01",
     )
     year = fields.Integer(default=0, required=True, help="This number will be added to the current year.")
     discount = fields.Float(string="Discount (%)", digits="Discount", required=True)

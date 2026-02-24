@@ -1,13 +1,10 @@
 import logging
-from datetime import date, datetime, timedelta
-
-from odoo.exceptions import ValidationError
+from datetime import date, timedelta
 
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
-
-from .config import DURATION_SELECTION
 
 
 class SaleOrderLine(models.Model):
@@ -78,21 +75,14 @@ class SaleOrderLine(models.Model):
             # include the current line
             if count + 1 > limits[duration]:
                 raise ValidationError(
-                    _(
-                        "This customer already reached the limit for %s permits "
-                        "for year %s (maximum: %s)."
-                    )
+                    _("This customer already reached the limit for %s permits " "for year %s (maximum: %s).")
                     % (duration, year, limits[duration])
                 )
 
     @api.onchange("date_from", "product_id")
     def _onchange_date_from_year(self):
         for line in self:
-            if (
-                line.date_from
-                and line.product_id
-                and line.product_id.duration == "year"
-            ):
+            if line.date_from and line.product_id and line.product_id.duration == "year":
                 line.date_from = line.date_from.replace(
                     month=1,
                     day=1,
@@ -180,9 +170,7 @@ class SaleOrderLine(models.Model):
             product_id = vals.get("product_id")
             product = self.env["product.template"].browse(product_id)
             if date_from and product:
-                vals["date_from"] = self._normalize_date_from(
-                    date_from, product.duration
-                )
+                vals["date_from"] = self._normalize_date_from(date_from, product.duration)
         return super().create(vals_list)
 
     # def write(self, vals):
@@ -219,7 +207,7 @@ class SaleOrderLine(models.Model):
                 new_vals.append(v)
 
             # IMPORTANT: write multi with possibly different vals
-            for line, v in zip(self, new_vals):
+            for line, v in zip(self, new_vals, strict=False):
                 super(SaleOrderLine, line).write(v)
             return True
 
