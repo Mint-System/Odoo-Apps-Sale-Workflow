@@ -9,7 +9,7 @@
     "version": "19.0.1.0.0",
     "license": "AGPL-3",
     "depends": ["sale"],
-    "data": ["views/sale_order.xml"],
+    "data": ["views/sale_order.xml", "report/sale_templates.xml"],
     "installable": True,
     "application": False,
     "auto_install": False,
