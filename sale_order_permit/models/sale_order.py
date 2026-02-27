@@ -35,7 +35,7 @@ class SaleOrder(models.Model):
         seq = self.env.ref("sale_order_permit.seq_permit_number")
 
         attempts = 0
-        while attempts < 10:
+        while attempts < 300:
             attempts += 1
 
             number = seq.next_by_id()
