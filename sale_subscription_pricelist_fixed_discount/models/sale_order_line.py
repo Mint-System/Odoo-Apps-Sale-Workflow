@@ -10,11 +10,10 @@ class SaleOrderLine(models.Model):
 
     def _compute_discount(self):
         """
-        Filter and apply pricelist rule with fixed discount.
+        The _compute_discount method in sale_subscription/models/sale_order_line.py removes
+        lines from super calls. This method is a copy of sale_order_line_pricelist_fixed_discount.
         """
         super()._compute_discount()
-
-        _logger.warning(f"Apply fixed discount to: {self}")
 
         for line in self:
             # Read filter date from context

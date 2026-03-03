@@ -1,0 +1,1 @@
+Fix fixed discount for subscription.
