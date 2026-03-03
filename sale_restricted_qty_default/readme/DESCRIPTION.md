@@ -1,0 +1,1 @@
+Sets default value for product quantity to minimum quantity.

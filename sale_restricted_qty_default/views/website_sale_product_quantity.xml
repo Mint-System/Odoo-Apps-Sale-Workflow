@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="product_quantity"
+          inherit_id="website_sale.product_quantity"
+          priority="1000">
+
+          <xpath expr="//input[@name='add_qty']" position="replace">
+              <t t-set="min_qty" t-value="product.sale_min_qty or 1"/>
+              <t t-set="display_qty"
+                  t-value="int(min_qty) if float(min_qty).is_integer() else min_qty"/>
+              <input type="text" class="form-control quantity text-center" t-att-data-min="display_qty" name="add_qty" t-att-value="display_qty"/>
+
+          </xpath>
+
+    </template>
+</odoo>

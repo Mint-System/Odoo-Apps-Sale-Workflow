@@ -1,0 +1,5 @@
+- Install the module.
+- Go to *Sale* Tab and set value > 1 of *MIN QTY*.
+- Check if the +/- button for product on web sale page shows the minimum quantity.
+- Remove the minimum quantity for the product.
+- Check if the +/- button shows "1".    
