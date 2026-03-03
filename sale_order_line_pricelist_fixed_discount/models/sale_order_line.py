@@ -14,6 +14,8 @@ class SaleOrderLine(models.Model):
         """
         super()._compute_discount()
 
+        _logger.debug(f"Apply fixed discount to: {self}")
+
         for line in self:
             # Read filter date from context
             date = self._context.get("date") or line.order_id.commitment_date or line.order_id.date_order
