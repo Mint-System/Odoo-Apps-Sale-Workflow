@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="crm_lead_template_form_view" model="ir.ui.view">
+        <field name="name">.crm_lead_template_form_view</field>
+        <field name="model">crm.lead.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="tag_ids" widget="many2many_tags" />
+                    </group>
+                    <notebook>
+                        <page string="General Information" name="general_info">
+                            <group>
+                                <group>
+                                    <field name="description" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="crm_lead_template_list_view" model="ir.ui.view">
+        <field name="name">.crm_lead_template_list_view</field>
+        <field name="model">crm.lead.template</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+            </list>
+        </field>
+    </record>
+
+    <record id="crm_lead_template_search_view" model="ir.ui.view">
+        <field name="name">.crm_lead_template_search_view</field>
+        <field name="model">crm.lead.template</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_crm_lead_template_view" model="ir.actions.act_window">
+        <field name="name">Leads</field>
+        <field name="res_model">crm.lead.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="crm_lead_template_search_view" />
+    </record>
+
+    <menuitem
+        id="crm_lead_template.menu_crm_lead_template"
+        name="Lead Templates"
+        parent="crm.crm_menu_config"
+        action="crm_lead_template.action_crm_lead_template_view"
+        sequence="7"
+    />
+</odoo>
