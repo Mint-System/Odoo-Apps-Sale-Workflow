@@ -2,19 +2,24 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-from odoo import models, api
+from odoo import models, api, fields
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            if self.env.context.get("website_id"):
-                product = self.env["product.product"].browse(vals["product_id"])
-                min_qty = product.sale_min_qty
-                if min_qty and vals.get("product_uom_qty", 0) < min_qty:
-                    vals["product_uom_qty"] = min_qty
+    product_uom_qty = fields.Float(
+        string="Quantity",
+        compute='_compute_product_uom_qty',
+        inverse='_inverse_product_uom_qty',
+        digits='Product Unit of Measure', default=1.0,
+        store=True, readonly=False, required=True, precompute=True)
 
-        return super().create(vals_list)
+
+    def _inverse_product_uom_qty(self):
+        for rec in self:
+            product = rec.product_id
+            if product and product.sale_min_qty and product.sale_min_qty > self.product_uom_qty:
+                self.product_uom_qty = product.sale_min_qty
+
+
