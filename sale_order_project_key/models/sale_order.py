@@ -16,7 +16,6 @@ class SaleOrder(models.Model):
 
         for order in self:
             # Write partner to project
-            _logger.warning(["WRITE", order.project_id])
             if order.project_id and not order.project_id.partner_id:
                 order.project_id.write(
                     {
