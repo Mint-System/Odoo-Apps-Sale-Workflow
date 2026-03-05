@@ -1,1 +1,1 @@
-Create lead notes from template..
+Create lead notes from template.

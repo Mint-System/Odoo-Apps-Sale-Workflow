@@ -8,8 +8,7 @@ _logger = logging.getLogger(__name__)
 
 
 class CRMLead(models.Model):
-    _name = "crm.lead"
-    _inherit = ["crm.lead"]
+    _inherit = "crm.lead"
 
     template_id = fields.Many2one(
         comodel_name="crm.lead.template",
