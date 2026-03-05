@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="project_status">
+        <t
+            t-set="project_id"
+            t-value="doc if doc._name == 'project.project' else (doc.timesheet_ids and doc.timesheet_ids[0].project_id or False)"
+        />
+        <t t-if="project_id and project_id.allow_estimate and project_id.estimate_ids">
+            <t t-set="estimates" t-value="project_id.estimate_ids" />
+            <h3>Project Status</h3>
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th class="text-start">Phase</th>
+                        <th class="text-end">Planned</th>
+                        <th class="text-end">Effective</th>
+                        <th class="text-end">Remaining</th>
+                        <th class="text-end">Progress (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="estimates" t-as="estimate">
+                        <td class="align-middle">
+                            <span t-field="estimate.phase_id.name" />
+                        </td>
+                        <td class="text-end align-middle">
+                            <span
+                                t-esc="estimate.planned_hours"
+                                t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
+                            />
+                        </td>
+                        <td class="text-end align-middle">
+                            <span
+                                t-esc="estimate.effective_hours"
+                                t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
+                            />
+                        </td>
+                        <td class="text-end align-middle">
+                            <span
+                                t-esc="estimate.remaining_hours"
+                                t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
+                            />
+                        </td>
+                        <td class="text-end align-middle">
+                            <span
+                                t-esc="estimate.progress"
+                                t-options="{'widget': 'percentage'}"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-end" colspan="1"><strong>Total</strong></td>
+                        <td class="text-end"><strong>
+                            <span
+                                    t-esc="sum(estimates.mapped('planned_hours'))"
+                                    t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
+                                />
+                        </strong></td>
+                        <td class="text-end"><strong>
+                            <span
+                                    t-esc="sum(estimates.mapped('effective_hours'))"
+                                    t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
+                                />
+                        </strong></td>
+                        <td class="text-end"><strong>
+                            <span
+                                    t-esc="sum(estimates.mapped('remaining_hours'))"
+                                    t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
+                                />
+                        </strong></td>
+                        <td class="text-end"><strong>
+                            <span
+                                    t-esc="sum(estimates.mapped('progress')) / len(estimates)"
+                                    t-options="{'widget': 'percentage'}"
+                                />
+                        </strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </t>
+    </template>
+
+    <template id="timesheet_sale_page" inherit_id="sale_timesheet.timesheet_sale_page">
+        <xpath expr="//t[@t-call='hr_timesheet.timesheet_table']" position="after">
+            <t t-call="sale_timesheet_estimate_report.project_status" />
+        </xpath>
+    </template>
+
+    <template
+        id="timesheet_project_task_page"
+        inherit_id="hr_timesheet.timesheet_project_task_page"
+    >
+        <xpath expr="//t[@t-call='hr_timesheet.timesheet_table']" position="after">
+            <t t-call="sale_timesheet_estimate_report.project_status" />
+        </xpath>
+    </template>
+</odoo>
