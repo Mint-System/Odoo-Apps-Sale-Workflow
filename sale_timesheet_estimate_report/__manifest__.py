@@ -9,7 +9,7 @@
     "category": "Repository",
     "development_status": "Production/Stable",
     "version": "16.0.1.0.0",
-    "license": "AGPL-3,OPL-1",
+    "license": "AGPL-3",
     "depends": ["sale_timesheet", "project_phase_estimate"],
     "data": [
         "report/hr_timesheet_templates.xml",
