@@ -45,7 +45,7 @@
                         <td class="text-end align-middle">
                             <span
                                 t-esc="estimate.progress"
-                                t-options="{'widget': 'percentage'}"
+                                t-options="{'widget': 'integer'}"
                             />
                         </td>
                     </tr>
@@ -72,7 +72,7 @@
                         <td class="text-end"><strong>
                             <span
                                     t-esc="sum(estimates.mapped('progress')) / len(estimates)"
-                                    t-options="{'widget': 'percentage'}"
+                                    t-options="{'widget': 'integer'}"
                                 />
                         </strong></td>
                     </tr>
