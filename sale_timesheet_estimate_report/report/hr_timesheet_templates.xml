@@ -86,13 +86,4 @@
             <t t-call="sale_timesheet_estimate_report.project_status" />
         </xpath>
     </template>
-
-    <template
-        id="timesheet_project_task_page"
-        inherit_id="hr_timesheet.timesheet_project_task_page"
-    >
-        <xpath expr="//t[@t-call='hr_timesheet.timesheet_table']" position="after">
-            <t t-call="sale_timesheet_estimate_report.project_status" />
-        </xpath>
-    </template>
 </odoo>

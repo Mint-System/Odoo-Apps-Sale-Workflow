@@ -78,7 +78,7 @@
                                     </t>
                                     <t t-if="not type">
                                         <!-- Optional: fallback -->
-                                        <span/>
+                                        <span />
                                     </t>
                                 </p>
                             </td>
