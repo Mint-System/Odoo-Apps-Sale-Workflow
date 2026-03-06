@@ -8,7 +8,7 @@
     "website": "https://www.mint-system.ch/",
     "category": "Repository",
     "development_status": "Production/Stable",
-    "version": ".1.0.0",
+    "version": "16.0.1.0.0",
     "license": "AGPL-3",
     "depends": ["sale_timesheet"],
     "data": [

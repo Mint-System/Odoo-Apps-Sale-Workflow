@@ -21,7 +21,7 @@
                         <th class="text-start align-middle">
                             <span>Description</span>
                         </th>
-                        <th class="text-end">
+                        <th class="text-end align-middle">
                             <span t-if="is_uom_day">Days Spent</span>
                             <span t-else="">Hours Spent</span>
                         </th>
