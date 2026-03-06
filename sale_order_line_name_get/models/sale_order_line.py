@@ -5,7 +5,9 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     def name_get(self):
-        """OVERWRITE Return display name with product name"""
+        """
+        Overwrite: Return display name with product name
+        """
         result = []
         for so_line in self.sudo():
             name = "%s - %s / %s" % (

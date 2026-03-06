@@ -49,6 +49,7 @@ git clone git@github.com:Mint-System/Odoo-Apps-Sale-Workflow.git ./addons/sale_w
 | [sale_order_partner_membership](sale_order_partner_membership) |         Set membership address on sale order. |
 | [sale_order_partner_pricelist](sale_order_partner_pricelist) |         Grant pricelist access with sale order. |
 | [sale_order_partner_ref](sale_order_partner_ref) |         Show and filter the customer ref in sale order list. |
+| [sale_order_ref](sale_order_ref) |         Add internal ref to sale order. |
 | [sale_order_sale_partner](sale_order_sale_partner) |         Set sale contact on sales order. |
 | [sale_order_template_notes](sale_order_template_notes) |         Set notes on sale order templates. |
 | [sale_partner_shipping_group](sale_partner_shipping_group) |         Access group for shipping address on sale orders and invoices. |
