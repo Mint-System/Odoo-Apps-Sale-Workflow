@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="timesheet_sale_page_inherit"
+        inherit_id="sale_timesheet.timesheet_sale_page"
+    >
+        <!-- Find the <h2> inside the first .col-12 and replace it -->
+        <xpath expr="//div[@class='col-12'][1]/t[1]/h2" position="replace">
+            <!-- Compute from doc.timesheet_ids -->
+            <t
+                t-set="min_date"
+                t-value="doc.timesheet_ids and min(doc.timesheet_ids.mapped('date')) or False"
+            />
+            <t
+                t-set="max_date"
+                t-value="doc.timesheet_ids and max(doc.timesheet_ids.mapped('date')) or False"
+            />
+            <t
+                t-set="default_project"
+                t-value="doc.timesheet_ids.filtered(lambda d: d.project_id.partner_id)[:1].project_id or doc.project_id"
+            />
+
+            <!-- New header -->
+            <h3>Work report for the project "<t t-esc="default_project.name" />"</h3>
+            <p>
+                Time period:
+                <t t-if="min_date">
+                    <t t-esc="min_date" t-options="{'widget': 'date'}" /> until <t
+                        t-esc="max_date"
+                        t-options="{'widget': 'date'}"
+                    />
+                </t>
+                <t t-if="not min_date">No timesheets</t>
+            </p>
+            <p>
+                Customer: <t
+                    t-esc="default_project.partner_id.name"
+                    t-if="default_project.partner_id"
+                />
+                <t t-if="not default_project.partner_id">No customer</t>
+                <br />
+                Created by: <span t-field="user.name" />
+            </p>
+            <br />
+        </xpath>
+    </template>
+</odoo>

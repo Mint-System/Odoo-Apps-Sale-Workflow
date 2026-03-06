@@ -61,3 +61,4 @@ git clone git@github.com:Mint-System/Odoo-Apps-Sale-Workflow.git ./addons/sale_w
 | [sale_timesheet_billable_price](sale_timesheet_billable_price) |         The billability of an analytic line depends on the order line price. |
 | [sale_timesheet_estimate_report](sale_timesheet_estimate_report) |         Shows the projects estimates on the timesheet report. |
 | [sale_timesheet_report_group_invoice_type](sale_timesheet_report_group_invoice_type) |         Group timehsheet entries by invoice type on timesheet report. |
+| [sale_timesheet_report_project_details](sale_timesheet_report_project_details) |         Show invoiced time range and project details on timesheet report. |
