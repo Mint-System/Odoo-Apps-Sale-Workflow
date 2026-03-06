@@ -25,7 +25,7 @@ class SaleOrderLine(models.Model):
                 name = "%s (%s) - %s" % (
                     so_line.order_id.name,
                     ref,
-                    so_line.name and so_line.name.split("\n")[0] or so_line.product_id.name,
+                    so_line.product_id.name,
                 )
             if so_line.order_partner_id.ref:
                 name = "%s (%s)" % (name, so_line.order_partner_id.ref)
