@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="timesheet_table" inherit_id="hr_timesheet.timesheet_table">
+        <xpath expr="//table" position="replace">
+            <t t-set="show_project" t-value="False" />
+            <t t-set="show_task" t-value="True" />
+            <table class="table table-sm">
+                <thead style="display: table-row-group">
+                    <tr>
+                        <th class="text-start align-middle">
+                            <span>Date
+                                <br />Author
+                            </span>
+                        </th>
+                        <th class="text-start align-middle" t-if="show_project">
+                            <span>Project</span>
+                        </th>
+                        <th class="text-start align-middle" t-if="show_task">
+                            <span>Task</span>
+                        </th>
+                        <th class="text-start align-middle">
+                            <span>Description</span>
+                        </th>
+                        <th class="text-end">
+                            <span t-if="is_uom_day">Days Spent</span>
+                            <span t-else="">Hours Spent</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Create list of all invoice types -->
+                    <t t-set="timesheet_invoice_type" t-value="[]" />
+                    <t t-foreach="lines" t-as="line">
+                        <t
+                            t-set="timesheet_invoice_type"
+                            t-value="timesheet_invoice_type+[line.timesheet_invoice_type]"
+                        /></t>
+                    <t
+                        t-set="unique_types"
+                        t-value="sorted(set(timesheet_invoice_type))"
+                    />
+                    <style>
+              td#date {
+                white-space: nowrap;
+              }
+            </style>
+                    <t t-foreach="unique_types" t-as="type">
+                        <tr>
+                            <td colspan="5">
+                                <br />
+                                <p class="lead">
+                                    <t t-if="type == 'billable_time'">
+                                        <span>Billed on Timesheets</span>
+                                    </t>
+                                    <t t-if="type == 'billable_fixed'">
+                                        <span>Billed at a Fixed price</span>
+                                    </t>
+                                    <t t-if="type == 'billable_milestones'">
+                                        <span>Billed on Milestones</span>
+                                    </t>
+                                    <t t-if="type == 'billable_manual'">
+                                        <span>Billed Manually</span>
+                                    </t>
+                                    <t t-if="type == 'non_billable'">
+                                        <span>Non Billable Tasks</span>
+                                    </t>
+                                    <t t-if="type == 'timesheet_revenues'">
+                                        <span>Timesheet Revenues</span>
+                                    </t>
+                                    <t t-if="type == 'service_revenues'">
+                                        <span>Service Revenues</span>
+                                    </t>
+                                    <t t-if="type == 'other_revenues'">
+                                        <span>Other revenues</span>
+                                    </t>
+                                    <t t-if="type == 'other_costs'">
+                                        <span>Other costs</span>
+                                    </t>
+                                    <t t-if="not type">
+                                        <!-- Optional: fallback -->
+                                        <span/>
+                                    </t>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr t-foreach="lines" t-as="l">
+                            <t t-if="type==l.timesheet_invoice_type">
+                                <td id="date">
+                                    <span t-field="l.date" />
+                                    <br />
+                                    <span t-field="l.employee_id.name" />
+                                </td>
+                                <td>
+                                    <span
+                                        t-field="l.name"
+                                        t-options="{'widget': 'text'}"
+                                    />
+                                </td>
+                                <td t-if="show_project">
+                                    <span t-field="l.project_id.name" />
+                                </td>
+                                <td t-if="show_task">
+                                    <t t-if="l.task_id">
+                                        <span t-field="l.task_id.name" />
+                                    </t>
+                                </td>
+                                <td class="text-end">
+                                    <span
+                                        t-field="l.unit_amount"
+                                        t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
+                                    />
+                                </td>
+                            </t>
+                        </tr>
+                        <tr>
+                            <td />
+                            <td t-if="show_project" />
+                            <td t-if="show_task" />
+                            <td class="text-end">
+                                <strong>Subtotal</strong>
+                            </td>
+                            <td class="text-end">
+                                <strong
+                                    t-esc="sum(lines.filtered(lambda l: type==l.timesheet_invoice_type).mapped('unit_amount'))"
+                                    t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
+                                />
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </xpath>
+    </template>
+</odoo>

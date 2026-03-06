@@ -1,0 +1,3 @@
+- Open sale order "S00023"
+- Open the timesheet report in the browser http://localhost:8069/report/html/sale_timesheet.report_timesheet_sale_order/$ID
+- Check if timesheet entries are grouped
