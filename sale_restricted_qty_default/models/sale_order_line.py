@@ -14,6 +14,6 @@ class SaleOrderLine(models.Model):
 
     def _inverse_product_uom_qty(self):
         for rec in self:
-            product = rec.product_id
+            product = rec.product_id.product_tmpl_id
             if product and product.is_sale_own_min_qty_set and product.sale_min_qty > rec.product_uom_qty:
                 rec.product_uom_qty = product.sale_min_qty
