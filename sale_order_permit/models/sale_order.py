@@ -26,53 +26,65 @@ class SaleOrder(models.Model):
                 raise ValidationError(_("Sie können max. 1 Einheit eines Patents pro Bestellung haben."))
 
     def _assign_permit_number(self):
-        self.ensure_one()
+        order = self
+        product = order.order_line[0].product_id
+        if not order.partner_id.permit_number and product.duration == "year":
 
-        partner = self.partner_id
-        if not partner or partner.permit_number:
-            return
-
-        seq = self.env.ref("sale_order_permit.seq_permit_number")
-
-        attempts = 0
-        while attempts < 300:
-            attempts += 1
-
-            number = seq.next_by_id()
-
-            try:
-                with self.env.cr.savepoint():
-                    partner.permit_number = number
-
-                    # force SQL
-                    self.env["res.partner"].flush_model(["permit_number"])
-
+            partner = self.partner_id
+            if not partner or partner.permit_number:
                 return
 
-            except IntegrityError as e:
-                if getattr(e, "pgcode", None) != errorcodes.UNIQUE_VIOLATION:
-                    raise
-                # duplicate → retry with a NEW number
-                continue
+            seq = self.env.ref("sale_order_permit.seq_permit_number")
 
-        raise RuntimeError("Could not generate a unique permit number for partner %s" % partner.display_name)
+            attempts = 0
+            while attempts < 300:
+                attempts += 1
 
+                number = seq.next_by_id()
 
-    def action_confirm(self):
+                try:
+                    with self.env.cr.savepoint():
+                        partner.permit_number = number
+
+                        # force SQL
+                        self.env["res.partner"].flush_model(["permit_number"])
+
+                    return
+
+                except IntegrityError as e:
+                    if getattr(e, "pgcode", None) != errorcodes.UNIQUE_VIOLATION:
+                        raise
+                    # duplicate → retry with a NEW number
+                    continue
+
+            raise RuntimeError("Could not generate a unique permit number for partner %s" % partner.display_name)
+        else:
+            return False
+
+    def _limit_sale_by_date(self):
         # no sale order if date is after March 31
         today = date.today()
         limit_date = date(today.year, 3, 31)
 
-        for order in self:
-            product = order.order_line[0].product_id
-            for line in order.order_line:
-                if product.duration == "year" and line.date_from and line.date_from > limit_date:
-                    raise ValidationError(_("Sie können kein Jahrespatent mehr nach dem (%s) kaufen.") % limit_date)
+        order = self
+        product = order.order_line[0].product_id
+        for line in order.order_line:
+            if product.duration == "year" and line.date_from and line.date_from > limit_date:
+                raise ValidationError(_("Sie können kein Jahrespatent mehr nach dem (%s) kaufen.") % limit_date)
 
+    def action_quotation_send(self):
         for order in self:
-            product = order.order_line[0].product_id
-            if not order.partner_id.permit_number and product.duration == "year":
-                order._assign_permit_number()
+            order._limit_sale_by_date()
+            order._assign_permit_number()
+
+        res = super().action_quotation_send()
+
+        return res
+
+    def action_confirm(self):
+        for order in self:
+            order._limit_sale_by_date()
+            order._assign_permit_number()
 
         res = super().action_confirm()
 
