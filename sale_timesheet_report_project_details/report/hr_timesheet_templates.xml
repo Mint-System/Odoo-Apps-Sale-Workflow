@@ -20,10 +20,10 @@
             />
 
             <!-- New header -->
-            <h3 t-if="project_id">Work report for the project "<t
+            <h3 t-if="project_id">Work report for project "<t
                     t-out="project_id.name or ''"
                 />"</h3>
-            <h3 t-if="not project_id">Work report for the customer "<t
+            <h3 t-if="not project_id">Work report for customer "<t
                     t-out="doc.commercial_partner_id.name or 'company name'"
                 />"</h3>
             <p>
