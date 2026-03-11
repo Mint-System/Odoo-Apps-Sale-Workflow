@@ -14,7 +14,7 @@ class ProductPricelist(models.Model):
     def _get_website_pricelists_domain(self, website):
         domain = super()._get_website_pricelists_domain(website)
 
-        # get category from session injected in main controller
+        # get selected category from session injected in main controller
         public_category_id = http.request.session.get('public_category_id')
         _logger.warning(f"context: {self.env.context}")
 
