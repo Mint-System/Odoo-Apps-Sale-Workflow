@@ -15,17 +15,15 @@ class ProductPricelist(models.Model):
         domain = super()._get_website_pricelists_domain(website)
 
         # get selected category from session injected in main controller
-        public_category_id = http.request.session.get('public_category_id')
-        _logger.warning(f"context: {self.env.context}")
+        product_category_ids = http.request.session.get('product_public_category_ids')
+        _logger.warning(f"product_category_ids: {product_category_ids}")
 
 
-        if public_category_id:
-            # TODO: add parents?
-
-            # Extend domain: pricelist must have provided category or no categories 
+        if product_category_ids:
+            # Filter: pricelist must have at least one of these categories, OR no categories assigned
             domain += [
                 '|',
-                ('public_category_ids', 'in', [public_category_id]),
+                ('public_category_ids', 'in', product_category_ids),
                 ('public_category_ids', '=', False),
             ]
 
