@@ -29,7 +29,6 @@ class SaleOrder(models.Model):
         order = self
         product = order.order_line[0].product_id
         if not order.partner_id.permit_number and product.duration == "year":
-
             partner = self.partner_id
             if not partner or partner.permit_number:
                 return

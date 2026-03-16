@@ -1,12 +1,13 @@
 import logging
 
-from odoo.addons.website_sale.controllers.main import WebsiteSale
 from odoo import http
+
+from odoo.addons.website_sale.controllers.main import WebsiteSale
 
 _logger = logging.getLogger(__name__)
 
-class WebsiteSaleCustom(WebsiteSale):
 
+class WebsiteSaleCustom(WebsiteSale):
     # @http.route()
     # def product(self, product, category='', search='', **kwargs):
     #     public_category_ids = product.public_categ_ids.ids
@@ -14,7 +15,7 @@ class WebsiteSaleCustom(WebsiteSale):
     #         http.request.session['product_public_category_ids'] = public_category_ids
     #     else:
     #         http.request.session.pop('product_public_category_ids', None)
-        
+
     #     if category:
     #         http.request.session['public_category_id'] = category
     #     else:
@@ -22,15 +23,14 @@ class WebsiteSaleCustom(WebsiteSale):
 
     #     return super().product(product, category, search, **kwargs)
 
-
     @http.route()
-    def product(self, product, category='', search='', **kwargs):
+    def product(self, product, category="", search="", **kwargs):
         # Get dummy pricelist (sequence = 0)
-        dummy_pricelist = http.request.env['product.pricelist'].search([('sequence', '=', 0)], limit=1)
+        dummy_pricelist = http.request.env["product.pricelist"].search([("sequence", "=", 0)], limit=1)
 
         # Reset pricelist in session to dummy
         if dummy_pricelist:
-            http.request.session['pricelist'] = dummy_pricelist.id
+            http.request.session["pricelist"] = dummy_pricelist.id
 
         # Call parent method
         return super().product(product, category, search, **kwargs)

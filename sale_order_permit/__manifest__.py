@@ -22,7 +22,7 @@
         "views/product_pricelist_views.xml",
         "views/res_partner_views.xml",
         "views/permit_sequence.xml",
-        "data/pricelist.xml"
+        "data/pricelist.xml",
     ],
     "installable": True,
     "application": False,

@@ -1,11 +1,12 @@
 import logging
-from odoo.http import request
+
 from odoo import models
 
 _logger = logging.getLogger(__name__)
 
+
 class Website(models.Model):
-    _inherit = 'website'
+    _inherit = "website"
 
     # def _get_current_pricelist(self):
     #     pricelist = super()._get_current_pricelist()
@@ -30,7 +31,6 @@ class Website(models.Model):
     #         pricelist = website._get_current_pricelist()
     #         _logger.warning(f"pricelist: {pricelist}")
     #         _logger.warning(f"request.session.get('website_sale_current_pl'): {request.session.get('website_sale_current_pl')}")
-
 
     #         # If no pricelist is explicitly selected (session empty), return False for UI
     #         if not request.session.get('website_sale_current_pl'):

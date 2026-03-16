@@ -1,9 +1,9 @@
 <odoo>
     <record id="dummy_pricelist" model="product.pricelist">
         <field name="name">Bitte wählen Sie</field>
-        <field name="currency_id" ref="base.CHF"/>
-        <field name="company_id" eval="False"/>
+        <field name="currency_id" ref="base.CHF" />
+        <field name="company_id" eval="False" />
         <field name="sequence">0</field>
-        <field name="active" eval="True"/>
+        <field name="active" eval="True" />
     </record>
 </odoo>

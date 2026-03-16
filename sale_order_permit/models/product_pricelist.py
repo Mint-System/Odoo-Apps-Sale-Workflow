@@ -1,8 +1,9 @@
 import logging
+
 from odoo import fields, models
-from odoo import http
 
 _logger = logging.getLogger(__name__)
+
 
 class ProductPricelist(models.Model):
     _inherit = "product.pricelist"
@@ -17,7 +18,6 @@ class ProductPricelist(models.Model):
     #     # get selected category from session injected in main controller
     #     product_category_ids = http.request.session.get('product_public_category_ids')
     #     _logger.warning(f"product_category_ids: {product_category_ids}")
-
 
     #     if product_category_ids:
     #         # Filter: pricelist must have at least one of these categories, OR no categories assigned
