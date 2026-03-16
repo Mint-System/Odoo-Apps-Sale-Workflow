@@ -6,11 +6,14 @@
             t-set="project_id"
             t-value="doc if doc._name == 'project.project' else (doc.timesheet_ids and doc.timesheet_ids[0].project_id or False)"
         />
-        <t t-if="project_id and project_id.allow_estimate and project_id.estimate_ids">
+        <t
+            t-set="estimate_ids"
+            t-value="project_id.estimate_ids.filtered(lambda rec: rec.is_in_progress) or False"
+        />
+        <t t-if="project_id and project_id.allow_estimate and estimate_ids">
             <div style="page-break-before: always;" />
             <div class="pt-5" />
             <div class="mt8">
-                <t t-set="estimates" t-value="project_id.estimate_ids" />
                 <h3>Project Status</h3>
                 <table class="table table-sm">
                     <thead>
@@ -23,31 +26,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr t-foreach="estimates" t-as="estimate">
+                        <tr t-foreach="estimate_ids" t-as="estimate_id">
                             <td class="align-middle">
-                                <span t-field="estimate.phase_id.name" />
+                                <span t-field="estimate_id.phase_id.name" />
                             </td>
                             <td class="text-end align-middle">
                                 <span
-                                    t-esc="estimate.planned_hours"
+                                    t-esc="estimate_id.planned_hours"
                                     t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
                                 />
                             </td>
                             <td class="text-end align-middle">
                                 <span
-                                    t-esc="estimate.effective_hours_validated"
+                                    t-esc="estimate_id.effective_hours_validated"
                                     t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
                                 />
                             </td>
                             <td class="text-end align-middle">
                                 <span
-                                    t-esc="estimate.remaining_hours_validated"
+                                    t-esc="estimate_id.remaining_hours_validated"
                                     t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
                                 />
                             </td>
                             <td class="text-end align-middle">
                                 <span
-                                    t-esc="estimate.progress_validated"
+                                    t-esc="estimate_id.progress_validated"
                                     t-options="{'widget': 'integer'}"
                                 />
                             </td>
@@ -56,25 +59,25 @@
                             <td class="text-end" colspan="1"><strong>Total</strong></td>
                             <td class="text-end"><strong>
                                 <span
-                                        t-esc="sum(estimates.mapped('planned_hours'))"
+                                        t-esc="sum(estimate_ids.mapped('planned_hours'))"
                                         t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
                                     />
                             </strong></td>
                             <td class="text-end"><strong>
                                 <span
-                                        t-esc="sum(estimates.mapped('effective_hours_validated'))"
+                                        t-esc="sum(estimate_ids.mapped('effective_hours_validated'))"
                                         t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
                                     />
                             </strong></td>
                             <td class="text-end"><strong>
                                 <span
-                                        t-esc="sum(estimates.mapped('remaining_hours_validated'))"
+                                        t-esc="sum(estimate_ids.mapped('remaining_hours_validated'))"
                                         t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
                                     />
                             </strong></td>
                             <td class="text-end"><strong>
                                 <span
-                                        t-esc="sum(estimates.mapped('progress_validated')) / len(estimates)"
+                                        t-esc="sum(estimate_ids.mapped('progress_validated')) / len(estimate_ids)"
                                         t-options="{'widget': 'integer'}"
                                     />
                             </strong></td>
