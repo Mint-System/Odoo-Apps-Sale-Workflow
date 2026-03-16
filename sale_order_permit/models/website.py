@@ -24,16 +24,16 @@ class Website(models.Model):
 
     #     return pricelist
 
-    def _compute_pricelist_id(self):
-        for website in self:
-            # Get actual current pricelist (via _get_current_pricelist)
-            pricelist = website._get_current_pricelist()
-            _logger.warning(f"pricelist: {pricelist}")
-            _logger.warning(f"request.session.get('website_sale_current_pl'): {request.session.get('website_sale_current_pl')}")
+    # def _compute_pricelist_id(self):
+    #     for website in self:
+    #         # Get actual current pricelist (via _get_current_pricelist)
+    #         pricelist = website._get_current_pricelist()
+    #         _logger.warning(f"pricelist: {pricelist}")
+    #         _logger.warning(f"request.session.get('website_sale_current_pl'): {request.session.get('website_sale_current_pl')}")
 
 
-            # If no pricelist is explicitly selected (session empty), return False for UI
-            if not request.session.get('website_sale_current_pl'):
-                website.pricelist_id = False  # Show "Select Price List"
-            else:
-                website.pricelist_id = pricelist  # Show actual pricelist name
+    #         # If no pricelist is explicitly selected (session empty), return False for UI
+    #         if not request.session.get('website_sale_current_pl'):
+    #             website.pricelist_id = False  # Show "Select Price List"
+    #         else:
+    #             website.pricelist_id = pricelist  # Show actual pricelist name
