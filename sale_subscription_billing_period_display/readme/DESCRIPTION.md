@@ -1,0 +1,1 @@
+Displays singular/plural of billing period correctly.

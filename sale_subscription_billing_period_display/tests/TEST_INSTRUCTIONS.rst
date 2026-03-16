@@ -1,0 +1,2 @@
+- Create sale order for product with subscription.
+- Create invoice and cehck if singular/plural of billing period units (month/months and so on) is handled correctly.
