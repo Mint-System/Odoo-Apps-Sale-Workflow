@@ -14,6 +14,7 @@
     "data": [
         "views/project_estimate_views.xml",
         "views/sale_order_views.xml",
+        "views/project_project_views.xml",
     ],
     "installable": True,
     "application": False,

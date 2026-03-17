@@ -16,8 +16,8 @@
                                 domain="[('order_id', '=', parent.id), ('is_service', '=', True)]"
                             />
                             <field name="phase_id" />
-                            <field name="start_date" optional="show" />
-                            <field name="end_date" optional="show" />
+                            <field name="start_date" optional="hide" />
+                            <field name="end_date" optional="hide" />
                             <field
                                 name="planned_hours"
                                 widget="timesheet_uom"

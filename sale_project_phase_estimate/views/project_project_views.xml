@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="project_estimate_tree" model="ir.ui.view">
-        <field name="name">sale_project_phase_estimate.project_estimate_tree</field>
-        <field name="model">project.estimate</field>
-        <field name="inherit_id" ref="project_phase_estimate.project_estimate_tree" />
+    <record id="edit_project" model="ir.ui.view">
+        <field name="name">sale_project_phase_estimate.edit_project</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project_phase_estimate.edit_project" />
         <field name="arch" type="xml">
             <field name="project_id" position="before">
                 <field name="partner_id" invisible="1" />
