@@ -34,7 +34,7 @@ msgstr "Schätzung"
 #. module: sale_project_phase_estimate
 #: model_terms:ir.ui.view,arch_db:sale_project_phase_estimate.report_saleorder_document
 msgid "Estimates"
-msgstr "Aufwandschätzungen"
+msgstr "Aufwandsschätzungen"
 
 #. module: sale_project_phase_estimate
 #: model_terms:ir.ui.view,arch_db:sale_project_phase_estimate.report_saleorder_document
