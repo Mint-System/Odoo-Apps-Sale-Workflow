@@ -4,6 +4,8 @@ Sale order estimate:
 - Add an 10 hours estimate for senior architect
 - Add a second 5 hours estimate for senior architect
 - Ensure the sum of the estimates is set on the order line
+- Print the sale quote report
+- Ensure the estimates are shown after the order lines
 
 Confirm sale order
 

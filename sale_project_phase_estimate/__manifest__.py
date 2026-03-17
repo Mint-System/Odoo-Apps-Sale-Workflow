@@ -15,6 +15,7 @@
         "views/project_estimate_views.xml",
         "views/sale_order_views.xml",
         "views/project_project_views.xml",
+        "report/sale_order_templates.xml",
     ],
     "installable": True,
     "application": False,

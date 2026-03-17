@@ -19,8 +19,6 @@ class ProjectTask(models.Model):
         for task in self:
             estimate_ids = task.phase_id.estimate_ids.filtered(lambda est: est.project_id == task.project_id)
             if estimate_ids and not task.sale_line_id:
-                estimate_id = estimate_ids.filtered(lambda est: est.sale_line_id and est.is_in_progress)[
-                    :1
-                ]
+                estimate_id = estimate_ids.filtered(lambda est: est.sale_line_id and est.is_in_progress)[:1]
                 if estimate_id:
                     task.sale_line_id = estimate_id.sale_line_id
