@@ -13,6 +13,8 @@ class Website(models.Model):
     def _get_current_pricelist(self):
         pricelist = super()._get_current_pricelist()
 
+        _logger.warning(f"##### force dummy pricelist: {request.session.get('force_dummy_pricelist')}")
+
         if request.session.get("force_dummy_pricelist"):
             request.session.pop("force_dummy_pricelist", None)
 
