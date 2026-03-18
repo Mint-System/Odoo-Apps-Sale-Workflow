@@ -19,21 +19,6 @@ class SaleOrderLine(models.Model):
 
     date_to = fields.Date(compute="_compute_date_to")
 
-    # @api.onchange("product_id")
-    # def _onchange_product_id_date_from(self):
-    #     for line in self:
-    #         if not line.product_id:
-    #             continue
-
-    #         if line.product_id.duration == "year":
-    #             today = fields.Date.context_today(line)
-    #             october_1 = date(today.year, 10, 1)
-
-    #             year = today.year + 1 if today > october_1 else today.year
-    #             line.date_from = datetime(year, 1, 1)
-    #         else:
-    #             line.date_from = fields.Datetime.now()
-    #
     @api.constrains("product_id", "date_from", "order_id.partner_id")
     def _check_permit_limits(self):
         # limits per duration
@@ -87,20 +72,6 @@ class SaleOrderLine(models.Model):
                     month=1,
                     day=1,
                 )
-
-    # @api.depends("date_from")
-    # def _compute_date_to(self):
-    #     duration_map = {
-    #         "year": {"days": 365},
-    #         "day": {"days": 1},
-    #         "week": {"weeks": 1},
-    #     }
-    #     for line in self:
-    #         if not line.date_from or not line.product_id:
-    #             line.date_to = line.date_from
-    #             continue
-
-    #         duration = line.product_id.duration
 
     @api.depends("date_from", "product_id.duration")
     def _compute_date_to(self):
@@ -173,15 +144,6 @@ class SaleOrderLine(models.Model):
                 vals["date_from"] = self._normalize_date_from(date_from, product.duration)
         return super().create(vals_list)
 
-    # def write(self, vals):
-    #     if "date_from" in vals or "product_id" in vals:
-    #         date_from = vals.get("date_from")
-    #         product_id = vals.get("product_id")
-    #         product = self.env["product.template"].browse(product_id) or self.product_id
-
-    #         vals["date_from"] = self._normalize_date_from(date_from, product.duration)
-
-    #     return super().write(vals)
 
     def write(self, vals):
         if "date_from" in vals or "product_id" in vals:
