@@ -13,12 +13,6 @@ class WebsiteSaleCustom(WebsiteSale):
         res = super().product(product, category, search, **kwargs)
         last_product_id = http.request.session.get('last_viewed_product_id')
         current_product_id = product.id
-
-        for key, value in http.request.session.items():
-            _logger.warning(f"##### {key}: {value}")
-
-        _logger.warning(f"##### current_product_id: {current_product_id}")
-        
        
         if last_product_id != current_product_id:
             http.request.session["force_dummy_pricelist"] = True
