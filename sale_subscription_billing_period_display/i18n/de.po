@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-19 11:14+0000\n"
-"PO-Revision-Date: 2026-03-19 11:14+0000\n"
+"POT-Creation-Date: 2026-03-19 12:21+0000\n"
+"PO-Revision-Date: 2026-03-19 12:21+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: sale_subscription_billing_period_display
 #. odoo-python
 #: code:addons/sale_subscription_billing_period_display/models/sale_subscription_plan.py:0
-msgid "%(value)s %(unit)s"
+msgid "%s %s"
 msgstr ""
 
 #. module: sale_subscription_billing_period_display
@@ -33,17 +33,49 @@ msgid "Subscription Plan"
 msgstr "Aboplan"
 
 #. module: sale_subscription_billing_period_display
-#: model:ir.model,name:sale_subscription_billing_period_display.model_sale_subscription_plan
+#. odoo-python
+#: code:addons/sale_subscription_billing_period_display/models/sale_subscription_plan.py:0
+msgid "day"
+msgstr "Tag"
+
+#. module: sale_subscription_billing_period_display
+#. odoo-python
+#: code:addons/sale_subscription_billing_period_display/models/sale_subscription_plan.py:0
+msgid "days"
+msgstr "Tage"
+
+#. module: sale_subscription_billing_period_display
+#. odoo-python
+#: code:addons/sale_subscription_billing_period_display/models/sale_subscription_plan.py:0
 msgid "month"
 msgstr "Monat"
 
+#. module: sale_subscription_billing_period_display
+#. odoo-python
+#: code:addons/sale_subscription_billing_period_display/models/sale_subscription_plan.py:0
+msgid "months"
+msgstr "Monate"
 
 #. module: sale_subscription_billing_period_display
-#: model:ir.model,name:sale_subscription_billing_period_display.model_sale_subscription_plan
+#. odoo-python
+#: code:addons/sale_subscription_billing_period_display/models/sale_subscription_plan.py:0
+msgid "week"
+msgstr "Woche"
+
+#. module: sale_subscription_billing_period_display
+#. odoo-python
+#: code:addons/sale_subscription_billing_period_display/models/sale_subscription_plan.py:0
+msgid "weeks"
+msgstr "Wochen"
+
+#. module: sale_subscription_billing_period_display
+#. odoo-python
+#: code:addons/sale_subscription_billing_period_display/models/sale_subscription_plan.py:0
 msgid "year"
 msgstr "Jahr"
 
 #. module: sale_subscription_billing_period_display
-#: model:ir.model,name:sale_subscription_billing_period_display.model_sale_subscription_plan
-msgid "week"
-msgstr "Woche"
+#. odoo-python
+#: code:addons/sale_subscription_billing_period_display/models/sale_subscription_plan.py:0
+msgid "years"
+msgstr "Jahre"
