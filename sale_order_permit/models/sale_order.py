@@ -71,12 +71,12 @@ class SaleOrder(models.Model):
             if product.duration == "year" and line.date_from and line.date_from > limit_date:
                 raise ValidationError(_("Sie können kein Jahrespatent mehr nach dem (%s) kaufen.") % limit_date)
 
-    def action_quotation_send(self):
+    def _send_payment_succeeded_for_order_mail(self):
         for order in self:
             order._limit_sale_by_date()
             order._assign_permit_number()
 
-        res = super().action_quotation_send()
+        res = super()._send_payment_succeeded_for_order_mail()
 
         return res
 
