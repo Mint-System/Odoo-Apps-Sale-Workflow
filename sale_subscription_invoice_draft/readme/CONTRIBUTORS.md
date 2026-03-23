@@ -1,1 +1,1 @@
-* $GIT_USER_NAME <$GIT_USER_EMAIL>
+* Janik von Rotz <login@janikvonrotz.ch>

@@ -144,7 +144,6 @@ class SaleOrderLine(models.Model):
                 vals["date_from"] = self._normalize_date_from(date_from, product.duration)
         return super().create(vals_list)
 
-
     def write(self, vals):
         if "date_from" in vals or "product_id" in vals:
             new_vals = []

@@ -1,2 +1,2 @@
-- Active module.
+- Activate module.
 - Check that invoices generated from subscriptions are not posted.

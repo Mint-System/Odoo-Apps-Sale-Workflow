@@ -1,1 +1,1 @@
-$MODULE_SUMMARY
+Ensure invoices generated from subscriptions are not posted.

@@ -23,7 +23,9 @@ git clone git@github.com:Mint-System/Odoo-Apps-Sale-Workflow.git ./addons/sale_w
 | [sale_order_permit](sale_order_permit) |         Adds Workflow for selling permits. |
 | [sale_partner_shipping_group](sale_partner_shipping_group) |         Access group for shipping address on sale orders and invoices. |
 | [sale_restricted_qty_default](sale_restricted_qty_default) |         Sets default value for product quantity to minimum quantity. |
+| [sale_subscription_billing_period_display](sale_subscription_billing_period_display) |         Displays singular/plural of billing period correctly. |
 | [sale_subscription_disable_tokenization](sale_subscription_disable_tokenization) |         Do not force payment tokenization for order with subscriptions. |
+| [sale_subscription_invoice_draft](sale_subscription_invoice_draft) |         Ensure invoices generated from subscriptions are not posted. |
 | [sale_subscription_partner_pricelist](sale_subscription_partner_pricelist) |         Grant pricelist access with sale subscription. |
 | [sale_subscription_period_discount](sale_subscription_period_discount) |         Apply discounts on subscription periods. |
 | [sale_subscription_pricelist_fixed_discount](sale_subscription_pricelist_fixed_discount) |         Fix fixed discount for subscription. |
