@@ -20,4 +20,5 @@ class SaleOrderLine(models.Model):
 
             # Apply fixed price discount
             discount = line.order_id.pricelist_id._get_percent_price(line.product_id, line.product_uom_qty, date)
-            line.discount = discount
+            if discount:
+                line.discount = discount

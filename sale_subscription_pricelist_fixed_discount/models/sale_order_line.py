@@ -15,12 +15,11 @@ class SaleOrderLine(models.Model):
         """
         super()._compute_discount()
 
-        _logger.warning(f"Apply fixed discount to: {self}")
-
         for line in self:
             # Read filter date from context
             date = self._context.get("date") or line.order_id.commitment_date or line.order_id.date_order
 
             # Apply fixed price discount
             discount = line.order_id.pricelist_id._get_percent_price(line.product_id, line.product_uom_qty, date)
-            line.discount = discount
+            if discount:
+                line.discount = discount

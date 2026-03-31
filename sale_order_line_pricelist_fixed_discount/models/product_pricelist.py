@@ -45,7 +45,7 @@ class ProductPricelist(models.Model):
                 rule_ids_without_min_qty and rule_ids_without_min_qty[0]
             )
 
-            return rule_id.percent_price or 0.0
+            return rule_id.percent_price or False
 
         else:
-            return 0.0
+            return False
