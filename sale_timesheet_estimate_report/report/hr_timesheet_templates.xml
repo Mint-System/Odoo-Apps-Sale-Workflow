@@ -22,7 +22,7 @@
                             <th class="text-end">Planned</th>
                             <th class="text-end">Effective</th>
                             <th class="text-end">Remaining</th>
-                            <th class="text-end">Progress (%)</th>
+                            <th class="text-end">Progress</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +52,7 @@
                                 <span
                                     t-esc="estimate_id.progress_validated"
                                     t-options="{'widget': 'integer'}"
-                                />
+                                /> %
                             </td>
                         </tr>
                         <tr>
@@ -79,7 +79,7 @@
                                 <span
                                         t-esc="sum(estimate_ids.mapped('progress_validated')) / len(estimate_ids)"
                                         t-options="{'widget': 'integer'}"
-                                    />
+                                    /> %
                             </strong></td>
                         </tr>
                     </tbody>
