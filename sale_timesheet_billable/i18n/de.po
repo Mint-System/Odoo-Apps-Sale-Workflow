@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_timesheet_billable
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-21 11:56+0000\n"
+"PO-Revision-Date: 2026-04-21 11:56+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_timesheet_billable
+#: model:ir.model,name:sale_timesheet_billable.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Kostenstellenbuchungen"
+
+#. module: sale_timesheet_billable
+#: model:ir.model.fields,field_description:sale_timesheet_billable.field_account_analytic_line__billable
+msgid "Billable"
+msgstr "Abrechenbar"
+
+#. module: sale_timesheet_billable
+#: model:ir.model.fields,field_description:sale_timesheet_billable.field_account_analytic_line__task_order_id
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: sale_timesheet_billable
+#: model:ir.model.fields,field_description:sale_timesheet_billable.field_account_analytic_line__so_line
+msgid "Sales Order Item"
+msgstr "Auftragsposition"
+
+#. module: sale_timesheet_billable
+#: model:ir.model.fields,help:sale_timesheet_billable.field_account_analytic_line__so_line
+msgid ""
+"Sales order item to which the time spent will be added in order to be "
+"invoiced to your customer. Remove the sales order item for the timesheet "
+"entry to be non-billable."
+msgstr ""
+"Verkaufsauftragsposition, zu der die aufgewendete Zeit hinzugefügt wird, "
+"damit sie Ihrem Kunden in Rechnung gestellt werden kann. Entfernen Sie die "
+"Verkaufsauftragsposition, damit der Zeiterfassungsbogen nicht abrechenbar "
+"ist."
+
+#. module: sale_timesheet_billable
+#: model:ir.model.fields,help:sale_timesheet_billable.field_account_analytic_line__task_order_id
+msgid "Sales order to which the task is linked."
+msgstr "Verkaufsauftrag, mit dem die Aufgabe verknüpft ist."
+
+#. module: sale_timesheet_billable
+#. odoo-python
+#: code:addons/sale_timesheet_billable/models/account_analytic_line.py:0
+#, python-format
+msgid "Task is billable, only order lines with a price > 0.0 are valid."
+msgstr "Aufgabe ist abrechenbar, nur Auftragspositionen mit einem Preis > 0.0 sind gültig."
+
+#. module: sale_timesheet_billable
+#. odoo-python
+#: code:addons/sale_timesheet_billable/models/account_analytic_line.py:0
+#, python-format
+msgid "Task is not billable, only order lines price 0.0 are valid."
+msgstr "Aufgabe ist nicht abrechenbar, nur Auftragspositionen mit einem Preis von 0.0 sind gültig."

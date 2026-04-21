@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="hr_timesheet.act_hr_timesheet_line" model="ir.actions.act_window">
+        <field name="view_mode">tree,grid,form</field>
+    </record>
+
+    <record id="hr_timesheet.timesheet_action_all" model="ir.actions.act_window">
+        <field name="view_mode">tree,grid,form</field>
+    </record>
+
+    <record
+        id="hr_timesheet.act_hr_timesheet_line_view_tree"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="2" />
+    </record>
+
+    <record
+        id="hr_timesheet.timesheet_action_view_all_tree"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="2" />
+    </record>
+
+    <record id="hr_timesheet_line_tree" model="ir.ui.view">
+        <field name="name">sale_timesheet_billable.hr_timesheet_line_tree</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
+        <field name="arch" type="xml">
+            <field name="task_id" position="after">
+                <field name="task_order_id" optional="hide" />
+                <field name="billable" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

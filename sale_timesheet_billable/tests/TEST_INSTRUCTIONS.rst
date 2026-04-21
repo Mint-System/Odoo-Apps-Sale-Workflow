@@ -1,0 +1,11 @@
+- Show all timesheets
+- Filter by project "21"
+- Open sale order
+- Add timesheet product "goodwill" with price zero
+- Return to timesheets
+- Select timesheet with task "Furniture Delivery"
+- Select so line "goodwill" and try to save
+- Ensure a validation error is thrown
+- Select timehseet with task "Kitchen Assembly"
+- Select so line "customer care" and try to save
+- Ensure a vaidation error is thrown
