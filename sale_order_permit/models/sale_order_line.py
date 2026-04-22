@@ -19,7 +19,7 @@ class SaleOrderLine(models.Model):
 
     date_to = fields.Date(compute="_compute_date_to")
 
-    @api.constrains("product_id", "date_from", "order_id.partner_id")
+    @api.constrains("product_id", "date_from", "order_id")
     def _check_permit_limits(self):
         # limits per duration
         limits = {
