@@ -23,6 +23,7 @@
         "views/res_partner_views.xml",
         "views/permit_sequence.xml",
         "data/pricelist.xml",
+        "views/report_permit.xml",
     ],
     "installable": True,
     "application": False,

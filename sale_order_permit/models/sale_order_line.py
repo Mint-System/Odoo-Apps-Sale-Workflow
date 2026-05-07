@@ -4,6 +4,8 @@ from datetime import date, timedelta
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
+from .config import REGION_SELECTION
+
 _logger = logging.getLogger(__name__)
 
 
@@ -18,6 +20,12 @@ class SaleOrderLine(models.Model):
     )
 
     date_to = fields.Date(compute="_compute_date_to")
+    
+    region = fields.Selection(
+        string="Region",
+        selection = REGION_SELECTION,
+        default="none",
+        )
 
     @api.constrains("product_id", "date_from", "order_id")
     def _check_permit_limits(self):

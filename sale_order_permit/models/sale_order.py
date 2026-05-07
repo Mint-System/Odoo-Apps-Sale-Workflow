@@ -3,14 +3,32 @@ from datetime import date
 
 from psycopg2 import IntegrityError, errorcodes
 
-from odoo import _, api, models
+from odoo import _, api, models, fields
 from odoo.exceptions import UserError, ValidationError
+
+from .config import REGION_SELECTION
 
 _logger = logging.getLogger(__name__)
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
+    region = fields.Selection(
+        string="Region",
+        selection=REGION_SELECTION,
+        compute="_compute_region",
+        store=False,
+        readonly=True,
+    )
+
+    @api.depends("order_line")
+    def _compute_region(self):
+        for order in self:
+            if order.order_line:
+                first_line = order.order_line[0]
+                order.region = first_line.region if first_line.region else "none"
+            else:
+                order.region = "none"
 
     @api.constrains("order_line", "order_line.product_id", "order_line.product_uom_qty")
     def _check_only_one_permit_product(self):

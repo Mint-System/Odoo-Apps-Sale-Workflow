@@ -11,7 +11,18 @@
             >
                 <field name="date_from" />
                 <field name="date_to" readonly="1" />
+                <field name="region" />
+            </xpath>
+            <xpath
+                expr="//page[@name='other_information']/group/group[@name='sale_info']"
+                position="after"
+            >
+                <group name="permit_info" string="Permit Info">
+                    <field name="region" />
+                </group>
             </xpath>
         </field>
     </record>
+
+
 </odoo>
