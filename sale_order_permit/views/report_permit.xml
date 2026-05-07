@@ -109,6 +109,16 @@
                                                 <span t-field="doc.pricelist_id.name"/>
                                             </td>
                                         </tr>
+                                        <t t-if="line.region != 'none' and line.region != '' ">
+                                            <tr >
+                                                <td>
+                                                    <span>Region</span>
+                                                </td>
+                                                <td colspan="3">
+                                                    <span t-field="line.region"/>
+                                                </td>
+                                            </tr>
+                                        </t>
                                         <tr>
                                             <t t-if="line.product_id.duration == 'year'">
                                                 <td>
