@@ -175,7 +175,6 @@ class SaleOrderLine(models.Model):
 
                 new_vals.append(v)
 
-            # IMPORTANT: write multi with possibly different vals
             for line, v in zip(self, new_vals, strict=False):
                 super(SaleOrderLine, line).write(v)
             return True
