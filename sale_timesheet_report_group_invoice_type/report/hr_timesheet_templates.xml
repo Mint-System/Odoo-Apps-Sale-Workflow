@@ -100,9 +100,7 @@
                                     <span t-field="l.project_id.name" />
                                 </td>
                                 <td t-if="show_task">
-                                    <t t-if="l.task_id">
-                                        <span t-field="l.task_id.name" />
-                                    </t>
+                                    <span t-out="l.get_task_name()" />
                                 </td>
                                 <td class="text-end">
                                     <span

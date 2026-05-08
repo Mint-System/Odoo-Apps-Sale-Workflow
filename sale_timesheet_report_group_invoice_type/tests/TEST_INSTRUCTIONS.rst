@@ -9,3 +9,9 @@ Invoice:
 - Open sale order "S00022"
 - Invoice the sale order
 - Print the timesheet report
+
+Helpdesk ticket:
+
+- Install helpdesk_timesheet
+- Open sale order "S00026"
+- Print the timesheet report
