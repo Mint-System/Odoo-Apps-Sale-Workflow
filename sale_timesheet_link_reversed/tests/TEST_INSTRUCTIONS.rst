@@ -1,0 +1,6 @@
+- Open S00023
+- Add 1h timesheet entry for "S00023 - Senior Architect"
+- Validate and invoice the order
+- Confirm the invoice and pay with "RRE/2026/00004"
+- Go back to order and duplicate the timesheet entry
+-

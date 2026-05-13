@@ -52,4 +52,5 @@ git clone git@github.com:Mint-System/Odoo-Apps-Sale-Workflow.git ./addons/sale_w
 | [sale_project_link](sale_project_link) |         Select existing project for sale quote. |
 | [sale_stock_owner](sale_stock_owner) |         Assign customer as owner to deliveries and inventory. |
 | [sale_timesheet_billable](sale_timesheet_billable) |         Selection filter for order lines with billable products on timesheet entries. |
+| [sale_timesheet_link_reversed](sale_timesheet_link_reversed) |         Ensure timesheet lines are linked to reversed invoices. |
 | [sale_timesheet_total_validated](sale_timesheet_total_validated) |         Link only validated timesheet entries in sale order. |
