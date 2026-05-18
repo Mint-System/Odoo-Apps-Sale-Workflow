@@ -24,7 +24,7 @@ class SaleOrderLine(models.Model):
     region = fields.Selection(
         string="Region",
         selection = REGION_SELECTION,
-        default="none",
+        default=False,
         )
 
     @api.constrains("product_id", "date_from", "order_id")

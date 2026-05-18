@@ -26,9 +26,9 @@ class SaleOrder(models.Model):
         for order in self:
             if order.order_line:
                 first_line = order.order_line[0]
-                order.region = first_line.region if first_line.region else "none"
+                order.region = first_line.region if first_line.region else False
             else:
-                order.region = "none"
+                order.region = False
 
     @api.constrains("order_line", "order_line.product_id", "order_line.product_uom_qty")
     def _check_only_one_permit_product(self):
