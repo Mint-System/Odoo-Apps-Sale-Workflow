@@ -9,7 +9,7 @@
                 <field name="partner_id" invisible="1" />
                 <field
                     name="sale_line_id"
-                    domain="[('order_partner_id', '=', project_id), ('is_service', '=', True)]"
+                    domain="[('order_partner_id', '=', partner_id), ('is_service', '=', True)]"
                 />
             </field>
         </field>
