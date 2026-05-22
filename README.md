@@ -21,3 +21,4 @@ git clone git@github.com:Mint-System/Odoo-Apps-Sale-Workflow.git ./addons/sale_w
 | [sale_order_notes](sale_order_notes) |         Notes for sale orders. |
 | [sale_order_ref](sale_order_ref) |         Add internal ref to sale order. |
 | [sale_order_template_notes](sale_order_template_notes) |         Set notes on sale order templates. |
+| [sale_renting_line_period](sale_renting_line_period) |         Set rental start and end date on order line. |

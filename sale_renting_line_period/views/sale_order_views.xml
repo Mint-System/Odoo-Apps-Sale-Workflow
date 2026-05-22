@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="rental_order_form_view" model="ir.ui.view">
+        <field name="name">sale_renting_line_period.rental_order_form_view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_renting.rental_order_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']//list//field[@name='product_uom_qty']"
+                position="before"
+            >
+                <field
+                    name="rental_start_date"
+                    string="Start Date"
+                    widget="date"
+                    column_invisible="not parent.is_rental_order"
+                />
+                <field
+                    name="rental_return_date"
+                    string="Return Date"
+                    widget="date"
+                    column_invisible="not parent.is_rental_order"
+                />
+                <field
+                    name="duration_days"
+                    string="Duration"
+                    column_invisible="not parent.is_rental_order"
+                />
+                <field
+                    name="rental_status"
+                    column_invisible="not parent.is_rental_order"
+                />
+            </xpath>
+
+            <button name="action_open_pickup" position="attributes">
+                <attribute name="String">Deliver</attribute>
+            </button>
+            <button name="action_open_return" position="attributes">
+                <attribute name="String">Return</attribute>
+            </button>
+        </field>
+    </record>
+</odoo>
