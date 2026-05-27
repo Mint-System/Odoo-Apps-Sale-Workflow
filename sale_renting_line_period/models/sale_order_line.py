@@ -64,6 +64,13 @@ class SaleOrderLine(models.Model):
                 line.rental_return_date = False
 
     @api.depends("rental_start_date", "rental_return_date")
+    def _compute_name(self):
+        """
+        Override to add the compute dependency.
+        """
+        super()._compute_name()
+
+    @api.depends("rental_start_date", "rental_return_date")
     def _compute_duration(self):
         self.duration_days = 0
         self.remaining_hours = 0
