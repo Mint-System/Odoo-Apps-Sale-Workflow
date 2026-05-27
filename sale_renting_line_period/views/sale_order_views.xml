@@ -33,14 +33,6 @@
                     optional="show"
                 />
             </xpath>
-
-            <button name="action_open_pickup" position="attributes">
-                <attribute name="String">Deliver</attribute>
-            </button>
-
-            <button name="action_open_return" position="attributes">
-                <attribute name="String">Return</attribute>
-            </button>
         </field>
     </record>
 </odoo>

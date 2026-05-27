@@ -2,7 +2,8 @@
 
 import logging
 
-from odoo import fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -10,7 +11,13 @@ _logger = logging.getLogger(__name__)
 class RentalOrderWizardLine(models.TransientModel):
     _inherit = "rental.order.wizard.line"
 
-    return_date = fields.Datetime(default=fields.Datetime.now, required=True)
+    return_date = fields.Datetime(required=True)
+
+    @api.model
+    def _default_wizard_line_vals(self, line, status):
+        res = super()._default_wizard_line_vals(line, status)
+        res["return_date"] = line.return_date
+        return res
 
     def _apply(self):
         """
@@ -19,8 +26,15 @@ class RentalOrderWizardLine(models.TransientModel):
         res = super()._apply()
         for wizard_line in self:
             order_line = wizard_line.order_line_id
-            _logger.warning([wizard_line.qty_returned, wizard_line.qty_delivered])
             if wizard_line.qty_returned > 0 and wizard_line.qty_returned < wizard_line.qty_delivered:
+                if order_line.rental_start_date > wizard_line.return_date:
+                    raise UserError(
+                        _(
+                            "Return date cannot be before start date. Check line with product '%s'.",
+                            order_line.product_id.name,
+                        )
+                    )
+
                 qty_returned = wizard_line.qty_returned
                 qty_remaining = wizard_line.qty_delivered - qty_returned
 

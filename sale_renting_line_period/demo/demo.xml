@@ -6,6 +6,6 @@
         <field name="product_uom_qty">1</field>
         <field name="name" eval="'[RENT001] Projector'" />
         <field name="price_unit" eval="5.0" />
-        <!-- <field name="is_rental" eval="True" /> -->
+        <field name="is_rental" eval="True" />
     </record>
 </odoo>
