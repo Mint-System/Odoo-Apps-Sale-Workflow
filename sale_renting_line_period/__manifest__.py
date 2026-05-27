@@ -13,6 +13,7 @@
     "depends": ["sale_renting"],
     "data": [
         "views/sale_order_views.xml",
+        "wizard/rental_order_wizard_views.xml",
     ],
     "installable": True,
     "application": False,

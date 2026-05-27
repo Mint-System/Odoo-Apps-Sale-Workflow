@@ -11,8 +11,17 @@ _logger = logging.getLogger(__name__)
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    rental_start_date = fields.Datetime(string="Rental Start Date", compute="_compute_rental_period", store=True)
-    rental_return_date = fields.Datetime(string="Rental Return Date", compute="_compute_rental_period", store=True)
+    _rental_period_coherence = models.Constraint(
+        "CHECK(rental_start_date < rental_return_date)",
+        "The rental start date must be before the rental return date if any.",
+    )
+
+    rental_start_date = fields.Datetime(
+        string="Rental Start Date", compute="_compute_rental_period", store=True, readonly=False
+    )
+    rental_return_date = fields.Datetime(
+        string="Rental Return Date", compute="_compute_rental_period", store=True, readonly=False
+    )
     duration_days = fields.Integer(
         string="Duration in days",
         compute="_compute_duration",
@@ -46,7 +55,7 @@ class SaleOrderLine(models.Model):
             original_return_date = line.order_id._origin.rental_return_date.date()
             start_date = line.order_id._origin.rental_start_date.date() or False
             return_date = line.order_id._origin.rental_return_date.date() or False
-            _logger.warning([original_start_date, start_date, original_return_date, return_date])
+            _logger.warning([line.product_id.name, original_start_date, start_date, original_return_date, return_date])
             if not start_date or (original_start_date == start_date):
                 line.rental_start_date = line.order_id.rental_start_date
             if not return_date or (original_return_date == return_date):

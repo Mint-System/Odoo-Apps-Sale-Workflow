@@ -25,16 +25,19 @@
                     name="duration_days"
                     string="Duration"
                     column_invisible="not parent.is_rental_order"
+                    optional="show"
                 />
                 <field
                     name="rental_status"
                     column_invisible="not parent.is_rental_order"
+                    optional="show"
                 />
             </xpath>
 
             <button name="action_open_pickup" position="attributes">
                 <attribute name="String">Deliver</attribute>
             </button>
+
             <button name="action_open_return" position="attributes">
                 <attribute name="String">Return</attribute>
             </button>
