@@ -20,4 +20,5 @@ class AccountMoveLine(models.Model):
             ("so_line", "in", sale_line_delivery.ids),
             ("project_id", "!=", False),
             ("timesheet_invoice_id", "=", False),
+            ("validated", "=", True),
         ]
