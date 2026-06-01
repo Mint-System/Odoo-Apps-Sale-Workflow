@@ -1,0 +1,1 @@
+Disable automatic closing of unpaid subscriptions.
