@@ -1,0 +1,1 @@
+Plan all rening product lots on gantt view.
