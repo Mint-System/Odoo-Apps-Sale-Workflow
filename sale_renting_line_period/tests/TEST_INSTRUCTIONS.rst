@@ -1,20 +1,27 @@
-
-Setup:
+Add product:
 
 - Open rental order "S00021"
-- Change start date to next monday and return date friday after monday
+- Search for "Projector" and and remove the item
+
+Pickup:
+
+- Open rental order "S00028" and abort
+- Open rental order "S00021"
+- Change start date to next monday and return the following
 - Check if dates are updated on products
 - Confirm the order
 - Click on pickup and validate both lines
+- Select all lots for printer
 
 Partial return:
 
 - Click return
 - For conference room set 0.0
-- For pojector set 2.0
+- For printer remove "PRINT003"
 - Select return date 2 days after start date
-- Click apply
+- Click validate
 - Check if Odoo splitted the line into two lines
+- Check if the lots are assigned correctly
 
 Extend period:
 

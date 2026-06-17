@@ -15,8 +15,25 @@ class RentalOrderWizardLine(models.TransientModel):
 
     @api.model
     def _default_wizard_line_vals(self, line, status):
+        """
+        Support setting a return date.
+        Remove lots that have been removed on sibling lines.
+        """
         res = super()._default_wizard_line_vals(line, status)
         res["return_date"] = line.return_date
+
+        if res["returnable_lot_ids"]:
+            # Check if lots have been returned on other lines of the same order and product
+            other_returned_lots = line.order_id.order_line.filtered(
+                lambda l: l.id != line.id and l.product_id.id == line.product_id.id and l.returned_lot_ids
+            ).returned_lot_ids
+
+            # Remove the already returned lots from returnable
+            if other_returned_lots:
+                returnable_ids = res["returnable_lot_ids"][0][2]
+                returnable_ids = [lot_id for lot_id in returnable_ids if lot_id not in other_returned_lots.ids]
+                res["returned_lot_ids"] = [(6, 0, returnable_ids)]
+
         return res
 
     def _apply(self):
@@ -35,14 +52,24 @@ class RentalOrderWizardLine(models.TransientModel):
                         )
                     )
 
+                # Get remaining qty
                 qty_returned = wizard_line.qty_returned
                 qty_remaining = wizard_line.qty_delivered - qty_returned
 
-                order_line.update(
-                    {"product_uom_qty": qty_remaining, "qty_delivered": qty_remaining, "qty_returned": 0.0}
-                )
+                # Get reaminign lots
+                pickedup_lot_ids = order_line.pickedup_lot_ids
+                returned_lot_ids = wizard_line.returned_lot_ids
+                remaining_lot_ids = pickedup_lot_ids - returned_lot_ids
+
+                _logger.warning(["remaining_lot_ids", remaining_lot_ids])
+
+                # Current line has remining quanity
+                order_line.write({"qty_delivered": qty_remaining})
+                order_line.write({"product_uom_qty": qty_remaining, "qty_returned": 0.0, "returned_lot_ids": False})
+
+                # Create new line with returned quanity.
                 returned_line = order_line.copy()
-                returned_line.update(
+                returned_line.write(
                     {
                         "product_uom_qty": qty_returned,
                         "qty_delivered": qty_returned,
@@ -50,4 +77,21 @@ class RentalOrderWizardLine(models.TransientModel):
                         "rental_return_date": wizard_line.return_date,
                     }
                 )
+
+                # Update lot ids
+                if remaining_lot_ids:
+                    # Bug: The commented causes this issue
+                    # File "enterprise/sale_stock_renting/models/sale_order_line.py", line 318, in _return_serials
+                    # if ml.lot_id.id in lot_ids:
+                    # order_line.write(
+                    #     {
+                    #         "returned_lot_ids": returned_lot_ids,
+                    #     }
+                    # )
+                    returned_line.write(
+                        {
+                            "pickedup_lot_ids": returned_lot_ids,
+                            "returned_lot_ids": returned_lot_ids,
+                        }
+                    )
         return res

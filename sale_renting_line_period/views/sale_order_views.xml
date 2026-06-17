@@ -32,6 +32,16 @@
                     column_invisible="not parent.is_rental_order"
                     optional="show"
                 />
+                <field
+                    name="pickedup_lot_ids"
+                    widget="many2many_tags"
+                    optional="hide"
+                />
+                <field
+                    name="returned_lot_ids"
+                    widget="many2many_tags"
+                    optional="hide"
+                />
             </xpath>
         </field>
     </record>

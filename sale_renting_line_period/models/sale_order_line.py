@@ -20,10 +20,10 @@ class SaleOrderLine(models.Model):
     )
 
     rental_start_date = fields.Datetime(
-        string="Rental Start Date", compute="_compute_rental_period", store=True, readonly=False
+        string="Rental Start Date", compute="_compute_rental_period", precompute=True, store=True, readonly=False
     )
     rental_return_date = fields.Datetime(
-        string="Rental Return Date", compute="_compute_rental_period", store=True, readonly=False
+        string="Rental Return Date", compute="_compute_rental_period", precompute=True, store=True, readonly=False
     )
     duration_days = fields.Integer(
         string="Duration in days",
