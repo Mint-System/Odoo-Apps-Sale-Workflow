@@ -61,8 +61,6 @@ class RentalOrderWizardLine(models.TransientModel):
                 returned_lot_ids = wizard_line.returned_lot_ids
                 remaining_lot_ids = pickedup_lot_ids - returned_lot_ids
 
-                _logger.warning(["remaining_lot_ids", remaining_lot_ids])
-
                 # Current line has remining quanity
                 order_line.write({"qty_delivered": qty_remaining})
                 order_line.write({"product_uom_qty": qty_remaining, "qty_returned": 0.0, "returned_lot_ids": False})
