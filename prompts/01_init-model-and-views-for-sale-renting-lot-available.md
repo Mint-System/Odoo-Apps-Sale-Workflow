@@ -1,6 +1,6 @@
 ---
 title: "Init model and views for sale renting lot available"
-state: draft
+state: completed
 ---
 
 # Run 01
@@ -19,7 +19,10 @@ Read the `AGENTS.md` and `README.md` to get an understanding of the project.
 
 ## Task
 
-I want you to create a new model `stock.lot.rental` and `stock.lot.rental.period` in `addons/sale_workflow/sale_renting_lot_available`. Use `task generate-module-model addons/sale_workflow/sale_renting_lot_available <model>` to generate the files.
+I want you to create a new model `stock.lot.rental` and `stock.lot.rental.period` in
+`addons/sale_workflow/sale_renting_lot_available`. Use
+`task generate-module-model addons/sale_workflow/sale_renting_lot_available <model>` to
+generate the files.
 
 For `stock.lot.rental` create these fields:
 
@@ -42,14 +45,35 @@ For `stock.lot.rental.period` create these fields:
 | Start Date  | start_date  | datetime | Start date of rental |
 | Return Date | return_date | datetime | Start date of rental |
 
-Add model security with `task generate-module-security addons/sale_workflow/sale_renting_lot_available <model>`.
+Add model security with
+`task generate-module-security addons/sale_workflow/sale_renting_lot_available <model>`.
 
-Then for `stock.lot.renal` I want you to setup views. Use `task generate-module-views addons/sale_workflow/sale_renting_lot_available <model>` to do so. Remove the generate menu entries. Replace the action for the existing `sale_renting.menu_rental_schedule` menu.
+Then for `stock.lot.renal` I want you to setup views. Use
+`task generate-module-views addons/sale_workflow/sale_renting_lot_available <model>` to
+do so. Remove the generate menu entries. Replace the action for the existing
+`sale_renting.menu_rental_schedule` menu.
 
 Once everything is ready I will install and test the module.
 
 ## Worklog
 
 @Clanker Add a summary here once the task has been completed.
+
+Created `stock.lot.rental` and `stock.lot.rental.period` models with the specified
+fields. Used `task generate-module-model` and `task generate-module-security` to
+scaffold files. Defined related fields on `stock.lot.rental` to pull values from the
+linked `sale.order.line` (`rental_status`, `is_late`, `order_id`, `rental_start_date`,
+`rental_return_date`) and `stock.lot` (`product_id`, `categ_id`). Added
+`_rec_name = "lot_id"` on `stock.lot.rental` for display naming.
+
+Generated views with `task generate-module-views`, then replaced the generated menu
+entries with a single record override that updates
+`sale_renting.menu_rental_schedule.action` to point to the new
+`action_stock_lot_rental_view`. The form, list, and search views expose all relevant
+rental lot fields and include useful filters (Late, group by Category/Status/Sale
+Order).
+
+Updated the manifest to reference `security/ir.model.access.csv` and
+`views/stock_lot_rental_views.xml`. All pre-commit checks pass for the modified files.
 
 @Clanker Set frontmatter state to completed.

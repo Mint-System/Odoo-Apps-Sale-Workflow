@@ -1,7 +1,2 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<odoo>
-    <record id="${MODEL_NAME}_demo" model="$MODEL_DOT_NAME">
-        <field name="name">$MODEL_DESCRIPTION</field>
-        <field name="value">demo</field>
-    </record>
-</odoo>
+<odoo />

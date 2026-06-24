@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_lot_rental_user,access.stock.lot.rental.user,model_stock_lot_rental,base.group_user,1,0,0,0
+access_stock_lot_rental_manager,access.stock.lot.rental.manager,model_stock_lot_rental,base.group_erp_manager,1,1,1,1
+access_stock_lot_rental_period_user,access.stock.lot.rental.period.user,model_stock_lot_rental_period,base.group_user,1,0,0,0
+access_stock_lot_rental_period_manager,access.stock.lot.rental.period.manager,model_stock_lot_rental_period,base.group_erp_manager,1,1,1,1

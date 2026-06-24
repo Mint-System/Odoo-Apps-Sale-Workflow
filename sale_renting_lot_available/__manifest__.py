@@ -11,7 +11,10 @@
     "version": "19.0.1.0.0",
     "license": "OPL-1",
     "depends": ["sale_renting_line_period"],
-    "data": ["security/security.xml"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/stock_lot_rental_views.xml",
+    ],
     "installable": True,
     "application": False,
     "auto_install": False,
