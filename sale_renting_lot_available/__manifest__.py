@@ -2,7 +2,7 @@
 {
     "name": "Sale Renting Lot Available",
     "summary": """
-        Plan all rening product lots on gantt view.
+        Plan all renting product lots on gantt view.
     """,
     "author": "Mint System GmbH",
     "website": "https://www.mint-system.ch/",
