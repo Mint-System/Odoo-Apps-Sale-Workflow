@@ -10,7 +10,7 @@ _logger = logging.getLogger(__name__)
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    rental_lot_ids = fields.One2many("stock.lot.rental", "so_line_id", string="Rental Lots")
+    rental_slot_ids = fields.One2many("stock.rental.slot", "so_line_id", string="Rental Slots")
 
     pickedup_lot_ids = fields.Many2many(
         "stock.lot",
@@ -21,25 +21,21 @@ class SaleOrderLine(models.Model):
     )
 
     def _inverse_pickedup_lot_ids(self):
-        """Create or update stock.lot.rental entries when picked-up lots change."""
+        """Create or update stock.rental.slot entries when picked-up lots change."""
         for line in self:
-            existing = line.rental_lot_ids
+            existing = line.rental_slot_ids
             if existing:
                 existing.unlink()
             if line.is_rental and line.pickedup_lot_ids:
                 for lot in line.pickedup_lot_ids:
-                    line.env["stock.lot.rental"].create(
-                        {"so_line_id": line.id, "lot_id": lot.id}
-                    )
+                    line.env["stock.rental.slot"].create({"so_line_id": line.id, "lot_id": lot.id})
 
     def _create_stock_rental_lot(self):
-        """
-        Create a stock.lot.rental entry per picked-up lot for rental lines.
-        """
+        """Create a stock.rental.slot entry per picked-up lot for rental lines."""
         for line in self:
             if line.is_rental and line.pickedup_lot_ids:
                 for lot in line.pickedup_lot_ids:
-                    line.env["stock.lot.rental"].create({"so_line_id": line.id, "lot_id": lot.id})
+                    line.env["stock.rental.slot"].create({"so_line_id": line.id, "lot_id": lot.id})
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -48,5 +44,5 @@ class SaleOrderLine(models.Model):
         return lines
 
     def unlink(self):
-        self.rental_lot_ids.unlink()
+        self.rental_slot_ids.unlink()
         return super().unlink()

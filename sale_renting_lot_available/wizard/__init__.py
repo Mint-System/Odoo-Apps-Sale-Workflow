@@ -1,1 +1,1 @@
-from . import stock_lot_rental_period
+from . import stock_rental_slot_period

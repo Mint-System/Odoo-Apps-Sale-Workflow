@@ -10,13 +10,13 @@ _logger = logging.getLogger(__name__)
 class StockLot(models.Model):
     _inherit = "stock.lot"
 
-    rental_lot_ids = fields.One2many("stock.lot.rental", "lot_id", string="Rental Lots")
+    rental_slot_ids = fields.One2many("stock.rental.slot", "lot_id", string="Rental Slots")
 
     def _create_stock_rental_lot(self):
-        """Create a stock.lot.rental entry for rentable lots."""
+        """Create a stock.rental.slot entry for rentable lots."""
         for lot in self:
             if lot.product_id.rent_ok:
-                lot.env["stock.lot.rental"].create({"lot_id": lot.id})
+                lot.env["stock.rental.slot"].create({"lot_id": lot.id})
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -27,7 +27,7 @@ class StockLot(models.Model):
     def write(self, vals):
         res = super().write(vals)
         if "active" in vals and not vals["active"]:
-            rental_lots = self.env["stock.lot.rental"].search([("lot_id", "in", self.ids)])
-            if rental_lots:
-                rental_lots.write({"active": False})
+            rental_slots = self.env["stock.rental.slot"].search([("lot_id", "in", self.ids)])
+            if rental_slots:
+                rental_slots.write({"active": False})
         return res

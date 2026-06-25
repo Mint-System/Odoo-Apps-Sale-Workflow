@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="stock_rental_slot_period_form_view" model="ir.ui.view">
+        <field
+            name="name"
+        >sale_renting_lot_available.stock_rental_slot_period_form_view</field>
+        <field name="model">stock.rental.slot.period</field>
+        <field name="arch" type="xml">
+            <form string="Filter Period">
+                <group>
+                    <field
+                        name="start_date"
+                        widget="daterange"
+                        options="{'end_date_field': 'return_date'}"
+                    />
+                    <field name="return_date" invisible="1" />
+                </group>
+                <footer>
+                    <button
+                        name="action_apply"
+                        string="Apply"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_rental_slot_period_act_window" model="ir.actions.act_window">
+        <field name="name">Filter Period</field>
+        <field name="res_model">stock.rental.slot.period</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="stock_rental_slot_period_form_view" />
+    </record>
+</odoo>
