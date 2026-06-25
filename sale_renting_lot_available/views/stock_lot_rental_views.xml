@@ -6,6 +6,7 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <field name="name" />
                     <group>
                         <group>
                             <field name="lot_id" />
@@ -32,7 +33,8 @@
         <field name="name">sale_renting_lot_available.stock_lot_rental_list_view</field>
         <field name="model">stock.lot.rental</field>
         <field name="arch" type="xml">
-            <list>
+            <list create="0">
+                <field name="name" />
                 <field name="lot_id" />
                 <field name="product_id" />
                 <field name="categ_id" optional="hide" />
@@ -43,6 +45,21 @@
                 <field name="start_date" />
                 <field name="return_date" />
             </list>
+        </field>
+    </record>
+
+    <record id="stock_lot_rental_gantt_view" model="ir.ui.view">
+        <field
+            name="name"
+        >sale_renting_lot_available.stock_lot_rental_gantt_view</field>
+        <field name="model">stock.lot.rental</field>
+        <field name="arch" type="xml">
+            <gantt
+                date_start="start_date"
+                date_stop="return_date"
+                default_group_by="product_id,lot_id"
+                scales="day,week,month,quarter,year"
+            />
         </field>
     </record>
 
@@ -88,7 +105,7 @@
     <record id="action_stock_lot_rental_view" model="ir.actions.act_window">
         <field name="name">Rental Schedule</field>
         <field name="res_model">stock.lot.rental</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">gantt,list,form</field>
         <field name="search_view_id" ref="stock_lot_rental_search_view" />
     </record>
 
