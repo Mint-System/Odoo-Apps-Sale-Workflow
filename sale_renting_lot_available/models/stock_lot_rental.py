@@ -12,6 +12,8 @@ class StockLotRental(models.Model):
     _description = "Stock Lot Rental"
     _rec_name = "lot_id"
 
+    # Stock link
+
     lot_id = fields.Many2one("stock.lot", required=True)
     product_id = fields.Many2one(
         "product.product",
@@ -25,6 +27,9 @@ class StockLotRental(models.Model):
         store=True,
         readonly=True,
     )
+
+    # Sale link
+
     so_line_id = fields.Many2one("sale.order.line", required=True, string="Sale Order Line")
     rental_status = fields.Selection(
         related="so_line_id.rental_status",
