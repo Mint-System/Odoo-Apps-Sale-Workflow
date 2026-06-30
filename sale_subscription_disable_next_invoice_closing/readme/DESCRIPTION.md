@@ -1,0 +1,1 @@
+Disable closing of subscriptions with next invoice date in the past.
