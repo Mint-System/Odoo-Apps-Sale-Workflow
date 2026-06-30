@@ -1,0 +1,5 @@
+- Enable the module.
+- Create of edit sale subscription order.
+- Set date of next invoice to past date taking into account auto closing limit of plan.
+- Run scheduled action "Sale Subscription: subscriptions expiration".
+- Check that order is not closed.
