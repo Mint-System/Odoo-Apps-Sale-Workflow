@@ -17,9 +17,9 @@ class SaleOrderLine(models.Model):
         for rec in self:
             product = rec.product_id.product_tmpl_id
             if (
-                 product 
-                 and product.is_sale_own_min_qty_set
-                 and product.sale_min_qty > rec.product_uom_qty 
-                 and not self.env.user.has_group('sales_team.group_sale_salesman')
-               ):
+                product
+                and product.is_sale_own_min_qty_set
+                and product.sale_min_qty > rec.product_uom_qty
+                and not self.env.user.has_group("sales_team.group_sale_salesman")
+            ):
                 rec.product_uom_qty = product.sale_min_qty

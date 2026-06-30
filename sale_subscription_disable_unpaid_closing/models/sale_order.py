@@ -2,7 +2,7 @@
 
 import logging
 
-from odoo import _, api, fields, models
+from odoo import models
 
 _logger = logging.getLogger(__name__)
 
@@ -12,4 +12,3 @@ class SaleOrder(models.Model):
 
     def _handle_unpaid_subscriptions(self):
         return {}
-

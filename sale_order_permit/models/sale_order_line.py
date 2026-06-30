@@ -20,12 +20,12 @@ class SaleOrderLine(models.Model):
     )
 
     date_to = fields.Date(compute="_compute_date_to")
-    
+
     region = fields.Selection(
         string="Region",
-        selection = REGION_SELECTION,
+        selection=REGION_SELECTION,
         default=False,
-        )
+    )
 
     @api.constrains("product_id", "date_from", "order_id")
     def _check_permit_limits(self):

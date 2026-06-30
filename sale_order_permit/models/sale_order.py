@@ -3,7 +3,7 @@ from datetime import date
 
 from psycopg2 import IntegrityError, errorcodes
 
-from odoo import _, api, models, fields
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
 from .config import REGION_SELECTION

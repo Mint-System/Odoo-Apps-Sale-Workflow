@@ -1,30 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
- <odoo>
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
     <data>
         <template id="report_permit_document">
             <t t-name="sale_order_permit.report_permit_document">
-
                 <t t-call="web.external_layout_permit">
-
-
-                    <t t-if="not o" t-set="o" t-value="doc"/>
+                    <t t-if="not o" t-set="o" t-value="doc" />
 
                     <t t-if="not company">
                         <t t-if="company_id">
-                            <t t-set="company" t-value="company_id"/>
+                            <t t-set="company" t-value="company_id" />
                         </t>
                         <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
-                            <t t-set="company" t-value="o.company_id.sudo()"/>
+                            <t t-set="company" t-value="o.company_id.sudo()" />
                         </t>
                         <t t-else="else">
-                            <t t-set="company" t-value="res_company"/>
+                            <t t-set="company" t-value="res_company" />
                         </t>
                     </t>
 
                     <style>
                         table {
                             border-color: white;
-                            font-family: Verdana;                
+                            font-family: Verdana;
                         }
                         h1 {
                             font-size: 30px;
@@ -46,18 +43,20 @@
                         }
                         .info-box table tr {
                            padding-left: 5mm;
-                        }   
-                
-                    </style>
+                        }
 
+                    </style>
 
                     <table style="width: 100%">
                         <tr>
                             <td>
                                 <table style="width: 150mm">
-                                    <t t-set="lines_to_report" t-value="doc._get_order_lines_to_report()"/>
+                                    <t
+                                        t-set="lines_to_report"
+                                        t-value="doc._get_order_lines_to_report()"
+                                    />
 
-                                    <tr style="height: 70px;"/>
+                                    <tr style="height: 70px;" />
 
                                     <tr style="border-bottom: solid 1px black;">
                                         <td colspan="3">
@@ -69,36 +68,47 @@
                                         <tr>
                                             <td colspan="3">
                                                 <pr>
-
-                                                    <t t-if="line.product_id.duration == 'year'">
+                                                    <t
+                                                        t-if="line.product_id.duration == 'year'"
+                                                    >
                                                         <div>Jahrespatent</div>
                                                         <div>
-                                                            <span t-esc="line.date_from.year"/>
+                                                            <span
+                                                                t-esc="line.date_from.year"
+                                                            />
                                                         </div>
                                                     </t>
-                                                    <t t-elif="line.product_id.duration == 'week'">
+                                                    <t
+                                                        t-elif="line.product_id.duration == 'week'"
+                                                    >
                                                         <div>Wochenpatent</div>
                                                         <div>
-                                                            <span t-esc="line.date_from.strftime('%d.%m.%Y')"/>
+                                                            <span
+                                                                t-esc="line.date_from.strftime('%d.%m.%Y')"
+                                                            />
                                                             <span> - </span>
-                                                            <span t-esc="line.date_to.strftime('%d.%m.%Y')"/>
+                                                            <span
+                                                                t-esc="line.date_to.strftime('%d.%m.%Y')"
+                                                            />
                                                         </div>
                                                     </t>
-                                                    <t t-elif="line.product_id.duration == 'day'">
+                                                    <t
+                                                        t-elif="line.product_id.duration == 'day'"
+                                                    >
                                                         <div>Tagespatent</div>
                                                         <div>
-                                                            <span t-esc="line.date_from.strftime('%d.%m.%Y')"/>
+                                                            <span
+                                                                t-esc="line.date_from.strftime('%d.%m.%Y')"
+                                                            />
                                                         </div>
                                                     </t>
 
                                                     <t t-else="">
                                                         <span>[Nicht definiert]</span>
                                                     </t>
-
                                                 </pr>
                                             </td>
                                         </tr>
-
 
                                         <!-- Abschnitt 1 -->
                                         <tr style="border-top: solid 1px black; ">
@@ -106,26 +116,32 @@
                                                 <span>Kategorie</span>
                                             </td>
                                             <td colspan="3">
-                                                <span t-field="doc.pricelist_id.name"/>
+                                                <span t-field="doc.pricelist_id.name" />
                                             </td>
                                         </tr>
-                                        <t t-if="line.region != 'none' and line.region != '' ">
-                                            <tr >
+                                        <t
+                                            t-if="line.region != 'none' and line.region != '' "
+                                        >
+                                            <tr>
                                                 <td>
                                                     <span>Region</span>
                                                 </td>
                                                 <td colspan="3">
-                                                    <span t-field="line.region"/>
+                                                    <span t-field="line.region" />
                                                 </td>
                                             </tr>
                                         </t>
                                         <tr>
-                                            <t t-if="line.product_id.duration == 'year'">
+                                            <t
+                                                t-if="line.product_id.duration == 'year'"
+                                            >
                                                 <td>
                                                     <span>Patent-Nummer</span>
                                                 </td>
                                                 <td>
-                                                    <span t-esc="'%03d' % int(doc.partner_id.permit_number or 0)"/>
+                                                    <span
+                                                        t-esc="'%03d' % int(doc.partner_id.permit_number or 0)"
+                                                    />
                                                 </td>
                                             </t>
                                         </tr>
@@ -134,28 +150,36 @@
                                                 <span>Bestell-Nummer</span>
                                             </td>
                                             <td>
-                                                <span t-field="doc.name"/>
+                                                <span t-field="doc.name" />
                                             </td>
                                             <td>
-                                                <span/>
+                                                <span />
                                             </td>
                                         </tr>
 
                                         <!-- Abschnitt 2 -->
-                                        <tr style="border-top: solid 1px, border-bottom: solid 1px">
+                                        <tr
+                                            style="border-top: solid 1px, border-bottom: solid 1px"
+                                        >
                                             <td style="padding-top: 10px;">
                                                 <span>Name</span>
                                             </td>
                                             <td>
-                                                <span t-field="doc.partner_id.name"/>
+                                                <span t-field="doc.partner_id.name" />
                                             </td>
                                             <td rowspan="4" style="text-align: right;">
-
                                                 <span style="padding-left: 0px;">
-                                                    <t t-set="img" t-value="doc.partner_id.avatar_1920.decode('utf-8')"/>
-                                                    <img t-if="img" t-att-src="'data:image/png;base64,%s' % img" style="max-width:55mm; max-height:45mm; padding-top: 10px; padding-bottom: 0px;" alt="Portrait"/>
+                                                    <t
+                                                        t-set="img"
+                                                        t-value="doc.partner_id.avatar_1920.decode('utf-8')"
+                                                    />
+                                                    <img
+                                                        t-if="img"
+                                                        t-att-src="'data:image/png;base64,%s' % img"
+                                                        style="max-width:55mm; max-height:45mm; padding-top: 10px; padding-bottom: 0px;"
+                                                        alt="Portrait"
+                                                    />
                                                 </span>
-
                                             </td>
                                         </tr>
 
@@ -164,46 +188,53 @@
                                                 <span>Strasse, Nr.</span>
                                             </td>
                                             <td>
-                                                <span t-field="doc.partner_id.street"/>
+                                                <span t-field="doc.partner_id.street" />
                                             </td>
-
                                         </tr>
                                         <tr>
                                             <td>
                                                 <span>PLZ, Ort</span>
                                             </td>
                                             <td>
-                                                <span t-field="doc.partner_id.zip"/>
-                                                <span t-field="doc.partner_id.city"/>
+                                                <span t-field="doc.partner_id.zip" />
+                                                <span t-field="doc.partner_id.city" />
                                             </td>
                                         </tr>
 
                                         <tr style="border-bottom: solid 1px black; ">
-                                            <td style="padding-top: 10px; padding-bottom: 10px">
+                                            <td
+                                                style="padding-top: 10px; padding-bottom: 10px"
+                                            >
                                                 <span>Geb. Datum</span>
                                             </td>
                                             <td>
-                                                <span t-field="doc.partner_id.birthdate_date"/>
+                                                <span
+                                                    t-field="doc.partner_id.birthdate_date"
+                                                />
                                             </td>
-                                            <td/>
+                                            <td />
                                         </tr>
 
                                         <tr>
-                                            <td style="padding-top: 30px;"/>
-                                            <td/>
-                                            <td/>
+                                            <td style="padding-top: 30px;" />
+                                            <td />
+                                            <td />
                                         </tr>
 
                                         <!-- Abschnitt 3 -->
-                                        <tr style="border-top: solid 2px black; border-bottom: solid 3px black;">
-                                            <td style="padding-top: 5px; padding-bottom: 5px;">
+                                        <tr
+                                            style="border-top: solid 2px black; border-bottom: solid 3px black;"
+                                        >
+                                            <td
+                                                style="padding-top: 5px; padding-bottom: 5px;"
+                                            >
                                                 <span>Patentgebühr</span>
                                             </td>
                                             <td>
-                                                <span t-field="line.price_subtotal"/>
+                                                <span t-field="line.price_subtotal" />
                                             </td>
                                             <td>
-                                                <span/>
+                                                <span />
                                             </td>
                                         </tr>
                                     </t>
@@ -211,14 +242,23 @@
                             </td>
 
                             <td style="vertical-align: top">
-                                <table class="info-box" style="margin-left: 50px; color: #654828;">
+                                <table
+                                    class="info-box"
+                                    style="margin-left: 50px; color: #654828;"
+                                >
                                     <tr>
                                         <span style="padding-left: 40px; ">
-                                            <img t-att-src="image_data_uri(company.logo)" style="height: 20mm; margin-top: 10px" alt="Logo"/>
+                                            <img
+                                                t-att-src="image_data_uri(company.logo)"
+                                                style="height: 20mm; margin-top: 10px"
+                                                alt="Logo"
+                                            />
                                         </span>
                                     </tr>
                                     <tr>
-                                        <td style="padding-top: 20px; font-weight: bold">Korporation Uri</td>
+                                        <td
+                                            style="padding-top: 20px; font-weight: bold"
+                                        >Korporation Uri</td>
                                     </tr>
                                     <tr>
                                         <td>Gotthardstrasse 3</td>
@@ -228,85 +268,111 @@
                                     </tr>
 
                                     <tr>
-                                        <td style="padding-top: 10px;">Tel. +41 (0)41 874 70 90</td>
+                                        <td
+                                            style="padding-top: 10px;"
+                                        >Tel. +41 (0)41 874 70 90</td>
                                     </tr>
 
-
                                     <tr>
-                                        <td style="padding-top: 10px;">mail@korporation.ch</td>
+                                        <td
+                                            style="padding-top: 10px;"
+                                        >mail@korporation.ch</td>
                                     </tr>
                                     <tr>
                                         <td>www.korporation.ch</td>
                                     </tr>
 
-
                                     <tr>
-                                        <td style="padding-top: 60px; font-weight: bold">Kontakt Strahlneraufseher</td>
+                                        <td
+                                            style="padding-top: 60px; font-weight: bold"
+                                        >Kontakt Strahlneraufseher</td>
                                     </tr>
 
                                     <tr>
-                                        <td style="padding-top: 10px;">Werner Walker</td>
+                                        <td
+                                            style="padding-top: 10px;"
+                                        >Werner Walker</td>
                                     </tr>
 
-
                                     <tr>
-                                        <td style="padding-top: 10px;">Tel. +41 (0)79 562 44 14</td>
+                                        <td
+                                            style="padding-top: 10px;"
+                                        >Tel. +41 (0)79 562 44 14</td>
                                     </tr>
                                     <tr>
                                         <td>werner.walker@korporation.ch</td>
                                     </tr>
-
-
-
-
                                 </table>
                             </td>
-
                         </tr>
-
                     </table>
 
                     <table>
                         <tr>
                             <td style="width: 100%; padding-top: 30mm; ">
 
-                                <p>Das Patent ist persönlich, nicht übertragbar und muss bei einer allfälligen Kontrolle vorgewiesen werden.</p>
+                                <p
+                            >Das Patent ist persönlich, nicht übertragbar und muss bei einer allfälligen Kontrolle vorgewiesen werden.</p>
 
-                                <p>Der Strahlner ist zu einer verantwortungsbewussten Ausübung seiner Tätigkeit verpflich­tet. Raubbaumässige Eingriffe und Verwüstungen werden bestraft. Dritteigentum, Natur und Landschaft sind zu respektieren. Es ist Pflicht, jede Such- oder Fundstelle bei deren Verlassen aufzuräumen und in bester Ordnung und Sauberkeit zurückzulassen (kein Biwakmaterial zurücklassen, Fixseile sind zu entfernen).</p>
+                                <p
+                            >Der Strahlner ist zu einer verantwortungsbewussten Ausübung seiner Tätigkeit verpflich­tet. Raubbaumässige Eingriffe und Verwüstungen werden bestraft. Dritteigentum, Natur und Landschaft sind zu respektieren. Es ist Pflicht, jede Such- oder Fundstelle bei deren Verlassen aufzuräumen und in bester Ordnung und Sauberkeit zurückzulassen (kein Biwakmaterial zurücklassen, Fixseile sind zu entfernen).</p>
 
-                                <p>Zum Schutz von Wildtieren sollte das Strahlnen im Winter (bei geschlossener Schneedecke) unterlassen werden.</p>
-                            Die Strahlnertätigkeit darf <strong>nicht</strong> ausgeübt werden:
-                            
-                            
-                                <table style="width: 100%; font-style: italic; border-collapse: collapse;">
-                                    <tr>
-                                        <td style="padding-right: 10px; vertical-align: top;">a)</td>
-                                        <td>wo Menschen, Dritteigentum oder Vieh gefährdet sind</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-right: 10px; vertical-align: top;">b)</td>
-                                        <td>in Sperrgebieten sowie im Gebiet der Korporation Ursern</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-right: 10px; vertical-align: top;">c)</td>
-                                        <td>an Sonntagen und gesetzlichen Feiertagen</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-right: 10px; vertical-align: top;">d)</td>
-                                        <td>innerhalb eines Radius von 12 Metern vom Klufteingang einer belegten Fundstelle</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-right: 10px; vertical-align: top;">e)</td>
-                                        <td>im Wuhrbereich der Gewässer</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding-right: 10px; vertical-align: top;">f)</td>
-                                        <td>in vielbegangenen bekannten Kletter- und Wanderrouten</td>
-                                    </tr>
-                                </table>
-                                <br/>
+                                <p
+                            >Zum Schutz von Wildtieren sollte das Strahlnen im Winter (bei geschlossener Schneedecke) unterlassen werden.</p>
+                            Die Strahlnertätigkeit darf <strong
+                            >nicht</strong> ausgeübt werden:
 
-                                <p>Die aktuellen Sperrgebiete, die Verordnung über das Suchen von Kristallen und Mineralien auf Gebiet der Korporation Uri und weitere nützliche Unterlagen finden Sie auf unserer Homepage <a href="https://www.korporation.ch">www.korporation.ch</a>.
+
+                                <table
+                                style="width: 100%; font-style: italic; border-collapse: collapse;"
+                            >
+                                <tr>
+                                    <td
+                                        style="padding-right: 10px; vertical-align: top;"
+                                    >a)</td>
+                                    <td
+                                    >wo Menschen, Dritteigentum oder Vieh gefährdet sind</td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style="padding-right: 10px; vertical-align: top;"
+                                    >b)</td>
+                                    <td
+                                    >in Sperrgebieten sowie im Gebiet der Korporation Ursern</td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style="padding-right: 10px; vertical-align: top;"
+                                    >c)</td>
+                                    <td>an Sonntagen und gesetzlichen Feiertagen</td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style="padding-right: 10px; vertical-align: top;"
+                                    >d)</td>
+                                    <td
+                                    >innerhalb eines Radius von 12 Metern vom Klufteingang einer belegten Fundstelle</td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style="padding-right: 10px; vertical-align: top;"
+                                    >e)</td>
+                                    <td>im Wuhrbereich der Gewässer</td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style="padding-right: 10px; vertical-align: top;"
+                                    >f)</td>
+                                    <td
+                                    >in vielbegangenen bekannten Kletter- und Wanderrouten</td>
+                                </tr>
+                            </table>
+                                <br />
+
+                                <p
+                            >Die aktuellen Sperrgebiete, die Verordnung über das Suchen von Kristallen und Mineralien auf Gebiet der Korporation Uri und weitere nützliche Unterlagen finden Sie auf unserer Homepage <a
+                                href="https://www.korporation.ch"
+                            >www.korporation.ch</a>.
                                 </p>
 
 
@@ -316,7 +382,6 @@
                             </td>
                         </tr>
                     </table>
-
                 </t>
             </t>
         </template>
