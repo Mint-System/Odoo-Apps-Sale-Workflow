@@ -1,8 +1,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
-    "name": "Sale Order Ref",
+    "name": "Sale Project Key",
     "summary": """
-        Add internal ref to sale order.
+        Show project key on sale order.
     """,
     "author": "Mint System GmbH",
     "website": "https://github.com/Mint-system/",
@@ -10,7 +10,7 @@
     "development_status": "Production/Stable",
     "version": "18.0.1.0.0",
     "license": "AGPL-3",
-    "depends": ["sale"],
+    "depends": ["sale_project", "project_key"],
     "data": [
         "views/sale_order_views.xml",
     ],

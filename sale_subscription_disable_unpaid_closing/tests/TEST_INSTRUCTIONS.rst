@@ -1,5 +1,5 @@
 - Enable the module.
 - Create of edit sale subscription order.
-- Create unpaid invoice with date in the past. 
+- Create unpaid invoice with date in the past.
 - Run scheduled action "Sale Subscription: subscriptions expiration".
 - Check that order is not closed.

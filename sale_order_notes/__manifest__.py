@@ -4,7 +4,7 @@
         Notes for sale orders.
     """,
     "author": "Mint System GmbH, Mint System GmbH",
-    "website": "https://www.mint-system.ch/",
+    "website": "https://github.com/Mint-system/",
     "category": "Sale",
     "version": "18.0.1.0.0",
     "license": "AGPL-3",

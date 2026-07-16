@@ -1,0 +1,5 @@
+- Open Sales > Orders > Orders.
+- Create a new Sale Order.
+- In "Other Info" tab link sale order to project (existing or new one).
+- Confirm that the project key is displayed in the list view of the sale orders.
+- Confirm that search field provides project key filter.
