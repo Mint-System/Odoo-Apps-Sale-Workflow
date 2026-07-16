@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_saleorder_document"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <div id="informations" position="after">
+            <t t-if="doc.note_header">
+                <div class="row">
+                    <div class="col">
+                        <span t-field="doc.note_header" />
+                        <br />
+                    </div>
+                </div>
+            </t>
+        </div>
+        <div name="so_total_summary" position="after">
+            <t t-if="doc.note_footer">
+                <div class="row">
+                    <div class="col">
+                        <span t-field="doc.note_footer" />
+                        <br />
+                    </div>
+                </div>
+            </t>
+        </div>
+    </template>
+</odoo>
