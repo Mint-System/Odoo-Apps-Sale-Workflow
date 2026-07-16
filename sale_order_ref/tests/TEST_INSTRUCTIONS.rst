@@ -1,0 +1,4 @@
+- Open Sales > Orders > Sales Orders
+- Create a new Sale Order or open existing one.
+- In the Reference field add new refernce text.
+- Confirm that the display name of the order includes the reference in parentheses.
