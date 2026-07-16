@@ -1,0 +1,5 @@
+- Open Sales > Orders > Quotation.
+- Create a new Sale Quotation.
+- In the Notes tab create a new note
+- Save quotation, the note is saved.
+- Confirm the Sales Quotation, the note is transferred to the order.

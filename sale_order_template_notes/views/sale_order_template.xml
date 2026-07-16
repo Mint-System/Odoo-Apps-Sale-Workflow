@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_order_template_view_form_notes" model="ir.ui.view">
+        <field name="name">sale_order_template_view_form_notes</field>
+        <field name="model">sale.order.template</field>
+        <field name="inherit_id" ref="sale_management.sale_order_template_view_form" />
+        <field name="arch" type="xml">
+            <page name="order_lines" position="after">
+                <page string="Text">
+                    <group name="notes">
+                        <span />
+                        <p
+                            class="fst-italic text-muted"
+                        >These notes will be added to the pdf document.</p>
+
+                        <label for="note_header" class="oe_inline" />
+                        <field name="note_header" widget="html" nolabel="1" />
+
+                        <span />
+                        <p
+                            class="fst-italic text-muted"
+                        >The header note is shown before the order lines.</p>
+
+                        <label for="note_footer" class="oe_inline" />
+                        <field name="note_footer" widget="html" nolabel="1" />
+
+                        <span />
+                        <p
+                            class="fst-italic text-muted"
+                        >The footer note is shown after the order lines.</p>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>
