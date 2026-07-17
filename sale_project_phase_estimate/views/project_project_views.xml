@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="edit_project" model="ir.ui.view">
+        <field name="name">sale_project_phase_estimate.edit_project</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project_phase_estimate.edit_project" />
+        <field name="arch" type="xml">
+            <field name="project_id" position="before">
+                <field name="partner_id" invisible="1" />
+                <field
+                    name="sale_line_id"
+                    domain="[('order_partner_id', '=', partner_id), ('is_service', '=', True)]"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

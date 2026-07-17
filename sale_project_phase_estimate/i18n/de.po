@@ -1,0 +1,102 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_project_phase_estimate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-17 16:12+0000\n"
+"PO-Revision-Date: 2026-03-17 16:12+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_project_phase_estimate
+#: model_terms:ir.ui.view,arch_db:sale_project_phase_estimate.report_saleorder_document
+msgid "<strong>Total</strong>"
+msgstr "<strong>Gesamt</strong>"
+
+#. module: sale_project_phase_estimate
+#: model:ir.model.fields,field_description:sale_project_phase_estimate.field_project_estimate__partner_id
+msgid "Customer"
+msgstr "Kunde"
+
+#. module: sale_project_phase_estimate
+#: model:ir.model.fields,field_description:sale_project_phase_estimate.field_sale_order__estimate_ids
+#: model:ir.model.fields,field_description:sale_project_phase_estimate.field_sale_order_line__estimate_ids
+msgid "Estimate"
+msgstr "Schätzung"
+
+#. module: sale_project_phase_estimate
+#: model_terms:ir.ui.view,arch_db:sale_project_phase_estimate.report_saleorder_document
+msgid "Estimates"
+msgstr "Aufwandsschätzungen"
+
+#. module: sale_project_phase_estimate
+#: model_terms:ir.ui.view,arch_db:sale_project_phase_estimate.report_saleorder_document
+msgid "Order Line"
+msgstr "Auftragszeile"
+
+#. module: sale_project_phase_estimate
+#: model:ir.model.fields,field_description:sale_project_phase_estimate.field_project_estimate__sale_order_id
+msgid "Order Reference"
+msgstr "Auftragsreferenz"
+
+#. module: sale_project_phase_estimate
+#: model_terms:ir.ui.view,arch_db:sale_project_phase_estimate.report_saleorder_document
+msgid "Phase"
+msgstr "Phase"
+
+#. module: sale_project_phase_estimate
+#: model_terms:ir.ui.view,arch_db:sale_project_phase_estimate.report_saleorder_document
+msgid "Planned"
+msgstr "Geplant"
+
+#. module: sale_project_phase_estimate
+#: model:ir.model.fields,field_description:sale_project_phase_estimate.field_project_estimate__planned_hours
+msgid "Planned Hours"
+msgstr "Geplante Stunden"
+
+#. module: sale_project_phase_estimate
+#: model:ir.model,name:sale_project_phase_estimate.model_project_estimate
+msgid "Project Estimate"
+msgstr "Projektschätzung"
+
+#. module: sale_project_phase_estimate
+#: model:ir.model.fields,field_description:sale_project_phase_estimate.field_project_task__phase_id
+msgid "Project Phase"
+msgstr "Projektphase"
+
+#. module: sale_project_phase_estimate
+#: model_terms:ir.ui.view,arch_db:sale_project_phase_estimate.view_order_form
+msgid "Sale Estimates"
+msgstr "Aufwandsschätzungen"
+
+#. module: sale_project_phase_estimate
+#: model:ir.model.fields,field_description:sale_project_phase_estimate.field_project_estimate__sale_line_id
+msgid "Sale Line"
+msgstr "Verkaufszeile"
+
+#. module: sale_project_phase_estimate
+#: model:ir.model,name:sale_project_phase_estimate.model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: sale_project_phase_estimate
+#: model:ir.model,name:sale_project_phase_estimate.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Verkaufsauftragszeile"
+
+#. module: sale_project_phase_estimate
+#: model:ir.model,name:sale_project_phase_estimate.model_project_task
+msgid "Task"
+msgstr "Aufgabe"
+
+#. module: sale_project_phase_estimate
+#: model_terms:ir.ui.view,arch_db:sale_project_phase_estimate.view_order_form
+msgid "Total Planned Hours"
+msgstr "Gesamt geplante Stunden"

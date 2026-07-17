@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_saleorder_document"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <div name="so_total_summary" position="after">
+            <div t-if="doc.estimate_ids" class="mt8">
+                <h3>Estimates</h3>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th class="text-start">Order Line</th>
+                            <th class="text-start">Phase</th>
+                            <th class="text-end">Planned</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="doc.estimate_ids" t-as="estimate_id">
+                            <td class="align-middle">
+                                <span
+                                    t-field="estimate_id.sale_line_id.product_id.name"
+                                />
+                            </td>
+                            <td class="align-middle">
+                                <span t-field="estimate_id.phase_id.name" />
+                            </td>
+                            <td class="text-end align-middle">
+                                <span
+                                    t-esc="estimate_id.planned_hours"
+                                    t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td />
+                            <td class="text-end" colspan="1">
+                                <strong>Total</strong>
+                            </td>
+                            <td class="text-end">
+                                <strong>
+                                    <span
+                                        t-esc="sum(doc.estimate_ids.mapped('planned_hours'))"
+                                        t-options="{'widget': 'duration', 'digital': True, 'unit': 'hour', 'round': 'minute'}"
+                                    />
+                                </strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </template>
+</odoo>

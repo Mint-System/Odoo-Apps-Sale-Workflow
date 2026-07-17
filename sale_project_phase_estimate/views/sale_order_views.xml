@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale_project_phase_estimate.view_order_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <page name="order_lines" position="after">
+                <page name="sale_estimates" string="Sale Estimates">
+                    <field name="estimate_ids" nolabel="1">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle" />
+                            <field name="partner_id" column_invisible="1" />
+                            <field
+                                name="sale_line_id"
+                                domain="[('order_id', '=', parent.id), ('is_service', '=', True)]"
+                            />
+                            <field name="phase_id" />
+                            <field name="planned_date_begin" optional="hide" />
+                            <field name="planned_date_begin" optional="hide" />
+                            <field
+                                name="planned_hours"
+                                widget="timesheet_uom"
+                                sum="Total Planned Hours"
+                            />
+                        </list>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>
