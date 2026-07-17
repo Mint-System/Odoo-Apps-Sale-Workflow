@@ -1,0 +1,6 @@
+- Create a sale quote for "Deco Addict"
+- Add a new service product "Renovation"
+- Set "Create on Order" to "Project & Task"
+- Select the "Renovations" project
+- Confirm the sale order
+- Ensure the sale order is linked with "Renovations"
