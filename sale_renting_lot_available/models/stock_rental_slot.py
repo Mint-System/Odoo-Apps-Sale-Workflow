@@ -16,10 +16,9 @@ class StockRentalSlot(models.Model):
 
     # Stock link
 
-    lot_id = fields.Many2one("stock.lot", required=True)
     product_id = fields.Many2one(
         "product.product",
-        related="lot_id.product_id",
+        compute="_compute_product_id",
         store=True,
         readonly=True,
     )
@@ -29,17 +28,20 @@ class StockRentalSlot(models.Model):
         store=True,
         readonly=True,
     )
+    lot_id = fields.Many2one("stock.lot")
 
     # Sale link
 
     so_line_id = fields.Many2one("sale.order.line", string="Sale Order Line")
-    rental_status = fields.Selection(
-        related="so_line_id.rental_status",
+    rental_color = fields.Integer(related="so_line_id.rental_color")
+    order_partner_id = fields.Many2one(
+        related="so_line_id.order_partner_id",
+        string="Customer",
         store=True,
         readonly=True,
     )
-    is_late = fields.Boolean(
-        related="so_line_id.is_late",
+    rental_status = fields.Selection(
+        related="so_line_id.rental_status",
         store=True,
         readonly=True,
     )
@@ -63,6 +65,16 @@ class StockRentalSlot(models.Model):
         related="so_line_id.duration_days",
     )
 
+    @api.depends("lot_id", "so_line_id")
+    def _compute_product_id(self):
+        for record in self:
+            if record.so_line_id:
+                record.product_id = record.so_line_id.product_id
+            elif record.lot_id:
+                record.product_id = record.lot_id.product_id
+            else:
+                record.product_id = False
+
     @api.depends("so_line_id.rental_start_date", "so_line_id.rental_return_date")
     def _compute_dates(self):
         now = fields.Datetime.now()
@@ -78,6 +90,7 @@ class StockRentalSlot(models.Model):
 
     @api.depends(
         "sale_order_id.name",
+        "order_partner_id.name",
         "product_id.name",
         "lot_id.name",
         "start_date",
@@ -85,10 +98,10 @@ class StockRentalSlot(models.Model):
     )
     def _compute_name(self):
         for record in self:
-            order_name = record.sale_order_id.name or ""
-            product_name = record.product_id.name
-            lot_name = record.lot_id.name
-            record.name = f"{order_name} - {product_name} - {lot_name}"
+            if record.sale_order_id:
+                record.name = f"{record.sale_order_id.name} - {record.order_partner_id.name}"
+            elif record.lot_id:
+                record.name = f"{record.product_id.name} - {record.lot_id.name}"
 
     def action_show_stock_rental_slot_period(self):
         return {

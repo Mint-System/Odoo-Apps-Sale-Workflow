@@ -11,7 +11,6 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     rental_slot_ids = fields.One2many("stock.rental.slot", "so_line_id", string="Rental Slots")
-
     pickedup_lot_ids = fields.Many2many(
         "stock.lot",
         "rental_pickedup_lot_rel",
@@ -21,7 +20,7 @@ class SaleOrderLine(models.Model):
     )
 
     def _inverse_pickedup_lot_ids(self):
-        """Create or update stock.rental.slot entries when picked-up lots change."""
+        """Recreate stock.rental.slot entries when picked-up lots change."""
         for line in self:
             existing = line.rental_slot_ids
             if existing:
@@ -33,9 +32,8 @@ class SaleOrderLine(models.Model):
     def _create_stock_rental_lot(self):
         """Create a stock.rental.slot entry per picked-up lot for rental lines."""
         for line in self:
-            if line.is_rental and line.pickedup_lot_ids:
-                for lot in line.pickedup_lot_ids:
-                    line.env["stock.rental.slot"].create({"so_line_id": line.id, "lot_id": lot.id})
+            if line.is_rental:
+                line.env["stock.rental.slot"].create({"so_line_id": line.id})
 
     @api.model_create_multi
     def create(self, vals_list):

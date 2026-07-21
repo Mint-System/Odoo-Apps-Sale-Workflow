@@ -18,17 +18,17 @@
                                 string="Rental Period"
                             />
                             <field name="return_date" invisible="1" />
+                            <field name="order_partner_id" />
                         </group>
                         <group>
-                            <field name="lot_id" />
                             <field name="product_id" />
                             <field name="categ_id" />
+                            <field name="lot_id" />
                         </group>
                         <group>
                             <field name="so_line_id" />
                             <field name="sale_order_id" />
                             <field name="rental_status" />
-                            <field name="is_late" />
                         </group>
                     </group>
                 </sheet>
@@ -51,13 +51,19 @@
                     string="Rental Period"
                 />
                 <field name="return_date" column_invisible="True" />
-                <field name="lot_id" />
+                <field name="order_partner_id" />
                 <field name="product_id" />
                 <field name="categ_id" optional="hide" />
+                <field name="lot_id" optional="hide" />
                 <field name="sale_order_id" />
                 <field name="so_line_id" optional="hide" />
-                <field name="rental_status" />
-                <field name="is_late" optional="show" />
+                <field
+                    name="rental_status"
+                    widget="badge"
+                    decoration-warning="rental_status == 'pickup'"
+                    decoration-info="rental_status == 'return'"
+                    decoration-success="rental_status == 'returned'"
+                />
             </list>
         </field>
     </record>
@@ -73,10 +79,8 @@
                 date_stop="return_date"
                 scales="day,week,month,quarter,year"
                 pill_label="True"
-                decoration-warning="rental_status == 'pickup'"
-                decoration-info="rental_status == 'return'"
-                decoration-success="rental_status == 'returned'"
-                decoration-danger="is_late"
+                color="rental_color"
+                on_create="sale_renting.action_create_rental_order"
             />
         </field>
     </record>
@@ -88,39 +92,55 @@
         <field name="model">stock.rental.slot</field>
         <field name="arch" type="xml">
             <search>
-                <field name="lot_id" />
+                <field name="name" />
+                <field name="order_partner_id" />
                 <field name="product_id" />
-                <field name="so_line_id" />
-                <field name="rental_status" />
+                <field name="lot_id" />
                 <field name="categ_id" />
+                <field name="rental_status" />
                 <separator />
-                <filter string="Late" name="late" domain="[('is_late', '=', True)]" />
+    `           <filter
+                string="Lot is Available"
+                name="lot_is_available"
+                domain="[('so_line_id', '=', False)]"
+            />
+                <filter
+                string="Has Order Line"
+                name="has_order_line"
+                domain="[('so_line_id', '!=', False)]"
+            />
                 <group>
-                    <filter
-                        string="Product"
-                        name="groupby_product"
-                        domain="[]"
-                        context="{'group_by': 'product_id'}"
-                    />
-                    <filter
-                        string="Lot"
-                        name="groupby_lot"
-                        domain="[]"
-                        context="{'group_by': 'lot_id'}"
-                    />
-                    <filter
-                        string="Product Category"
-                        name="groupby_category"
-                        domain="[]"
-                        context="{'group_by': 'categ_id'}"
-                    />
-                    <filter
-                        string="Rental Status"
-                        name="groupby_status"
-                        domain="[]"
-                        context="{'group_by': 'rental_status'}"
-                    />
-                </group>
+                <filter
+                    string="Customer"
+                    name="groupby_order_partner_id"
+                    domain="[]"
+                    context="{'group_by': 'order_partner_id'}"
+                />
+                <filter
+                    string="Product"
+                    name="groupby_product"
+                    domain="[]"
+                    context="{'group_by': 'product_id'}"
+                />
+                <filter
+                    string="Lot"
+                    name="groupby_lot"
+                    domain="[]"
+                    context="{'group_by': 'lot_id'}"
+                />
+                <filter
+                    string="Product Category"
+                    name="groupby_category"
+                    domain="[]"
+                    context="{'group_by': 'categ_id'}"
+                />
+                <filter
+                    string="Rental Status"
+                    name="groupby_status"
+                    domain="[]"
+                    context="{'group_by': 'rental_status'}"
+                />
+            </group>
             </search>
         </field>
     </record>
