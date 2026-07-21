@@ -7,6 +7,13 @@
         <field name="model">stock.rental.slot</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button
+                        name="action_create_order"
+                        string="Create Order"
+                        type="object"
+                    />
+                </header>
                 <sheet>
                     <field name="name" />
                     <group>
@@ -99,48 +106,48 @@
                 <field name="categ_id" />
                 <field name="rental_status" />
                 <separator />
-    `           <filter
-                string="Lot is Available"
-                name="lot_is_available"
-                domain="[('so_line_id', '=', False)]"
-            />
                 <filter
-                string="Has Order Line"
-                name="has_order_line"
-                domain="[('so_line_id', '!=', False)]"
-            />
+                    string="Lot is Available"
+                    name="lot_is_available"
+                    domain="[('so_line_id', '=', False)]"
+                />
+                <filter
+                    string="Has Order Line"
+                    name="has_order_line"
+                    domain="[('so_line_id', '!=', False)]"
+                />
                 <group>
-                <filter
-                    string="Customer"
-                    name="groupby_order_partner_id"
-                    domain="[]"
-                    context="{'group_by': 'order_partner_id'}"
-                />
-                <filter
-                    string="Product"
-                    name="groupby_product"
-                    domain="[]"
-                    context="{'group_by': 'product_id'}"
-                />
-                <filter
-                    string="Lot"
-                    name="groupby_lot"
-                    domain="[]"
-                    context="{'group_by': 'lot_id'}"
-                />
-                <filter
-                    string="Product Category"
-                    name="groupby_category"
-                    domain="[]"
-                    context="{'group_by': 'categ_id'}"
-                />
-                <filter
-                    string="Rental Status"
-                    name="groupby_status"
-                    domain="[]"
-                    context="{'group_by': 'rental_status'}"
-                />
-            </group>
+                    <filter
+                        string="Customer"
+                        name="groupby_order_partner_id"
+                        domain="[]"
+                        context="{'group_by': 'order_partner_id'}"
+                    />
+                    <filter
+                        string="Product"
+                        name="groupby_product"
+                        domain="[]"
+                        context="{'group_by': 'product_id'}"
+                    />
+                    <filter
+                        string="Lot"
+                        name="groupby_lot"
+                        domain="[]"
+                        context="{'group_by': 'lot_id'}"
+                    />
+                    <filter
+                        string="Product Category"
+                        name="groupby_category"
+                        domain="[]"
+                        context="{'group_by': 'categ_id'}"
+                    />
+                    <filter
+                        string="Rental Status"
+                        name="groupby_status"
+                        domain="[]"
+                        context="{'group_by': 'rental_status'}"
+                    />
+                </group>
             </search>
         </field>
     </record>

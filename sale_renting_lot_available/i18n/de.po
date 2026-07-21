@@ -1,0 +1,207 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_renting_lot_available
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-21 14:30+0000\n"
+"PO-Revision-Date: 2026-07-21 14:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__active
+msgid "Active"
+msgstr "Aktiv"
+
+#. module: sale_renting_lot_available
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_period_form_view
+msgid "Apply"
+msgstr "Anwenden"
+
+#. module: sale_renting_lot_available
+#: model:ir.ui.menu,name:sale_renting_lot_available.menu_rental_schedule_availability
+msgid "Availability"
+msgstr "Verfügbarkeit"
+
+#. module: sale_renting_lot_available
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_period_form_view
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__create_uid
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot_period__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__create_date
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot_period__create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__order_partner_id
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_search_view
+msgid "Customer"
+msgstr "Kunde"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_lot__display_name
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__display_name
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot_period__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__duration_days
+msgid "Duration in days"
+msgstr "Dauer in Tagen"
+
+#. module: sale_renting_lot_available
+#: model:ir.actions.act_window,name:sale_renting_lot_available.stock_rental_slot_period_act_window
+#: model:ir.ui.menu,name:sale_renting_lot_available.menu_rental_schedule_filter_period
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_period_form_view
+msgid "Filter Period"
+msgstr "Zeitraum filtern"
+
+#. module: sale_renting_lot_available
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_search_view
+msgid "Has Order Line"
+msgstr "Hat Auftragszeile"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_sale_order_line__id
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_lot__id
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__id
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot_period__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__write_uid
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot_period__write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert von"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__write_date
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot_period__write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__lot_id
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_search_view
+msgid "Lot"
+msgstr "Los"
+
+#. module: sale_renting_lot_available
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_search_view
+msgid "Lot is Available"
+msgstr "Los ist verfügbar"
+
+#. module: sale_renting_lot_available
+#: model:ir.model,name:sale_renting_lot_available.model_stock_lot
+msgid "Lot/Serial"
+msgstr "Los/Serie"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__name
+msgid "Name"
+msgstr "Name"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__sale_order_id
+msgid "Order Reference"
+msgstr "Auftragsreferenz"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_sale_order_line__pickedup_lot_ids
+msgid "Pickedup Lot"
+msgstr "Abgeholtes Los"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__product_id
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_search_view
+msgid "Product"
+msgstr "Produkt"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__categ_id
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_search_view
+msgid "Product Category"
+msgstr "Produktkategorie"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__rental_color
+msgid "Rental Color"
+msgstr "Mietfarbe"
+
+#. module: sale_renting_lot_available
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_form_view
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_list_view
+msgid "Rental Period"
+msgstr "Mietzeitraum"
+
+#. module: sale_renting_lot_available
+#: model:ir.actions.act_window,name:sale_renting_lot_available.action_stock_rental_slot_view
+msgid "Rental Schedule"
+msgstr "Mietplan"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_sale_order_line__rental_slot_ids
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_lot__rental_slot_ids
+msgid "Rental Slots"
+msgstr "Mietzeitfenster"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__rental_status
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_search_view
+msgid "Rental Status"
+msgstr "Mietstatus"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__return_date
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot_period__return_date
+msgid "Return Date"
+msgstr "Rückgabedatum"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__so_line_id
+msgid "Sale Order Line"
+msgstr "Verkaufsauftragszeile"
+
+#. module: sale_renting_lot_available
+#: model:ir.model,name:sale_renting_lot_available.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Verkaufsauftragszeile"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__start_date
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot_period__start_date
+msgid "Start Date"
+msgstr "Startdatum"
+
+#. module: sale_renting_lot_available
+#: model:ir.model,name:sale_renting_lot_available.model_stock_rental_slot
+msgid "Stock Rental Slot"
+msgstr "Lagermietzeitfenster"
+
+#. module: sale_renting_lot_available
+#: model:ir.model,name:sale_renting_lot_available.model_stock_rental_slot_period
+msgid "Stock Rental Slot Period"
+msgstr "Lagermietzeitfenster-Periode"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,help:sale_renting_lot_available.field_stock_rental_slot__duration_days
+msgid "The duration in days of the rental period."
+msgstr "Die Dauer in Tagen des Mietzeitraums."
