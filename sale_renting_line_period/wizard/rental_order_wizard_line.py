@@ -16,11 +16,43 @@ class RentalOrderWizardLine(models.TransientModel):
     @api.model
     def _default_wizard_line_vals(self, line, status):
         """
-        Support setting a return date.
+        # Select pickable lots based on line period and not order period
         Remove lots that have been removed on sibling lines.
         """
         res = super()._default_wizard_line_vals(line, status)
         res["return_date"] = line.return_date
+
+        # if status == "pickup" and line.product_id.tracking == "serial":
+        #     rentable_lots = self.env["stock.lot"]._get_available_lots(
+        #         line.product_id, line.order_id.warehouse_id.lot_stock_id
+        #     )
+
+        #     rented_lots = line.product_id._get_unavailable_lots(
+        #         line.rental_start_date,
+        #         line.rental_return_date,
+        #         ignored_soline_id=line.id,
+        #         warehouse_id=line.order_id.warehouse_id.id,
+        #     )
+
+        #     pickedup_lots = line.pickedup_lot_ids
+        #     returned_lots = line.returned_lot_ids
+        #     reserved_lots = line.reserved_lot_ids
+
+        #     if pickedup_lots:
+        #         rented_lots += pickedup_lots
+        #     if returned_lots:
+        #         rented_lots += returned_lots
+
+        #     pickeable_lots = rentable_lots - rented_lots
+        #     reserved_lots = reserved_lots & pickeable_lots
+
+        #     res.update(
+        #         {
+        #             "qty_delivered": len(reserved_lots),
+        #             "pickedup_lot_ids": [(6, 0, reserved_lots.ids)],
+        #             "pickeable_lot_ids": [(6, 0, pickeable_lots.ids)],
+        #         }
+        #     )
 
         if res["returnable_lot_ids"]:
             # Check if lots have been returned on other lines of the same order and product
@@ -34,6 +66,8 @@ class RentalOrderWizardLine(models.TransientModel):
                 returnable_ids = [lot_id for lot_id in returnable_ids if lot_id not in other_returned_lots.ids]
                 res["returned_lot_ids"] = [(6, 0, returnable_ids)]
 
+        # _logger.warning(res)
+
         return res
 
     def _apply(self):
@@ -43,15 +77,16 @@ class RentalOrderWizardLine(models.TransientModel):
         res = super()._apply()
         for wizard_line in self:
             order_line = wizard_line.order_line_id
-            if wizard_line.qty_returned > 0 and wizard_line.qty_returned < wizard_line.qty_delivered:
-                if order_line.rental_start_date > wizard_line.return_date:
-                    raise UserError(
-                        _(
-                            "Return date cannot be before start date. Check line with product '%s'.",
-                            order_line.product_id.name,
-                        )
+            if order_line.rental_start_date > wizard_line.return_date:
+                raise UserError(
+                    _(
+                        "Return date cannot be before start date. Check line with product '%s'.",
+                        order_line.product_id.name,
                     )
+                )
 
+            # Partial return
+            if wizard_line.qty_returned > 0 and wizard_line.qty_returned < wizard_line.qty_delivered:
                 # Get remaining qty
                 qty_returned = wizard_line.qty_returned
                 qty_remaining = wizard_line.qty_delivered - qty_returned
@@ -92,4 +127,9 @@ class RentalOrderWizardLine(models.TransientModel):
                             "returned_lot_ids": returned_lot_ids,
                         }
                     )
+
+            # Full return
+            elif wizard_line.qty_returned == wizard_line.qty_delivered:
+                order_line.write({"rental_return_date": wizard_line.return_date})
+
         return res

@@ -1,22 +1,31 @@
 Add product:
 
 - Open rental order "S00021"
-- Search for "Projector" and and remove the item
+- Search for "Projector" add and remove the item
+- Check if name is correct
 
 Pickup:
 
-- Open rental order "S00028" and abort
+- Open rental order "S00028" and cancel it
 - Open rental order "S00021"
-- Change start date to next monday and return the following
+- Change start date to next monday and return to friday
 - Check if dates are updated on products
 - Confirm the order
-- Click on pickup and validate both lines
+- Click on pickup
 - Select all lots for printer
+- And validate
 
-Partial return:
+Return not lot:
 
 - Click return
-- For conference room set 0.0
+- For conference set return date 1 day after start date
+- Remove all selected lots for pinter
+- Validate and check if return date is set correctly
+
+Partial return with lot:
+
+- Click return
+- Ensure conference room is removed
 - For printer remove "PRINT003"
 - Select return date 2 days after start date
 - Click validate
@@ -26,7 +35,7 @@ Partial return:
 Extend period:
 
 - Change the return date of the order to plus 1 week
-- Ensure return date is updated for line not in state returned
+- Ensure return date is updated for remaining line not in state returned
 - Check if price calculation is correct
 
 Return remaining:
@@ -38,3 +47,16 @@ Invoice:
 
 - Create invoice for rental order
 - Ensure the period descriptions are correct
+
+Check availability:
+
+- Cancel "S00021" and uplicate "S00021"
+- Remove all lines execept 1 printer
+- Change start date to next monday and return to friday
+- Confirm the order
+- Click on pickup and select "PRINT001" lot
+- Click validate
+- Duplicate the new order and confirm
+- Click on pickup and ensure that "PRINT001" is not available
+- Change start and end date to plus one week
+- Click on pickup and ensure that "PRINT001" is available
