@@ -24,10 +24,6 @@ class StockLot(models.Model):
         lots._create_stock_rental_lot()
         return lots
 
-    def write(self, vals):
-        res = super().write(vals)
-        if "active" in vals and not vals["active"]:
-            rental_slots = self.env["stock.rental.slot"].search([("lot_id", "in", self.ids)])
-            if rental_slots:
-                rental_slots.write({"active": False})
-        return res
+    def unlink(self):
+        self.rental_slot_ids.sudo().unlink()
+        return super().unlink()

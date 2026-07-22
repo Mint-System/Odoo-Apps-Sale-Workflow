@@ -10,8 +10,15 @@
                 <header>
                     <button
                         name="action_create_order"
-                        string="Create Order"
+                        string="Create Rental Order"
                         type="object"
+                        invisible="sale_order_id"
+                    />
+                    <button
+                        name="action_view_order"
+                        string="View Order"
+                        type="object"
+                        invisible="not sale_order_id"
                     />
                 </header>
                 <sheet>
@@ -50,6 +57,13 @@
         <field name="model">stock.rental.slot</field>
         <field name="arch" type="xml">
             <list create="0" multi_edit="1" editable="bottom" open_form_view="True">
+                <header>
+                    <button
+                        name="action_create_order"
+                        string="Create Rental Order"
+                        type="object"
+                    />
+                </header>
                 <field name="name" />
                 <field
                     name="start_date"
@@ -105,6 +119,7 @@
                 <field name="lot_id" />
                 <field name="categ_id" />
                 <field name="rental_status" />
+                <field name="sale_order_id" />
                 <separator />
                 <filter
                     string="Lot is Available"
@@ -119,7 +134,7 @@
                 <group>
                     <filter
                         string="Customer"
-                        name="groupby_order_partner_id"
+                        name="groupby_order_partner"
                         domain="[]"
                         context="{'group_by': 'order_partner_id'}"
                     />
@@ -159,8 +174,8 @@
         <field name="search_view_id" ref="stock_rental_slot_search_view" />
     </record>
 
-    <record id="menu_rental_schedule_filter_period" model="ir.ui.menu">
-        <field name="name">Filter Period</field>
+    <record id="menu_rental_schedule_check_period" model="ir.ui.menu">
+        <field name="name">Check Period</field>
         <field name="parent_id" ref="sale_renting.menu_rental_schedule" />
         <field name="action" ref="stock_rental_slot_period_act_window" />
         <field name="sequence">1</field>

@@ -17,10 +17,17 @@
                 </group>
                 <footer>
                     <button
-                        name="action_apply"
-                        string="Apply"
+                        name="action_view_gantt_or_list"
+                        string="View Gantt"
                         type="object"
+                        context="{'view_mode': 'gantt'}"
                         class="btn-primary"
+                    />
+                    <button
+                        name="action_view_gantt_or_list"
+                        string="View List"
+                        type="object"
+                        context="{'view_mode': 'list'}"
                     />
                     <button string="Cancel" class="btn-secondary" special="cancel" />
                 </footer>

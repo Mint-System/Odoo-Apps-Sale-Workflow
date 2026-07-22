@@ -2,7 +2,8 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -111,4 +112,46 @@ class StockRentalSlot(models.Model):
             "view_mode": "form",
             "target": "new",
             "view_id": self.env.ref("sale_renting_lot_available.stock_rental_slot_period_form_view").id,
+        }
+
+    def action_create_order(self):
+        """Open a blank sale order form pre-filled with the selected slots' products."""
+        products = self.mapped("product_id")
+        if not products:
+            raise UserError(_("Selected slots have no product."))
+
+        order_lines = []
+        for product in products:
+            order_lines.append(
+                (
+                    0,
+                    0,
+                    {
+                        "product_id": product.id,
+                        "product_uom_qty": 1,
+                    },
+                )
+            )
+
+        return {
+            "type": "ir.actions.act_window",
+            "name": _("Sale Order"),
+            "res_model": "sale.order",
+            "view_mode": "form",
+            "context": {
+                "default_order_line": order_lines,
+                "in_rental_app": 1,
+            },
+        }
+
+    def action_view_order(self):
+        self.ensure_one()
+        if not self.sale_order_id:
+            return {}
+        return {
+            "type": "ir.actions.act_window",
+            "name": _("Sale Order"),
+            "res_model": "sale.order",
+            "view_mode": "form",
+            "res_id": self.sale_order_id.id,
         }

@@ -14,16 +14,24 @@ class StockRentalSlotPeriod(models.TransientModel):
     start_date = fields.Datetime(required=True, default=fields.Datetime.now)
     return_date = fields.Datetime(required=True, default=fields.Datetime.now)
 
-    def action_apply(self):
+    def action_view_gantt_or_list(self):
         self.ensure_one()
+        view_mode = self.env.context.get("view_mode", "gantt")
         domain = [
-            ("start_date", "<=", self.return_date),
-            ("return_date", ">=", self.start_date),
+            "|",
+            ("return_date", "<", self.start_date),
+            ("start_date", ">", self.return_date),
         ]
+        context = {
+            "search_default_groupby_product": 1,
+            "search_default_groupby_lot": 1,
+        }
+        view_modes = f"{view_mode},list,form" if view_mode != "list" else "list,form"
         return {
             "type": "ir.actions.act_window",
             "name": "Rental Slots",
             "res_model": "stock.rental.slot",
-            "view_mode": "gantt,list,form",
+            "view_mode": view_modes,
             "domain": domain,
+            "context": context,
         }

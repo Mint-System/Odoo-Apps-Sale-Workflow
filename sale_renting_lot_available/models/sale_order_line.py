@@ -20,20 +20,24 @@ class SaleOrderLine(models.Model):
     )
 
     def _inverse_pickedup_lot_ids(self):
-        """Recreate stock.rental.slot entries when picked-up lots change."""
+        """
+        Recreate stock.rental.slot entries when picked-up lots change.
+        """
         for line in self:
-            existing = line.rental_slot_ids
-            if existing:
-                existing.unlink()
-            if line.is_rental and line.pickedup_lot_ids:
-                for lot in line.pickedup_lot_ids:
-                    line.env["stock.rental.slot"].create({"so_line_id": line.id, "lot_id": lot.id})
+            line._create_stock_rental_lot()
 
     def _create_stock_rental_lot(self):
-        """Create a stock.rental.slot entry per picked-up lot for rental lines."""
+        """
+        Create a stock.rental.slot entry for rental lines.
+        """
         for line in self:
-            if line.is_rental:
-                line.env["stock.rental.slot"].create({"so_line_id": line.id})
+            if line.is_rental and line.pickedup_lot_ids:
+                self.env["stock.rental.slot"].search([("lot_id"), "in", line.pickedup_lot_ids]).unlink()
+                line.rental_slot_ids.sudo().unlink()
+                for lot in line.pickedup_lot_ids:
+                    line.env["stock.rental.slot"].create({"so_line_id": line.id, "lot_id": lot.id})
+            elif line.is_rental and not line.rental_slot_ids:
+                self.env["stock.rental.slot"].create({"so_line_id": line.id})
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -42,5 +46,6 @@ class SaleOrderLine(models.Model):
         return lines
 
     def unlink(self):
-        self.rental_slot_ids.unlink()
+        _logger.warning(self.rental_slot_ids)
+        self.rental_slot_ids.sudo().unlink()
         return super().unlink()
