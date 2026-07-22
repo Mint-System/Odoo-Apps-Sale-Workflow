@@ -76,7 +76,7 @@ class StockRentalSlot(models.Model):
             else:
                 record.product_id = False
 
-    @api.depends("so_line_id.rental_start_date", "so_line_id.rental_return_date")
+    @api.depends("so_line_id", "so_line_id.rental_start_date", "so_line_id.rental_return_date")
     def _compute_dates(self):
         now = fields.Datetime.now()
         for record in self:

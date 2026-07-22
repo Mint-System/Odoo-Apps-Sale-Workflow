@@ -1,1 +1,1 @@
-Plan all rening product lots on gantt view.
+Plan all renting product lots on gantt view.

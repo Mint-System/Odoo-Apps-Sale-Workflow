@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-22 12:48+0000\n"
-"PO-Revision-Date: 2026-07-22 12:48+0000\n"
+"POT-Creation-Date: 2026-07-22 14:57+0000\n"
+"PO-Revision-Date: 2026-07-22 14:57+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,8 +38,8 @@ msgstr "Zeitraum prüfen"
 #. module: sale_renting_lot_available
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_form_view
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_list_view
-msgid "Create Renting Order"
-msgstr "Mietauftrag erstellen"
+msgid "Create Rental Order"
+msgstr "Mitauftrag erstellen"
 
 #. module: sale_renting_lot_available
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__create_uid

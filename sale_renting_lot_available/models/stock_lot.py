@@ -13,7 +13,9 @@ class StockLot(models.Model):
     rental_slot_ids = fields.One2many("stock.rental.slot", "lot_id", string="Rental Slots")
 
     def _create_stock_rental_lot(self):
-        """Create a stock.rental.slot entry for rentable lots."""
+        """
+        Create a stock.rental.slot entry for rentable lots.
+        """
         for lot in self:
             if lot.product_id.rent_ok:
                 lot.env["stock.rental.slot"].create({"lot_id": lot.id})
@@ -27,3 +29,7 @@ class StockLot(models.Model):
     def unlink(self):
         self.rental_slot_ids.sudo().unlink()
         return super().unlink()
+
+    def toggle_active(self):
+        super().toggle_active()
+        self.rental_slot_ids.active = self.active

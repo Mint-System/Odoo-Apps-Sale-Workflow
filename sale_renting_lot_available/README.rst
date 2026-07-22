@@ -23,7 +23,7 @@ Sale Renting Lot Available
 
 |badge1| |badge2|
 
-Plan all rening product lots on gantt view.
+Plan all renting product lots on gantt view.
 
 **Table of contents**
 

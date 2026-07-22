@@ -101,8 +101,29 @@
                 scales="day,week,month,quarter,year"
                 pill_label="True"
                 color="rental_color"
-                on_create="sale_renting.action_create_rental_order"
-            />
+                on_create="action_create_order"
+            >
+                <field name="rental_status" />
+
+                <templates>
+                    <t t-name="gantt-popover">
+                        <ul class="list-unstyled m-0">
+                            <li>
+                                <strong>Status: </strong>
+                                <t t-out="rental_status" />
+                            </li>
+                            <li>
+                                <strong>Start: </strong>
+                                <t t-out="start_date.toFormat('f')" />
+                            </li>
+                            <li>
+                                <strong>End: </strong>
+                                <t t-out="return_date.toFormat('f')" />
+                            </li>
+                        </ul>
+                    </t>
+                </templates>
+            </gantt>
         </field>
     </record>
 
@@ -122,9 +143,9 @@
                 <field name="sale_order_id" />
                 <separator />
                 <filter
-                    string="Lot is Available"
-                    name="lot_is_available"
-                    domain="[('so_line_id', '=', False)]"
+                    string="Unlinked Lot"
+                    name="unlinked_lot"
+                    domain="[('so_line_id', '=', False),('lot_id', '!=', False)]"
                 />
                 <filter
                     string="Has Order Line"
