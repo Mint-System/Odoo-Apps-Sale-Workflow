@@ -22,38 +22,6 @@ class RentalOrderWizardLine(models.TransientModel):
         res = super()._default_wizard_line_vals(line, status)
         res["return_date"] = line.return_date
 
-        # if status == "pickup" and line.product_id.tracking == "serial":
-        #     rentable_lots = self.env["stock.lot"]._get_available_lots(
-        #         line.product_id, line.order_id.warehouse_id.lot_stock_id
-        #     )
-
-        #     rented_lots = line.product_id._get_unavailable_lots(
-        #         line.rental_start_date,
-        #         line.rental_return_date,
-        #         ignored_soline_id=line.id,
-        #         warehouse_id=line.order_id.warehouse_id.id,
-        #     )
-
-        #     pickedup_lots = line.pickedup_lot_ids
-        #     returned_lots = line.returned_lot_ids
-        #     reserved_lots = line.reserved_lot_ids
-
-        #     if pickedup_lots:
-        #         rented_lots += pickedup_lots
-        #     if returned_lots:
-        #         rented_lots += returned_lots
-
-        #     pickeable_lots = rentable_lots - rented_lots
-        #     reserved_lots = reserved_lots & pickeable_lots
-
-        #     res.update(
-        #         {
-        #             "qty_delivered": len(reserved_lots),
-        #             "pickedup_lot_ids": [(6, 0, reserved_lots.ids)],
-        #             "pickeable_lot_ids": [(6, 0, pickeable_lots.ids)],
-        #         }
-        #     )
-
         if res["returnable_lot_ids"]:
             # Check if lots have been returned on other lines of the same order and product
             other_returned_lots = line.order_id.order_line.filtered(
@@ -65,8 +33,6 @@ class RentalOrderWizardLine(models.TransientModel):
                 returnable_ids = res["returnable_lot_ids"][0][2]
                 returnable_ids = [lot_id for lot_id in returnable_ids if lot_id not in other_returned_lots.ids]
                 res["returned_lot_ids"] = [(6, 0, returnable_ids)]
-
-        # _logger.warning(res)
 
         return res
 
@@ -113,14 +79,6 @@ class RentalOrderWizardLine(models.TransientModel):
 
                 # Update lot ids
                 if remaining_lot_ids:
-                    # Bug: The commented causes this issue
-                    # File "enterprise/sale_stock_renting/models/sale_order_line.py", line 318, in _return_serials
-                    # if ml.lot_id.id in lot_ids:
-                    # order_line.write(
-                    #     {
-                    #         "returned_lot_ids": returned_lot_ids,
-                    #     }
-                    # )
                     returned_line.write(
                         {
                             "pickedup_lot_ids": returned_lot_ids,

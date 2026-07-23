@@ -28,16 +28,16 @@ class SaleOrderLine(models.Model):
 
     def _create_stock_rental_lot(self):
         """
-        Create a stock.rental.slot entry for rental lines.
+        Create a stock.rental.slot entry for each slot or qty.
         """
         for line in self:
+            line.rental_slot_ids.sudo().unlink()
             if line.is_rental and line.pickedup_lot_ids:
-                # self.env["stock.rental.slot"].search([("lot_id"), "in", line.pickedup_lot_ids]).unlink()
-                line.rental_slot_ids.sudo().unlink()
                 for lot in line.pickedup_lot_ids:
                     line.env["stock.rental.slot"].create({"so_line_id": line.id, "lot_id": lot.id})
             elif line.is_rental and not line.rental_slot_ids:
-                self.env["stock.rental.slot"].create({"so_line_id": line.id})
+                for _qty in range(int(line.product_uom_qty)):
+                    self.env["stock.rental.slot"].create({"so_line_id": line.id})
 
     def unlink(self):
         self.rental_slot_ids.sudo().unlink()

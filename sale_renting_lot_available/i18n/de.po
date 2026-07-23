@@ -6,14 +6,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-22 14:57+0000\n"
-"PO-Revision-Date: 2026-07-22 14:57+0000\n"
+"POT-Creation-Date: 2026-07-23 09:03+0000\n"
+"PO-Revision-Date: 2026-07-23 09:03+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: sale_renting_lot_available
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_gantt_view
+msgid "<strong>End: </strong>"
+msgstr "<strong>Ende: </strong>"
+
+#. module: sale_renting_lot_available
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_gantt_view
+msgid "<strong>Start: </strong>"
+msgstr "<strong>Start: </strong>"
+
+#. module: sale_renting_lot_available
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_gantt_view
+msgid "<strong>Status: </strong>"
+msgstr "<strong>Status: </strong>"
 
 #. module: sale_renting_lot_available
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__active
@@ -29,11 +44,6 @@ msgstr "Verfügbarkeit"
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_period_form_view
 msgid "Cancel"
 msgstr "Abbrechen"
-
-#. module: sale_renting_lot_available
-#: model:ir.ui.menu,name:sale_renting_lot_available.menu_rental_schedule_check_period
-msgid "Check Period"
-msgstr "Zeitraum prüfen"
 
 #. module: sale_renting_lot_available
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_form_view
@@ -110,11 +120,6 @@ msgstr "Zuletzt aktualisiert am"
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_search_view
 msgid "Lot"
 msgstr "Los"
-
-#. module: sale_renting_lot_available
-#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_search_view
-msgid "Lot is Available"
-msgstr "Los ist verfügbar"
 
 #. module: sale_renting_lot_available
 #: model:ir.model,name:sale_renting_lot_available.model_stock_lot
@@ -233,6 +238,11 @@ msgstr "Lagermietzeitfenster-Periode"
 #: model:ir.model.fields,help:sale_renting_lot_available.field_stock_rental_slot__duration_days
 msgid "The duration in days of the rental period."
 msgstr "Die Dauer in Tagen des Mietzeitraums."
+
+#. module: sale_renting_lot_available
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_search_view
+msgid "Unlinked Lot"
+msgstr "Nicht verknüpftes Los"
 
 #. module: sale_renting_lot_available
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_period_form_view

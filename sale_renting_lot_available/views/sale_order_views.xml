@@ -11,6 +11,7 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-calendar"
+                    invisible="rental_slot_count == 0"
                 >
                     <field
                         name="rental_slot_count"

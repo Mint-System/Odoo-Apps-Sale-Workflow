@@ -21,13 +21,17 @@ class SaleOrder(models.Model):
             order.rental_slot_count = len(order.mapped("order_line.rental_slot_ids"))
 
     def action_confirm(self):
-        """Create slots when order is confirmed."""
+        """
+        Create slots when order is confirmed.
+        """
         res = super().action_confirm()
         self.order_line._create_stock_rental_lot()
         return res
 
     def action_cancel(self):
-        """Unlink slots when order is cancelled."""
+        """
+        Unlink slots when order is cancelled.
+        """
         res = super().action_cancel()
         self.order_line.rental_slot_ids.sudo().unlink()
         return super().action_cancel()
@@ -41,6 +45,8 @@ class SaleOrder(models.Model):
             "view_mode": "gantt,list,form",
             "context": {
                 "search_default_sale_order_id": self.id,
+                "search_default_groupby_product": 1,
+                "search_default_groupby_lot": 1,
             },
         }
 

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-27 13:25+0000\n"
-"PO-Revision-Date: 2026-05-27 13:25+0000\n"
+"POT-Creation-Date: 2026-07-23 09:01+0000\n"
+"PO-Revision-Date: 2026-07-23 09:01+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,9 +36,9 @@ msgid "Delivered"
 msgstr "Abgeholt"
 
 #. module: sale_renting_line_period
+#: model:ir.model.fields,field_description:sale_renting_line_period.field_product_product__display_name
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_wizard__display_name
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_wizard_line__display_name
-#: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr "Anzeigename"
@@ -54,12 +54,12 @@ msgid "Duration in days"
 msgstr "Dauer in Tagen"
 
 #. module: sale_renting_line_period
+#: model:ir.model.fields,field_description:sale_renting_line_period.field_product_product__id
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_wizard__id
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_wizard_line__id
-#: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order_line__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_renting_line_period
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order_line__next_action_date
@@ -70,6 +70,11 @@ msgstr "Nächste Aktion"
 #: model:ir.model,name:sale_renting_line_period.model_rental_order_wizard
 msgid "Pick-up/Return products"
 msgstr "Produkte abholen/zurückgeben"
+
+#. module: sale_renting_line_period
+#: model:ir.model,name:sale_renting_line_period.model_product_product
+msgid "Product Variant"
+msgstr "Produktvariante"
 
 #. module: sale_renting_line_period
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order_line__remaining_hours
@@ -92,6 +97,15 @@ msgid "Rental Status"
 msgstr "Vermietungsstatus"
 
 #. module: sale_renting_line_period
+#. odoo-python
+#: code:addons/sale_renting_line_period/models/sale_order.py:0
+msgid ""
+"Rental order '%s' cannot be cancelled. It has order lines in rental state "
+"'return'."
+msgstr ""
+"Der Mietauftrag '%s' kann nicht storniert werden. Er enthält Auftragszeilen im Mietstatus 'return'."
+
+#. module: sale_renting_line_period
 #: model:ir.model,name:sale_renting_line_period.model_rental_order_wizard_line
 msgid "RentalOrderLine transient representation"
 msgstr "RentalOrderLine vorübergehende Darstellung"
@@ -103,14 +117,15 @@ msgid "Return Date"
 msgstr "Rückgabedatum"
 
 #. module: sale_renting_line_period
+#. odoo-python
+#: code:addons/sale_renting_line_period/wizard/rental_order_wizard_line.py:0
+msgid "Return date cannot be before start date. Check line with product '%s'."
+msgstr "Das Rückgabedatum darf nicht vor dem Startdatum liegen. Überprüfen Sie die Zeile mit dem Produkt '%s'."
+
+#. module: sale_renting_line_period
 #: model:ir.model.fields.selection,name:sale_renting_line_period.selection__sale_order_line__rental_status__returned
 msgid "Returned"
 msgstr "Zurückgegeben"
-
-#. module: sale_renting_line_period
-#: model:ir.model,name:sale_renting_line_period.model_sale_order
-msgid "Sales Order"
-msgstr "Verkaufsauftrag"
 
 #. module: sale_renting_line_period
 #: model:ir.model,name:sale_renting_line_period.model_sale_order_line
@@ -135,4 +150,5 @@ msgstr "Die verbleibenden Stunden des Mietzeitraums."
 #. module: sale_renting_line_period
 #: model:ir.model.constraint,message:sale_renting_line_period.constraint_sale_order_line_rental_period_coherence
 msgid "The rental start date must be before the rental return date if any."
-msgstr "Das Mietstartdatum muss vor dem Rückgabedatum liegen, falls vorhanden."
+msgstr ""
+"Das Mietstartdatum muss vor dem Rückgabedatum liegen, falls vorhanden."

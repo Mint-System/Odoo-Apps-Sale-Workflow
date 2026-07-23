@@ -41,9 +41,3 @@ class ProductProduct(models.Model):
         ]
 
         return self.env["sale.order.line"].search(domain)
-
-    # def _get_unavailable_lots(self, from_date, to_date=None, **kwargs):
-    #     _logger.warning([from_date, to_date]) # 21.07 / 07.08
-    #     return self._get_active_rental_lines(
-    #         from_date, to_date, **kwargs
-    #     )

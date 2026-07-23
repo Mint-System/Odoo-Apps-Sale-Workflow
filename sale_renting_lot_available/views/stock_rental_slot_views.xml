@@ -16,7 +16,7 @@
                     />
                     <button
                         name="action_view_order"
-                        string="View Order"
+                        string="View Rental Order"
                         type="object"
                         invisible="not sale_order_id"
                     />
@@ -143,8 +143,8 @@
                 <field name="sale_order_id" />
                 <separator />
                 <filter
-                    string="Unlinked Lot"
-                    name="unlinked_lot"
+                    string="Placeholder"
+                    name="is_placeholder"
                     domain="[('so_line_id', '=', False),('lot_id', '!=', False)]"
                 />
                 <filter
@@ -192,20 +192,25 @@
         <field name="name">Rental Schedule</field>
         <field name="res_model">stock.rental.slot</field>
         <field name="view_mode">gantt,list,form</field>
-        <field name="search_view_id" ref="stock_rental_slot_search_view" />
-    </record>
+        <field name="context">{
+            "search_default_groupby_product": 1,
+            "search_default_groupby_lot": 1,
+        }</field>
 
-    <record id="menu_rental_schedule_check_period" model="ir.ui.menu">
-        <field name="name">Check Period</field>
-        <field name="parent_id" ref="sale_renting.menu_rental_schedule" />
-        <field name="action" ref="stock_rental_slot_period_act_window" />
-        <field name="sequence">1</field>
+        <field name="search_view_id" ref="stock_rental_slot_search_view" />
     </record>
 
     <record id="menu_rental_schedule_availability" model="ir.ui.menu">
         <field name="name">Availability</field>
         <field name="parent_id" ref="sale_renting.menu_rental_schedule" />
         <field name="action" ref="action_stock_rental_slot_view" />
-        <field name="sequence">2</field>
+        <field name="sequence">1</field>
     </record>
+
+    <!-- <record id="menu_rental_schedule_check_period" model="ir.ui.menu">
+        <field name="name">Check Period</field>
+        <field name="parent_id" ref="sale_renting.menu_rental_schedule" />
+        <field name="action" ref="stock_rental_slot_period_act_window" />
+        <field name="sequence">2</field>
+    </record> -->
 </odoo>
