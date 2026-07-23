@@ -52,6 +52,13 @@ class StockRentalSlot(models.Model):
         store=True,
         readonly=True,
     )
+    duration_days = fields.Integer(
+        related="so_line_id.duration_days",
+    )
+
+    # Computed fields
+
+    is_placeholder = fields.Boolean(compute="_compute_is_placeholder", store=True)
     start_date = fields.Datetime(
         compute="_compute_dates",
         inverse="_inverse_dates",
@@ -62,9 +69,14 @@ class StockRentalSlot(models.Model):
         inverse="_inverse_dates",
         store=True,
     )
-    duration_days = fields.Integer(
-        related="so_line_id.duration_days",
-    )
+
+    @api.depends("lot_id", "so_line_id")
+    def _compute_is_placeholder(self):
+        for record in self:
+            if record.lot_id and not record.so_line_id:
+                record.is_placeholder = True
+            else:
+                record.is_placeholder = False
 
     @api.depends("lot_id", "so_line_id")
     def _compute_product_id(self):

@@ -28,7 +28,9 @@
                     />
                 </header>
                 <sheet>
-                    <field name="name" />
+                    <h1>
+                        <field name="name" />
+                    </h1>
                     <group>
                         <group>
                             <field
@@ -39,6 +41,7 @@
                             />
                             <field name="return_date" invisible="1" />
                             <field name="order_partner_id" />
+                            <field name="is_placeholder" />
                         </group>
                         <group>
                             <field name="product_id" />
@@ -151,7 +154,7 @@
                 <filter
                     string="Placeholder"
                     name="is_placeholder"
-                    domain="[('so_line_id', '=', False),('lot_id', '!=', False)]"
+                    domain="[('is_placeholder', '=', True)]"
                 />
                 <filter
                     string="Has Order Line"
@@ -206,17 +209,17 @@
         <field name="search_view_id" ref="stock_rental_slot_search_view" />
     </record>
 
+    <record id="menu_rental_schedule_check_period" model="ir.ui.menu">
+        <field name="name">Check Period</field>
+        <field name="parent_id" ref="sale_renting.menu_rental_schedule" />
+        <field name="action" ref="stock_rental_slot_period_act_window" />
+        <field name="sequence">1</field>
+    </record>
+
     <record id="menu_rental_schedule_availability" model="ir.ui.menu">
         <field name="name">Availability</field>
         <field name="parent_id" ref="sale_renting.menu_rental_schedule" />
         <field name="action" ref="action_stock_rental_slot_view" />
-        <field name="sequence">1</field>
-    </record>
-
-    <!-- <record id="menu_rental_schedule_check_period" model="ir.ui.menu">
-        <field name="name">Check Period</field>
-        <field name="parent_id" ref="sale_renting.menu_rental_schedule" />
-        <field name="action" ref="stock_rental_slot_period_act_window" />
         <field name="sequence">2</field>
-    </record> -->
+    </record>
 </odoo>
