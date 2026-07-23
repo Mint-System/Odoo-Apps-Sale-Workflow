@@ -107,7 +107,7 @@
                 scales="day,week,month,quarter,year"
                 pill_label="True"
                 color="rental_color"
-                on_create="action_create_order"
+                on_create="sale_renting.action_create_rental_order"
             >
                 <field name="rental_status" />
 
