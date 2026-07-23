@@ -32,7 +32,6 @@
                     column_invisible="not parent.is_rental_order"
                     optional="show"
                 />
-                <field name="state" optional="hide" />
                 <field
                     name="reserved_lot_ids"
                     widget="many2many_tags"

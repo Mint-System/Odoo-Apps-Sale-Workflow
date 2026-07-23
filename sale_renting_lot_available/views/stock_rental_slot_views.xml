@@ -20,6 +20,12 @@
                         type="object"
                         invisible="not sale_order_id"
                     />
+                    <button
+                        name="action_split_order_line"
+                        string="Split Order Line"
+                        type="object"
+                        invisible="not sale_order_id and rental_status == 'return'"
+                    />
                 </header>
                 <sheet>
                     <field name="name" />

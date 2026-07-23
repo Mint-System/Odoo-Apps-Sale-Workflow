@@ -29,11 +29,11 @@ class StockRentalSlot(models.Model):
         store=True,
         readonly=True,
     )
-    lot_id = fields.Many2one("stock.lot")
+    lot_id = fields.Many2one("stock.lot", readonly=True)
 
     # Sale link
 
-    so_line_id = fields.Many2one("sale.order.line", string="Sale Order Line")
+    so_line_id = fields.Many2one("sale.order.line", string="Sale Order Line", readonly=True)
     rental_color = fields.Integer(related="so_line_id.rental_color")
     order_partner_id = fields.Many2one(
         related="so_line_id.order_partner_id",
@@ -100,7 +100,7 @@ class StockRentalSlot(models.Model):
     def _compute_name(self):
         for record in self:
             if record.sale_order_id:
-                record.name = f"{record.sale_order_id.name} - {record.order_partner_id.name}"
+                record.name = f"{record.sale_order_id.display_name} - {record.order_partner_id.name}"
             elif record.lot_id:
                 record.name = f"{record.product_id.name} - {record.lot_id.name}"
 
@@ -155,3 +155,6 @@ class StockRentalSlot(models.Model):
             "view_mode": "form",
             "res_id": self.sale_order_id.id,
         }
+
+    def action_split_order_line(self):
+        raise UserError(_("This action is not yet available."))

@@ -39,3 +39,10 @@ Create additional rental order:
 - Ensure the view is correct
 - Open the new order, cancel it and return to view
 - Ensure the slots are gone
+
+Partial return:
+
+- Open the original order
+- Confirm and pickup "PRINT001" and "PRINT005" lot
+- Execute a return for "PRINT001" lot
+- Ensure only 2 slots are shown and are linked correctly

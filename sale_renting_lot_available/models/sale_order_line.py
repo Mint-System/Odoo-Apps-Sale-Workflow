@@ -32,9 +32,21 @@ class SaleOrderLine(models.Model):
         """
         for line in self:
             line.rental_slot_ids.sudo().unlink()
-            if line.is_rental and line.pickedup_lot_ids:
+
+            # Create pickedup slots
+            if line.is_rental and line.pickedup_lot_ids and not line.returned_lot_ids:
                 for lot in line.pickedup_lot_ids:
                     line.env["stock.rental.slot"].create({"so_line_id": line.id, "lot_id": lot.id})
+
+            # Update slot if returned
+            elif line.is_rental and line.returned_lot_ids:
+                pickedup_slot_ids = line.order_id.order_line.rental_slot_ids
+                for lot in line.pickedup_lot_ids:
+                    pickedup_slot_id = pickedup_slot_ids.filtered(lambda p: p.lot_id == lot)
+                    if pickedup_slot_id:
+                        pickedup_slot_id.write({"so_line_id": line.id})
+
+            # Create qty slots
             elif line.is_rental and not line.rental_slot_ids:
                 for _qty in range(int(line.product_uom_qty)):
                     self.env["stock.rental.slot"].create({"so_line_id": line.id})
