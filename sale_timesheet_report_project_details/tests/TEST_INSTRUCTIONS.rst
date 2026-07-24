@@ -1,0 +1,4 @@
+- Open a sale order with timesheet entries
+- Create an invoice
+- Create the timesheet report
+- Ensure the header contains projects details
