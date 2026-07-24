@@ -1,0 +1,102 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_timesheet_report_group_invoice_type
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-06 16:06+0000\n"
+"PO-Revision-Date: 2026-03-06 16:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_timesheet_report_group_invoice_type
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_report_group_invoice_type.timesheet_table
+msgid "<span>Billed Manually</span>"
+msgstr "<span>Manuell abgerechnet</span>"
+
+#. module: sale_timesheet_report_group_invoice_type
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_report_group_invoice_type.timesheet_table
+msgid "<span>Billed at a Fixed price</span>"
+msgstr "<span>Zu einem festen Preis abgerechnet</span>"
+
+#. module: sale_timesheet_report_group_invoice_type
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_report_group_invoice_type.timesheet_table
+msgid "<span>Billed on Milestones</span>"
+msgstr "<span>Nach Meilensteinen abgerechnet</span>"
+
+#. module: sale_timesheet_report_group_invoice_type
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_report_group_invoice_type.timesheet_table
+msgid "<span>Billed on Timesheets</span>"
+msgstr "<span>Nach Zeiterfassung abgerechnet</span>"
+
+#. module: sale_timesheet_report_group_invoice_type
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_report_group_invoice_type.timesheet_table
+msgid ""
+"<span>Date\n"
+"                                <br/>Author\n"
+"                            </span>"
+msgstr ""
+"<span>Datum\n"
+"                                <br/>Autor\n"
+"                            </span>"
+
+#. module: sale_timesheet_report_group_invoice_type
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_report_group_invoice_type.timesheet_table
+msgid "<span>Description</span>"
+msgstr "<span>Beschreibung</span>"
+
+#. module: sale_timesheet_report_group_invoice_type
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_report_group_invoice_type.timesheet_table
+msgid "<span>Non Billable Tasks</span>"
+msgstr "<span>Nicht abrechenbare Aufgaben</span>"
+
+#. module: sale_timesheet_report_group_invoice_type
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_report_group_invoice_type.timesheet_table
+msgid "<span>Other costs</span>"
+msgstr "<span>Sonstige Kosten</span>"
+
+#. module: sale_timesheet_report_group_invoice_type
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_report_group_invoice_type.timesheet_table
+msgid "<span>Other revenues</span>"
+msgstr "<span>Sonstige Einnahmen</span>"
+
+#. module: sale_timesheet_report_group_invoice_type
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_report_group_invoice_type.timesheet_table
+msgid "<span>Project</span>"
+msgstr "<span>Projekt</span>"
+
+#. module: sale_timesheet_report_group_invoice_type
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_report_group_invoice_type.timesheet_table
+msgid "<span>Service Revenues</span>"
+msgstr "<span>Dienstleistungseinnahmen</span>"
+
+#. module: sale_timesheet_report_group_invoice_type
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_report_group_invoice_type.timesheet_table
+msgid "<span>Task</span>"
+msgstr "<span>Aufgabe</span>"
+
+#. module: sale_timesheet_report_group_invoice_type
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_report_group_invoice_type.timesheet_table
+msgid "<span>Timesheet Revenues</span>"
+msgstr "<span>Zeiterfassungseinnahmen</span>"
+
+#. module: sale_timesheet_report_group_invoice_type
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_report_group_invoice_type.timesheet_table
+msgid "<strong>Subtotal</strong>"
+msgstr "<strong>Zwischensumme</strong>"
+
+#. module: sale_timesheet_report_group_invoice_type
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_report_group_invoice_type.timesheet_table
+msgid "Days Spent"
+msgstr "Tage"
+
+#. module: sale_timesheet_report_group_invoice_type
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_report_group_invoice_type.timesheet_table
+msgid "Hours Spent"
+msgstr "Stunden"
