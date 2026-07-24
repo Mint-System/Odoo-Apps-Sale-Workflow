@@ -169,6 +169,12 @@
                         context="{'group_by': 'order_partner_id'}"
                     />
                     <filter
+                        string="Product Category"
+                        name="groupby_category"
+                        domain="[]"
+                        context="{'group_by': 'categ_id'}"
+                    />
+                    <filter
                         string="Product"
                         name="groupby_product"
                         domain="[]"
@@ -179,12 +185,6 @@
                         name="groupby_lot"
                         domain="[]"
                         context="{'group_by': 'lot_id'}"
-                    />
-                    <filter
-                        string="Product Category"
-                        name="groupby_category"
-                        domain="[]"
-                        context="{'group_by': 'categ_id'}"
                     />
                     <filter
                         string="Rental Status"
@@ -216,8 +216,8 @@
         <field name="sequence">1</field>
     </record>
 
-    <record id="menu_rental_schedule_availability" model="ir.ui.menu">
-        <field name="name">Availability</field>
+    <record id="menu_rental_schedule" model="ir.ui.menu">
+        <field name="name">Schedule</field>
         <field name="parent_id" ref="sale_renting.menu_rental_schedule" />
         <field name="action" ref="action_stock_rental_slot_view" />
         <field name="sequence">2</field>

@@ -18,17 +18,27 @@ class SaleOrderLine(models.Model):
         copy=False,
         inverse="_inverse_pickedup_lot_ids",
     )
+    product_uom_qty = fields.Float(
+        inverse="_inverse_product_uom_qty",
+    )
+
+    def _inverse_product_uom_qty(self):
+        """
+        Generate slot when qty changes.
+        """
+        for line in self.filtered(lambda l: l.state != "cancel"):
+            line._generate_stock_rental_lot()
 
     def _inverse_pickedup_lot_ids(self):
         """
-        Recreate stock.rental.slot entries when picked-up lots change.
+        Generate slot entries when picked-up lots change.
         """
         for line in self.filtered(lambda l: l.state == "sale"):
-            line._create_stock_rental_lot()
+            line._generate_stock_rental_lot()
 
-    def _create_stock_rental_lot(self):
+    def _generate_stock_rental_lot(self):
         """
-        Create a stock.rental.slot entry for each slot or qty.
+        Unlink existing and create new stock.rental.slot entry for each lot or qty.
         """
         for line in self:
             line.rental_slot_ids.sudo().unlink()

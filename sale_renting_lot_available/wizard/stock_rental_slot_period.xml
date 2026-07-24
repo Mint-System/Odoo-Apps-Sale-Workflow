@@ -11,23 +11,23 @@
                     <field
                         name="start_date"
                         widget="daterange"
-                        options="{'end_date_field': 'return_date'}"
+                        options="{'end_date_field': 'end_date'}"
                     />
-                    <field name="return_date" invisible="1" />
+                    <field name="end_date" invisible="1" />
                 </group>
                 <footer>
                     <button
-                        name="action_view_gantt_or_list"
-                        string="View Gantt"
+                        name="action_view_available_slots"
+                        string="View Availability"
                         type="object"
-                        context="{'view_mode': 'gantt'}"
                         class="btn-primary"
+                        context="{'view_mode': 'list'}"
                     />
                     <button
-                        name="action_view_gantt_or_list"
-                        string="View List"
+                        name="action_adjust_period"
+                        string="Adjust Period"
                         type="object"
-                        context="{'view_mode': 'list'}"
+                        context="{'view_mode': 'gantt'}"
                     />
                     <button string="Cancel" class="btn-secondary" special="cancel" />
                 </footer>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-23 12:56+0000\n"
-"PO-Revision-Date: 2026-07-23 12:56+0000\n"
+"POT-Creation-Date: 2026-07-24 13:07+0000\n"
+"PO-Revision-Date: 2026-07-24 13:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,9 +36,9 @@ msgid "Active"
 msgstr "Aktiv"
 
 #. module: sale_renting_lot_available
-#: model:ir.ui.menu,name:sale_renting_lot_available.menu_rental_schedule_availability
-msgid "Availability"
-msgstr "Verfügbarkeit"
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_period_form_view
+msgid "Adjust Period"
+msgstr "Zeitraum anpassen"
 
 #. module: sale_renting_lot_available
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_period_form_view
@@ -54,7 +54,7 @@ msgstr "Zeitraum prüfen"
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_form_view
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_list_view
 msgid "Create Rental Order"
-msgstr "Mitauftrag erstellen"
+msgstr "Mietauftrag erstellen"
 
 #. module: sale_renting_lot_available
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__create_uid
@@ -87,6 +87,11 @@ msgstr "Anzeigename"
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__duration_days
 msgid "Duration in days"
 msgstr "Dauer in Tagen"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot_period__end_date
+msgid "End Date"
+msgstr "Enddatum"
 
 #. module: sale_renting_lot_available
 #: model:ir.actions.act_window,name:sale_renting_lot_available.stock_rental_slot_period_act_window
@@ -169,6 +174,11 @@ msgid "Product Category"
 msgstr "Produktkategorie"
 
 #. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_sale_order_line__product_uom_qty
+msgid "Quantity"
+msgstr "Menge"
+
+#. module: sale_renting_lot_available
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__rental_color
 msgid "Rental Color"
 msgstr "Mietfarbe"
@@ -187,10 +197,13 @@ msgstr "Mietplan"
 #. module: sale_renting_lot_available
 #. odoo-python
 #: code:addons/sale_renting_lot_available/models/sale_order.py:0
+#: code:addons/sale_renting_lot_available/models/stock_lot.py:0
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_sale_order__rental_slot_count
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_sale_order_line__rental_slot_ids
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_lot__rental_slot_count
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_lot__rental_slot_ids
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.view_order_form_inherit_rental_slots
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.view_production_lot_form
 msgid "Rental Slots"
 msgstr "Mietzeitfenster"
 
@@ -202,7 +215,6 @@ msgstr "Mietstatus"
 
 #. module: sale_renting_lot_available
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__return_date
-#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot_period__return_date
 msgid "Return Date"
 msgstr "Rückgabedatum"
 
@@ -228,6 +240,11 @@ msgid "Sales Order Line"
 msgstr "Verkaufsauftragszeile"
 
 #. module: sale_renting_lot_available
+#: model:ir.ui.menu,name:sale_renting_lot_available.menu_rental_schedule
+msgid "Schedule"
+msgstr "Mietplan"
+
+#. module: sale_renting_lot_available
 #. odoo-python
 #: code:addons/sale_renting_lot_available/models/stock_rental_slot.py:0
 msgid "Selected slots have no product."
@@ -243,6 +260,11 @@ msgstr "Auftragszeile teilen"
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot_period__start_date
 msgid "Start Date"
 msgstr "Startdatum"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_lot__start_slot_id
+msgid "Start Slot"
+msgstr "Startzeitfenster"
 
 #. module: sale_renting_lot_available
 #: model:ir.model,name:sale_renting_lot_available.model_stock_rental_slot
@@ -267,15 +289,10 @@ msgstr "Diese Aktion ist noch nicht verfügbar."
 
 #. module: sale_renting_lot_available
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_period_form_view
-msgid "View Gantt"
-msgstr "Gantt anzeigen"
-
-#. module: sale_renting_lot_available
-#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_period_form_view
-msgid "View List"
-msgstr "Liste anzeigen"
+msgid "View Availability"
+msgstr "Verfügbarkeit anzeigen"
 
 #. module: sale_renting_lot_available
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_form_view
 msgid "View Rental Order"
-msgstr "Mitauftrag anzeigen"
+msgstr "Mietauftrag anzeigen"

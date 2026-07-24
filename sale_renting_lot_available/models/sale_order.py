@@ -20,14 +20,6 @@ class SaleOrder(models.Model):
         for order in self:
             order.rental_slot_count = len(order.mapped("order_line.rental_slot_ids"))
 
-    def action_confirm(self):
-        """
-        Create slots when order is confirmed.
-        """
-        res = super().action_confirm()
-        self.order_line._create_stock_rental_lot()
-        return res
-
     def action_cancel(self):
         """
         Unlink slots when order is cancelled.

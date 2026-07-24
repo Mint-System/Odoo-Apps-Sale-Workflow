@@ -16,6 +16,7 @@
         "wizard/stock_rental_slot_period.xml",
         "views/stock_rental_slot_views.xml",
         "views/sale_order_views.xml",
+        "views/stock_lot_views.xml",
     ],
     "post_init_hook": "post_init_hook",
     "installable": True,

@@ -1,8 +1,14 @@
 Init:
 
 - Open rental order "S00028" and cancel it
-- Open the sale "Rental > Schedule > Availability"
+- Open the sale "Rental > Schedule > Schedule"
 - Show list view and ensure 9 lines are shown
+
+Move period:
+
+- Open the sale "Rental > Schedule > Check Period"
+- Select start date previous week and click "Adjust Period"
+- Check if placeholder lots have been moved
 
 New lot:
 
@@ -12,7 +18,7 @@ New lot:
 
 Filer:
 
-- Open the sale "Rental > Schedule > Availability"
+- Open the sale "Rental > Schedule > Schedule"
 - Apply filter "Has Order Line"
 - Then search for "acme"
 - Ensure there are 3 slots
@@ -25,24 +31,31 @@ Create rental order:
 - Open a placeholder slot
 - Click "Create Rental Order"
 - Set dates to tomorrow and day after tomorrow
-- Set qty to 2
-- Confirm the order
+- Save and set qty to 2
+- Ensure slots have been recreated
 - Click on the smart button
 - Extend the end date
-- Click on slot and "View Rental Order"
+- Open slot and click "View Rental Order"
+
+Check avilaiblity:
+
+- Open the sale "Rental > Schedule > Check Period"
+- Set start and end date to tomorrow and day after tomorrow
+- Click "View Availability"
+- Ensure only 3 slots are available for "Printer"
 
 Create additional rental order:
 
-- Duplicate the order
+- Duplicate the previous order
 - Confirm and pickup "PRINT001" and "PRINT005" lot
-- Open "Availability" and filter "Printer"
+- Click smart button and remove order filter
 - Ensure the view is correct
-- Open the new order, cancel it and return to view
-- Ensure the slots are gone
+- Return to duplicated order and try to cancel it.
 
 Partial return:
 
-- Open the original order
-- Confirm and pickup "PRINT001" and "PRINT005" lot
 - Execute a return for "PRINT001" lot
 - Ensure only 2 slots are shown and are linked correctly
+- Return the remaining slot
+- Cancel the order
+- Ensure the slots are gone
