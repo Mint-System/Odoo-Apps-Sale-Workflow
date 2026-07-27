@@ -78,29 +78,8 @@ class SaleOrder(models.Model):
         else:
             return False
 
-    def _limit_sale_by_date(self):
-        # no sale order if date is after March 31
-        today = date.today()
-        limit_date = date(today.year, 3, 31)
-
-        order = self
-        product = order.order_line[0].product_id
-        for line in order.order_line:
-            if product.duration == "year" and line.date_from and line.date_from > limit_date:
-                raise ValidationError(_("Sie können kein Jahrespatent mehr nach dem (%s) kaufen.") % limit_date)
-
-    def _send_payment_succeeded_for_order_mail(self):
-        for order in self:
-            order._limit_sale_by_date()
-            order._assign_permit_number()
-
-        res = super()._send_payment_succeeded_for_order_mail()
-
-        return res
-
     def action_confirm(self):
         for order in self:
-            order._limit_sale_by_date()
             order._assign_permit_number()
 
         res = super().action_confirm()
