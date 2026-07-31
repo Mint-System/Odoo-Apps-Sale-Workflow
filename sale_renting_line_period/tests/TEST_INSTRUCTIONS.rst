@@ -48,10 +48,14 @@ Invoice:
 - Create invoice for rental order
 - Ensure the period descriptions are correct
 
-Check availability:
+Split lines:
 
 - Cancel "S00021" and duplicate "S00021"
 - Remove all lines execept 1 printer
+- Use split action to split line
+
+Check availability:
+
 - Change start date to next monday and return to friday
 - Confirm the order
 - Click on pickup and select "PRINT001" lot

@@ -14,7 +14,7 @@ class SaleOrderLineWizard(models.TransientModel):
 
     so_line_id = fields.Many2one("sale.order.line")
     qty_diff = fields.Float()
-    product_uom_qty = fields.Float(related="so_line_id.product_uom_qty", readonly=True)
+    product_uom_qty = fields.Float(readonly=True)
 
     def split(self):
         """
@@ -41,6 +41,7 @@ class SaleOrderLineWizard(models.TransientModel):
             )
 
         self.so_line_id.product_uom_qty -= self.qty_diff
-        new_line = self.so_line_id.copy(default={"product_uom_qty": self.qty_diff})
-
+        new_line = self.so_line_id.copy(
+            default={"order_id": self.so_line_id.order_id.id, "product_uom_qty": self.qty_diff}
+        )
         return new_line

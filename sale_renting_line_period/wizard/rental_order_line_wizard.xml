@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <form string="Split Order Line">
                 <sheet>
+                    <p>Enter the quantity to split into a duplicated line:</p>
                     <field name="qty_diff" /> / <field
                     name="product_uom_qty"
                     nolabel="1"

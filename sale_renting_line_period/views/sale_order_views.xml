@@ -51,6 +51,19 @@
                     readonly="True"
                 />
             </xpath>
+            <xpath
+                expr="//field[@name='order_line']//list//field[@name='price_total']"
+                position="after"
+            >
+                <button
+                    name="action_split_line"
+                    type="object"
+                    icon="fa-cut"
+                    string="Split Line"
+                    column_invisible="not parent.is_rental_order"
+                    optional="hide"
+                />
+            </xpath>
         </field>
     </record>
 </odoo>

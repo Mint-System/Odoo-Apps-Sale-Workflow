@@ -42,6 +42,7 @@ class SaleOrderLine(models.Model):
             ("returned", "Returned"),
         ],
         compute="_compute_rental_status",
+        copy=False,
     )
     next_action_date = fields.Datetime(string="Next Action", compute="_compute_rental_status", store=True)
     same_product_line_ids = fields.One2many("sale.order.line", compute="_compute_same_product_line_ids")
@@ -177,5 +178,6 @@ class SaleOrderLine(models.Model):
         action = self.env["ir.actions.actions"]._for_xml_id("sale_renting_line_period.rental_order_line_wizard_action")
         action["context"] = {
             "default_so_line_id": self.id,
+            "default_product_uom_qty": self.product_uom_qty,
         }
         return action

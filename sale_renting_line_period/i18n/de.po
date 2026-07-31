@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-23 09:01+0000\n"
-"PO-Revision-Date: 2026-07-23 09:01+0000\n"
+"POT-Creation-Date: 2026-07-31 08:23+0000\n"
+"PO-Revision-Date: 2026-07-31 08:23+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,14 +31,50 @@ msgid "Booked"
 msgstr "Gebucht"
 
 #. module: sale_renting_line_period
+#: model_terms:ir.ui.view,arch_db:sale_renting_line_period.rental_order_line_wizard_view_form
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. module: sale_renting_line_period
+#. odoo-python
+#: code:addons/sale_renting_line_period/wizard/rental_order_line_wizard.py:0
+msgid ""
+"Cannot split line with product '%s'. Only lines in draft and pickup can be "
+"splitted."
+msgstr ""
+"Zeile mit Produkt '%s' kann nicht geteilt werden. Nur Zeilen im Entwurf und "
+"Pickup können geteilt werden."
+
+#. module: sale_renting_line_period
+#. odoo-python
+#: code:addons/sale_renting_line_period/wizard/rental_order_line_wizard.py:0
+msgid ""
+"Cannot split line with product '%s'. Qty diff must be strictly between 0 and"
+" %s."
+msgstr ""
+"Zeile mit Produkt '%s' kann nicht geteilt werden. Die Mengenabweichung muss "
+"strikt zwischen 0 und %s liegen."
+
+#. module: sale_renting_line_period
+#: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_line_wizard__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: sale_renting_line_period
+#: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_line_wizard__create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: sale_renting_line_period
 #: model:ir.model.fields.selection,name:sale_renting_line_period.selection__sale_order_line__rental_status__return
 msgid "Delivered"
 msgstr "Abgeholt"
 
 #. module: sale_renting_line_period
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_product_product__display_name
-#: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_wizard__display_name
+#: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_line_wizard__display_name
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_wizard_line__display_name
+#: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr "Anzeigename"
@@ -54,12 +90,28 @@ msgid "Duration in days"
 msgstr "Dauer in Tagen"
 
 #. module: sale_renting_line_period
+#: model_terms:ir.ui.view,arch_db:sale_renting_line_period.rental_order_line_wizard_view_form
+msgid "Enter the quantity to split into a duplicated line:"
+msgstr "Geben Sie die Menge ein, die in eine duplizierte Zeile aufgeteilt werden soll:"
+
+#. module: sale_renting_line_period
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_product_product__id
-#: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_wizard__id
+#: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_line_wizard__id
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_wizard_line__id
+#: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
+
+#. module: sale_renting_line_period
+#: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_line_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert von"
+
+#. module: sale_renting_line_period
+#: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_line_wizard__write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
 
 #. module: sale_renting_line_period
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order_line__next_action_date
@@ -67,9 +119,9 @@ msgid "Next Action"
 msgstr "Nächste Aktion"
 
 #. module: sale_renting_line_period
-#: model:ir.model,name:sale_renting_line_period.model_rental_order_wizard
-msgid "Pick-up/Return products"
-msgstr "Produkte abholen/zurückgeben"
+#: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_line_wizard__product_uom_qty
+msgid "Product Uom Qty"
+msgstr "Menge"
 
 #. module: sale_renting_line_period
 #: model:ir.model,name:sale_renting_line_period.model_product_product
@@ -77,9 +129,19 @@ msgid "Product Variant"
 msgstr "Produktvariante"
 
 #. module: sale_renting_line_period
+#: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_line_wizard__qty_diff
+msgid "Qty Diff"
+msgstr "Mengenabweichung"
+
+#. module: sale_renting_line_period
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order_line__remaining_hours
 msgid "Remaining duration in hours"
 msgstr "Verbleibende Dauer in Stunden"
+
+#. module: sale_renting_line_period
+#: model:ir.model,name:sale_renting_line_period.model_rental_order_line_wizard
+msgid "Rental Order Line Wizard"
+msgstr "Assistent für Mietauftragszeilen"
 
 #. module: sale_renting_line_period
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order_line__rental_return_date
@@ -103,7 +165,8 @@ msgid ""
 "Rental order '%s' cannot be cancelled. It has order lines in rental state "
 "'return'."
 msgstr ""
-"Der Mietauftrag '%s' kann nicht storniert werden. Er enthält Auftragszeilen im Mietstatus 'return'."
+"Der Mietauftrag '%s' kann nicht storniert werden. Er enthält Auftragszeilen "
+"im Mietstatus 'return'."
 
 #. module: sale_renting_line_period
 #: model:ir.model,name:sale_renting_line_period.model_rental_order_wizard_line
@@ -120,7 +183,9 @@ msgstr "Rückgabedatum"
 #. odoo-python
 #: code:addons/sale_renting_line_period/wizard/rental_order_wizard_line.py:0
 msgid "Return date cannot be before start date. Check line with product '%s'."
-msgstr "Das Rückgabedatum darf nicht vor dem Startdatum liegen. Überprüfen Sie die Zeile mit dem Produkt '%s'."
+msgstr ""
+"Das Rückgabedatum darf nicht vor dem Startdatum liegen. Überprüfen Sie die "
+"Zeile mit dem Produkt '%s'."
 
 #. module: sale_renting_line_period
 #: model:ir.model.fields.selection,name:sale_renting_line_period.selection__sale_order_line__rental_status__returned
@@ -128,9 +193,40 @@ msgid "Returned"
 msgstr "Zurückgegeben"
 
 #. module: sale_renting_line_period
+#: model:ir.model,name:sale_renting_line_period.model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: sale_renting_line_period
 #: model:ir.model,name:sale_renting_line_period.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Verkaufsauftragszeile"
+
+#. module: sale_renting_line_period
+#: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order_line__same_product_line_ids
+msgid "Same Product Line"
+msgstr "Zeile mit gleichem Produkt"
+
+#. module: sale_renting_line_period
+#: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_line_wizard__so_line_id
+msgid "So Line"
+msgstr "Auftragszeile"
+
+#. module: sale_renting_line_period
+#: model_terms:ir.ui.view,arch_db:sale_renting_line_period.rental_order_line_wizard_view_form
+msgid "Split"
+msgstr "Teilen"
+
+#. module: sale_renting_line_period
+#: model_terms:ir.ui.view,arch_db:sale_renting_line_period.rental_order_form_view
+msgid "Split Line"
+msgstr "Zeile teilen"
+
+#. module: sale_renting_line_period
+#: model:ir.actions.act_window,name:sale_renting_line_period.rental_order_line_wizard_action
+#: model_terms:ir.ui.view,arch_db:sale_renting_line_period.rental_order_line_wizard_view_form
+msgid "Split Order Line"
+msgstr "Auftragszeile teilen"
 
 #. module: sale_renting_line_period
 #: model_terms:ir.ui.view,arch_db:sale_renting_line_period.rental_order_form_view
