@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="rental_order_line_wizard_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >sale_renting_line_period.rental_order_line_wizard_view_form</field>
+        <field name="model">rental.order.line.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Split Order Line">
+                <sheet>
+                    <field name="qty_diff" /> / <field
+                    name="product_uom_qty"
+                    nolabel="1"
+                    readonly="1"
+                />
+
+                    <footer>
+                    <button
+                        name="split"
+                        string="Split"
+                        type="object"
+                        class="btn-primary"
+                        data-hotkey="q"
+                    />
+                    <button
+                        string="Cancel"
+                        class="btn-secondary"
+                        special="cancel"
+                        data-hotkey="x"
+                    />
+                </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="rental_order_line_wizard_action" model="ir.actions.act_window">
+        <field name="name">Split Order Line</field>
+        <field name="res_model">rental.order.line.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="rental_order_line_wizard_view_form" />
+        <field name="target">new</field>
+    </record>
+</odoo>

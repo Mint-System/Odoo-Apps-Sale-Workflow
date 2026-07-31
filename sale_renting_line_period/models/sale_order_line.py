@@ -44,6 +44,7 @@ class SaleOrderLine(models.Model):
         compute="_compute_rental_status",
     )
     next_action_date = fields.Datetime(string="Next Action", compute="_compute_rental_status", store=True)
+    same_product_line_ids = fields.One2many("sale.order.line", compute="_compute_same_product_line_ids")
 
     @api.depends("product_id", "order_id.rental_start_date", "order_id.rental_return_date")
     def _compute_rental_period(self):
@@ -94,14 +95,22 @@ class SaleOrderLine(models.Model):
         for line in self:
             if not line.is_rental:
                 line.rental_status = False
+            # Next action is return
             elif line.qty_returned < line.qty_delivered:
                 line.rental_status = "return"
                 line.next_action_date = line.rental_return_date
+            # Ready to deliver
             elif line.qty_delivered < line.product_uom_qty:
                 line.rental_status = "pickup"
                 line.next_action_date = line.rental_start_date
             else:
                 line.rental_status = "returned"
+
+    def _compute_same_product_line_ids(self):
+        for line in self:
+            line.same_product_line_ids = line.order_id.order_line.filtered(
+                lambda l: l.id != line.id and l.product_id == line.product_id
+            )
 
     def _get_rental_order_line_description(self):
         """
@@ -162,3 +171,11 @@ class SaleOrderLine(models.Model):
                 )
 
             line.price_unit = price
+
+    def action_split_line(self):
+        self.ensure_one()
+        action = self.env["ir.actions.actions"]._for_xml_id("sale_renting_line_period.rental_order_line_wizard_action")
+        action["context"] = {
+            "default_so_line_id": self.id,
+        }
+        return action

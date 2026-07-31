@@ -36,16 +36,19 @@
                     name="reserved_lot_ids"
                     widget="many2many_tags"
                     optional="hide"
+                    readonly="True"
                 />
                 <field
                     name="pickedup_lot_ids"
                     widget="many2many_tags"
                     optional="hide"
+                    readonly="True"
                 />
                 <field
                     name="returned_lot_ids"
                     widget="many2many_tags"
                     optional="hide"
+                    readonly="True"
                 />
             </xpath>
         </field>

@@ -8,7 +8,7 @@ Pickup:
 
 - Open rental order "S00028" and cancel it
 - Open rental order "S00021"
-- Change start date to next monday and return to friday
+- Change start date to yesterady and return to next friday
 - Check if dates are updated on products
 - Confirm the order
 - Click on pickup
@@ -25,12 +25,12 @@ Return not lot:
 Partial return with lot:
 
 - Click return
-- Ensure conference room is removed
+- Ensure conference room is not shown
 - For printer remove "PRINT003"
-- Select return date 2 days after start date
+- Select return date 2 days after today
 - Click validate
 - Check if Odoo splitted the line into two lines
-- Check if the lots are assigned correctly
+- Check if the lots are assigned correctly and cannot be edited
 
 Extend period:
 
@@ -50,7 +50,7 @@ Invoice:
 
 Check availability:
 
-- Cancel "S00021" and uplicate "S00021"
+- Cancel "S00021" and duplicate "S00021"
 - Remove all lines execept 1 printer
 - Change start date to next monday and return to friday
 - Confirm the order

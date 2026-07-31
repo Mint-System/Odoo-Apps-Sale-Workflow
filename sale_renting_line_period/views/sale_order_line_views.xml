@@ -10,9 +10,21 @@
             <xpath expr="//field[@name='price_unit']/.." position="after">
                 <field name="tracking" invisible="True" />
                 <group invisible="tracking != 'serial'">
-                    <field name="reserved_lot_ids" widget="many2many_tags" />
-                    <field name="pickedup_lot_ids" widget="many2many_tags" />
-                    <field name="returned_lot_ids" widget="many2many_tags" />
+                    <field
+                        name="reserved_lot_ids"
+                        widget="many2many_tags"
+                        readonly="True"
+                    />
+                    <field
+                        name="pickedup_lot_ids"
+                        widget="many2many_tags"
+                        readonly="True"
+                    />
+                    <field
+                        name="returned_lot_ids"
+                        widget="many2many_tags"
+                        readonly="True"
+                    />
                 </group>
             </xpath>
         </field>

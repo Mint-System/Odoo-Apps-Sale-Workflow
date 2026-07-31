@@ -16,17 +16,20 @@ class RentalOrderWizardLine(models.TransientModel):
     @api.model
     def _default_wizard_line_vals(self, line, status):
         """
-        # Select pickable lots based on line period and not order period
+        Set default return date.
         Remove lots that have been removed on sibling lines.
         """
         res = super()._default_wizard_line_vals(line, status)
-        res["return_date"] = line.return_date
+        _logger.warning([line, status])
+        if status == "return":
+            now = fields.Datetime.now()
+            res["return_date"] = now if line.start_date < now else line.return_date
+        else:
+            res["return_date"] = line.return_date
 
         if res["returnable_lot_ids"]:
             # Check if lots have been returned on other lines of the same order and product
-            other_returned_lots = line.order_id.order_line.filtered(
-                lambda l: l.id != line.id and l.product_id.id == line.product_id.id and l.returned_lot_ids
-            ).returned_lot_ids
+            other_returned_lots = line.same_product_line_ids.mapped("returned_lot_ids")
 
             # Remove the already returned lots from returnable
             if other_returned_lots:
@@ -87,7 +90,7 @@ class RentalOrderWizardLine(models.TransientModel):
                     )
 
             # Full return
-            elif wizard_line.qty_returned == wizard_line.qty_delivered:
+            elif wizard_line.qty_returned > 0 and wizard_line.qty_returned == wizard_line.qty_delivered:
                 order_line.write({"rental_return_date": wizard_line.return_date})
 
         return res

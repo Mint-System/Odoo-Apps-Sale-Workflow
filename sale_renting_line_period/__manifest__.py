@@ -15,6 +15,7 @@
         "views/sale_order_views.xml",
         "views/sale_order_line_views.xml",
         "wizard/rental_order_wizard_views.xml",
+        "security/ir.model.access.csv",
     ],
     "installable": True,
     "application": False,
