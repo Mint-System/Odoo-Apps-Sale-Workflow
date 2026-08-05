@@ -9,7 +9,9 @@
                 expr="//field[@name='order_line']//list//field[@name='product_uom_qty']"
                 position="attributes"
             >
-                <attribute name="readonly">rental_status in ['return', 'returned']</attribute>
+                <attribute
+                    name="readonly"
+                >rental_status in ['return', 'returned']</attribute>
             </xpath>
             <xpath
                 expr="//field[@name='order_line']//list//field[@name='product_uom_qty']"

@@ -16,12 +16,10 @@ class StockRentalSlotPeriod(models.TransientModel):
     start_date = fields.Datetime(required=True, default=fields.Datetime.now)
     end_date = fields.Datetime(required=True, default=lambda self: fields.Datetime.now() + relativedelta(months=1))
 
-    def action_view_available_slots(self):
+    def get_available_slot_ids(self):
         """
-        Show placeholder slots minus the sale order slots in range.
+        Return placeholder slots that do not overlap with booked slots in time range.
         """
-        self.ensure_one()
-        action = self.action_adjust_period()
         available_slot_ids = []
 
         # Group placeholder slots by product using the ORM
@@ -33,7 +31,6 @@ class StockRentalSlotPeriod(models.TransientModel):
 
         # For each group check if there are non placeholder (sale order) slots
         for product, group_placeholder_slot_ids in groups:
-            _logger.warning([product, group_placeholder_slot_ids])
             sale_order_slot_count = self.env["stock.rental.slot"].search_count(
                 [
                     ("is_placeholder", "=", False),
@@ -45,6 +42,15 @@ class StockRentalSlotPeriod(models.TransientModel):
             # Remove as many placeholders as there are booked slots; the rest are available
             available_slot_ids += group_placeholder_slot_ids[sale_order_slot_count:].ids
 
+        return available_slot_ids
+
+    def action_view_available_slots(self):
+        """
+        Show placeholder slots minus the sale order slots in range.
+        """
+        self.ensure_one()
+        action = self.action_adjust_period()
+        available_slot_ids = self.get_available_slot_ids()
         return {
             "type": "ir.actions.act_window",
             "name": "Rental Slots",
@@ -68,10 +74,6 @@ class StockRentalSlotPeriod(models.TransientModel):
             [("is_placeholder", "=", True), ("lot_id.start_slot_id", "!=", False)]
         )
         start_placeholder_lot_ids.write({"start_date": self.start_date, "return_date": self.start_date})
-        # end_placeholder_lot_ids = self.env["stock.rental.slot"].search(
-        #     [("is_placeholder", "=", True), ("lot_id.end_slot_id", "!=", False)]
-        # )
-        # end_placeholder_lot_ids.write({"start_date": self.end_date, "return_date": self.end_date})
 
         return {
             "type": "ir.actions.act_window",

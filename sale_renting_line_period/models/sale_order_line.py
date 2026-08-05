@@ -42,7 +42,6 @@ class SaleOrderLine(models.Model):
             ("returned", "Returned"),
         ],
         compute="_compute_rental_status",
-        copy=False,
     )
     next_action_date = fields.Datetime(string="Next Action", compute="_compute_rental_status", store=True)
     same_product_line_ids = fields.One2many("sale.order.line", compute="_compute_same_product_line_ids")
@@ -94,12 +93,16 @@ class SaleOrderLine(models.Model):
     def _compute_rental_status(self):
         self.next_action_date = False
         for line in self:
-            if not line.is_rental:
+
+            # Not rental or so not in sale
+            if not line.is_rental or line.state != "sale":
                 line.rental_status = False
+
             # Next action is return
             elif line.qty_returned < line.qty_delivered:
                 line.rental_status = "return"
                 line.next_action_date = line.rental_return_date
+
             # Ready to deliver
             elif line.qty_delivered < line.product_uom_qty:
                 line.rental_status = "pickup"

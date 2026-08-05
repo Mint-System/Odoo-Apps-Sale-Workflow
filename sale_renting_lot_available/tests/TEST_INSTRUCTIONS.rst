@@ -2,13 +2,22 @@ Init:
 
 - Open rental order "S00028" and cancel it
 - Open the sale "Rental > Schedule > Schedule"
-- Show list view and ensure 9 lines are shown
+- Show list view and ensure 5 lines are shown
+- Remove filter "Has Order Lines" and ensure 4 lines are added
 
 Move period:
 
 - Open the sale "Rental > Schedule > Check Period"
 - Select start date previous week and click "Adjust Period"
 - Check if placeholder lots have been moved
+
+Split orderl ine:
+
+- Open slot of "S00023"
+- Click "Split Order Line"
+- Enter 1.0 and try to split. You must get an error message.
+- Open the order, then return, cancel and confirm
+-
 
 New lot:
 

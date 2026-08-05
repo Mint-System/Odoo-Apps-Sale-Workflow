@@ -12,7 +12,6 @@ class StockLot(models.Model):
 
     rental_slot_ids = fields.One2many("stock.rental.slot", "lot_id", string="Rental Slots")
     start_slot_id = fields.Many2one("stock.rental.slot")
-    # end_slot_id = fields.Many2one("stock.rental.slot")
 
     rental_slot_count = fields.Integer(
         compute="_compute_rental_slot_count",
@@ -45,7 +44,6 @@ class StockLot(models.Model):
         for lot in self:
             if lot.product_id.rent_ok:
                 lot.start_slot_id = lot.env["stock.rental.slot"].create({"lot_id": lot.id})
-                # lot.end_slot_id = lot.env["stock.rental.slot"].create({"lot_id": lot.id})
 
     @api.model_create_multi
     def create(self, vals_list):

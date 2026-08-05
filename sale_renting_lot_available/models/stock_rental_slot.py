@@ -55,6 +55,9 @@ class StockRentalSlot(models.Model):
     duration_days = fields.Integer(
         related="so_line_id.duration_days",
     )
+    product_uom_qty = fields.Float(
+        related="so_line_id.product_uom_qty",
+    )
 
     # Computed fields
 
@@ -169,4 +172,5 @@ class StockRentalSlot(models.Model):
         }
 
     def action_split_order_line(self):
-        raise UserError(_("This action is not yet available."))
+        self.ensure_one()
+        return self.so_line_id.action_split_line()
