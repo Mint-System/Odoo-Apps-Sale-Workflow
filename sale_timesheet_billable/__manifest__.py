@@ -2,7 +2,7 @@
 {
     "name": "Sale Timesheet Billable",
     "summary": """
-        Selection filter for order lines with billable products on timesheet entries.
+        Selection filter for order lines with billable products on timesheet entries and define if task is billable or not..
     """,
     "author": "Mint System GmbH",
     "website": "https://www.mint-system.ch/",
@@ -10,9 +10,10 @@
     "development_status": "Production/Stable",
     "version": "17.0.1.0.0",
     "license": "AGPL-3",
-    "depends": ["sale_timesheet", "project_task_billable"],
+    "depends": ["project", "sale_timesheet"],
     "data": [
         "views/account_analytic_line_views.xml",
+        "views/project_view_task_form2_views.xml",
     ],
     "installable": True,
     "application": False,

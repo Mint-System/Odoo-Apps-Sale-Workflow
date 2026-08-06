@@ -65,3 +65,13 @@ msgstr "Aufgabe ist abrechenbar, nur Auftragspositionen mit einem Preis > 0.0 si
 #, python-format
 msgid "Task is not billable, only order lines price 0.0 are valid."
 msgstr "Aufgabe ist nicht abrechenbar, nur Auftragspositionen mit einem Preis von 0.0 sind gültig."
+
+#. module: sale_timesheet_billable
+#: model:ir.model.fields,field_description:sale_timesheet_billable.field_project_task__billable
+msgid "Billable"
+msgstr "Abrechenbar"
+
+#. module: sale_timesheet_billable
+#: model:ir.model,name:sale_timesheet_billable.model_project_task
+msgid "Task"
+msgstr "Aufgabe"
