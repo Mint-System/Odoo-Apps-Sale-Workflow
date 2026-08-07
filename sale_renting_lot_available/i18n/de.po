@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-24 13:07+0000\n"
-"PO-Revision-Date: 2026-07-24 13:07+0000\n"
+"POT-Creation-Date: 2026-08-07 08:18+0000\n"
+"PO-Revision-Date: 2026-08-07 08:18+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -39,6 +39,11 @@ msgstr "Aktiv"
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_period_form_view
 msgid "Adjust Period"
 msgstr "Zeitraum anpassen"
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_sale_order_line__available_slot_ids_count
+msgid "Available Slot Ids Count"
+msgstr "Anzahl verfügbarer Zeitfenster-IDs"
 
 #. module: sale_renting_lot_available
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_period_form_view
@@ -175,6 +180,7 @@ msgstr "Produktkategorie"
 
 #. module: sale_renting_lot_available
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_sale_order_line__product_uom_qty
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__product_uom_qty
 msgid "Quantity"
 msgstr "Menge"
 
@@ -277,15 +283,15 @@ msgid "Stock Rental Slot Period"
 msgstr "Lagermietzeitfenster-Periode"
 
 #. module: sale_renting_lot_available
+#. odoo-python
+#: code:addons/sale_renting_lot_available/models/sale_order_line.py:0
+msgid "The currently available rental qty for '%s' is %s."
+msgstr "Die aktuell verfügbare Mietmenge für '%s' beträgt %s."
+
+#. module: sale_renting_lot_available
 #: model:ir.model.fields,help:sale_renting_lot_available.field_stock_rental_slot__duration_days
 msgid "The duration in days of the rental period."
 msgstr "Die Dauer in Tagen des Mietzeitraums."
-
-#. module: sale_renting_lot_available
-#. odoo-python
-#: code:addons/sale_renting_lot_available/models/stock_rental_slot.py:0
-msgid "This action is not yet available."
-msgstr "Diese Aktion ist noch nicht verfügbar."
 
 #. module: sale_renting_lot_available
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_period_form_view

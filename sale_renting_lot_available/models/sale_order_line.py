@@ -29,7 +29,11 @@ class SaleOrderLine(models.Model):
         Generate slot when qty changes.
         """
         for line in self.filtered(lambda l: l.state != "cancel"):
-            if line.is_rental and line.product_uom_qty > line.available_slot_ids_count:
+            if (
+                line.is_rental
+                and line.available_slot_ids_count > 0
+                and line.product_uom_qty > line.available_slot_ids_count
+            ):
                 raise UserError(
                     _(
                         "The currently available rental qty for '%s' is %s.",
@@ -104,4 +108,4 @@ class SaleOrderLine(models.Model):
             elif line.product_id.is_storable and line.product_id.tracking == "none":
                 line.available_slot_ids_count = line.product_id.qty_available
             else:
-                line.available_slot_ids_count = 9999
+                line.available_slot_ids_count = -1

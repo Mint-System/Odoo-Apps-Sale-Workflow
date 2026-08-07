@@ -20,6 +20,14 @@ class SaleOrder(models.Model):
         for order in self:
             order.rental_slot_count = len(order.mapped("order_line.rental_slot_ids"))
 
+    def action_draft(self):
+        """
+        Re-create rental slots.
+        """
+        res = super().action_draft()
+        self.order_line._inverse_product_uom_qty()
+        return super().action_draft()
+
     def action_cancel(self):
         """
         Unlink slots when order is cancelled.

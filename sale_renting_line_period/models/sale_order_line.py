@@ -93,9 +93,8 @@ class SaleOrderLine(models.Model):
     def _compute_rental_status(self):
         self.next_action_date = False
         for line in self:
-
-            # Not rental or so not in sale
-            if not line.is_rental or line.state != "sale":
+            # Not rental
+            if not line.is_rental:
                 line.rental_status = False
 
             # Next action is return
@@ -107,8 +106,13 @@ class SaleOrderLine(models.Model):
             elif line.qty_delivered < line.product_uom_qty:
                 line.rental_status = "pickup"
                 line.next_action_date = line.rental_start_date
-            else:
+
+            # Everything returned
+            elif line.qty_delivered == line.qty_returned:
                 line.rental_status = "returned"
+
+            else:
+                line.rental_status = False
 
     def _compute_same_product_line_ids(self):
         for line in self:
