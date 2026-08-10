@@ -1,0 +1,6 @@
+- In Settings -> Sale -> Sale Order Display, set the 'Display Name Template' to '{name} {asdf}'
+- Store the settings, a validation error should appear.
+- Change the Display Name Template to '{name} / {ref}'
+- Create a new Sale Order
+- Write something in the field 'Reference'
+- The Sale Order name and Reference should appear in the top bar, with '/' in between.

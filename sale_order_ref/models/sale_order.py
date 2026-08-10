@@ -12,10 +12,15 @@ class SaleOrder(models.Model):
 
     ref = fields.Char("Reference", copy=False)
 
+    @api.model
+    def display_name_formatted(self, display_name_template, name, ref):
+        return display_name_template.format(name=name, ref=ref)
+
     @api.depends("ref")
     def _compute_display_name(self):
+        display_name_template = self.env['ir.config_parameter'].sudo().get_param('sale_order_ref.displayname_template', default=False)
+        
+        super()._compute_display_name()
         for rec in self:
-            if rec.ref:
-                rec.display_name = rec.name + f" ({rec.ref})"
-            else:
-                rec.display_name = rec.name
+            if display_name_template and rec.ref and rec.name:
+                rec.display_name = self.display_name_formatted(display_name_template, rec.name, rec.ref)

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0+e\n"
+"Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-07 09:17+0000\n"
-"PO-Revision-Date: 2026-05-07 09:17+0000\n"
+"POT-Creation-Date: 2026-08-10 13:17+0000\n"
+"PO-Revision-Date: 2026-08-10 13:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,14 +16,25 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_ref
-#: model:ir.model.fields,field_description:sale_order_ref.field_sale_order__display_name
-msgid "Display Name"
-msgstr "Anzeigename"
+#: model_terms:ir.ui.view,arch_db:sale_order_ref.res_config_settings_view_form_inherit_sale_order_ref
+msgid "Define how sale order display names appear."
+msgstr ""
+"Definieren Sie, wie die Anzeigenamen von Verkaufsaufträgen erscheinen."
 
 #. module: sale_order_ref
-#: model:ir.model.fields,field_description:sale_order_ref.field_sale_order__id
-msgid "ID"
-msgstr "ID"
+#: model_terms:ir.ui.view,arch_db:sale_order_ref.res_config_settings_view_form_inherit_sale_order_ref
+msgid "Display Name Template"
+msgstr "Vorlage des Anzeigenamens"
+
+#. module: sale_order_ref
+#: model:ir.model.fields,field_description:sale_order_ref.field_res_config_settings__sale_order_ref_template_example
+msgid "Example"
+msgstr "Beispiel"
+
+#. module: sale_order_ref
+#: model_terms:ir.ui.view,arch_db:sale_order_ref.res_config_settings_view_form_inherit_sale_order_ref
+msgid "Preview:"
+msgstr "Vorschau:"
 
 #. module: sale_order_ref
 #: model:ir.model.fields,field_description:sale_order_ref.field_sale_order__ref
@@ -31,6 +42,30 @@ msgid "Reference"
 msgstr "Referenz"
 
 #. module: sale_order_ref
+#: model_terms:ir.ui.view,arch_db:sale_order_ref.res_config_settings_view_form_inherit_sale_order_ref
+msgid "Sale Order Display"
+msgstr "Verkaufsauftragsanzeige"
+
+#. module: sale_order_ref
+#: model:ir.model.fields,field_description:sale_order_ref.field_res_config_settings__sale_order_ref_displayname_template
+msgid "Sale Order Display Name Template"
+msgstr "Verkaufsauftragsanzeige Vorlage"
+
+#. module: sale_order_ref
 #: model:ir.model,name:sale_order_ref.model_sale_order
 msgid "Sales Order"
 msgstr "Verkaufsauftrag"
+
+#. module: sale_order_ref
+#: model_terms:ir.ui.view,arch_db:sale_order_ref.res_config_settings_view_form_inherit_sale_order_ref
+msgid ""
+"Template used for sale order display names. Use {name} for order name and "
+"{ref} for client reference."
+msgstr ""
+"Vorlage für die Anzeigenamen von Verkaufsaufträgen. Verwenden Sie {name} für "
+"den Auftragsnamen und {ref} für die Verkaufsauftrag Referenz."
+
+#. module: sale_order_ref
+#: model_terms:ir.ui.view,arch_db:sale_order_ref.res_config_settings_view_form_inherit_sale_order_ref
+msgid "e.g.: {name} ({ref})"
+msgstr "z.B.: {name} ({ref})"
