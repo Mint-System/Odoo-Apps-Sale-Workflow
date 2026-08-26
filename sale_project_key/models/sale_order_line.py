@@ -10,10 +10,12 @@ _logger = logging.getLogger(__name__)
 class SaleOrderLine(models.Model):
     _inherit = ["sale.order.line"]
 
-    @api.depends("order_partner_id", "order_id", "product_id", "order_id.project_key")
+    @api.depends("order_partner_id", "order_id", "product_id")
     def _compute_display_name(self):
         super()._compute_display_name()
         for so_line in self.sudo():
-            project_key = so_line.order_id.project_key
-            if project_key:
-                so_line.display_name = f"[{project_key}] - {so_line.display_name}"
+            so_line.display_name = f"{so_line.display_name}"
+
+
+    def _additional_name_per_id(self):
+        return {}
