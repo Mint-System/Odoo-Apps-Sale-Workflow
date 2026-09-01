@@ -2,6 +2,9 @@ import logging
 
 from odoo import http
 
+from odoo.http import request
+
+from odoo.addons.web.controllers.home import Home
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 
 _logger = logging.getLogger(__name__)
@@ -27,3 +30,22 @@ class WebsiteSaleCustom(WebsiteSale):
         http.request.session["last_viewed_product_id"] = product.id
 
         return res
+
+class ClearCartOnLogin(Home):
+    @http.route()
+    def web_login(self, redirect=None, **kw):
+        # Remember the state *before* login
+        pre_sale_order_id = request.session.get('sale_order_id')
+
+        # Let Odoo perform the normal login flow
+        response = super(ClearCartOnLogin, self).web_login(redirect=redirect, **kw)
+
+        if pre_sale_order_id:
+            order = request.env['sale.order'].sudo().browse(pre_sale_order_id)
+            # Unlink only if it is still a draft and actually came from the website
+            if order.exists() and order.state == 'draft' and order.website_id:
+                order.unlink()
+
+        request.session.pop('sale_order_id', None)
+
+        return response
