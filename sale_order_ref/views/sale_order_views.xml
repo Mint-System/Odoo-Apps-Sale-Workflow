@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="partner_shipping_id" position="after">
-                <field name="ref" />
+                <field name="ref" required="1"/>
             </field>
         </field>
     </record>
