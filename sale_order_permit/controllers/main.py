@@ -40,12 +40,24 @@ class ClearCartOnLogin(Home):
         # Let Odoo perform the normal login flow
         response = super(ClearCartOnLogin, self).web_login(redirect=redirect, **kw)
 
+        # Discard the anonymous cart that was stored in the session
         if pre_sale_order_id:
             order = request.env['sale.order'].sudo().browse(pre_sale_order_id)
             # Unlink only if it is still a draft and actually came from the website
             if order.exists() and order.state == 'draft' and order.website_id:
                 order.unlink()
 
+        # Remove any existing webshop draft orders for the logged-in user
+        SaleOrder = request.env['sale.order'].sudo()
+        existing_carts = SaleOrder.search([
+            ('partner_id', '=', request.env.user.partner_id.id),
+            ('state', '=', 'draft'),
+            ('website_id', '!=', False),
+        ])
+        if existing_carts:
+            existing_carts.unlink()
+
+        # Make sure the session no longer references a cart
         request.session.pop('sale_order_id', None)
 
         return response
