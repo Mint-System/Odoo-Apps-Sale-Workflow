@@ -1,5 +1,4 @@
 import logging
-from datetime import date
 
 from psycopg2 import IntegrityError, errorcodes
 

@@ -14,4 +14,3 @@ Expired synscriptions:
 - Set next invoice date to date older than 5 days from today.
 - Run scheduled action "Sale Subscription: subscriptions expiration".
 - Check that order is not closed.
-

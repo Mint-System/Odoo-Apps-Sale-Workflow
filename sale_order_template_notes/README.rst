@@ -56,7 +56,7 @@ Authors
 Contributors
 ------------
 
-- Ulrich Kilian uk@sdcience-and-more.de
+-  Ulrich Kilian uk@sdcience-and-more.de
 
 Maintainers
 -----------
