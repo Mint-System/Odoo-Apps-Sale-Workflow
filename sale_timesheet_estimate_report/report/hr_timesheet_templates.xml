@@ -77,7 +77,7 @@
                             </strong></td>
                             <td class="text-end"><strong>
                                 <span
-                                        t-esc="sum(estimate_ids.mapped('progress_validated')) / len(estimate_ids)"
+                                        t-esc="env['project.estimate']._calculate_progress(sum(estimate_ids.mapped('planned_hours')), sum(estimate_ids.mapped('effective_hours_validated')))"
                                         t-options="{'widget': 'integer'}"
                                     /> %
                             </strong></td>
