@@ -16,18 +16,19 @@ class SaleOrderLineWizard(models.TransientModel):
     qty_diff = fields.Float()
     product_uom_qty = fields.Float(readonly=True)
 
-    def split(self):
+    def split(self, transfer_lot_ids=None):
         """
         Duplicate sale order line.
         The qty diff is subtracted on current line and set on new line.
         """
         self.ensure_one()
+        so_line_id = self.so_line_id
 
-        if self.so_line_id.rental_status in ["return", "returned"]:
+        if so_line_id.rental_status in ["returned"]:
             raise UserError(
                 _(
-                    "Cannot split line with product '%s'. Only lines in draft and pickup can be splitted.",
-                    self.so_line_id.product_id.name,
+                    "Cannot split line with product '%s' in retnal state 'returned'.",
+                    so_line_id.product_id.name,
                 )
             )
 
@@ -35,13 +36,48 @@ class SaleOrderLineWizard(models.TransientModel):
             raise UserError(
                 _(
                     "Cannot split line with product '%s'. Qty diff must be strictly between 0 and %s.",
-                    self.so_line_id.product_id.name,
+                    so_line_id.product_id.name,
                     self.product_uom_qty,
                 )
             )
 
-        self.so_line_id.product_uom_qty -= self.qty_diff
-        new_line = self.so_line_id.copy(
-            default={"order_id": self.so_line_id.order_id.id, "product_uom_qty": self.qty_diff}
+        # Adjust qty on current line
+        if so_line_id.qty_delivered > 0:
+            so_line_id.qty_delivered -= self.qty_diff
+        so_line_id.product_uom_qty -= self.qty_diff
+
+        new_line = so_line_id.copy(
+            default={
+                "order_id": so_line_id.order_id.id,
+                "product_uom_qty": self.qty_diff,
+                "qty_delivered": self.qty_diff,
+            }
         )
+
+        # Transfer lot to new line
+        if so_line_id.reserved_lot_ids and so_line_id.pickedup_lot_ids:
+            # Select the amount of lots based on qty diff
+            reserved_lot_ids = so_line_id.reserved_lot_ids
+            pickedup_lot_ids = so_line_id.pickedup_lot_ids
+
+            # _logger.warning([self.qty_diff, reserved_lot_ids])
+            transfer_reserved_lot_ids = reserved_lot_ids[: int(self.qty_diff)]
+            transfer_pickedup_lot_ids = pickedup_lot_ids[: int(self.qty_diff)]
+
+            # Remove the lots from current line
+            so_line_id.write(
+                {
+                    "reserved_lot_ids": reserved_lot_ids - transfer_reserved_lot_ids,
+                    "pickedup_lot_ids": pickedup_lot_ids - transfer_pickedup_lot_ids,
+                }
+            )
+
+            # Add lots to new line
+            new_line.write(
+                {
+                    "reserved_lot_ids": transfer_reserved_lot_ids,
+                    "pickedup_lot_ids": transfer_pickedup_lot_ids,
+                }
+            )
+
         return new_line

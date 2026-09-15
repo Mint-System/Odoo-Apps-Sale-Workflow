@@ -188,3 +188,9 @@ class SaleOrderLine(models.Model):
             "default_product_uom_qty": self.product_uom_qty,
         }
         return action
+
+    def _move_serials(self, lot_ids, location_id, location_dest_id):
+        """
+        Overwrite: Do not move the serials. Also this method causes issues when transfering lots.
+        """
+        return

@@ -20,12 +20,11 @@ class RentalOrderWizardLine(models.TransientModel):
         Remove lots that have been removed on sibling lines.
         """
         res = super()._default_wizard_line_vals(line, status)
-        _logger.warning([line, status])
         if status == "return":
             now = fields.Datetime.now()
-            res["return_date"] = now if line.start_date < now else line.return_date
+            res["return_date"] = now if now < line.rental_return_date else line.rental_return_date
         else:
-            res["return_date"] = line.return_date
+            res["return_date"] = line.rental_return_date
 
         if res["returnable_lot_ids"]:
             # Check if lots have been returned on other lines of the same order and product
@@ -54,43 +53,45 @@ class RentalOrderWizardLine(models.TransientModel):
                     )
                 )
 
-            # Partial return
-            if wizard_line.qty_returned > 0 and wizard_line.qty_returned < wizard_line.qty_delivered:
-                # Get remaining qty
-                qty_returned = wizard_line.qty_returned
-                qty_remaining = wizard_line.qty_delivered - qty_returned
+            # # Partial return
+            # if wizard_line.qty_returned > 0 and wizard_line.qty_returned < wizard_line.qty_delivered:
 
-                # Get reaminign lots
-                pickedup_lot_ids = order_line.pickedup_lot_ids
-                returned_lot_ids = wizard_line.returned_lot_ids
-                remaining_lot_ids = pickedup_lot_ids - returned_lot_ids
+            #     # Get remaining qty
+            #     qty_returned = wizard_line.qty_returned
+            #     qty_remaining = wizard_line.qty_delivered - qty_returned
 
-                # Current line has remining quanity
-                order_line.write({"qty_delivered": qty_remaining})
-                order_line.write({"product_uom_qty": qty_remaining, "qty_returned": 0.0, "returned_lot_ids": False})
+            #     # Get reaminign lots
+            #     pickedup_lot_ids = order_line.pickedup_lot_ids
+            #     returned_lot_ids = wizard_line.returned_lot_ids
+            #     remaining_lot_ids = pickedup_lot_ids - returned_lot_ids
 
-                # Create new line with returned quanity.
-                returned_line = order_line.copy()
-                returned_line.write(
-                    {
-                        "product_uom_qty": qty_returned,
-                        "qty_delivered": qty_returned,
-                        "qty_returned": qty_returned,
-                        "rental_return_date": wizard_line.return_date,
-                    }
-                )
+            #     # Current line has remining quanity
+            #     order_line.write({"qty_delivered": qty_remaining})
+            #     order_line.write({"product_uom_qty": qty_remaining, "qty_returned": 0.0, "returned_lot_ids": False})
 
-                # Update lot ids
-                if remaining_lot_ids:
-                    returned_line.write(
-                        {
-                            "pickedup_lot_ids": returned_lot_ids,
-                            "returned_lot_ids": returned_lot_ids,
-                        }
-                    )
+            #     # Create new line with returned quanity.
+            #     returned_line = order_line.copy()
+            #     _logger.warning([order_line])
+            #     returned_line.write(
+            #         {
+            #             "product_uom_qty": qty_returned,
+            #             "qty_delivered": qty_returned,
+            #             "qty_returned": qty_returned,
+            #             "rental_return_date": wizard_line.return_date,
+            #         }
+            #     )
+
+            #     # Update lot ids
+            #     if remaining_lot_ids:
+            #         returned_line.write(
+            #             {
+            #                 "pickedup_lot_ids": returned_lot_ids,
+            #                 "returned_lot_ids": returned_lot_ids,
+            #             }
+            #         )
 
             # Full return
-            elif wizard_line.qty_returned > 0 and wizard_line.qty_returned == wizard_line.qty_delivered:
+            if wizard_line.qty_returned > 0 and wizard_line.qty_returned == wizard_line.qty_delivered:
                 order_line.write({"rental_return_date": wizard_line.return_date})
 
         return res

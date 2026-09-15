@@ -1,14 +1,15 @@
 Add product:
 
 - Open rental order "S00021"
-- Search for "Projector" add and remove the item
+- Add line with "Projector" and save
 - Check if name is correct
+- Remove the line
 
 Pickup:
 
 - Open rental order "S00028" and cancel it
 - Open rental order "S00021"
-- Change start date to yesterady and return to next friday
+- Change start date to 2 days ago and return to next friday
 - Check if dates are updated on products
 - Confirm the order
 - Click on pickup
@@ -19,18 +20,22 @@ Return not lot:
 
 - Click return
 - For conference set return date 1 day after start date
-- Remove all selected lots for pinter
+- Remove print from return list
 - Validate and check if return date is set correctly
+
+Split line:
+
+- Click on split line action
+- Enter 1.0
+- Ensure a new line with qty 1.0 is created
+- Check if the lots have been transfered
 
 Partial return with lot:
 
 - Click return
-- Ensure conference room is not shown
-- For printer remove "PRINT003"
+- Remove the line with only 1 lot
 - Select return date 2 days after today
 - Click validate
-- Check if Odoo splitted the line into two lines
-- Check if the lots are assigned correctly and cannot be edited
 
 Extend period:
 
@@ -47,12 +52,6 @@ Invoice:
 
 - Create invoice for rental order
 - Ensure the period descriptions are correct
-
-Split lines:
-
-- Cancel "S00021" and duplicate "S00021"
-- Remove all lines execept 1 printer
-- Use split action to split line
 
 Check availability:
 

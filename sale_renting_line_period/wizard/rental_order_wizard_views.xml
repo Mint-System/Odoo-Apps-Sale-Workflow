@@ -13,6 +13,9 @@
                     column_invisible="parent.status == 'pickup'"
                 />
             </field>
+            <list position="attributes">
+                <attribute name="delete">true</attribute>
+            </list>
         </field>
     </record>
 </odoo>
