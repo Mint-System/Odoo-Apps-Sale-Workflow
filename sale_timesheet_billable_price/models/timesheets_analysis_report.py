@@ -10,55 +10,28 @@ _logger = logging.getLogger(__name__)
 class TimesheetsAnalysisReport(models.Model):
     _inherit = ["timesheets.analysis.report"]
 
+    @api.model
+    def _select(self):
+        """
+        Override to treat timesheets linked to sale order lines with zero price
+        as non-billable (no revenue, no billable time).
+        """
+        select = super()._select()
 
-    @property
-    def _table_query(self):
-        return """
-            SELECT
-                B.id AS id,
-                B.name AS name,
-                B.user_id AS user_id,
-                B.project_id AS project_id,
-                B.task_id AS task_id,
-                B.parent_task_id AS parent_task_id,
-                B.employee_id AS employee_id,
-                B.manager_id AS manager_id,
-                B.company_id AS company_id,
-                B.department_id AS department_id,
-                B.currency_id AS currency_id,
-                B.date AS date,
-                B.amount AS amount,
-                B.unit_amount AS unit_amount,
-                B.order_id AS order_id,
-                B.so_line AS so_line,
-                B.timesheet_invoice_type AS timesheet_invoice_type,
-                B.timesheet_invoice_id AS timesheet_invoice_id,
-                CASE
-                    WHEN SOL.id IS NOT NULL AND SOL.price_unit = 0
-                    THEN 0
-                    ELSE B.timesheet_revenues
-                END AS timesheet_revenues,
-                (
-                    CASE
-                        WHEN SOL.id IS NOT NULL AND SOL.price_unit = 0
-                        THEN 0
-                        ELSE B.timesheet_revenues
-                    END + B.amount
-                ) AS margin,
-                CASE
-                    WHEN SOL.id IS NOT NULL AND SOL.price_unit = 0
-                    THEN 0
-                    ELSE B.billable_time
-                END AS billable_time,
-                (
-                    B.unit_amount - CASE
-                        WHEN SOL.id IS NOT NULL AND SOL.price_unit = 0
-                        THEN 0
-                        ELSE B.billable_time
-                    END
-                ) AS non_billable_time
-            FROM (
-                %s
-            ) B
-            LEFT JOIN sale_order_line SOL ON SOL.id = B.so_line
-        """ % (super()._table_query)
+        # Add the condition OR SOL.price_unit = 0 to both CASE statements
+        # to treat zero-price SOLs as non-billable
+        # select = select.replace(
+        #     "CASE WHEN A.order_id IS NULL THEN 0", "CASE WHEN A.order_id IS NULL OR SOL.price_unit = 0 THEN 0"
+        # )
+        select = select.replace(
+            "WHEN A.order_id IS NULL OR T.service_type in ('manual', 'milestones') THEN 0",
+            "WHEN A.order_id IS NULL OR T.service_type in ('manual', 'milestones') OR SOL.price_unit = 0 THEN 0",
+        )
+        select = select.replace(
+            "CASE WHEN A.order_id IS NULL THEN 0 ELSE A.unit_amount END AS billable_time",
+            "CASE WHEN A.order_id IS NULL OR SOL.price_unit = 0 THEN 0 ELSE A.unit_amount END AS billable_time",
+        )
+
+        return select
+
+
