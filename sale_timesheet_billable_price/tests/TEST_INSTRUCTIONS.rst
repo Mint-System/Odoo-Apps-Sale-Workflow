@@ -1,0 +1,10 @@
+- Create a service product "Administration" with price 0 and invoice based on timesheet
+- Create a sale order with "Senior-Architekt" and "Administration"
+- Open the "Senior-Architekt" task and add 1 hour
+- Duplicate the task and link with "Administration"
+- Add 1 hour as well and return to the sale order
+- Ensure the sale order has 2 hours
+- Create the invoice and ensure both analytic lines are linked
+- Open the timesheet report and group by project
+- Show values for all, billable and non-billable time
+- Ensure the numbers are correct

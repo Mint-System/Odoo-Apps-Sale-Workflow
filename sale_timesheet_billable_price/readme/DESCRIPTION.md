@@ -1,0 +1,1 @@
+The billability of an analytic line depends on the order line price.
