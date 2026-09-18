@@ -1,0 +1,1 @@
+Assign sequence if blanket order is created.
