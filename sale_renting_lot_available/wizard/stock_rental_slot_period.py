@@ -60,6 +60,8 @@ class StockRentalSlotPeriod(models.TransientModel):
             "context": {
                 "search_default_groupby_category": 1,
                 "search_default_groupby_product": 1,
+                "default_rental_start_date": self.start_date,
+                "default_rental_return_date": self.end_date,
             },
         }
 

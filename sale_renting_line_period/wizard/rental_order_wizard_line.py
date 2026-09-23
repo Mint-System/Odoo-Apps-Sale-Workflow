@@ -53,42 +53,14 @@ class RentalOrderWizardLine(models.TransientModel):
                     )
                 )
 
-            # # Partial return
-            # if wizard_line.qty_returned > 0 and wizard_line.qty_returned < wizard_line.qty_delivered:
-
-            #     # Get remaining qty
-            #     qty_returned = wizard_line.qty_returned
-            #     qty_remaining = wizard_line.qty_delivered - qty_returned
-
-            #     # Get reaminign lots
-            #     pickedup_lot_ids = order_line.pickedup_lot_ids
-            #     returned_lot_ids = wizard_line.returned_lot_ids
-            #     remaining_lot_ids = pickedup_lot_ids - returned_lot_ids
-
-            #     # Current line has remining quanity
-            #     order_line.write({"qty_delivered": qty_remaining})
-            #     order_line.write({"product_uom_qty": qty_remaining, "qty_returned": 0.0, "returned_lot_ids": False})
-
-            #     # Create new line with returned quanity.
-            #     returned_line = order_line.copy()
-            #     _logger.warning([order_line])
-            #     returned_line.write(
-            #         {
-            #             "product_uom_qty": qty_returned,
-            #             "qty_delivered": qty_returned,
-            #             "qty_returned": qty_returned,
-            #             "rental_return_date": wizard_line.return_date,
-            #         }
-            #     )
-
-            #     # Update lot ids
-            #     if remaining_lot_ids:
-            #         returned_line.write(
-            #             {
-            #                 "pickedup_lot_ids": returned_lot_ids,
-            #                 "returned_lot_ids": returned_lot_ids,
-            #             }
-            #         )
+            # Partial return
+            if wizard_line.qty_returned > 0 and wizard_line.qty_returned < wizard_line.qty_delivered:
+                raise UserError(
+                    _(
+                        "Partial return not possible. Split line with product '%s' on rental order.",
+                        order_line.product_id.name,
+                    )
+                )
 
             # Full return
             if wizard_line.qty_returned > 0 and wizard_line.qty_returned == wizard_line.qty_delivered:

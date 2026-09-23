@@ -1,7 +1,7 @@
 Add product:
 
 - Open rental order "S00021"
-- Add line with "Projector" and save
+- Add line with "Projektor" and save
 - Check if name is correct
 - Remove the line
 
@@ -12,15 +12,15 @@ Pickup:
 - Change start date to 2 days ago and return to next friday
 - Check if dates are updated on products
 - Confirm the order
-- Click on pickup
+- Click on "Pickup"
 - Select all lots for printer
 - And validate
 
-Return not lot:
+Return no lot:
 
-- Click return
+- Click "Return"
 - For conference set return date 1 day after start date
-- Remove print from return list
+- Remove the "Printer" line from return list
 - Validate and check if return date is set correctly
 
 Split line:
@@ -33,7 +33,7 @@ Split line:
 Partial return with lot:
 
 - Click return
-- Remove the line with only 1 lot
+- Remove the line with 1 lot
 - Select return date 2 days after today
 - Click validate
 
@@ -53,13 +53,20 @@ Invoice:
 - Create invoice for rental order
 - Ensure the period descriptions are correct
 
+Cancel:
+
+- Cancel "S00021"
+- Ensure slots are removed
+- Set to draft
+- Ensure slots are created
+
 Check availability:
 
+- Create a copy of "S00021"
+- Remove all but one "Printer" line.
 - Change start date to next monday and return to friday
-- Confirm the order
-- Click on pickup and select "PRINT001" lot
-- Click validate
-- Duplicate the new order and confirm
+- Confirm the order and pickup "PRINT001" lot
+- Duplicate this new order and confirm
 - Click on pickup and ensure that "PRINT001" is not available
 - Change start and end date to plus one week
 - Click on pickup and ensure that "PRINT001" is available

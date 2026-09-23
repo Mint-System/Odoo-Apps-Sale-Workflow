@@ -98,8 +98,8 @@ class SaleOrderLine(models.Model):
                         ("is_placeholder", "=", False),
                         ("so_line_id", "!=", line.id),
                         ("product_id", "=", line.product_id.id),
-                        ("start_date", "<=", line.return_date),
-                        ("return_date", ">=", line.start_date),
+                        ("start_date", "<=", line.rental_return_date),
+                        ("return_date", ">=", line.rental_start_date),
                     ]
                 )
 

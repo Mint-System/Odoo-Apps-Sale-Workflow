@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-31 08:23+0000\n"
-"PO-Revision-Date: 2026-07-31 08:23+0000\n"
+"POT-Creation-Date: 2026-09-23 16:15+0000\n"
+"PO-Revision-Date: 2026-09-23 16:15+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,12 +38,8 @@ msgstr "Abbrechen"
 #. module: sale_renting_line_period
 #. odoo-python
 #: code:addons/sale_renting_line_period/wizard/rental_order_line_wizard.py:0
-msgid ""
-"Cannot split line with product '%s'. Only lines in draft and pickup can be "
-"splitted."
-msgstr ""
-"Zeile mit Produkt '%s' kann nicht geteilt werden. Nur Zeilen im Entwurf und "
-"Pickup können geteilt werden."
+msgid "Cannot split line with product '%s' in retnal state 'returned'."
+msgstr "Zeile mit Produkt '%s' kann nicht geteilt werden, da sie sich im Mietstatus 'returned' befindet."
 
 #. module: sale_renting_line_period
 #. odoo-python
@@ -92,7 +88,9 @@ msgstr "Dauer in Tagen"
 #. module: sale_renting_line_period
 #: model_terms:ir.ui.view,arch_db:sale_renting_line_period.rental_order_line_wizard_view_form
 msgid "Enter the quantity to split into a duplicated line:"
-msgstr "Geben Sie die Menge ein, die in eine duplizierte Zeile aufgeteilt werden soll:"
+msgstr ""
+"Geben Sie die Menge ein, die in eine duplizierte Zeile aufgeteilt werden "
+"soll:"
 
 #. module: sale_renting_line_period
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_product_product__id
@@ -101,7 +99,7 @@ msgstr "Geben Sie die Menge ein, die in eine duplizierte Zeile aufgeteilt werden
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order_line__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_renting_line_period
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_line_wizard__write_uid
@@ -117,6 +115,14 @@ msgstr "Zuletzt aktualisiert am"
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order_line__next_action_date
 msgid "Next Action"
 msgstr "Nächste Aktion"
+
+#. module: sale_renting_line_period
+#. odoo-python
+#: code:addons/sale_renting_line_period/wizard/rental_order_wizard_line.py:0
+msgid ""
+"Partial return not possible. Split line with product '%s' on rental order."
+msgstr ""
+"Teilweise Rückgabe nicht möglich. Teilen Sie die Zeile mit dem Produkt '%s' im Mietauftrag."
 
 #. module: sale_renting_line_period
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_line_wizard__product_uom_qty

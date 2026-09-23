@@ -1,4 +1,4 @@
-Init:
+Setup:
 
 - Open rental order "S00028" and cancel it
 - Open the sale "Rental > Schedule > Schedule"
@@ -15,15 +15,13 @@ Split order line:
 
 - Open slot of "S00023"
 - Click "Split Order Line"
-- Enter 1.0 and try to split. You must get an error message.
-- Open the order, then return, cancel and confirm
-- Ensure order line is in state "pickup"
-- Try to split again
+- Enter 1.0 and split
+- There must be two lines now
 
 New lot:
 
-- Add 1.0 qty to "Printer" and create new lot "PRINT005"
-- Ensure new placeholder slot is created
+- Open "Printer" qty and create new lot "PRINT005" with qty 1.0
+- Open lot and ensure new placeholder slot is created
 
 Filer:
 
@@ -39,9 +37,12 @@ Create rental order:
 - Open a placeholder slot
 - Click "Create Rental Order" for "Acme Corporation"
 - Set dates to tomorrow and day after tomorrow
-- Save and set qty to 2
+- Set qty to 2 and save
 - Ensure slots have been recreated
 - Try to set qty 6, you must get an error
+
+Check view:
+
 - Click on the smart button
 - Extend the end date
 - Open slot and click "View Rental Order"
@@ -58,13 +59,10 @@ Create additional rental order:
 - Duplicate the previous order
 - Confirm and pickup "PRINT001" and "PRINT005" lot
 - Click smart button and remove order filter
-- Ensure the view is correct
-- Return to duplicated order and try to cancel it.
+- Ensure the view shows all order and correct colors
 
-Partial return:
+Check available lots
 
-- Execute a return for "PRINT001" lot
-- Ensure only 2 slots are shown and are linked correctly
-- Return the remaining slot
-- Cancel the order
-- Ensure the slots are gone
+- Move the order in pickup state after the other
+- Open the pickup order and confirm it
+- Click "Pickup" and make sure that "PRINT001" can be selected

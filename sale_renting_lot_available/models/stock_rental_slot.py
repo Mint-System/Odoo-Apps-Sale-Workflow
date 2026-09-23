@@ -1,6 +1,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
+from collections import Counter
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -135,28 +136,36 @@ class StockRentalSlot(models.Model):
         if not products:
             raise UserError(_("Selected slots have no product."))
 
+        product_counts = Counter(slot.product_id for slot in self if slot.product_id)
+
         order_lines = []
-        for product in products:
+        for product, qty in product_counts.items():
             order_lines.append(
                 (
                     0,
                     0,
                     {
                         "product_id": product.id,
-                        "product_uom_qty": 1,
+                        "product_uom_qty": qty,
                     },
                 )
             )
+
+        context = {
+            "default_order_line": order_lines,
+            "in_rental_app": 1,
+        }
+        if self.env.context.get("default_rental_start_date"):
+            context["default_rental_start_date"] = self.env.context["default_rental_start_date"]
+        if self.env.context.get("default_rental_return_date"):
+            context["default_rental_return_date"] = self.env.context["default_rental_return_date"]
 
         return {
             "type": "ir.actions.act_window",
             "name": _("Sale Order"),
             "res_model": "sale.order",
             "view_mode": "form",
-            "context": {
-                "default_order_line": order_lines,
-                "in_rental_app": 1,
-            },
+            "context": context,
         }
 
     def action_view_order(self):
