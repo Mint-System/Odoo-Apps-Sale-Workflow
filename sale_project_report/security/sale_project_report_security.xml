@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="group_sale_project_report_user" model="res.groups">
+        <field name="name">Project Analysis Report</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+    <record id="project_report_comp_rule" model="ir.rule">
+        <field name="name">Project Report: multi-company</field>
+        <field name="model_id" ref="model_project_report"/>
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+
+</odoo>

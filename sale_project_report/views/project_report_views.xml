@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="project_report_view_search" model="ir.ui.view">
+        <field name="name">project.report.search</field>
+        <field name="model">project.report</field>
+        <field name="arch" type="xml">
+            <search string="Project Analysis">
+                <field name="project_id"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <group expand="1" string="Group By">
+                    <filter string="Project" name="project" context="{'group_by':'project_id'}"/>
+                    <filter string="Customer" name="partner" context="{'group_by':'partner_id'}"/>
+                    <filter string="Project Manager" name="user" context="{'group_by':'user_id'}"/>
+                    <filter string="Company" name="company" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="project_report_view_pivot" model="ir.ui.view">
+        <field name="name">project.report.pivot</field>
+        <field name="model">project.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Project Analysis" sample="1">
+                <field name="project_id" type="row"/>
+                <field name="planned_hours" type="measure"/>
+                <field name="allocated_hours" type="measure"/>
+                <field name="timesheet_hours" type="measure"/>
+                <field name="invoiced_hours" type="measure"/>
+                <field name="allocated_planned" type="measure"/>
+                <field name="timesheet_allocated" type="measure"/>
+                <field name="timesheet_planned" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="project_report_view_graph" model="ir.ui.view">
+        <field name="name">project.report.graph</field>
+        <field name="model">project.report</field>
+        <field name="arch" type="xml">
+            <graph string="Project Analysis" type="bar" sample="1">
+                <field name="project_id"/>
+                <field name="planned_hours" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_project_report" model="ir.actions.act_window">
+        <field name="name">Project Analysis</field>
+        <field name="res_model">project.report</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="search_view_id" ref="project_report_view_search"/>
+        <field name="help">This report provides an overview of planned, allocated, timesheet and invoiced hours per project.</field>
+    </record>
+
+    <menuitem
+        name="Project Analysis"
+        id="menu_project_report_project_analysis"
+        parent="project.menu_project_report"
+        action="action_project_report"
+        groups="sale_project_report.group_sale_project_report_user"
+        sequence="20"
+    />
+
+</odoo>
