@@ -37,6 +37,7 @@ class SaleOrderLine(models.Model):
     )
     rental_status = fields.Selection(
         selection=[
+            ("draft", "Draft"),
             ("pickup", "Booked"),
             ("return", "Delivered"),
             ("returned", "Returned"),
@@ -93,8 +94,16 @@ class SaleOrderLine(models.Model):
     def _compute_rental_status(self):
         self.next_action_date = False
         for line in self:
-            # Not rental
+            # Not rental: no active rental status.
             if not line.is_rental:
+                line.rental_status = False
+
+            # Order still in draft: mark the line as drafted. Other
+            # non-confirmed states (sent/cancelled) have no active rental.
+            elif line.state == "draft":
+                line.rental_status = "draft"
+
+            elif line.state != "sale":
                 line.rental_status = False
 
             # Next action is return

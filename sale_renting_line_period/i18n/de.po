@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-23 16:15+0000\n"
-"PO-Revision-Date: 2026-09-23 16:15+0000\n"
+"POT-Creation-Date: 2026-10-20 14:52+0000\n"
+"PO-Revision-Date: 2026-10-20 14:52+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -39,13 +39,17 @@ msgstr "Abbrechen"
 #. odoo-python
 #: code:addons/sale_renting_line_period/wizard/rental_order_line_wizard.py:0
 msgid "Cannot split line with product '%s' in rental state 'returned'."
-msgstr "Zeile mit Produkt '%s' kann nicht geteilt werden, da sie sich im Mietstatus 'returned' befindet."
+msgstr ""
+"Zeile mit Produkt '%s' kann nicht geteilt werden, da sie sich im Mietstatus "
+"'returned' befindet."
 
 #. module: sale_renting_line_period
 #. odoo-python
 #: code:addons/sale_renting_line_period/wizard/rental_order_line_wizard.py:0
 msgid "Cannot split line with product '%s'. Qty must be greater than 1."
-msgstr "Zeile mit Produkt '%s' kann nicht geteilt werden. Die Menge muss grösser als 1 sein."
+msgstr ""
+"Zeile mit Produkt '%s' kann nicht geteilt werden. Die Menge muss grösser als"
+" 1 sein."
 
 #. module: sale_renting_line_period
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_line_wizard__create_uid
@@ -72,6 +76,11 @@ msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: sale_renting_line_period
+#: model:ir.model.fields.selection,name:sale_renting_line_period.selection__sale_order_line__rental_status__draft
+msgid "Draft"
+msgstr "Entwurf"
+
+#. module: sale_renting_line_period
 #: model_terms:ir.ui.view,arch_db:sale_renting_line_period.rental_order_form_view
 msgid "Duration"
 msgstr "Dauer"
@@ -82,18 +91,13 @@ msgid "Duration in days"
 msgstr "Dauer in Tagen"
 
 #. module: sale_renting_line_period
-#: model_terms:ir.ui.view,arch_db:sale_renting_line_period.rental_order_line_wizard_view_form
-msgid "The order line will be split into one line per unit of quantity, each with qty 1. This cannot be undone."
-msgstr "Die Auftragszeile wird in eine Zeile pro Mengeneinheit unterteilt, jeweils mit Menge 1. Dies kann nicht rückgängig gemacht werden."
-
-#. module: sale_renting_line_period
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_product_product__id
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_line_wizard__id
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_wizard_line__id
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_renting_line_period
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_line_wizard__write_uid
@@ -116,7 +120,8 @@ msgstr "Nächste Aktion"
 msgid ""
 "Partial return not possible. Split line with product '%s' on rental order."
 msgstr ""
-"Teilweise Rückgabe nicht möglich. Teilen Sie die Zeile mit dem Produkt '%s' im Mietauftrag."
+"Teilweise Rückgabe nicht möglich. Teilen Sie die Zeile mit dem Produkt '%s' "
+"im Mietauftrag."
 
 #. module: sale_renting_line_period
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_line_wizard__product_uom_qty
@@ -237,6 +242,15 @@ msgstr "Die Dauer in Tagen des Mietzeitraums."
 #: model:ir.model.fields,help:sale_renting_line_period.field_sale_order_line__remaining_hours
 msgid "The leftover hours of the rental period."
 msgstr "Die verbleibenden Stunden des Mietzeitraums."
+
+#. module: sale_renting_line_period
+#: model_terms:ir.ui.view,arch_db:sale_renting_line_period.rental_order_line_wizard_view_form
+msgid ""
+"The order line will be split into one line per unit of\n"
+"                        quantity, each with qty 1. This cannot be undone."
+msgstr ""
+"Die Auftragszeile wird in eine Zeile pro Mengeneinheit aufgeteilt, wobei "
+"jede Zeile eine Menge von 1 hat. Dies kann nicht rückgängig gemacht werden."
 
 #. module: sale_renting_line_period
 #: model:ir.model.constraint,message:sale_renting_line_period.constraint_sale_order_line_rental_period_coherence

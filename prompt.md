@@ -1,16 +1,16 @@
 ---
-title: "Split for each qty"
+title: "Set colors for slots gant view"
 author: "Janik von Rotz <login@janikvonrotz.ch>"
 action: implement
-state: completed
+state: review
 date_completed: 2026-10-20
 harness: pi
 model: deepseek-v4-flash-0731
-input_tokens: 7485742
-output_tokens: 172583
+input_tokens: 678855
+output_tokens: 25728
 ---
 
-# Split for each qty
+# Set colors for slots gant view
 
 Note: @Clanker refers to the "ai agent" (you) who is working on this prompt file.
 
@@ -26,145 +26,73 @@ Note: @Clanker refers to the "ai agent" (you) who is working on this prompt file
 
 ## Task
 
-### Split action
+I would like to set specific colors for `rental_state` in
+`addons/sale_workflow/sale_renting_lot_available/models/stock_rental_slot.py` for the
+gantt view.
 
-The `action_split_line` method in `addons/sale_workflow/sale_renting_line_period` shows
-a dialog where the user can enter the amount to split. Instead of this entry I wanto the
-method to split the one line into lines for each qty. The dialog should simply give a
-warning about what is going to happen.
+The current choice would be:
 
-### Bug compute rental sate
+False: #1dff4b pickup: #740079 return: #f47910 returned: #5e615e
 
-This bug concerns `sale_renting_line_period`.
-
-Then there is a bug in `sale.order.line:_compute_rental_status`. When the lines were
-picked up and then splitted, the new line would be in state `returned` instead of
-`return`.
-
-Double check this issue. Maybe it is resolved with the new split line function.
-
-### Bug qty > delivered missing slots
-
-This bug concerns `sale_renting_lot_available`.
-
-If only a partial amount for a sale order line is delivered the slots are regenerated.
-
-If qty is 4 and delivered is 3 then it generates only 3 slots instead of 4. This is
-probably because it generates slots for pickedup_lot_ids only.
-
-But the it should slots for pickedup_lot_ids + 4-3=1 qty in this case.
-
-### Support multi company
-
-This enahncement concerns `sale_renting_lot_available`.
-
-I would like to have multi-company support for slots. Add a `company_id` field to the
-`stock.rental.slot`.
-
-### Testing
-
-There are test instructions for each module.
-
-I am asking you to create a simple actual test for both modules.
-
-For `sale_renting_line_period` simply test the split function.
-
-For `sale_renting_lot_available` simply check the slot generation function.
-
-Do not cover all test from test instructions.
-
-I will also do manuall test.
+Odoo has an index of colors. If color can not be set as suggested, try to find a
+matching index color.
 
 @Clanker When task is completed set frontmatter state to review. Prompt the author to
 verify the results.
 
 ## Worklog
 
-Implemented all five tasks on DB `19.0`. Modules: `sale_renting_line_period` was
-updated, `sale_renting_lot_available` was installed.
+Set per-status colors on `stock.rental.slot` (gantt pills, list badges, form).
 
-### Split for each qty
+The gantt `color` attribute and the list/form badge widget only support integer indices
+into the first 12 `$o-colors` colors: the gantt JS applies
+`getColorIndex(value) = value % 12` and the badge CSS only defines
+`o_badge_color_0..11`. Verified against `web_gantt/gantt_helpers.js` and
+`web/static/src/core/badge/badge.scss`. Therefore a single computed field
+`rental_status_color` maps each `rental_status` to its closest 0-11 index:
 
-- `rental.order.line.wizard` form is now a warning-only dialog (no quantity input)
-  describing that the line will be split into one line per unit of quantity, qty 1 each,
-  and that this cannot be undone.
-- `split()` (no arguments) keeps qty 1 + the first reserved/picked-up lot on the
-  original line and creates one new qty-1 line per extra unit, distributing the
-  remaining lots one per line. Delivered quantity is lowered before the ordered quantity
-  so `sale_stock._update_line_quantity` does not reject the change.
-- Rejects lines with qty <= 1 and lines in state `returned` (also fixed the `retnal`
-  typo).
+- False #1dff4b (bright green) -> 10 (#61c36e)
+- pickup #740079 (purple) -> 5 (#9f628f)
+- return #f47910 (orange) -> 2 (#dc8534)
+- returned #5e615e (grey) -> 0 (#a2a2a2)
 
-### Bug compute rental status
+(Gantt previous indices 47/17/2/29 were wrong: `% 12` collapsed 17 and 29 both to index
+5 (mauve). Note: `% 12` also collapses any 0-11 input.)
 
-- The new split logic keeps `qty_delivered`/`_compute_rental_status` consistent, so
-  split lines that were picked up end up in state `return`, not `returned`. Verified by
-  the test `test_split_line_per_qty` which asserts all resulting lines have
-  `rental_status == 'return'`.
+Views:
 
-### Bug qty > delivered missing slots
+- gantt `color="rental_status_color"`
+- list `rental_status` rendered with `widget="badge"` + `color_field`, showing the
+  colored badge (decorations removed)
+- form shows the status as colored badge plus a `rental_status_color_hex` badge (palette
+  hex on a colored pill, `color_field` on the integer) and the plain
+  `rental_status_color` integer. Both verification fields carry
+  `groups="base.group_no_one"` (developer mode only); the status badge itself stays
+  visible to everyone
 
-- `SaleOrderLine._generate_stock_rental_lot` now additionally creates slots for
-  `int(product_uom_qty) - len(pickedup_lot_ids)` (placeholder slots with `so_line_id`,
-  no lot). E.g. qty 4 / delivered 3 -> 3 lot slots + 1 qty slot.
+Verified against the live `19.0` DB via `odoo shell` (slots of S00021):
 
-### Multi-company
+- Drucker/qty-1 line (qty_delivered==qty_returned==1) -> status `returned`, color 0, hex
+  #a2a2a2 -> the reported "rental_color 0" is correct
+- qty-3 line (qty_returned 0 < qty_delivered 3) -> status `return`, color 2, hex #dc8534
+  (orange)
 
-- Added computed+stored `company_id` to `stock.rental.slot` (SO order company, fallback
-  to lot company, else `env.company`).
-- Slot availability searches in `sale_order_line._compute_available_slot_ids_count` and
-  in the `stock.rental.slot.period` wizard are now scoped by company. Views expose
-  `company_id` in tree/form and a Company group-by filter.
+Additionally (feedback): `action_create_order` now opens the rental order form
+`sale_renting.rental_order_primary_form_view` instead of the default
+`sale.view_order_form`.
 
-### Testing
+Draft support (author feedback):
 
-- `sale_renting_line_period/tests/test_split.py`: 3 tests (split into one line per qty
-  with lots transferred and status `return`; rejects qty <= 1; rejects `returned`
-  lines).
-- `sale_renting_lot_available/tests/test_slot_generation.py`: 2 tests (4 slots for qty 4
-  / delivered 3, 3 with lots + 1 placeholder; slot `company_id`).
-- All 5 tests pass: `0 failed, 0 error(s) of 5 tests` on DB `19.0`.
+- `sale_renting_line_period/_compute_rental_status` now treats any order that is not
+  confirmed (`line.state != "sale"`, i.e. draft/sent/cancelled) like a non-rental line:
+  `rental_status = False` (was: still computed from the delivered/returned quantities).
+  Verified live: S00023 (draft) line 49 now computes `False` instead of `returned`.
+- `stock.rental.slot.rental_status` was a stored related, so existing draft slots kept
+  stale values (the source is a non-stored compute, nothing triggered a refresh).
+  Removed `store=True` so the slot always mirrors the line's live status. Verified live:
+  S00023 slots 89/90 now show status empty, color 10 (#61c36e green) like `False`.
 
-### Translations & lint
+Open (not yet applied, awaiting author): `sale_renting_line_period` `action_cancel`
+calls `super().action_cancel()` twice.
 
-- `i18n/de.po` updated: new warning/error strings, obsolete `qty_diff` strings removed.
-- `pre-commit` (ruff, ruff-format, pylint_odoo, prettier-xml, checks for Odoo modules /
-  .po) passes on all changed files. Also fixed pre-existing ruff violations in the
-  touched files (`lambda l:` -> `lambda lg:`, missing lambda default binding, unused
-  `action`).
-
-### Follow-up: missing slots on already-confirmed orders (author reported S00021)
-
-- Root cause: slots are only generated through the inverse methods of
-  `product_uom_qty`/`pickedup_lot_ids`, i.e. when a line is written. `action_confirm`
-  writes neither; the post-init backfill only covers orders already confirmed at
-  install time. An order that was still a draft when the module was installed (like
-  S00021) therefore got no slots when confirmed later.
-- Regenerated slots for all confirmed rental lines (S00021 now has slots on every
-  line) and added `SaleOrder.action_confirm` to regenerate the order lines' slots on
-  confirmation so it cannot recur. Covered by new test
-  `test_confirm_generates_slots_for_forced_rental_line`.
-- Also cleaned two pre-existing F841 violations (unused `res`) in `sale_order.py`,
-  which removed duplicate `super()` calls.
-
-### Follow-up: hide split action for qty 1
-
-- The "Split Line" button on the sale order line table is now hidden per row when
-  `product_uom_qty <= 1` (`invisible="product_uom_qty &lt;= 1"`). The wizard check
-  (`Qty must be greater than 1`) remains as defense in depth.
-
-### Verification
-
-- Tests: `5/5` pass on DB `19.0` (`sale_renting_lot_available` 3 tests incl. the new
-  confirm test + `sale_renting_line_period` 2 split tests).
-- `pre-commit` clean on all changed files.
-- Author manually verified in the running system: confirmed S00021, used the new split
-  (qty-3 Drucker line -> three qty-1 lines), picked up and returned lots; slots now
-  render for all lines.
-- Note: reproducing the pickup wizard from a headless script hit a `NotNullViolation`
-  on `rental_order_wizard_line.return_date`; the UI wizard normally provides the
-  return date, so this is likely a script artifact (was not reproducible via the UI).
-
-@Clanker If author confirms results set frontmatter state to completed, otherwise to
-aborted. Update date, harness and model. If you have access to session info also add
-token count.
+Awaiting author verification. If confirmed, state -> completed, otherwise aborted.

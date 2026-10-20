@@ -33,12 +33,12 @@
                     name="duration_days"
                     string="Duration"
                     column_invisible="not parent.is_rental_order"
-                    optional="show"
+                    optional="hide"
                 />
                 <field
                     name="rental_status"
                     column_invisible="not parent.is_rental_order"
-                    optional="show"
+                    optional="hide"
                 />
                 <field
                     name="reserved_lot_ids"

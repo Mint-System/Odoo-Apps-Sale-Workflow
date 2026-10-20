@@ -35,7 +35,6 @@ class StockRentalSlot(models.Model):
     # Sale link
 
     so_line_id = fields.Many2one("sale.order.line", string="Sale Order Line", readonly=True)
-    rental_color = fields.Integer(related="so_line_id.rental_color")
     order_partner_id = fields.Many2one(
         related="so_line_id.order_partner_id",
         string="Customer",
@@ -44,7 +43,6 @@ class StockRentalSlot(models.Model):
     )
     rental_status = fields.Selection(
         related="so_line_id.rental_status",
-        store=True,
         readonly=True,
     )
     sale_order_id = fields.Many2one(
@@ -69,6 +67,24 @@ class StockRentalSlot(models.Model):
     # Computed fields
 
     is_placeholder = fields.Boolean(compute="_compute_is_placeholder", store=True)
+    # Color index shown for the rental status on the gantt pill and list/form
+    # badges. Both palettes only support the first 12 ``$o-colors`` indices
+    # (the gantt applies ``index % 12`` and the badge CSS only defines
+    # ``o_badge_color_0..11``), so each status is mapped to its closest match:
+    #   False    #1dff4b (bright green) -> 10 (#61c36e)
+    #   pickup   #740079 (purple)       ->  5 (#9f628f)
+    #   return   #f47910 (orange)       ->  2 (#dc8534)
+    #   returned #5e615e (grey)         ->  0 (#a2a2a2)
+    rental_status_color = fields.Integer(
+        string="Rental Color",
+        compute="_compute_rental_status_color",
+    )
+    # Display helper showing the effective palette hex on a colored badge so
+    # the mapped color can be verified in the form without reading the index.
+    rental_status_color_hex = fields.Char(
+        string="Rental Color Hex",
+        compute="_compute_rental_status_color",
+    )
     start_date = fields.Datetime(
         compute="_compute_dates",
         inverse="_inverse_dates",
@@ -79,6 +95,26 @@ class StockRentalSlot(models.Model):
         inverse="_inverse_dates",
         store=True,
     )
+
+    _rental_status_colors = {
+        False: 10,
+        "pickup": 5,
+        "return": 2,
+        "returned": 0,
+    }
+    _rental_status_color_hex = {
+        10: "#61c36e",
+        5: "#9f628f",
+        2: "#dc8534",
+        0: "#a2a2a2",
+    }
+
+    @api.depends("rental_status")
+    def _compute_rental_status_color(self):
+        for record in self:
+            color = self._rental_status_colors.get(record.rental_status, 10)
+            record.rental_status_color = color
+            record.rental_status_color_hex = self._rental_status_color_hex[color]
 
     @api.depends(
         "so_line_id",
@@ -182,6 +218,7 @@ class StockRentalSlot(models.Model):
             "name": _("Sale Order"),
             "res_model": "sale.order",
             "view_mode": "form",
+            "view_id": self.env.ref("sale_renting.rental_order_primary_form_view").id,
             "context": context,
         }
 

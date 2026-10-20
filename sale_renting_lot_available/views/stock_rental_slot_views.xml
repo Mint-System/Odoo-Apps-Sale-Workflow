@@ -52,7 +52,25 @@
                         <group>
                             <field name="so_line_id" />
                             <field name="sale_order_id" invisible="not so_line_id" />
-                            <field name="rental_status" invisible="not so_line_id" />
+                            <field
+                                name="rental_status"
+                                widget="badge"
+                                options="{'color_field': 'rental_status_color'}"
+                                invisible="not so_line_id"
+                            />
+                            <field
+                                name="rental_status_color_hex"
+                                string="Rental Color"
+                                widget="badge"
+                                options="{'color_field': 'rental_status_color'}"
+                                groups="base.group_no_one"
+                                invisible="not so_line_id"
+                            />
+                            <field
+                                name="rental_status_color"
+                                string="Color Index"
+                                groups="base.group_no_one"
+                            />
                         </group>
                     </group>
                 </sheet>
@@ -92,10 +110,9 @@
                 <field
                     name="rental_status"
                     widget="badge"
-                    decoration-warning="rental_status == 'pickup'"
-                    decoration-info="rental_status == 'return'"
-                    decoration-success="rental_status == 'returned'"
+                    options="{'color_field': 'rental_status_color'}"
                 />
+                <field name="rental_status_color" column_invisible="True" />
             </list>
         </field>
     </record>
@@ -111,7 +128,7 @@
                 date_stop="return_date"
                 scales="day,week,month,quarter,year"
                 pill_label="True"
-                color="rental_color"
+                color="rental_status_color"
                 on_create="sale_renting.action_create_rental_order"
             >
                 <field name="rental_status" />
