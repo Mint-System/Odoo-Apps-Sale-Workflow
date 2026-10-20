@@ -2,7 +2,7 @@
 commit_ref:
 title: "Select lot when splitting a line"
 author: "Janik von Rotz <login@janikvonrotz.ch>"
-state: draft
+state: cancelled
 date_completed: YYYY-MM-DD
 harness:
 model:
