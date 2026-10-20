@@ -88,6 +88,7 @@
                 <field name="lot_id" optional="hide" />
                 <field name="sale_order_id" />
                 <field name="so_line_id" optional="hide" />
+                <field name="company_id" optional="hide" />
                 <field
                     name="rental_status"
                     widget="badge"
@@ -151,6 +152,7 @@
                 <field name="categ_id" />
                 <field name="rental_status" />
                 <field name="sale_order_id" />
+                <field name="company_id" />
                 <separator />
                 <filter
                     string="Placeholder"
@@ -192,6 +194,12 @@
                         name="groupby_status"
                         domain="[]"
                         context="{'group_by': 'rental_status'}"
+                    />
+                    <filter
+                        string="Company"
+                        name="groupby_company"
+                        domain="[]"
+                        context="{'group_by': 'company_id'}"
                     />
                 </group>
             </search>

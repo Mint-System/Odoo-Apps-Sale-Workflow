@@ -68,6 +68,7 @@
                     type="object"
                     icon="fa-cut"
                     string="Split Line"
+                    invisible="product_uom_qty &lt;= 1"
                     column_invisible="not parent.is_rental_order"
                     optional="hide"
                 />

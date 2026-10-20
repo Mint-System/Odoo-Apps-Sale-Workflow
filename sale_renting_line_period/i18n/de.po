@@ -38,18 +38,14 @@ msgstr "Abbrechen"
 #. module: sale_renting_line_period
 #. odoo-python
 #: code:addons/sale_renting_line_period/wizard/rental_order_line_wizard.py:0
-msgid "Cannot split line with product '%s' in retnal state 'returned'."
+msgid "Cannot split line with product '%s' in rental state 'returned'."
 msgstr "Zeile mit Produkt '%s' kann nicht geteilt werden, da sie sich im Mietstatus 'returned' befindet."
 
 #. module: sale_renting_line_period
 #. odoo-python
 #: code:addons/sale_renting_line_period/wizard/rental_order_line_wizard.py:0
-msgid ""
-"Cannot split line with product '%s'. Qty diff must be strictly between 0 and"
-" %s."
-msgstr ""
-"Zeile mit Produkt '%s' kann nicht geteilt werden. Die Mengenabweichung muss "
-"strikt zwischen 0 und %s liegen."
+msgid "Cannot split line with product '%s'. Qty must be greater than 1."
+msgstr "Zeile mit Produkt '%s' kann nicht geteilt werden. Die Menge muss grösser als 1 sein."
 
 #. module: sale_renting_line_period
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_line_wizard__create_uid
@@ -87,10 +83,8 @@ msgstr "Dauer in Tagen"
 
 #. module: sale_renting_line_period
 #: model_terms:ir.ui.view,arch_db:sale_renting_line_period.rental_order_line_wizard_view_form
-msgid "Enter the quantity to split into a duplicated line:"
-msgstr ""
-"Geben Sie die Menge ein, die in eine duplizierte Zeile aufgeteilt werden "
-"soll:"
+msgid "The order line will be split into one line per unit of quantity, each with qty 1. This cannot be undone."
+msgstr "Die Auftragszeile wird in eine Zeile pro Mengeneinheit unterteilt, jeweils mit Menge 1. Dies kann nicht rückgängig gemacht werden."
 
 #. module: sale_renting_line_period
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_product_product__id
@@ -133,11 +127,6 @@ msgstr "Menge"
 #: model:ir.model,name:sale_renting_line_period.model_product_product
 msgid "Product Variant"
 msgstr "Produktvariante"
-
-#. module: sale_renting_line_period
-#: model:ir.model.fields,field_description:sale_renting_line_period.field_rental_order_line_wizard__qty_diff
-msgid "Qty Diff"
-msgstr "Mengenabweichung"
 
 #. module: sale_renting_line_period
 #: model:ir.model.fields,field_description:sale_renting_line_period.field_sale_order_line__remaining_hours

@@ -8,28 +8,31 @@
         <field name="arch" type="xml">
             <form string="Split Order Line">
                 <sheet>
-                    <p>Enter the quantity to split into a duplicated line:</p>
-                    <field name="qty_diff" /> / <field
-                    name="product_uom_qty"
-                    nolabel="1"
-                    readonly="1"
-                />
+                    <group>
+                        <group>
+                            <field name="product_uom_qty" readonly="1" />
+                        </group>
+                    </group>
+                    <p>
+                        The order line will be split into one line per unit of
+                        quantity, each with qty 1. This cannot be undone.
+                    </p>
 
                     <footer>
-                    <button
-                        name="split"
-                        string="Split"
-                        type="object"
-                        class="btn-primary"
-                        data-hotkey="q"
-                    />
-                    <button
-                        string="Cancel"
-                        class="btn-secondary"
-                        special="cancel"
-                        data-hotkey="x"
-                    />
-                </footer>
+                        <button
+                            name="split"
+                            string="Split"
+                            type="object"
+                            class="btn-primary"
+                            data-hotkey="q"
+                        />
+                        <button
+                            string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"
+                            data-hotkey="x"
+                        />
+                    </footer>
                 </sheet>
             </form>
         </field>

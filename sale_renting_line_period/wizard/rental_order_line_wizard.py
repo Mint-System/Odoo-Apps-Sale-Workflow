@@ -13,13 +13,15 @@ class SaleOrderLineWizard(models.TransientModel):
     _description = "Rental Order Line Wizard"
 
     so_line_id = fields.Many2one("sale.order.line")
-    qty_diff = fields.Float()
     product_uom_qty = fields.Float(readonly=True)
 
-    def split(self, transfer_lot_ids=None):
+    def split(self):
         """
-        Duplicate sale order line.
-        The qty diff is subtracted on current line and set on new line.
+        Split a sale order line into one line per unit of quantity.
+
+        The current line keeps the first unit and one new line is created for
+        every additional unit. Reserved and picked up lots are distributed
+        across the resulting lines, one lot per line.
         """
         self.ensure_one()
         so_line_id = self.so_line_id
@@ -27,57 +29,53 @@ class SaleOrderLineWizard(models.TransientModel):
         if so_line_id.rental_status in ["returned"]:
             raise UserError(
                 _(
-                    "Cannot split line with product '%s' in retnal state 'returned'.",
+                    "Cannot split line with product '%s' in rental state 'returned'.",
                     so_line_id.product_id.name,
                 )
             )
 
-        if self.qty_diff <= 0 or self.qty_diff >= self.product_uom_qty:
+        qty = int(so_line_id.product_uom_qty)
+        if qty <= 1:
             raise UserError(
                 _(
-                    "Cannot split line with product '%s'. Qty diff must be strictly between 0 and %s.",
+                    "Cannot split line with product '%s'. Qty must be greater than 1.",
                     so_line_id.product_id.name,
-                    self.product_uom_qty,
                 )
             )
 
-        # Adjust qty on current line
-        if so_line_id.qty_delivered > 0:
-            so_line_id.qty_delivered -= self.qty_diff
-        so_line_id.product_uom_qty -= self.qty_diff
+        reserved_lot_ids = so_line_id.reserved_lot_ids
+        pickedup_lot_ids = so_line_id.pickedup_lot_ids
 
-        new_line = so_line_id.copy(
-            default={
-                "order_id": so_line_id.order_id.id,
-                "product_uom_qty": self.qty_diff,
-                "qty_delivered": self.qty_diff,
+        # Keep one unit and the first lot on the current line. Reduce the
+        # delivered quantity before the ordered quantity so that the
+        # 'sale_stock' check does not reject the lower ordered qty.
+        so_line_id.write(
+            {
+                "qty_delivered": 1.0 if pickedup_lot_ids else 0.0,
+                "reserved_lot_ids": reserved_lot_ids[:1],
+                "pickedup_lot_ids": pickedup_lot_ids[:1],
             }
         )
+        so_line_id.write({"product_uom_qty": 1.0})
 
-        # Transfer lot to new line
-        if so_line_id.reserved_lot_ids and so_line_id.pickedup_lot_ids:
-            # Select the amount of lots based on qty diff
-            reserved_lot_ids = so_line_id.reserved_lot_ids
-            pickedup_lot_ids = so_line_id.pickedup_lot_ids
-
-            # _logger.warning([self.qty_diff, reserved_lot_ids])
-            transfer_reserved_lot_ids = reserved_lot_ids[: int(self.qty_diff)]
-            transfer_pickedup_lot_ids = pickedup_lot_ids[: int(self.qty_diff)]
-
-            # Remove the lots from current line
-            so_line_id.write(
-                {
-                    "reserved_lot_ids": reserved_lot_ids - transfer_reserved_lot_ids,
-                    "pickedup_lot_ids": pickedup_lot_ids - transfer_pickedup_lot_ids,
+        # Create one new line for every additional unit
+        new_lines = self.env["sale.order.line"]
+        for index in range(qty - 1):
+            lot_index = index + 1
+            pickedup_lot = pickedup_lot_ids[lot_index : lot_index + 1]
+            new_line = so_line_id.copy(
+                default={
+                    "order_id": so_line_id.order_id.id,
+                    "product_uom_qty": 1.0,
+                    "qty_delivered": 1.0 if pickedup_lot else 0.0,
                 }
             )
-
-            # Add lots to new line
             new_line.write(
                 {
-                    "reserved_lot_ids": transfer_reserved_lot_ids,
-                    "pickedup_lot_ids": transfer_pickedup_lot_ids,
+                    "reserved_lot_ids": reserved_lot_ids[lot_index : lot_index + 1],
+                    "pickedup_lot_ids": pickedup_lot,
                 }
             )
+            new_lines |= new_line
 
-        return new_line
+        return new_lines

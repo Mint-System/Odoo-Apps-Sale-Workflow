@@ -20,13 +20,27 @@ class SaleOrder(models.Model):
         for order in self:
             order.rental_slot_count = len(order.mapped("order_line.rental_slot_ids"))
 
+    def action_confirm(self):
+        """
+        Generate rental slots on confirmation.
+
+        Slot generation normally happens through the inverse methods of
+        ``product_uom_qty``/``pickedup_lot_ids`` when a line is written. An
+        order that was still a draft when the module was installed therefore
+        has no slots yet: confirming it does not write those fields. Generate
+        the slots here so every confirmed rental order is scheduled.
+        """
+        res = super().action_confirm()
+        self.order_line._generate_stock_rental_lot()
+        return res
+
     def action_draft(self):
         """
         Re-create rental slots.
         """
         res = super().action_draft()
         self.order_line._inverse_product_uom_qty()
-        return super().action_draft()
+        return res
 
     def action_cancel(self):
         """
@@ -34,7 +48,7 @@ class SaleOrder(models.Model):
         """
         res = super().action_cancel()
         self.order_line.rental_slot_ids.sudo().unlink()
-        return super().action_cancel()
+        return res
 
     def action_view_rental_slots(self):
         self.ensure_one()

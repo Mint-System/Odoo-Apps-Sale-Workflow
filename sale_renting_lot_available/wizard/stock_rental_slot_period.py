@@ -24,7 +24,10 @@ class StockRentalSlotPeriod(models.TransientModel):
 
         # Group placeholder slots by product using the ORM
         groups = self.env["stock.rental.slot"]._read_group(
-            domain=[("is_placeholder", "=", True)],
+            domain=[
+                ("is_placeholder", "=", True),
+                ("company_id", "=", self.env.company.id),
+            ],
             groupby=["product_id"],
             aggregates=["id:recordset"],
         )
@@ -35,6 +38,7 @@ class StockRentalSlotPeriod(models.TransientModel):
                 [
                     ("is_placeholder", "=", False),
                     ("product_id", "=", product.id),
+                    ("company_id", "=", self.env.company.id),
                     ("start_date", "<=", self.end_date),
                     ("return_date", ">=", self.start_date),
                 ]
@@ -49,7 +53,7 @@ class StockRentalSlotPeriod(models.TransientModel):
         Show placeholder slots minus the sale order slots in range.
         """
         self.ensure_one()
-        action = self.action_adjust_period()
+        self.action_adjust_period()
         available_slot_ids = self.get_available_slot_ids()
         return {
             "type": "ir.actions.act_window",
@@ -73,7 +77,11 @@ class StockRentalSlotPeriod(models.TransientModel):
 
         # Get all placeholder slots and update dates.
         start_placeholder_lot_ids = self.env["stock.rental.slot"].search(
-            [("is_placeholder", "=", True), ("lot_id.start_slot_id", "!=", False)]
+            [
+                ("is_placeholder", "=", True),
+                ("lot_id.start_slot_id", "!=", False),
+                ("company_id", "=", self.env.company.id),
+            ]
         )
         start_placeholder_lot_ids.write({"start_date": self.start_date, "return_date": self.start_date})
 

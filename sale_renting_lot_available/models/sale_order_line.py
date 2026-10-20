@@ -28,7 +28,7 @@ class SaleOrderLine(models.Model):
         """
         Generate slot when qty changes.
         """
-        for line in self.filtered(lambda l: l.state != "cancel"):
+        for line in self.filtered(lambda lg: lg.state != "cancel"):
             if (
                 line.is_rental
                 and line.available_slot_ids_count > 0
@@ -48,7 +48,7 @@ class SaleOrderLine(models.Model):
         """
         Generate slot entries when picked-up lots change.
         """
-        for line in self.filtered(lambda l: l.state == "sale"):
+        for line in self.filtered(lambda lg: lg.state == "sale"):
             line._generate_stock_rental_lot()
 
     def _generate_stock_rental_lot(self):
@@ -62,12 +62,15 @@ class SaleOrderLine(models.Model):
             if line.is_rental and line.pickedup_lot_ids and not line.returned_lot_ids:
                 for lot in line.pickedup_lot_ids:
                     line.env["stock.rental.slot"].create({"so_line_id": line.id, "lot_id": lot.id})
+                # Create slots for the qty that has not been picked up yet
+                for _qty in range(int(line.product_uom_qty) - len(line.pickedup_lot_ids)):
+                    line.env["stock.rental.slot"].create({"so_line_id": line.id})
 
             # Update slot if returned
             elif line.is_rental and line.returned_lot_ids:
                 pickedup_slot_ids = line.order_id.order_line.rental_slot_ids
                 for lot in line.pickedup_lot_ids:
-                    pickedup_slot_id = pickedup_slot_ids.filtered(lambda p: p.lot_id == lot)
+                    pickedup_slot_id = pickedup_slot_ids.filtered(lambda p, lot=lot: p.lot_id == lot)
                     if pickedup_slot_id:
                         pickedup_slot_id.write({"so_line_id": line.id})
 
@@ -89,7 +92,11 @@ class SaleOrderLine(models.Model):
             if line.product_id.tracking in ["serial", "lot"]:
                 # Get all placeholder slots of a product
                 product_placeholder_slot_count = self.env["stock.rental.slot"].search_count(
-                    [("is_placeholder", "=", True), ("product_id", "=", line.product_id)]
+                    [
+                        ("is_placeholder", "=", True),
+                        ("product_id", "=", line.product_id),
+                        ("company_id", "=", line.company_id),
+                    ]
                 )
 
                 # Get all booked slots
@@ -98,6 +105,7 @@ class SaleOrderLine(models.Model):
                         ("is_placeholder", "=", False),
                         ("so_line_id", "!=", line.id),
                         ("product_id", "=", line.product_id.id),
+                        ("company_id", "=", line.company_id),
                         ("start_date", "<=", line.rental_return_date),
                         ("return_date", ">=", line.rental_start_date),
                     ]

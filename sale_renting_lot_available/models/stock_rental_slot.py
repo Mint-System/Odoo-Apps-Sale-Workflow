@@ -53,6 +53,12 @@ class StockRentalSlot(models.Model):
         store=True,
         readonly=True,
     )
+    company_id = fields.Many2one(
+        "res.company",
+        compute="_compute_company_id",
+        store=True,
+        readonly=True,
+    )
     duration_days = fields.Integer(
         related="so_line_id.duration_days",
     )
@@ -73,6 +79,17 @@ class StockRentalSlot(models.Model):
         inverse="_inverse_dates",
         store=True,
     )
+
+    @api.depends(
+        "so_line_id",
+        "so_line_id.order_id",
+        "so_line_id.order_id.company_id",
+        "lot_id",
+        "lot_id.company_id",
+    )
+    def _compute_company_id(self):
+        for record in self:
+            record.company_id = record.so_line_id.order_id.company_id or record.lot_id.company_id or record.env.company
 
     @api.depends("lot_id", "so_line_id")
     def _compute_is_placeholder(self):
