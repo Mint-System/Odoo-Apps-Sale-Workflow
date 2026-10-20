@@ -2,12 +2,12 @@
 title: "Set colors for slots gant view"
 author: "Janik von Rotz <login@janikvonrotz.ch>"
 action: implement
-state: review
+state: completed
 date_completed: 2026-10-20
 harness: pi
 model: deepseek-v4-flash-0731
-input_tokens: 678855
-output_tokens: 25728
+input_tokens: 5047388
+output_tokens: 147051
 ---
 
 # Set colors for slots gant view
@@ -77,6 +77,28 @@ Verified against the live `19.0` DB via `odoo shell` (slots of S00021):
 - qty-3 line (qty_returned 0 < qty_delivered 3) -> status `return`, color 2, hex #dc8534
   (orange)
 
+Badges & limits (author feedback):
+
+- slot list view: `limit="100"` (100 records per page by default)
+- `sale.order.rental_status` badge in the rental order list (`rental_order_view_tree`)
+  now uses the palette via a new computed `rental_status_color` on `sale.order`
+  (bootstrap decorations removed): draft/sent/False -> 10 green, pickup -> 5 purple,
+  return -> 2 orange, returned/cancel -> 0 gray
+- `sale.order.line.rental_status` in the rental form order-line list is now a colored
+  badge via new computed `rental_status_color` on the line (same palette map;
+  sent/cancel -> False -> green)
+- kanban (`rental_order_view_kanban`): card `<kanban color="rental_status_color">` adds
+  a colored strip per status, and the `rental_status` pill in the card footer switched
+  from `label_selection` (green/orange/gray bootstrap) to `widget="badge"` +
+  `color_field` for the palette colors; the base `state` pill stays unchanged
+- DEPLOYED: `task update-module 19.0 ...` for both addons (exit 0); verified via
+  fresh-boot `get_combined_arch` that list + kanban overrides are merged in DB. Odoo
+  container was NOT running -> start with `task start odoo` to see colors. (Load
+  warning: `sale.order.line.rental_status` selection override; could use `selection_add`
+  later.)
+- the earlier "show 100 in gantt" request was NOT implemented (only the list limit was
+  confirmed); gantt paging defaults to all records
+
 Additionally (feedback): `action_create_order` now opens the rental order form
 `sale_renting.rental_order_primary_form_view` instead of the default
 `sale.view_order_form`.
@@ -95,4 +117,8 @@ Draft support (author feedback):
 Open (not yet applied, awaiting author): `sale_renting_line_period` `action_cancel`
 calls `super().action_cancel()` twice.
 
-Awaiting author verification. If confirmed, state -> completed, otherwise aborted.
+Completed on 2026-10-20 after author verification: colors for slot gantt/list/form,
+order-level list + kanban badges, `limit="100"`, draft support, dev-only
+verification fields all deployed and confirmed by the author (`task update-module`
+ran, odoo container started, colors visible). The duplicate `super().action_cancel()`
+fix remains a separate follow-up.

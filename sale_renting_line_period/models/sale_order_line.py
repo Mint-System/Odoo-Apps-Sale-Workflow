@@ -44,6 +44,12 @@ class SaleOrderLine(models.Model):
         ],
         compute="_compute_rental_status",
     )
+    # Color index for the rental status badge in the rental order line list.
+    # Mirrors the palette mapping used on ``stock.rental.slot``; keep in sync.
+    rental_status_color = fields.Integer(
+        string="Rental Color",
+        compute="_compute_rental_status_color",
+    )
     next_action_date = fields.Datetime(string="Next Action", compute="_compute_rental_status", store=True)
     same_product_line_ids = fields.One2many("sale.order.line", compute="_compute_same_product_line_ids")
 
@@ -128,6 +134,19 @@ class SaleOrderLine(models.Model):
             line.same_product_line_ids = line.order_id.order_line.filtered(
                 lambda l: l.id != line.id and l.product_id == line.product_id
             )
+
+    _rental_status_colors = {
+        False: 10,
+        "draft": 10,
+        "pickup": 5,
+        "return": 2,
+        "returned": 0,
+    }
+
+    @api.depends("rental_status")
+    def _compute_rental_status_color(self):
+        for line in self:
+            line.rental_status_color = self._rental_status_colors.get(line.rental_status, 10)
 
     def _get_rental_order_line_description(self):
         """

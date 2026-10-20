@@ -37,9 +37,12 @@
                 />
                 <field
                     name="rental_status"
+                    widget="badge"
+                    options="{'color_field': 'rental_status_color'}"
                     column_invisible="not parent.is_rental_order"
                     optional="hide"
                 />
+                <field name="rental_status_color" column_invisible="True" />
                 <field
                     name="reserved_lot_ids"
                     widget="many2many_tags"
@@ -72,6 +75,46 @@
                     column_invisible="not parent.is_rental_order"
                     optional="hide"
                 />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="rental_order_kanban_view" model="ir.ui.view">
+        <field name="name">sale_renting_line_period.rental_order_kanban_view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_renting.rental_order_view_kanban" />
+        <field name="arch" type="xml">
+            <kanban position="attributes">
+                <attribute name="color">rental_status_color</attribute>
+            </kanban>
+            <xpath expr="//field[@name='has_rented_products']" position="after">
+                <field name="rental_status_color" />
+            </xpath>
+            <xpath expr="//field[@name='rental_status']" position="attributes">
+                <attribute name="widget">badge</attribute>
+                <attribute
+                    name="options"
+                >{'color_field': 'rental_status_color'}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="rental_order_list_view" model="ir.ui.view">
+        <field name="name">sale_renting_line_period.rental_order_list_view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_renting.rental_order_view_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='rental_status']" position="attributes">
+                <attribute
+                    name="options"
+                >{'color_field': 'rental_status_color'}</attribute>
+                <attribute name="decoration-info" />
+                <attribute name="decoration-primary" />
+                <attribute name="decoration-success" />
+                <attribute name="decoration-warning" />
+            </xpath>
+            <xpath expr="//field[@name='rental_status']" position="after">
+                <field name="rental_status_color" column_invisible="True" />
             </xpath>
         </field>
     </record>

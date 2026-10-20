@@ -84,7 +84,13 @@
         >sale_renting_lot_available.stock_rental_slot_list_view</field>
         <field name="model">stock.rental.slot</field>
         <field name="arch" type="xml">
-            <list create="0" multi_edit="1" editable="bottom" open_form_view="True">
+            <list
+                create="0"
+                multi_edit="1"
+                editable="bottom"
+                open_form_view="True"
+                limit="100"
+            >
                 <header>
                     <button
                         name="action_create_order"
