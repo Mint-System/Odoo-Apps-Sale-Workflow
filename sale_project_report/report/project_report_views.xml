@@ -61,7 +61,6 @@
         id="menu_project_report_project_analysis"
         parent="project.menu_project_report"
         action="action_project_report"
-        groups="sale_project_report.group_sale_project_report_user"
         sequence="20"
     />
 

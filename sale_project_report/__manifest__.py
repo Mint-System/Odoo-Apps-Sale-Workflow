@@ -12,9 +12,7 @@
     "license": "AGPL-3",
     "depends": ["sale_timesheet"],
     "data": [
-        "security/sale_project_report_security.xml",
-        "security/ir.model.access.csv",
-        "views/project_report_views.xml",
+        "report/project_report_views.xml",
     ],
     "installable": True,
     "application": False,

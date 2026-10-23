@@ -83,11 +83,6 @@ msgid "Timesheet Hours"
 msgstr "Zeiterfassungsstunden"
 
 #. module: sale_project_report
-#: model:res.groups,name:sale_project_report.group_sale_project_report_user
-msgid "Project Analysis Report"
-msgstr "Projektanalysebericht"
-
-#. module: sale_project_report
 #: model_terms:ir.actions.act_window,help:sale_project_report.action_project_report
 msgid "This report provides an overview of planned, allocated, timesheet and invoiced hours per project."
 msgstr "Dieser Bericht bietet eine Übersicht über geplante, freigegebene, erfasste und verrechnete Stunden pro Projekt."
