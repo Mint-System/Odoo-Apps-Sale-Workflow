@@ -1,0 +1,6 @@
+- Create two products with `detailed_type`: `service`, `service_policy`: `based on timesheet` and `service_tracking`: `project and task` (leave the template empty). Set one product with `list_price` 0 and the other > 0.
+- Create a sale order with the two products as sale order lines. Set the amount (`product_uom_qty`) to 30 for both products.
+- Go into the created project tasks and set the `allocated_hours` to an amount that is lower than 30 in both tasks.
+- Allocate some hours for both tasks.
+- Go to the sale order and create an invoice, this should only include the hours that have been registerd for the tasks.
+- Go into Project -> Reporting -> Project Analysis to see the planned, allocated, timesheet and billed hours in the line of the created project. Only the hours that are set for the product withe value > 0 should be shown.
