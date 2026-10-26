@@ -126,3 +126,54 @@ class TestSaleProjectPhaseEstimate(TransactionCase):
                     "planned_hours": 20,
                 }
             )
+
+    def test_estimate_sale_line_without_project_allowed(self):
+        """Different sale_line_id with same phase and no project should be allowed."""
+        so_line_2 = self.env["sale.order.line"].create(
+            {
+                "order_id": self.sale_order.id,
+                "product_id": self.product.id,
+                "product_uom_qty": 1,
+            }
+        )
+        self.env["project.estimate"].create(
+            {
+                "phase_id": self.phase.id,
+                "sale_line_id": self.so_line_1.id,
+                "planned_hours": 10,
+            }
+        )
+        # Same phase, different sale line, no project: should be allowed
+        self.env["project.estimate"].create(
+            {
+                "phase_id": self.phase.id,
+                "sale_line_id": so_line_2.id,
+                "planned_hours": 20,
+            }
+        )
+        # Verify both exist
+        estimates = self.env["project.estimate"].search(
+            [
+                ("phase_id", "=", self.phase.id),
+                ("project_id", "=", False),
+            ]
+        )
+        self.assertEqual(len(estimates), 2)
+
+    def test_estimate_sale_line_phase_unique_constraint(self):
+        """Duplicate sale_line_id with same phase should raise an error."""
+        self.env["project.estimate"].create(
+            {
+                "phase_id": self.phase.id,
+                "sale_line_id": self.so_line_1.id,
+                "planned_hours": 10,
+            }
+        )
+        with self.assertRaises(Exception):
+            self.env["project.estimate"].create(
+                {
+                    "phase_id": self.phase.id,
+                    "sale_line_id": self.so_line_1.id,
+                    "planned_hours": 20,
+                }
+            )
