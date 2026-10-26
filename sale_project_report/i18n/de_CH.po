@@ -70,7 +70,7 @@ msgstr "Anteil Zeiterfassung von freigebenen Stunden"
 #. module: sale_project_report
 #: model:ir.rule,name:sale_project_report.project_report_comp_rule
 msgid "Project Analysis multi-company"
-msgstr "Projektanalyse mult-company"
+msgstr "Projektanalyse multi-company"
 
 #. module: sale_project_report
 #: model:ir.model.fields,field_description:sale_project_report.field_project_report__company_id
