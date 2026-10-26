@@ -1,5 +1,5 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class ProjectReport(models.Model):
@@ -12,27 +12,13 @@ class ProjectReport(models.Model):
     allocated_hours = fields.Float(string="Allocated Hours", readonly=True)
     timesheet_hours = fields.Float(string="Timesheet Hours", readonly=True)
     invoiced_hours = fields.Float(string="Invoiced Hours", readonly=True)
-    allocated_planned = fields.Float(
-        string="Allocated / Planned", readonly=True, group_operator="avg"
-    )
-    timesheet_allocated = fields.Float(
-        string="Timesheet / Allocated", readonly=True, group_operator="avg"
-    )
-    timesheet_planned = fields.Float(
-        string="Timesheet / Planned", readonly=True, group_operator="avg"
-    )
-    project_id = fields.Many2one(
-        comodel_name="project.project", string="Project", readonly=True
-    )
-    partner_id = fields.Many2one(
-        comodel_name="res.partner", string="Customer", readonly=True
-    )
-    user_id = fields.Many2one(
-        comodel_name="res.users", string="Project Manager", readonly=True
-    )
-    company_id = fields.Many2one(
-        comodel_name="res.company", string="Company", readonly=True
-    )
+    allocated_planned = fields.Float(string="Allocated / Planned", readonly=True, group_operator="avg")
+    timesheet_allocated = fields.Float(string="Timesheet / Allocated", readonly=True, group_operator="avg")
+    timesheet_planned = fields.Float(string="Timesheet / Planned", readonly=True, group_operator="avg")
+    project_id = fields.Many2one(comodel_name="project.project", string="Project", readonly=True)
+    partner_id = fields.Many2one(comodel_name="res.partner", string="Customer", readonly=True)
+    user_id = fields.Many2one(comodel_name="res.users", string="Project Manager", readonly=True)
+    company_id = fields.Many2one(comodel_name="res.company", string="Company", readonly=True)
 
     @property
     def _table_query(self):
