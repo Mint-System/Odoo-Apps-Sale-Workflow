@@ -7,7 +7,7 @@
     >
         <div name="so_total_summary" position="after">
             <div t-if="doc.estimate_ids" class="mt8">
-            <h3>Estimates</h3>
+            <h4>Project phases and estimated hours</h4>
                 <table class="table table-sm">
                     <thead>
                         <tr>

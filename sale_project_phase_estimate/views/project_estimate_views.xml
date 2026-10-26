@@ -14,4 +14,18 @@
             </field>
         </field>
     </record>
+
+    <record id="project_estimate_filter" model="ir.ui.view">
+        <field name="name">sale_project_phase_estimate.project_estimate_filter</field>
+        <field name="model">project.estimate</field>
+         <field
+            name="inherit_id"
+            ref="project_phase_estimate.project_estimate_filter"
+        />
+        <field name="arch" type="xml">
+            <field name="phase_id" position="after">
+                <field name="sale_line_id" string="Sale Order Line" />
+            </field>
+        </field>
+    </record>
 </odoo>

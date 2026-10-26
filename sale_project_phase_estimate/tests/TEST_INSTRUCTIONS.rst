@@ -1,9 +1,12 @@
 Sale order estimate:
 
 - Open sale order "S00023"
-- Add 10 hours estimate for senior architect
-- Add second 5 hours estimate for senior architect
+- Add 10 hours implementation estimate for senior architect
+- Add second 5 hours planning estimate for senior architect
 - Ensure the sum of the estimates is set on the order line
+
+Print order:
+
 - Print the sale quote report
 - Ensure the estimates are shown after the order lines
 
@@ -14,7 +17,7 @@ Confirm sale order
 - Add 10 hours estimate with phase "Implementation"
 - Confirm the sale order
 - Open the project and check if the estimate is linked
-- Open the task and remove the sale orderl line
+- Open the task and remove the sale order line
 - Change customer to "Acme Corporation, Douglas Fletcher"
 - Select the project phase
 - Ensure the the sale order line is set
