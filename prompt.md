@@ -6,8 +6,6 @@ state: completed
 date_completed: 2026-10-26
 harness: pi
 model: moonshotai/Kimi-K2.6
-input_tokens: 6165921
-output_tokens: 68273
 ---
 
 # Bugfix Sale Project Phase Estimate
@@ -72,3 +70,47 @@ sale_project_phase_estimate: 5 tests 0.52s 369 queries
 ---
 
 Author confirmed results as completed.
+
+---
+
+## Update: Allow estimates with sale_line_id and no project_id
+
+### Context
+
+When creating quotes, the project does not exist yet. The `_check_project_phase_unique`
+constraint from `project_phase_estimate` must be overridden to allow estimates with
+`sale_line_id` but no `project_id`.
+
+### Task
+
+Overwrite `_check_project_phase_unique` in `sale_project_phase_estimate` to enforce:
+
+- Unique by `(phase_id, is_in_progress, sale_line_id)` when `sale_line_id` is set.
+- Unique by `(project_id, phase_id, is_in_progress)` when only `project_id` is set (no `sale_line_id`).
+
+### Summary of Changes
+
+1. **Overrode `_check_project_phase_unique`**
+   (`sale_project_phase_estimate/models/project_estimate.py`):
+
+   - When `sale_line_id` is set: checks for duplicates by
+     `(phase_id, is_in_progress, sale_line_id)`.
+   - When only `project_id` is set (no `sale_line_id`): checks for duplicates by
+     `(project_id, phase_id, is_in_progress)`.
+   - Estimates without `phase_id`, `is_in_progress`, or both identifiers are skipped.
+
+2. **Updated automated tests**
+   (`sale_project_phase_estimate/tests/test_sale_project_phase_estimate.py`):
+
+   - `test_estimate_sale_line_without_project_allowed` — different `sale_line_id`s with
+     the same phase and no project are allowed.
+   - `test_estimate_sale_line_phase_unique_constraint` — duplicate `sale_line_id` with
+     the same phase raises an error.
+
+### Test Results
+
+```
+project_phase_estimate: 21 tests 0.60s 485 queries
+sale_project_phase_estimate: 9 tests 0.40s 541 queries
+0 failed, 0 error(s) of 26 tests
+```
