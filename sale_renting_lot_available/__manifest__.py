@@ -13,6 +13,7 @@
     "depends": ["sale_renting_line_period"],
     "data": [
         "security/ir.model.access.csv",
+        "security/stock_rental_slot_security.xml",
         "wizard/stock_rental_slot_period.xml",
         "views/stock_rental_slot_views.xml",
         "views/sale_order_views.xml",
