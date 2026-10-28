@@ -1,5 +1,6 @@
 ---
-title: "Re-migrate and update sale order ref"
+commit_ref:
+title: "Bugfix Sale Renting Lot Available"
 author: "Janik von Rotz <login@janikvonrotz.ch>"
 action: implement
 state: draft
@@ -10,7 +11,7 @@ input_tokens:
 output_tokens:
 ---
 
-# Re-migrate and update sale order ref
+# Bugfix Sale Rening Lot Available
 
 Note: @Clanker refers to the "ai agent" (you) who is working on this prompt file.
 
@@ -26,21 +27,43 @@ Note: @Clanker refers to the "ai agent" (you) who is working on this prompt file
 
 ## Task
 
-This is about the module `sale_order_ref`. There are 3 topics.
+This about module `sale_renting_lot_available`.
 
-### 1. The module has been updated on 17.0 re-migrate the module.
+### User access to `stock.rental.slot`
 
-There is a guide that explains how this is done: https://wiki.mint-system.ch/prozesse-odoo-modul-migration/?h=prozesse+modul+#modul-migrieren
+Ensure that users in group `sales_team.group_sale_salesman` have full access on the slot model.
 
-Do not run any prompts or commit anything. Do not create feature branch or PR.
+### Lot 0 does not remove placeholder slot
 
-### 2. Update search filter on sale order
+If qty for a `stock.lot` is set to 0.0 it should remove the placeholder slots.
 
-Add `ref` to field `name` in `sale.view_sales_order_filter`.
+### Rental status false color
 
-### 3. Make `sale_renting_line_period` depend on `sale_order_ref` and update search filter.
+If the rental status is false (which is the case for placeholder slots) it should be in a grey color.
 
-Add `ref` to field `name` in `sale_renting.rental_order_view_search`.
+### Placeholder slots with prefix in name
+
+Ensure that if `is_placeholder` is set then the name is prefixed with "Placeholder".
+
+So the name becomes "Placeholder - {Product} - {Lot}".
+
+### Rental slots without lot
+
+This is a bigger task. If the rental product is tracked but only with qty the module should generate rental slots based on the stock qty of this product.
+
+Create a `_create_stock_rental_lot` method for `product.product`. Show the slots as smart buttons on product (similar to stock.lot).
+
+The name of these slots becomes "Placeholder - {Product}".
+
+Changing the qty in stock should regenerate the slots.
+
+### Testing
+
+Write tests for the functionality.
+
+Prepare the Odoo enviroment for testing.
+
+I will test if the rental flow works with qty and serial tracked products in the same order.
 
 @Clanker When task is completed set frontmatter state to review. Prompt the author to verify the results.
 
