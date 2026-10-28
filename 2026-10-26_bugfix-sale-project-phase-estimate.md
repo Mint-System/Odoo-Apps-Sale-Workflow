@@ -1,5 +1,5 @@
 ---
-commit_ref: 3a2ab2dde8416069275dcf28174d4ab9386fa8d3
+commit_ref: 12b758583ca66e6353edf1534635cd45fbf0efd0
 title: "Bugfix Sale Project Phase Estimate"
 author: "Janik von Rotz <login@janikvonrotz.ch>"
 action: implement
