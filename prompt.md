@@ -1,16 +1,16 @@
 ---
-title: "Show company_id on stock rental slot"
+title: "Bugfix Sale Renting Lot Available"
 author: "Janik von Rotz <login@janikvonrotz.ch>"
 action: implement
-state: completed
-date_completed: 2026-10-26
-harness: pi
-model: moonshotai/Kimi-K2.6
-input_tokens: 37368
-output_tokens: 4859
+state: draft
+date_completed: YYYY-MM-DD
+harness:
+model:
+input_tokens:
+output_tokens:
 ---
 
-# Show company_id on stock rental slot
+# Bugfix Sale Rening Lot Available
 
 Note: @Clanker refers to the "ai agent" (you) who is working on this prompt file.
 
@@ -26,33 +26,40 @@ Note: @Clanker refers to the "ai agent" (you) who is working on this prompt file
 
 ## Task
 
-If multi company is active, show `company_id` on `stock.rental.slot` form after
-`is_placeholder`.
+This about module `sale_renting_lot_available`.
 
-I expect that this field it related to `sale_order_id` or `lot_id`.
+### User access to `stock.rental.slot`
 
-@Clanker When task is completed set frontmatter state to review. Prompt the author to
-verify the results.
+Ensure that users in group `sales_team.group_sale_salesman` have full access on the slot model.
+
+### Lot 0 does not remove placeholder slot
+
+If qty for a `stock.lot` is set to 0.0 it should remove the placeholder slots.
+
+### Rental status false color
+
+If the rental status is false (which is the case for placeholder slots) it should be in a grey color.
+
+### Rental slots without lot
+
+This is a bigger task. If the rental product is tracked but only with qty the module should generate rental slots based on the stock qty of this product.
+
+Create a `_create_stock_rental_lot` method for `product.product`. Show the slots as smart buttons on product (similar to stock.lot).
+
+Changing the qty in stock should regenerate the slots.
+
+### Testing
+
+Write tests for the functionality.
+
+Prepare the Odoo enviroment for testing.
+
+I will test if the rental flow works with qty and serial tracked products in the same order.
+
+@Clanker When task is completed set frontmatter state to review. Prompt the author to verify the results.
 
 ## Worklog
 
-Added `<field name="company_id" groups="base.group_multi_company" />` right after
-`<field name="is_placeholder" />` in the `stock_rental_slot_form_view` of
-`addons/sale_workflow/sale_renting_lot_available/views/stock_rental_slot_views.xml`.
+@Clanker Add a summary here once the task has been completed.
 
-Also added the missing multi-company record rule `stock_rental_slot_rule_company` in a
-new file `security/stock_rental_slot_security.xml` and registered it in
-`__manifest__.py`. Without this rule, users saw rental slots from all companies
-regardless of the active company.
-
-The `company_id` field already existed on the `stock.rental.slot` model (computed from
-`sale_order_id` or `lot_id`), so only the form view and security rule needed to be
-added. The field is shown only when multi-company is enabled via the
-`base.group_multi_company` group.
-
-Note: existing installations require a module upgrade (`-u sale_renting_lot_available`)
-for the new `noupdate="1"` rule to be created in the database.
-
-@Clanker If author confirms results set frontmatter state to completed, otherwise to
-aborted. Update date, harness and model. If you have access to session info also add
-token count.
+@Clanker If author confirms results set frontmatter state to completed, otherwise to aborted. Update date, harness and model. If you have access to session info also add token count.
