@@ -1,5 +1,5 @@
 ---
-title: "Bugfix Sale Renting Lot Available"
+title: "Re-migrate and update sale order ref"
 author: "Janik von Rotz <login@janikvonrotz.ch>"
 action: implement
 state: draft
@@ -10,7 +10,7 @@ input_tokens:
 output_tokens:
 ---
 
-# Bugfix Sale Rening Lot Available
+# Re-migrate and update sale order ref
 
 Note: @Clanker refers to the "ai agent" (you) who is working on this prompt file.
 
@@ -26,35 +26,21 @@ Note: @Clanker refers to the "ai agent" (you) who is working on this prompt file
 
 ## Task
 
-This about module `sale_renting_lot_available`.
+This is about the module `sale_order_ref`. There are 3 topics.
 
-### User access to `stock.rental.slot`
+### 1. The module has been updated on 17.0 re-migrate the module.
 
-Ensure that users in group `sales_team.group_sale_salesman` have full access on the slot model.
+There is a guide that explains how this is done: https://wiki.mint-system.ch/prozesse-odoo-modul-migration/?h=prozesse+modul+#modul-migrieren
 
-### Lot 0 does not remove placeholder slot
+Do not run any prompts or commit anything. Do not create feature branch or PR.
 
-If qty for a `stock.lot` is set to 0.0 it should remove the placeholder slots.
+### 2. Update search filter on sale order
 
-### Rental status false color
+Add `ref` to field `name` in `sale.view_sales_order_filter`.
 
-If the rental status is false (which is the case for placeholder slots) it should be in a grey color.
+### 3. Make `sale_renting_line_period` depend on `sale_order_ref` and update search filter.
 
-### Rental slots without lot
-
-This is a bigger task. If the rental product is tracked but only with qty the module should generate rental slots based on the stock qty of this product.
-
-Create a `_create_stock_rental_lot` method for `product.product`. Show the slots as smart buttons on product (similar to stock.lot).
-
-Changing the qty in stock should regenerate the slots.
-
-### Testing
-
-Write tests for the functionality.
-
-Prepare the Odoo enviroment for testing.
-
-I will test if the rental flow works with qty and serial tracked products in the same order.
+Add `ref` to field `name` in `sale_renting.rental_order_view_search`.
 
 @Clanker When task is completed set frontmatter state to review. Prompt the author to verify the results.
 
