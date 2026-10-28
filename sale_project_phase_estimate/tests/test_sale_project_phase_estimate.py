@@ -45,33 +45,29 @@ class TestSaleProjectPhaseEstimate(TransactionCase):
 
     def test_task_estimate_id_matches_sale_line(self):
         """Task estimate_id should link to estimate matching phase, project, and sale_line."""
-        # There is already an auto-created estimate from task creation
-        self.task.estimate_id.sale_line_id = self.so_line_1
+        estimate = self.env["project.estimate"].create(
+            {
+                "project_id": self.project.id,
+                "phase_id": self.phase.id,
+                "sale_line_id": self.so_line_1.id,
+                "planned_hours": 5.0,
+            }
+        )
         self.task._compute_estimate_id()
-        self.assertEqual(self.task.estimate_id.sale_line_id, self.so_line_1)
+        self.assertEqual(self.task.estimate_id, estimate)
 
-    def test_task_estimate_id_creates_with_sale_line(self):
-        """Task with sale_line but no matching estimate should create one with sale_line."""
-        # Remove existing auto-created estimate to force creation
-        existing = self.env["project.estimate"].search(
+    def test_task_estimate_id_does_not_create(self):
+        """Task estimate_id must not create an estimate when none matches."""
+        self.assertFalse(self.task.estimate_id)
+        self.task._compute_estimate_id()
+        self.assertFalse(self.task.estimate_id)
+        estimate = self.env["project.estimate"].search(
             [
                 ("project_id", "=", self.project.id),
                 ("phase_id", "=", self.phase.id),
             ]
         )
-        existing.unlink()
-        self.assertFalse(
-            self.env["project.estimate"].search(
-                [
-                    ("project_id", "=", self.project.id),
-                    ("phase_id", "=", self.phase.id),
-                ]
-            )
-        )
-        self.task._compute_estimate_id()
-        estimate = self.task.estimate_id
-        self.assertTrue(estimate)
-        self.assertEqual(estimate.sale_line_id, self.so_line_1)
+        self.assertFalse(estimate)
 
     def test_inverse_phase_id_sets_sale_line(self):
         """Setting phase_id on a task without sale_line should set sale_line from estimate."""
@@ -177,3 +173,115 @@ class TestSaleProjectPhaseEstimate(TransactionCase):
                     "planned_hours": 20,
                 }
             )
+
+    def test_estimate_project_phase_unique_with_different_sale_lines(self):
+        """Same project and phase with different sale lines should raise an error."""
+        so_line_2 = self.env["sale.order.line"].create(
+            {
+                "order_id": self.sale_order.id,
+                "product_id": self.product.id,
+                "product_uom_qty": 1,
+            }
+        )
+        self.env["project.estimate"].create(
+            {
+                "project_id": self.project.id,
+                "phase_id": self.phase.id,
+                "sale_line_id": self.so_line_1.id,
+                "planned_hours": 10,
+            }
+        )
+        with self.assertRaises(Exception):
+            self.env["project.estimate"].create(
+                {
+                    "project_id": self.project.id,
+                    "phase_id": self.phase.id,
+                    "sale_line_id": so_line_2.id,
+                    "planned_hours": 20,
+                }
+            )
+
+    def test_timesheet_generation_does_not_link_to_existing_order_project(self):
+        """Estimates are not linked when the order already had a project."""
+        estimate = self.env["project.estimate"].create(
+            {
+                "phase_id": self.phase.id,
+                "sale_line_id": self.so_line_1.id,
+                "planned_hours": 2.0,
+            }
+        )
+        self.sale_order.project_id = self.project
+        self.so_line_1._timesheet_service_generation()
+        self.assertFalse(estimate.project_id)
+
+    def test_timesheet_generation_links_estimates_to_new_project(self):
+        """Estimates are linked to a newly created project during confirmation."""
+        product_project = self.env["product.product"].create(
+            {
+                "name": "Project Service",
+                "type": "service",
+                "service_tracking": "project_only",
+            }
+        )
+        so_line = self.env["sale.order.line"].create(
+            {
+                "order_id": self.sale_order.id,
+                "product_id": product_project.id,
+                "product_uom_qty": 1,
+            }
+        )
+        estimate = self.env["project.estimate"].create(
+            {
+                "phase_id": self.phase.id,
+                "sale_line_id": so_line.id,
+                "planned_hours": 2.0,
+            }
+        )
+        so_line._timesheet_service_generation()
+        self.assertTrue(estimate.project_id)
+
+    def test_task_creation_sets_phase_from_estimate(self):
+        """Generated task should inherit the phase from the sale line's estimate."""
+        product_task = self.env["product.product"].create(
+            {
+                "name": "Task Service",
+                "type": "service",
+                "service_tracking": "task_global_project",
+                "project_id": self.project.id,
+            }
+        )
+        so_line = self.env["sale.order.line"].create(
+            {
+                "order_id": self.sale_order.id,
+                "product_id": product_task.id,
+                "product_uom_qty": 1,
+            }
+        )
+        self.env["project.estimate"].create(
+            {
+                "phase_id": self.phase.id,
+                "sale_line_id": so_line.id,
+                "planned_hours": 2.0,
+            }
+        )
+        task = so_line._timesheet_create_task(self.project)
+        self.assertEqual(task.phase_id, self.phase)
+
+    def test_toggle_active_archives_estimates(self):
+        """Archiving the sale order archives the linked estimates as well."""
+        estimate = self.env["project.estimate"].create(
+            {
+                "project_id": self.project.id,
+                "phase_id": self.phase.id,
+                "sale_line_id": self.so_line_1.id,
+                "planned_hours": 2.0,
+            }
+        )
+        self.assertTrue(estimate.active)
+        self.sale_order.state = "done"
+        self.sale_order.toggle_active()
+        self.assertFalse(self.sale_order.active)
+        self.assertFalse(estimate.active)
+        self.sale_order.toggle_active()
+        self.assertTrue(self.sale_order.active)
+        self.assertTrue(estimate.active)

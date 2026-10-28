@@ -18,21 +18,20 @@ class ProjectEstimate(models.Model):
         for estimate in self:
             if not estimate.phase_id or not estimate.is_in_progress:
                 continue
-            if estimate.sale_line_id:
-                # Unique by phase_id + is_in_progress + sale_line_id
-                domain = [
-                    ("phase_id", "=", estimate.phase_id.id),
-                    ("is_in_progress", "=", True),
-                    ("sale_line_id", "=", estimate.sale_line_id.id),
-                    ("id", "!=", estimate.id),
-                ]
-            elif estimate.project_id:
-                # Unique by project_id + phase_id + is_in_progress (no sale_line_id)
+            if estimate.project_id:
+                # Unique by project_id + phase_id + is_in_progress
                 domain = [
                     ("project_id", "=", estimate.project_id.id),
                     ("phase_id", "=", estimate.phase_id.id),
                     ("is_in_progress", "=", True),
-                    ("sale_line_id", "=", False),
+                    ("id", "!=", estimate.id),
+                ]
+            elif estimate.sale_line_id:
+                # Unique by phase_id + is_in_progress + sale_line_id (no project)
+                domain = [
+                    ("phase_id", "=", estimate.phase_id.id),
+                    ("is_in_progress", "=", True),
+                    ("sale_line_id", "=", estimate.sale_line_id.id),
                     ("id", "!=", estimate.id),
                 ]
             else:

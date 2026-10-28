@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_task_form" model="ir.ui.view">
+        <field name="name">sale_project_phase_estimate.view_task_form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project_phase_estimate.view_task_form" />
+        <field name="arch" type="xml">
+            <!-- Only phases with an estimate linked to the project and sale order line are selectable. -->
+            <field name="phase_id" position="attributes">
+                <attribute
+                    name="domain"
+                >[('project_ids', 'in', project_id), ('estimate_in_progress_count', '&gt;', 0), ('estimate_ids.sale_line_id', '=', sale_line_id)]</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

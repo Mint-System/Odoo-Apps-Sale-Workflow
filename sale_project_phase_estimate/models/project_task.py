@@ -12,8 +12,13 @@ class ProjectTask(models.Model):
 
     phase_id = fields.Many2one("project.task.phase", inverse="_inverse_phase_id")
 
-    @api.depends("phase_id", "sale_line_id")
+    @api.depends("phase_id", "project_id", "sale_line_id")
     def _compute_estimate_id(self):
+        """Link the task to an existing estimate matching phase, project and sale line.
+
+        Estimates are never created here, they can only be selected from the sale
+        order or the estimate list.
+        """
         for task in self:
             if task.phase_id and task.project_id:
                 domain = [
@@ -23,17 +28,7 @@ class ProjectTask(models.Model):
                 ]
                 if task.sale_line_id:
                     domain.append(("sale_line_id", "=", task.sale_line_id.id))
-                estimate_id = self.env["project.estimate"].search(domain)[:1]
-                if not estimate_id:
-                    vals = {
-                        "project_id": task.project_id.id,
-                        "phase_id": task.phase_id.id,
-                        "planned_hours": 0.0,
-                    }
-                    if task.sale_line_id:
-                        vals["sale_line_id"] = task.sale_line_id.id
-                    estimate_id = self.env["project.estimate"].create(vals)
-                task.estimate_id = estimate_id
+                task.estimate_id = self.env["project.estimate"].search(domain, limit=1)
             else:
                 task.estimate_id = False
 

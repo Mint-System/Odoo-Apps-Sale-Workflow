@@ -11,6 +11,7 @@
                     name="sale_line_id"
                     domain="[('order_partner_id', '=', project_id), ('is_service', '=', True)]"
                 />
+                <field name="sale_order_id" optional="hide" />
             </field>
         </field>
     </record>
@@ -25,7 +26,15 @@
         <field name="arch" type="xml">
             <field name="phase_id" position="after">
                 <field name="sale_line_id" string="Sale Order Line" />
+                <field name="sale_order_id" string="Sale Order" />
             </field>
+            <group position="inside">
+                <filter
+                    string="Sale Order"
+                    name="sale_order"
+                    context="{'group_by': 'sale_order_id'}"
+                />
+            </group>
         </field>
     </record>
 </odoo>

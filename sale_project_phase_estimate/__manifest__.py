@@ -10,11 +10,12 @@
     "development_status": "Production/Stable",
     "version": "16.0.1.0.0",
     "license": "AGPL-3",
-    "depends": ["sale_project", "project_phase_estimate"],
+    "depends": ["sale_project", "sale_project_link", "sale_order_archive", "project_phase_estimate"],
     "data": [
         "views/project_estimate_views.xml",
         "views/sale_order_views.xml",
         "views/project_project_views.xml",
+        "views/project_task_views.xml",
         "report/sale_order_templates.xml",
     ],
     "installable": True,

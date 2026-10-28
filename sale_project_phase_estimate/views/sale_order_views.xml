@@ -16,6 +16,13 @@
                                 domain="[('order_id', '=', parent.id), ('is_service', '=', True)]"
                             />
                             <field name="phase_id" />
+                            <!-- Written by the sale order on confirmation. -->
+                            <field
+                                name="project_id"
+                                string="Project"
+                                readonly="1"
+                                optional="hide"
+                            />
                             <field name="start_date" optional="hide" />
                             <field name="end_date" optional="hide" />
                             <field name="is_in_progress" optional="hide" />
