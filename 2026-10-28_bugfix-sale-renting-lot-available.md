@@ -41,11 +41,19 @@ If qty for a `stock.lot` is set to 0.0 it should remove the placeholder slots.
 
 If the rental status is false (which is the case for placeholder slots) it should be in a grey color.
 
+### Placeholder slots with prefix in name
+
+Ensure that if `is_placeholder` is set then the name is prefixed with "Placeholder".
+
+So the name becomes "Placeholder - {Product} - {Lot}".
+
 ### Rental slots without lot
 
 This is a bigger task. If the rental product is tracked but only with qty the module should generate rental slots based on the stock qty of this product.
 
 Create a `_create_stock_rental_lot` method for `product.product`. Show the slots as smart buttons on product (similar to stock.lot).
+
+The name of these slots becomes "Placeholder - {Product}".
 
 Changing the qty in stock should regenerate the slots.
 
