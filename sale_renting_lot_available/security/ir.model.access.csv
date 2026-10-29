@@ -1,5 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_stock_rental_slot_user,access.stock.rental.slot.user,model_stock_rental_slot,base.group_user,1,0,0,0
+access_stock_rental_slot_salesman,access.stock.rental.slot.salesman,model_stock_rental_slot,sales_team.group_sale_salesman,1,1,1,1
 access_stock_rental_slot_manager,access.stock.rental.slot.manager,model_stock_rental_slot,base.group_erp_manager,1,1,1,1
 access_stock_rental_slot_period_user,access.stock.rental.slot.period.user,model_stock_rental_slot_period,base.group_user,1,0,0,0
+access_stock_rental_slot_period_salesman,access.stock.rental.slot.period.salesman,model_stock_rental_slot_period,sales_team.group_sale_salesman,1,1,1,1
 access_stock_rental_slot_period_manager,access.stock.rental.slot.period.manager,model_stock_rental_slot_period,base.group_erp_manager,1,1,1,1

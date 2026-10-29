@@ -162,6 +162,12 @@ msgid "Pickedup Lot"
 msgstr "Abgeholtes Los"
 
 #. module: sale_renting_lot_available
+#. odoo-python
+#: code:addons/sale_renting_lot_available/models/stock_rental_slot.py:0
+msgid "Placeholder - %s - %s"
+msgstr "Platzhalter - %s - %s"
+
+#. module: sale_renting_lot_available
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_search_view
 msgid "Placeholder"
 msgstr "Platzhalter"

@@ -67,7 +67,7 @@ class StockRentalSlot(models.Model):
     # Computed fields
 
     is_placeholder = fields.Boolean(compute="_compute_is_placeholder", store=True)
-    
+
     rental_status_color = fields.Integer(
         string="Rental Color",
         compute="_compute_rental_status_color",
@@ -146,13 +146,17 @@ class StockRentalSlot(models.Model):
         "lot_id.name",
         "start_date",
         "return_date",
+        "is_placeholder",
     )
     def _compute_name(self):
         for record in self:
             if record.sale_order_id:
                 record.name = f"{record.sale_order_id.display_name} - {record.order_partner_id.name}"
             elif record.lot_id:
-                record.name = f"{record.product_id.name} - {record.lot_id.name}"
+                if record.is_placeholder:
+                    record.name = _("Placeholder - %s - %s") % (record.product_id.name, record.lot_id.name)
+                else:
+                    record.name = f"{record.product_id.name} - {record.lot_id.name}"
 
     def action_show_stock_rental_slot_period(self):
         return {
