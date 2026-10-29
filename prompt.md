@@ -2,12 +2,12 @@
 title: "rental slots for storable products without tracking"
 author: "Janik von Rotz <login@janikvonrotz.ch>"
 action: implement
-state: wip
-date_completed:
+state: completed
+date_completed: 2026-10-29T21:19:02+01:00
 harness: pi
 model: moonshotai/Kimi-K2.6
-input_tokens: 5587883
-output_tokens: 33352
+input_tokens: 5601796
+output_tokens: 38555
 ---
 
 # rental slots for storable products without tracking

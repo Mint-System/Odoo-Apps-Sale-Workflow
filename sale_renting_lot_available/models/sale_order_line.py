@@ -91,7 +91,6 @@ class SaleOrderLine(models.Model):
         For stored rental products without lot return stored qty as count.
         """
         for line in self:
-            _logger.warning([line.product_id.name, line.product_id.tracking])
             if line.product_id.tracking in ["serial", "lot"]:
                 # Get all placeholder slots of a product
                 product_placeholder_slot_count = self.env["stock.rental.slot"].search_count(
@@ -117,7 +116,6 @@ class SaleOrderLine(models.Model):
                 line.available_slot_ids_count = product_placeholder_slot_count - product_booked_slot_count
 
             elif line.product_id.is_storable and line.product_id.tracking == "none":
-                _logger.warning([line.product_id.name, line.product_id.qty_available])
                 line.available_slot_ids_count = line.product_id.qty_available
             else:
                 line.available_slot_ids_count = -1
