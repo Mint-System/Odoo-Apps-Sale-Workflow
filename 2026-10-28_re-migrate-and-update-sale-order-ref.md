@@ -1,14 +1,14 @@
 ---
-commit_ref:
+commit_ref: 18fd494c038955a68b8b34f421170e6d068e0d46
 title: "Re-migrate and update sale order ref"
 author: "Janik von Rotz <login@janikvonrotz.ch>"
 action: implement
-state: review
-date_completed: YYYY-MM-DD
-harness:
-model:
-input_tokens:
-output_tokens:
+state: completed
+date_completed: 2026-10-29
+harness: pi
+model: moonshotai/Kimi-K2.6
+input_tokens: 1385
+output_tokens: 334
 ---
 
 # Re-migrate and update sale order ref
