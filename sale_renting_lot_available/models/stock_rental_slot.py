@@ -67,22 +67,9 @@ class StockRentalSlot(models.Model):
     # Computed fields
 
     is_placeholder = fields.Boolean(compute="_compute_is_placeholder", store=True)
-    # Color index shown for the rental status on the gantt pill and list/form
-    # badges. Both palettes only support the first 12 ``$o-colors`` indices
-    # (the gantt applies ``index % 12`` and the badge CSS only defines
-    # ``o_badge_color_0..11``), so each status is mapped to its closest match:
-    #   False    #1dff4b (bright green) -> 10 (#61c36e)
-    #   pickup   #740079 (purple)       ->  5 (#9f628f)
-    #   return   #f47910 (orange)       ->  2 (#dc8534)
-    #   returned #5e615e (grey)         ->  0 (#a2a2a2)
+    
     rental_status_color = fields.Integer(
         string="Rental Color",
-        compute="_compute_rental_status_color",
-    )
-    # Display helper showing the effective palette hex on a colored badge so
-    # the mapped color can be verified in the form without reading the index.
-    rental_status_color_hex = fields.Char(
-        string="Rental Color Hex",
         compute="_compute_rental_status_color",
     )
     start_date = fields.Datetime(
@@ -97,16 +84,11 @@ class StockRentalSlot(models.Model):
     )
 
     _rental_status_colors = {
-        False: 10,
+        False: 0,
+        "draft": 10,
         "pickup": 5,
         "return": 2,
         "returned": 0,
-    }
-    _rental_status_color_hex = {
-        10: "#61c36e",
-        5: "#9f628f",
-        2: "#dc8534",
-        0: "#a2a2a2",
     }
 
     @api.depends("rental_status")
@@ -114,7 +96,6 @@ class StockRentalSlot(models.Model):
         for record in self:
             color = self._rental_status_colors.get(record.rental_status, 10)
             record.rental_status_color = color
-            record.rental_status_color_hex = self._rental_status_color_hex[color]
 
     @api.depends(
         "so_line_id",

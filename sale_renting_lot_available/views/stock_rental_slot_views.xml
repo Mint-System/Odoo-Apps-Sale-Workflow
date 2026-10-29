@@ -63,16 +63,9 @@
                                 invisible="not so_line_id"
                             />
                             <field
-                                name="rental_status_color_hex"
-                                string="Rental Color"
-                                widget="badge"
-                                options="{'color_field': 'rental_status_color'}"
-                                groups="base.group_no_one"
-                                invisible="not so_line_id"
-                            />
-                            <field
                                 name="rental_status_color"
                                 string="Color Index"
+                                options="{'color_field': 'rental_status_color'}"
                                 groups="base.group_no_one"
                             />
                         </group>
