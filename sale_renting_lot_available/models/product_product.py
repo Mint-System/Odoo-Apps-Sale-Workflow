@@ -10,26 +10,19 @@ _logger = logging.getLogger(__name__)
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    rental_slot_count = fields.Integer(
-        compute="_compute_rental_slot_count",
+    stock_rental_slot_ids = fields.One2many(
+        "stock.rental.slot",
+        "product_id",
         string="Rental Slots",
     )
 
-    @api.depends("stock_rental_slot_ids")
-    def _compute_rental_slot_count(self):
-        for product in self:
-            product.rental_slot_count = len(product.stock_rental_slot_ids)
-
-    def action_view_rental_slots(self):
-        self.ensure_one()
-        return {
-            "type": "ir.actions.act_window",
-            "name": _("Rental Slots"),
-            "res_model": "stock.rental.slot",
-            "view_mode": "gantt,list,form",
-            "context": {
-                "search_default_product_id": self.id,
-                "search_default_groupby_product": 1,
-                "search_default_groupby_lot": 1,
-            },
-        }
+    def _generate_stock_rental_lot(self):
+        """
+        Delete linked placeholder slots and create one for each qty
+        for untracked storable rental products.
+        """
+        for product in self.filtered(lambda p: p.rent_ok and p.is_storable and p.tracking == "none"):
+            product.stock_rental_slot_ids.filtered("is_placeholder").sudo().unlink()
+            qty = int(product.qty_available)
+            for _ in range(qty):
+                self.env["stock.rental.slot"].create({"product_id": product.id})

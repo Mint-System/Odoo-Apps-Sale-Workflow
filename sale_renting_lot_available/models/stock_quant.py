@@ -18,6 +18,11 @@ class StockQuant(models.Model):
             elif lot.product_qty > 0.0 and not lot.start_slot_id:
                 lot._create_stock_rental_lot()
 
+        untracked_products = self.filtered(
+            lambda q: q.product_id.rent_ok and q.product_id.is_storable and q.product_id.tracking == "none"
+        ).mapped("product_id")
+        untracked_products._generate_stock_rental_lot()
+
     @api.model_create_multi
     def create(self, vals_list):
         quants = super().create(vals_list)
@@ -32,10 +37,14 @@ class StockQuant(models.Model):
 
     def unlink(self):
         lots = self.mapped("lot_id")
+        untracked_products = self.filtered(
+            lambda q: q.product_id.rent_ok and q.product_id.is_storable and q.product_id.tracking == "none"
+        ).mapped("product_id")
         res = super().unlink()
         for lot in lots.filtered(lambda l: l.product_id.rent_ok):
             if lot.product_qty <= 0.0 and lot.start_slot_id:
                 lot.start_slot_id.unlink()
             elif lot.product_qty > 0.0 and not lot.start_slot_id:
                 lot._create_stock_rental_lot()
+        untracked_products._generate_stock_rental_lot()
         return res

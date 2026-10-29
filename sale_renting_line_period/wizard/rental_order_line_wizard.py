@@ -45,6 +45,7 @@ class SaleOrderLineWizard(models.TransientModel):
 
         reserved_lot_ids = so_line_id.reserved_lot_ids
         pickedup_lot_ids = so_line_id.pickedup_lot_ids
+        qty_delivered = so_line_id.qty_delivered
 
         # Keep one unit and the first lot on the current line. Reduce the
         # delivered quantity before the ordered quantity so that the
@@ -67,7 +68,7 @@ class SaleOrderLineWizard(models.TransientModel):
                 default={
                     "order_id": so_line_id.order_id.id,
                     "product_uom_qty": 1.0,
-                    "qty_delivered": 1.0 if pickedup_lot else 0.0,
+                    "qty_delivered": 1.0 if pickedup_lot or qty_delivered > 0 else 0.0,
                 }
             )
             new_line.write(

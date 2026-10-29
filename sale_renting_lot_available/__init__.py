@@ -8,5 +8,9 @@ def post_init_hook(env):
     """
     lots = env["stock.lot"].search([("product_id.rent_ok", "=", True)])
     lots._create_stock_rental_lot()
+    untracked_products = env["product.product"].search(
+        [("rent_ok", "=", True), ("is_storable", "=", True), ("tracking", "=", "none")]
+    )
+    untracked_products._generate_stock_rental_lot()
     lines = env["sale.order.line"].search([("is_rental", "=", True), ("state", "=", "sale")])
     lines._generate_stock_rental_lot()

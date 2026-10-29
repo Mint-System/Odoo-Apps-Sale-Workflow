@@ -82,6 +82,6 @@ class TestStockRentalSlotStockSync(SaleCommon):
                 "group_ids": [Command.set([self.env.ref("sales_team.group_sale_salesman").id])],
             }
         )
-        slot = self.env["stock.rental.slot"].create({"lot_id": self.lot.id})
+        slot = self.env["stock.rental.slot"].create({"lot_id": self.lot.id, "product_id": self.printer.id})
         self.env["stock.rental.slot"].with_user(salesman).write({"lot_id": self.lot.id})
         self.env["stock.rental.slot"].with_user(salesman).unlink()

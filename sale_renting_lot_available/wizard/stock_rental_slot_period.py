@@ -76,14 +76,16 @@ class StockRentalSlotPeriod(models.TransientModel):
         self.ensure_one()
 
         # Get all placeholder slots and update dates.
-        start_placeholder_lot_ids = self.env["stock.rental.slot"].search(
+        start_placeholder_slot_ids = self.env["stock.rental.slot"].search(
             [
                 ("is_placeholder", "=", True),
+                "|",
                 ("lot_id.start_slot_id", "!=", False),
+                ("lot_id", "=", False),
                 ("company_id", "=", self.env.company.id),
             ]
         )
-        start_placeholder_lot_ids.write({"start_date": self.start_date, "return_date": self.start_date})
+        start_placeholder_slot_ids.write({"start_date": self.start_date, "return_date": self.start_date})
 
         return {
             "type": "ir.actions.act_window",

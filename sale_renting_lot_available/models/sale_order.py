@@ -23,12 +23,6 @@ class SaleOrder(models.Model):
     def action_confirm(self):
         """
         Generate rental slots on confirmation.
-
-        Slot generation normally happens through the inverse methods of
-        ``product_uom_qty``/``pickedup_lot_ids`` when a line is written. An
-        order that was still a draft when the module was installed therefore
-        has no slots yet: confirming it does not write those fields. Generate
-        the slots here so every confirmed rental order is scheduled.
         """
         res = super().action_confirm()
         self.order_line._generate_stock_rental_lot()

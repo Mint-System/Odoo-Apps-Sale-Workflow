@@ -43,7 +43,9 @@ class StockLot(models.Model):
         """
         for lot in self:
             if lot.product_id.rent_ok:
-                lot.start_slot_id = lot.env["stock.rental.slot"].create({"lot_id": lot.id})
+                lot.start_slot_id = lot.env["stock.rental.slot"].create(
+                    {"lot_id": lot.id, "product_id": lot.product_id.id}
+                )
 
     @api.model_create_multi
     def create(self, vals_list):

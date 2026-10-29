@@ -20,8 +20,6 @@ class StockRentalSlot(models.Model):
 
     product_id = fields.Many2one(
         "product.product",
-        compute="_compute_product_id",
-        store=True,
         readonly=True,
     )
     categ_id = fields.Many2one(
@@ -103,28 +101,22 @@ class StockRentalSlot(models.Model):
         "so_line_id.order_id.company_id",
         "lot_id",
         "lot_id.company_id",
+        "product_id",
+        "product_id.company_id",
     )
     def _compute_company_id(self):
         for record in self:
-            record.company_id = record.so_line_id.order_id.company_id or record.lot_id.company_id or record.env.company
+            record.company_id = (
+                record.so_line_id.order_id.company_id
+                or record.lot_id.company_id
+                or record.product_id.company_id
+                or record.env.company
+            )
 
-    @api.depends("lot_id", "so_line_id")
+    @api.depends("so_line_id")
     def _compute_is_placeholder(self):
         for record in self:
-            if record.lot_id and not record.so_line_id:
-                record.is_placeholder = True
-            else:
-                record.is_placeholder = False
-
-    @api.depends("lot_id", "so_line_id")
-    def _compute_product_id(self):
-        for record in self:
-            if record.so_line_id:
-                record.product_id = record.so_line_id.product_id
-            elif record.lot_id:
-                record.product_id = record.lot_id.product_id
-            else:
-                record.product_id = False
+            record.is_placeholder = not record.so_line_id
 
     @api.depends("so_line_id", "so_line_id.rental_start_date", "so_line_id.rental_return_date")
     def _compute_dates(self):
@@ -152,11 +144,13 @@ class StockRentalSlot(models.Model):
         for record in self:
             if record.sale_order_id:
                 record.name = f"{record.sale_order_id.display_name} - {record.order_partner_id.name}"
-            elif record.lot_id:
-                if record.is_placeholder:
+            elif record.is_placeholder:
+                if record.lot_id:
                     record.name = _("Placeholder - %s - %s") % (record.product_id.name, record.lot_id.name)
                 else:
-                    record.name = f"{record.product_id.name} - {record.lot_id.name}"
+                    record.name = _("Placeholder - %s") % record.product_id.name
+            elif record.lot_id:
+                record.name = f"{record.product_id.name} - {record.lot_id.name}"
 
     def action_show_stock_rental_slot_period(self):
         return {

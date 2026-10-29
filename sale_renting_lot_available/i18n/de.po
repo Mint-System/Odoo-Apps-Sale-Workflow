@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-07 08:18+0000\n"
-"PO-Revision-Date: 2026-08-07 08:18+0000\n"
+"POT-Creation-Date: 2026-10-29 20:02+0000\n"
+"PO-Revision-Date: 2026-10-29 20:02+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,12 +23,12 @@ msgstr "<strong>Ende: </strong>"
 #. module: sale_renting_lot_available
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_gantt_view
 msgid "<strong>Start: </strong>"
-msgstr "<strong>Start: </strong>"
+msgstr ""
 
 #. module: sale_renting_lot_available
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_gantt_view
 msgid "<strong>Status: </strong>"
-msgstr "<strong>Status: </strong>"
+msgstr ""
 
 #. module: sale_renting_lot_available
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__active
@@ -57,6 +57,17 @@ msgstr "Zeitraum prüfen"
 
 #. module: sale_renting_lot_available
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_form_view
+msgid "Color Index"
+msgstr ""
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__company_id
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_search_view
+msgid "Company"
+msgstr ""
+
+#. module: sale_renting_lot_available
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_form_view
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_list_view
 msgid "Create Rental Order"
 msgstr "Mietauftrag erstellen"
@@ -80,9 +91,13 @@ msgid "Customer"
 msgstr "Kunde"
 
 #. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_product_product__display_name
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_product_template__display_name
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_rental_order_wizard_line__display_name
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_lot__display_name
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_quant__display_name
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__display_name
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot_period__display_name
 msgid "Display Name"
@@ -110,13 +125,17 @@ msgid "Has Order Line"
 msgstr "Hat Auftragszeile"
 
 #. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_product_product__id
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_product_template__id
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_rental_order_wizard_line__id
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_sale_order_line__id
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_lot__id
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_quant__id
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__id
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot_period__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_renting_lot_available
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__is_placeholder
@@ -149,7 +168,7 @@ msgstr "Los/Serie"
 #. module: sale_renting_lot_available
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__name
 msgid "Name"
-msgstr "Name"
+msgstr ""
 
 #. module: sale_renting_lot_available
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__sale_order_id
@@ -162,17 +181,24 @@ msgid "Pickedup Lot"
 msgstr "Abgeholtes Los"
 
 #. module: sale_renting_lot_available
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_search_view
+msgid "Placeholder"
+msgstr "Platzhalter"
+
+#. module: sale_renting_lot_available
+#. odoo-python
+#: code:addons/sale_renting_lot_available/models/stock_rental_slot.py:0
+msgid "Placeholder - %s"
+msgstr ""
+
+#. module: sale_renting_lot_available
 #. odoo-python
 #: code:addons/sale_renting_lot_available/models/stock_rental_slot.py:0
 msgid "Placeholder - %s - %s"
 msgstr "Platzhalter - %s - %s"
 
 #. module: sale_renting_lot_available
-#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_search_view
-msgid "Placeholder"
-msgstr "Platzhalter"
-
-#. module: sale_renting_lot_available
+#: model:ir.model,name:sale_renting_lot_available.model_product_template
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__product_id
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_search_view
 msgid "Product"
@@ -185,15 +211,30 @@ msgid "Product Category"
 msgstr "Produktkategorie"
 
 #. module: sale_renting_lot_available
+#: model:ir.model,name:sale_renting_lot_available.model_product_product
+msgid "Product Variant"
+msgstr "Produktvariante"
+
+#. module: sale_renting_lot_available
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_sale_order_line__product_uom_qty
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__product_uom_qty
 msgid "Quantity"
 msgstr "Menge"
 
 #. module: sale_renting_lot_available
-#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__rental_color
+#: model:ir.model,name:sale_renting_lot_available.model_stock_quant
+msgid "Quants"
+msgstr "Quanten"
+
+#. module: sale_renting_lot_available
+#: model:product.template,name:sale_renting_lot_available.product_product_rental_chair_product_template
+msgid "Rental Chair"
+msgstr ""
+
+#. module: sale_renting_lot_available
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__rental_status_color
 msgid "Rental Color"
-msgstr "Mietfarbe"
+msgstr ""
 
 #. module: sale_renting_lot_available
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_form_view
@@ -208,12 +249,18 @@ msgstr "Mietplan"
 
 #. module: sale_renting_lot_available
 #. odoo-python
+#: code:addons/sale_renting_lot_available/models/product_template.py:0
 #: code:addons/sale_renting_lot_available/models/sale_order.py:0
 #: code:addons/sale_renting_lot_available/models/stock_lot.py:0
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_product_product__rental_slot_count
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_product_product__stock_rental_slot_ids
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_product_template__rental_slot_count
+#: model:ir.model.fields,field_description:sale_renting_lot_available.field_product_template__stock_rental_slot_ids
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_sale_order__rental_slot_count
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_sale_order_line__rental_slot_ids
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_lot__rental_slot_count
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_lot__rental_slot_ids
+#: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.product_template_form_view
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.view_order_form_inherit_rental_slots
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.view_production_lot_form
 msgid "Rental Slots"
@@ -224,6 +271,11 @@ msgstr "Mietzeitfenster"
 #: model_terms:ir.ui.view,arch_db:sale_renting_lot_available.stock_rental_slot_search_view
 msgid "Rental Status"
 msgstr "Mietstatus"
+
+#. module: sale_renting_lot_available
+#: model:ir.model,name:sale_renting_lot_available.model_rental_order_wizard_line
+msgid "RentalOrderLine transient representation"
+msgstr "RentalOrderLine vorübergehende Darstellung"
 
 #. module: sale_renting_lot_available
 #: model:ir.model.fields,field_description:sale_renting_lot_available.field_stock_rental_slot__return_date

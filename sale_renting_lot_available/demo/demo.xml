@@ -1,2 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<odoo />
+<odoo>
+    <record id="product_product_rental_chair" model="product.product">
+        <field name="name">Rental Chair</field>
+        <field name="type">consu</field>
+        <field name="is_storable" eval="True" />
+        <field name="tracking">none</field>
+        <field name="rent_ok" eval="True" />
+        <field name="categ_id" ref="product.product_category_goods" />
+    </record>
+    <record id="stock_quant_rental_chair" model="stock.quant">
+        <field name="product_id" ref="product_product_rental_chair" />
+        <field name="inventory_quantity">5.0</field>
+        <field
+            name="location_id"
+            model="stock.location"
+            eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"
+        />
+    </record>
+</odoo>

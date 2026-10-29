@@ -61,10 +61,12 @@ class SaleOrderLine(models.Model):
             # Create pickedup slots
             if line.is_rental and line.pickedup_lot_ids and not line.returned_lot_ids:
                 for lot in line.pickedup_lot_ids:
-                    line.env["stock.rental.slot"].create({"so_line_id": line.id, "lot_id": lot.id})
+                    line.env["stock.rental.slot"].create(
+                        {"so_line_id": line.id, "lot_id": lot.id, "product_id": line.product_id.id}
+                    )
                 # Create slots for the qty that has not been picked up yet
                 for _qty in range(int(line.product_uom_qty) - len(line.pickedup_lot_ids)):
-                    line.env["stock.rental.slot"].create({"so_line_id": line.id})
+                    line.env["stock.rental.slot"].create({"so_line_id": line.id, "product_id": line.product_id.id})
 
             # Update slot if returned
             elif line.is_rental and line.returned_lot_ids:
@@ -77,7 +79,7 @@ class SaleOrderLine(models.Model):
             # Create qty slots
             elif line.is_rental and not line.rental_slot_ids:
                 for _qty in range(int(line.product_uom_qty)):
-                    self.env["stock.rental.slot"].create({"so_line_id": line.id})
+                    self.env["stock.rental.slot"].create({"so_line_id": line.id, "product_id": line.product_id.id})
 
     def unlink(self):
         self.rental_slot_ids.sudo().unlink()
@@ -89,6 +91,7 @@ class SaleOrderLine(models.Model):
         For stored rental products without lot return stored qty as count.
         """
         for line in self:
+            _logger.warning([line.product_id.name, line.product_id.tracking])
             if line.product_id.tracking in ["serial", "lot"]:
                 # Get all placeholder slots of a product
                 product_placeholder_slot_count = self.env["stock.rental.slot"].search_count(
@@ -114,6 +117,7 @@ class SaleOrderLine(models.Model):
                 line.available_slot_ids_count = product_placeholder_slot_count - product_booked_slot_count
 
             elif line.product_id.is_storable and line.product_id.tracking == "none":
+                _logger.warning([line.product_id.name, line.product_id.qty_available])
                 line.available_slot_ids_count = line.product_id.qty_available
             else:
                 line.available_slot_ids_count = -1
