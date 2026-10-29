@@ -10,7 +10,7 @@
     "development_status": "Production/Stable",
     "version": "19.0.1.0.0",
     "license": "OPL-1",
-    "depends": ["sale_stock_renting"],
+    "depends": ["sale_stock_renting", "sale_order_ref"],
     "data": [
         "views/sale_order_views.xml",
         "views/sale_order_line_views.xml",

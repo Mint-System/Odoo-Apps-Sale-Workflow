@@ -118,4 +118,17 @@
             </xpath>
         </field>
     </record>
+
+    <record id="rental_order_view_search" model="ir.ui.view">
+        <field name="name">sale_renting_line_period.rental_order_view_search</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_renting.rental_order_view_search" />
+        <field name="arch" type="xml">
+            <field name="name" position="attributes">
+                <attribute
+                    name="filter_domain"
+                >['|', '|', '|', ('name', 'ilike', self), ('client_order_ref', 'ilike', self), ('ref', 'ilike', self), ('partner_id', 'child_of', self)]</attribute>
+            </field>
+        </field>
+    </record>
 </odoo>

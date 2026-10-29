@@ -1,0 +1,6 @@
+<odoo noupdate="1">
+    <record id="default_format_displayname" model="ir.config_parameter">
+        <field name="key">sale_order_ref.displayname_template</field>
+        <field name="value" eval="'{name} ({ref})'"/>
+    </record>
+</odoo>

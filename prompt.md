@@ -1,9 +1,9 @@
 ---
 commit_ref:
-title: "Bugfix Sale Renting Lot Available"
+title: "Re-migrate and update sale order ref"
 author: "Janik von Rotz <login@janikvonrotz.ch>"
 action: implement
-state: draft
+state: review
 date_completed: YYYY-MM-DD
 harness:
 model:
@@ -11,7 +11,7 @@ input_tokens:
 output_tokens:
 ---
 
-# Bugfix Sale Rening Lot Available
+# Re-migrate and update sale order ref
 
 Note: @Clanker refers to the "ai agent" (you) who is working on this prompt file.
 
@@ -27,48 +27,74 @@ Note: @Clanker refers to the "ai agent" (you) who is working on this prompt file
 
 ## Task
 
-This about module `sale_renting_lot_available`.
+This is about the module `sale_order_ref`. There are 3 topics.
 
-### User access to `stock.rental.slot`
+### 1. The module has been updated on 17.0 re-migrate the module.
 
-Ensure that users in group `sales_team.group_sale_salesman` have full access on the slot model.
+There is a guide that explains how this is done:
+https://wiki.mint-system.ch/prozesse-odoo-modul-migration/?h=prozesse+modul+#modul-migrieren
 
-### Lot 0 does not remove placeholder slot
+Do not run any prompts or commit anything. Do not create feature branch or PR.
 
-If qty for a `stock.lot` is set to 0.0 it should remove the placeholder slots.
+### 2. Update search filter on sale order
 
-### Rental status false color
+Add `ref` to field `name` in `sale.view_sales_order_filter`.
 
-If the rental status is false (which is the case for placeholder slots) it should be in a grey color.
+### 3. Make `sale_renting_line_period` depend on `sale_order_ref` and update search filter.
 
-### Placeholder slots with prefix in name
+Add `ref` to field `name` in `sale_renting.rental_order_view_search`.
 
-Ensure that if `is_placeholder` is set then the name is prefixed with "Placeholder".
-
-So the name becomes "Placeholder - {Product} - {Lot}".
-
-### Rental slots without lot
-
-This is a bigger task. If the rental product is tracked but only with qty the module should generate rental slots based on the stock qty of this product.
-
-Create a `_create_stock_rental_lot` method for `product.product`. Show the slots as smart buttons on product (similar to stock.lot).
-
-The name of these slots becomes "Placeholder - {Product}".
-
-Changing the qty in stock should regenerate the slots.
-
-### Testing
-
-Write tests for the functionality.
-
-Prepare the Odoo enviroment for testing.
-
-I will test if the rental flow works with qty and serial tracked products in the same order.
-
-@Clanker When task is completed set frontmatter state to review. Prompt the author to verify the results.
+@Clanker When task is completed set frontmatter state to review. Prompt the author to
+verify the results.
 
 ## Worklog
 
-@Clanker Add a summary here once the task has been completed.
+### Completed tasks
 
-@Clanker If author confirms results set frontmatter state to completed, otherwise to aborted. Update date, harness and model. If you have access to session info also add token count.
+1. **Re-migrated `sale_order_ref` from 17.0 to 19.0**
+   - The 17.0 branch had additional features not present in the 19.0 version. Ported the
+     following files and changes:
+   - Added `data/system_parameters.xml` with default
+     `sale_order_ref.displayname_template` config parameter.
+   - Added `views/res_config_settings_views.xml` to configure the display name template
+     in Sale settings.
+   - Added `models/res_config_settings.py` with `sale_order_ref_displayname_template`
+     and live preview fields.
+   - Updated `models/sale_order.py` to use the template-based display name logic (with
+     `display_name_formatted` method) instead of the hardcoded format.
+   - Updated `models/__init__.py` to import the new settings model.
+   - Created `tests/TEST_INSTRUCTIONS.rst`.
+   - Updated `__manifest__.py` to include the new data and view files.
+
+2. **Updated search filter on sale order**
+   - Added inheritance record `view_sales_order_filter` in
+     `sale_order_ref/views/sale_order_views.xml`
+   - The `name` field's `filter_domain` now includes `('ref', 'ilike', self)` so
+     searching by ref works in the sale order search view.
+
+3. **Made `sale_renting_line_period` depend on `sale_order_ref` and updated search
+   filter**
+   - Added `sale_order_ref` to `depends` in `sale_renting_line_period/__manifest__.py`.
+   - Added inheritance record `rental_order_view_search` in
+     `sale_renting_line_period/views/sale_order_views.xml`
+   - The `name` field's `filter_domain` now includes `('ref', 'ilike', self)` so
+     searching by ref works in the rental order search view.
+
+### Files changed
+
+- `addons/sale_workflow/sale_order_ref/__manifest__.py`
+- `addons/sale_workflow/sale_order_ref/models/sale_order.py`
+- `addons/sale_workflow/sale_order_ref/models/__init__.py`
+- `addons/sale_workflow/sale_order_ref/models/res_config_settings.py` (new)
+- `addons/sale_workflow/sale_order_ref/data/system_parameters.xml` (new)
+- `addons/sale_workflow/sale_order_ref/views/res_config_settings_views.xml` (new)
+- `addons/sale_workflow/sale_order_ref/views/sale_order_views.xml`
+- `addons/sale_workflow/sale_order_ref/tests/TEST_INSTRUCTIONS.rst` (new)
+- `addons/sale_workflow/sale_renting_line_period/__manifest__.py`
+- `addons/sale_workflow/sale_renting_line_period/views/sale_order_views.xml`
+
+---
+
+@Clanker If author confirms results set frontmatter state to completed, otherwise to
+aborted. Update date, harness and model. If you have access to session info also add
+token count.

@@ -32,4 +32,17 @@
             </field>
         </field>
     </record>
+
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="name">sale_order_ref.view_sales_order_filter</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <field name="name" position="attributes">
+                <attribute
+                    name="filter_domain"
+                >['|', '|', '|', ('name', 'ilike', self), ('client_order_ref', 'ilike', self), ('ref', 'ilike', self), ('partner_id', 'child_of', self)]</attribute>
+            </field>
+        </field>
+    </record>
 </odoo>
