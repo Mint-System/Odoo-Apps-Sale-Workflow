@@ -35,6 +35,8 @@ I want you to add two new ways for placeholder slots:
 - A `qty_available` on a product with `rent_ok`, `is_storable` and no `tracking` is set -> `_generate_stock_rental_lot` -> delete linked slots and create one for each qty
 - Set qty on a `stock.quant` for a product with `rent_ok`, `is_storable` and no `tracking` ist set ->  `_generate_stock_rental_lot` -> delete linked slots and create one for each qty
 
+This will require an update on `stock.rental.slot`. The `product_id` must no longer be computed from `lot_id` or `so_line_id`. Instead make this a readonly field and set the `product_id` in the `_create_stock_rental_lot` and `_generate_stock_rental_lot` methods.
+
 The name of these slots becomes "Placeholder - {Product}".
 
 ### Testing
