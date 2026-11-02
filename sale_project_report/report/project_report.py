@@ -1,5 +1,5 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import fields, models
+from odoo import _, fields, models
 
 
 class ProjectReport(models.Model):
@@ -19,6 +19,13 @@ class ProjectReport(models.Model):
     partner_id = fields.Many2one(comodel_name="res.partner", string="Customer", readonly=True)
     user_id = fields.Many2one(comodel_name="res.users", string="Project Manager", readonly=True)
     company_id = fields.Many2one(comodel_name="res.company", string="Company", readonly=True)
+
+    def action_open_project_updates(self):
+        self.ensure_one()
+        action = self.env["ir.actions.act_window"]._for_xml_id("project.project_update_all_action")
+        action["context"] = dict(self.env.context, active_id=self.project_id.id)
+        action["display_name"] = _("%(name)s's Updates", name=self.project_id.name)
+        return action
 
     @property
     def _table_query(self):

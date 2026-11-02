@@ -16,6 +16,7 @@ msgstr ""
 #: model:ir.model,name:sale_project_report.model_project_report
 #: model:ir.ui.menu,name:sale_project_report.menu_project_report_analysis
 #: model_terms:ir.ui.view,arch_db:sale_project_report.project_report_view_graph
+#: model_terms:ir.ui.view,arch_db:sale_project_report.project_report_view_list
 #: model_terms:ir.ui.view,arch_db:sale_project_report.project_report_view_pivot
 #: model_terms:ir.ui.view,arch_db:sale_project_report.project_report_view_search
 msgid "Project Analysis"
@@ -81,3 +82,12 @@ msgstr "Unternehmen"
 #: model:ir.model.fields,field_description:sale_project_report.field_project_report__timesheet_planned
 msgid "Timesheet / Planned"
 msgstr "Anteil Zeiterfassung von geplanten Stunden"
+
+#. module: sale_project_report
+#: model_terms:ir.ui.view,arch_db:sale_project_report.project_report_view_list
+msgid "Project Updates"
+msgstr "Projektaktualisierungen"
+
+#. module: sale_project_report
+msgid "%(name)s's Updates"
+msgstr "%(name)s Aktualisierungen"

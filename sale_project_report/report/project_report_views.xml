@@ -31,11 +31,36 @@
         </field>
     </record>
 
+    <record id="project_report_view_list" model="ir.ui.view">
+        <field name="name">project.report.list</field>
+        <field name="model">project.report</field>
+        <field name="arch" type="xml">
+            <tree string="Project Analysis" create="0" edit="0" delete="0">
+                <field name="project_id" />
+                <field name="partner_id" />
+                <field name="user_id" />
+                <field name="planned_hours" />
+                <field name="allocated_hours" />
+                <field name="timesheet_hours" />
+                <field name="invoiced_hours" />
+                <field name="allocated_planned" widget="percentage" />
+                <field name="timesheet_allocated" widget="percentage" />
+                <field name="timesheet_planned" widget="percentage" />
+                <button
+                    name="action_open_project_updates"
+                    type="object"
+                    string="Project Updates"
+                    icon="fa-external-link"
+                />
+            </tree>
+        </field>
+    </record>
+
     <record id="project_report_view_pivot" model="ir.ui.view">
         <field name="name">project.report.pivot</field>
         <field name="model">project.report</field>
         <field name="arch" type="xml">
-            <pivot string="Project Analysis" sample="1" js_class="project_report_pivot">
+            <pivot string="Project Analysis" sample="1">
                 <field name="project_id" type="row" />
                 <field name="planned_hours" type="measure" />
                 <field name="allocated_hours" type="measure" />
@@ -52,7 +77,7 @@
         <field name="name">project.report.graph</field>
         <field name="model">project.report</field>
         <field name="arch" type="xml">
-            <graph string="Project Analysis" type="bar" sample="1" js_class="project_report_graph">
+            <graph string="Project Analysis" type="bar" sample="1">
                 <field name="project_id" />
                 <field name="planned_hours" type="measure" />
                 <field name="allocated_hours" type="measure" />
