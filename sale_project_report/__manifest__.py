@@ -11,6 +11,12 @@
     "version": "17.0.1.0.0",
     "license": "AGPL-3",
     "depends": ["sale_timesheet"],
+    "assets": {
+        "web.assets_backend": [
+            "sale_project_report/static/src/js/project_report_pivot_view.js",
+            "sale_project_report/static/src/js/project_report_graph_view.js",
+        ],
+    },
     "data": [
         "security/ir.model.access.csv",
         "security/project_report_security.xml",
