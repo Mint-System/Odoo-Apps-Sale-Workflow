@@ -45,7 +45,7 @@ msgstr "Geplante Stunden"
 #. module: sale_project_report
 #: model:ir.model.fields,field_description:sale_project_report.field_project_report__allocated_hours
 msgid "Allocated Hours"
-msgstr "Freigebene Stunden"
+msgstr "Freigegebene Stunden"
 
 #. module: sale_project_report
 #: model:ir.model.fields,field_description:sale_project_report.field_project_report__timesheet_hours
@@ -60,12 +60,12 @@ msgstr "Verrechnete Stunden"
 #. module: sale_project_report
 #: model:ir.model.fields,field_description:sale_project_report.field_project_report__allocated_planned
 msgid "Allocated / Planned"
-msgstr "Anteil freigebene von geplanten Stunden"
+msgstr "Anteil freigegebene von geplanten Stunden"
 
 #. module: sale_project_report
 #: model:ir.model.fields,field_description:sale_project_report.field_project_report__timesheet_allocated
 msgid "Timesheet / Allocated"
-msgstr "Anteil Zeiterfassung von freigebenen Stunden"
+msgstr "Anteil Zeiterfassung von freigegebenen Stunden"
 
 #. module: sale_project_report
 #: model:ir.rule,name:sale_project_report.project_report_comp_rule
