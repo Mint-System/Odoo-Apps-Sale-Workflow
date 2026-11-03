@@ -15,9 +15,7 @@ class ProductTemplate(models.Model):
         string="Rental Slots",
     )
     stock_rental_slot_ids = fields.One2many(
-        "stock.rental.slot",
-        "product_id",
-        related="product_variant_id.stock_rental_slot_ids"
+        "stock.rental.slot", "product_id", related="product_variant_id.stock_rental_slot_ids"
     )
 
     @api.depends("stock_rental_slot_ids")

@@ -52,12 +52,13 @@ class SaleOrderLineWizard(models.TransientModel):
         # 'sale_stock' check does not reject the lower ordered qty.
         so_line_id.write(
             {
-                "qty_delivered": 1.0 if pickedup_lot_ids else 0.0,
                 "reserved_lot_ids": reserved_lot_ids[:1],
                 "pickedup_lot_ids": pickedup_lot_ids[:1],
             }
         )
-        so_line_id.write({"product_uom_qty": 1.0})
+        so_line_id.write(
+            {"qty_delivered": 1.0 if pickedup_lot_ids or qty_delivered > 0 else 0.0, "product_uom_qty": 1.0}
+        )
 
         # Create one new line for every additional unit
         new_lines = self.env["sale.order.line"]
