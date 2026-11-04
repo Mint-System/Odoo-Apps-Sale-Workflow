@@ -12,19 +12,16 @@ output_tokens: 71380
 ---
 
 # Link estimates if project is given
-=======
-title: "Select lot when splitting a line"
-author: "Janik von Rotz <login@janikvonrotz.ch>"
-state: draft
-date_completed: YYYY-MM-DD
-harness:
-model:
-input_tokens:
-output_tokens:
+
+======= title: "Select lot when splitting a line" author: "Janik von Rotz
+<login@janikvonrotz.ch>" state: draft date_completed: YYYY-MM-DD harness: model:
+input_tokens: output_tokens:
+
 ---
 
 # Select lot when splitting a line
->>>>>>> Stashed changes
+
+> > > > > > > Stashed changes
 
 Note: @Clanker refers to the "ai agent" (you) who is working on this prompt file.
 
@@ -40,9 +37,8 @@ Note: @Clanker refers to the "ai agent" (you) who is working on this prompt file
 
 ## Task
 
-<<<<<<< Updated upstream
-When a sale order with estimates is confirmed and it creates a project then it links the
-estimates with the project.
+<<<<<<< Updated upstream When a sale order with estimates is confirmed and it creates a
+project then it links the estimates with the project.
 
 If the project_id on the sale order is already set, then it does not link the estimates
 on confirmation.
@@ -69,11 +65,9 @@ Remember that when the sale order is confirmed it writes this field to the estim
 ### Archive
 
 Also make module depend on sale_order_archive. If order is archived archive the
-estimates linked with order as well.
-=======
-I want you to update the `sale_renting_line_period` module. There is a split line
-functionality where a user can enter a qty and then this amount is splitted into a new
-sale order line.
+estimates linked with order as well. ======= I want you to update the
+`sale_renting_line_period` module. There is a split line functionality where a user can
+enter a qty and then this amount is splitted into a new sale order line.
 
 If lots are assigned to the line it simply slices the set. I want you to add a new
 option to the split dialog. The user should be able to select the lots that should be
@@ -83,7 +77,8 @@ The split function checks if diff qty is equal to the selected lots. If no lots 
 entered then use the slice approach.
 
 Once ready I will test the functionality.
->>>>>>> Stashed changes
+
+> > > > > > > Stashed changes
 
 @Clanker When task is completed set frontmatter state to review. Prompt the author to
 verify the results.
@@ -91,6 +86,7 @@ verify the results.
 ## Worklog
 
 <<<<<<< Updated upstream
+
 - Investigated `sale_order_line.py` and found that estimates were being linked even when
   the sale order already had a project set. Fixed `_timesheet_service_generation` to
   only link estimates to newly created projects by tracking the order's project before
@@ -120,10 +116,9 @@ verify the results.
   `search_default_phase_id` instead of a hard domain filter. This makes the phase filter
   visible and removable, letting users see all project estimates.
 - All 31 module tests pass.
-- Token count: ~3.9M input / ~71K output.
-=======
-@Clanker Add a summary here once the task has been completed.
->>>>>>> Stashed changes
+- # Token count: ~3.9M input / ~71K output.
+  @Clanker Add a summary here once the task has been completed.
+  > > > > > > > Stashed changes
 
 @Clanker If author confirms results set frontmatter state to completed, otherwise to
 aborted. Update date, harness and model. If you have access to session info also add

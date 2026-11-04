@@ -6,10 +6,9 @@
         <field name="inherit_id" ref="project_phase_estimate.project_estimate_tree" />
         <field name="arch" type="xml">
             <field name="project_id" position="before">
-                <field name="partner_id" invisible="1" />
                 <field
                     name="sale_line_id"
-                    domain="[('order_partner_id', '=', project_id), ('is_service', '=', True)]"
+                    domain="[('project_id', '=', project_id), ('is_service', '=', True)]"
                 />
                 <field name="sale_order_id" optional="hide" />
             </field>
