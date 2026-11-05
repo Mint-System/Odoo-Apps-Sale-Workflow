@@ -1,5 +1,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, fields, models
+
+from odoo import _, fields, models, api
 
 
 class ProjectReport(models.Model):
@@ -104,3 +105,31 @@ class ProjectReport(models.Model):
             LEFT JOIN timesheet ON timesheet.project_id = p.id
             WHERE p.active = true
         """
+
+    @api.model
+    def read_group(
+        self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True
+    ):
+        res = super().read_group(
+            domain,
+            fields,
+            groupby,
+            offset=offset,
+            limit=limit,
+            orderby=orderby,
+            lazy=lazy,
+        )
+
+        if "allocated_planned:avg" in fields:
+            for line in res:
+                line["allocated_planned"] = (line.get("allocated_hours", 0.0) / line["planned_hours"]) if line.get("planned_hours", 0.0) else 0.0
+
+        if "timesheet_allocated:avg" in fields:
+            for line in res:
+                line["timesheet_allocated"] = (line.get("timesheet_hours", 0.0) / line["allocated_hours"]) if line.get("allocated_hours", 0.0) else 0.0
+
+        if "timesheet_planned:avg" in fields:
+            for line in res:
+                line["timesheet_planned"] = (line.get("timesheet_hours", 0.0) / line["planned_hours"]) if line.get("planned_hours", 0.0) else 0.0
+
+        return res
