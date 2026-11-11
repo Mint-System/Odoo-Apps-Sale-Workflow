@@ -1,5 +1,5 @@
 ---
-commit_ref: 302ac6b925473113c6e7d57b353850de87b7618e
+commit_ref: 980e57f07e0c03dd5c221b0bbcfb2916f2a356f3
 title: "rental slots for storable products without tracking"
 author: "Janik von Rotz <login@janikvonrotz.ch>"
 action: implement
