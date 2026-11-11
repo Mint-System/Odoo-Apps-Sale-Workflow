@@ -45,19 +45,29 @@ class SaleOrderLineWizard(models.TransientModel):
 
         reserved_lot_ids = so_line_id.reserved_lot_ids
         pickedup_lot_ids = so_line_id.pickedup_lot_ids
+        returned_lot_ids = so_line_id.returned_lot_ids
         qty_delivered = so_line_id.qty_delivered
+        qty_returned = so_line_id.qty_returned
 
-        # Keep one unit and the first lot on the current line. Reduce the
-        # delivered quantity before the ordered quantity so that the
-        # 'sale_stock' check does not reject the lower ordered qty.
+        # Keep one unit and the first lot on the current line. The delivered
+        # and returned quantity must be reduced before the ordered quantity,
+        # otherwise 'sale_stock' rejects the lower ordered qty as it is still
+        # compared to the old delivered qty.
+        # Both writes must be separate: 'sale_stock' compares the ordered qty
+        # with the delivered qty stored in the database.
+        so_line_id.write(
+            {
+                "qty_delivered": min(1.0, qty_delivered),
+                "qty_returned": min(1.0, qty_returned),
+            }
+        )
         so_line_id.write(
             {
                 "reserved_lot_ids": reserved_lot_ids[:1],
                 "pickedup_lot_ids": pickedup_lot_ids[:1],
+                "returned_lot_ids": returned_lot_ids[:1],
+                "product_uom_qty": 1.0,
             }
-        )
-        so_line_id.write(
-            {"qty_delivered": 1.0 if pickedup_lot_ids or qty_delivered > 0 else 0.0, "product_uom_qty": 1.0}
         )
 
         # Create one new line for every additional unit
@@ -65,17 +75,20 @@ class SaleOrderLineWizard(models.TransientModel):
         for index in range(qty - 1):
             lot_index = index + 1
             pickedup_lot = pickedup_lot_ids[lot_index : lot_index + 1]
+            returned_lot = returned_lot_ids[lot_index : lot_index + 1]
             new_line = so_line_id.copy(
                 default={
                     "order_id": so_line_id.order_id.id,
                     "product_uom_qty": 1.0,
-                    "qty_delivered": 1.0 if pickedup_lot or qty_delivered > 0 else 0.0,
+                    "qty_delivered": min(1.0, max(0.0, qty_delivered - index)),
+                    "qty_returned": min(1.0, max(0.0, qty_returned - index)),
                 }
             )
             new_line.write(
                 {
                     "reserved_lot_ids": reserved_lot_ids[lot_index : lot_index + 1],
                     "pickedup_lot_ids": pickedup_lot,
+                    "returned_lot_ids": returned_lot,
                 }
             )
             new_lines |= new_line

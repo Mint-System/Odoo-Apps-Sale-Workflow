@@ -1,6 +1,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
+from datetime import datetime, time
 from math import ceil
 
 from pytz import UTC, timezone
@@ -60,16 +61,37 @@ class SaleOrderLine(models.Model):
         - Product is rental
         - The is not set
         - Status is not returned
+
+        The return date is a datetime field but is displayed as a date.
+        Force the time to the last second of the day so the rental period
+        covers the whole return day.
         """
         for line in self:
             if line.is_rental:
                 if not line.rental_start_date or line.rental_status != "returned":
                     line.rental_start_date = line.order_id.rental_start_date
                 if not line.rental_return_date or line.rental_status != "returned":
-                    line.rental_return_date = line.order_id.rental_return_date
+                    line.rental_return_date = self._get_rental_return_date(line.order_id.rental_return_date)
             else:
                 line.rental_start_date = False
                 line.rental_return_date = False
+
+    @api.model
+    def _get_rental_return_date(self, return_date):
+        """
+        Return the given datetime with the time set to the end of the day.
+
+        The datetime is stored in UTC but the day is defined by the user
+        timezone. Convert the timestamp to the user timezone, set the time to
+        the last second of that day and convert it back to UTC.
+        """
+        if not return_date:
+            return return_date
+        user_tz = self.env.tz
+        local_return_date = UTC.localize(return_date).astimezone(user_tz)
+        max_return_date = datetime.combine(local_return_date.date(), time.max)
+        # The slot periods are compared by second, drop the microseconds
+        return user_tz.localize(max_return_date).astimezone(UTC).replace(tzinfo=None, microsecond=0)
 
     @api.depends("rental_start_date", "rental_return_date")
     def _compute_name(self):

@@ -85,6 +85,25 @@ class TestRentalOrderLineWizard(SaleCommon):
         # Picked up lines must be in state 'return', not 'returned'.
         self.assertTrue(all(line.rental_status == "return" for line in self.order.order_line))
 
+    def test_split_delivered_line(self):
+        """A fully delivered line must be splittable into one line per unit."""
+        self._pickup()
+        self.assertEqual(self.line.qty_delivered, 3.0)
+
+        wizard = self.env["rental.order.line.wizard"].create(
+            {
+                "so_line_id": self.line.id,
+                "product_uom_qty": self.line.product_uom_qty,
+            }
+        )
+        wizard.split()
+
+        self.assertEqual(len(self.order.order_line), 3)
+        self.assertTrue(all(line.product_uom_qty == 1.0 for line in self.order.order_line))
+        self.assertTrue(all(line.qty_delivered == 1.0 for line in self.order.order_line))
+        self.assertTrue(all(line.qty_returned == 0.0 for line in self.order.order_line))
+        self.assertTrue(all(line.rental_status == "return" for line in self.order.order_line))
+
     def test_split_rejects_single_qty(self):
         self.line.product_uom_qty = 1.0
         wizard = self.env["rental.order.line.wizard"].create(

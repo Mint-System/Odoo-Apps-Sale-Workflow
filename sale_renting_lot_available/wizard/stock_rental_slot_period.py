@@ -18,7 +18,10 @@ class StockRentalSlotPeriod(models.TransientModel):
 
     def get_available_slot_ids(self):
         """
-        Return placeholder slots that do not overlap with booked slots in time range.
+        Return placeholder slots that are available in the time range.
+
+        Available slots are the placeholder slots minus the maximum number of
+        booked slots that overlap in the time range.
         """
         available_slot_ids = []
 
@@ -32,19 +35,12 @@ class StockRentalSlotPeriod(models.TransientModel):
             aggregates=["id:recordset"],
         )
 
-        # For each group check if there are non placeholder (sale order) slots
-        for product, group_placeholder_slot_ids in groups:
-            sale_order_slot_count = self.env["stock.rental.slot"].search_count(
-                [
-                    ("is_placeholder", "=", False),
-                    ("product_id", "=", product.id),
-                    ("company_id", "=", self.env.company.id),
-                    ("start_date", "<=", self.end_date),
-                    ("return_date", ">=", self.start_date),
-                ]
+        for product, _group_placeholder_slot_ids in groups:
+            available_slot_ids += (
+                self.env["stock.rental.slot"]
+                ._get_available_placeholder_slot_ids(product, self.start_date, self.end_date, self.env.company)
+                .ids
             )
-            # Remove as many placeholders as there are booked slots; the rest are available
-            available_slot_ids += group_placeholder_slot_ids[sale_order_slot_count:].ids
 
         return available_slot_ids
 

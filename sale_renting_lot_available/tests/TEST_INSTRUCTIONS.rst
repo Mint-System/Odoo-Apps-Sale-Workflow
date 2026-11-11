@@ -66,3 +66,12 @@ Check available lots
 - Move the order in pickup state after the other
 - Open the pickup order and confirm it
 - Click "Pickup" and make sure that "PRINT001" can be selected
+
+Check availability with non-overlapping bookings:
+
+- Create three rental orders for the same product with periods
+  01.12.2026 - 01.02.2027, 01.12.2026 - 31.08.2027 and 01.07.2027 - 31.08.2027
+- Open "Rental > Schedule > Check Period"
+- Set the period to 01.01.2027 - 31.07.2027
+- Click "View Availability"
+- Ensure only two slots are removed from the five placeholder slots

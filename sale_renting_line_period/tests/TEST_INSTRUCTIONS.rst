@@ -70,3 +70,16 @@ Check availability:
 - Click on pickup and ensure that "PRINT001" is not available
 - Change start and end date to plus one week
 - Click on pickup and ensure that "PRINT001" is available
+
+Split delivered line:
+
+- Confirm a rental order and pick up all lots
+- Click on "Split Line" and split the line
+- Ensure the line is split into one line per unit
+- Ensure each line has qty delivered 1.0 and its own lot
+- Ensure the slots are recreated for each line
+
+Return date:
+
+- Create a rental order and set the return date
+- Ensure the return date of the order lines is set to 23:59:59

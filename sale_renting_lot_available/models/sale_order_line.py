@@ -92,17 +92,13 @@ class SaleOrderLine(models.Model):
         """
         for line in self:
             if line.product_id.tracking in ["serial", "lot"]:
-                # Get all placeholder slots of a product
-                product_placeholder_slot_count = self.env["stock.rental.slot"].search_count(
-                    [
-                        ("is_placeholder", "=", True),
-                        ("product_id", "=", line.product_id),
-                        ("company_id", "=", line.company_id),
-                    ]
-                )
+                if not line.rental_start_date or not line.rental_return_date:
+                    line.available_slot_ids_count = 0
+                    continue
 
-                # Get all booked slots
-                product_booked_slot_count = self.env["stock.rental.slot"].search_count(
+                # Count the booked slots of other lines; the slots of the line
+                # itself must not reduce its own availability.
+                booked_slots = self.env["stock.rental.slot"].search(
                     [
                         ("is_placeholder", "=", False),
                         ("so_line_id", "!=", line.id),
@@ -112,8 +108,16 @@ class SaleOrderLine(models.Model):
                         ("return_date", ">=", line.rental_start_date),
                     ]
                 )
-
-                line.available_slot_ids_count = product_placeholder_slot_count - product_booked_slot_count
+                product_placeholder_slot_count = self.env["stock.rental.slot"].search_count(
+                    [
+                        ("is_placeholder", "=", True),
+                        ("product_id", "=", line.product_id),
+                        ("company_id", "=", line.company_id),
+                    ]
+                )
+                # Booked slots that do not overlap each other only block one item at a time
+                max_overlap = self.env["stock.rental.slot"]._get_max_overlap(booked_slots)
+                line.available_slot_ids_count = max(product_placeholder_slot_count - max_overlap, 0)
 
             elif line.product_id.is_storable and line.product_id.tracking == "none":
                 line.available_slot_ids_count = line.product_id.qty_available

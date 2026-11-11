@@ -152,6 +152,63 @@ class StockRentalSlot(models.Model):
             elif record.lot_id:
                 record.name = f"{record.product_id.name} - {record.lot_id.name}"
 
+    @api.model
+    def _get_max_overlap(self, slots):
+        """
+        Return the highest number of slots that overlap at the same time.
+
+        A slot is considered to overlap another one if their periods
+        intersect. Periods that only touch at the boundary do not overlap.
+
+        The number of items that can be rented in a period is limited by the
+        maximum number of concurrent bookings, not by the number of bookings
+        that touch the period boundaries.
+        """
+        events = []
+        for slot in slots:
+            # A zero length period still blocks one item
+            end_date = slot.return_date if slot.return_date > slot.start_date else slot.start_date
+            events.append((slot.start_date, 1))
+            events.append((end_date, -1))
+        # Sort by date and process ends before starts on the same date
+        events.sort(key=lambda event: (event[0], event[1]))
+
+        max_overlap = 0
+        overlap = 0
+        for _date, delta in events:
+            overlap += delta
+            max_overlap = max(max_overlap, overlap)
+        return max_overlap
+
+    @api.model
+    def _get_available_placeholder_slot_ids(self, product, start_date, end_date, company):
+        """
+        Return the placeholder slots of a product that are available in the
+        period between start_date and end_date.
+
+        Available qty is the number of placeholder slots minus the maximum
+        number of booked slots that overlap in the period. Booked slots that
+        do not overlap each other only block one item at a time.
+        """
+        placeholder_slot_ids = self.search(
+            [
+                ("is_placeholder", "=", True),
+                ("product_id", "=", product.id),
+                ("company_id", "=", company.id),
+            ]
+        )
+        booked_slots = self.search(
+            [
+                ("is_placeholder", "=", False),
+                ("product_id", "=", product.id),
+                ("company_id", "=", company.id),
+                ("start_date", "<=", end_date),
+                ("return_date", ">=", start_date),
+            ]
+        )
+        available_count = len(placeholder_slot_ids) - self._get_max_overlap(booked_slots)
+        return placeholder_slot_ids[: max(available_count, 0)]
+
     def action_show_stock_rental_slot_period(self):
         return {
             "type": "ir.actions.act_window",
