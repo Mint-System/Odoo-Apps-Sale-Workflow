@@ -112,7 +112,7 @@
         parent="project.menu_project_report"
         action="project_report_action"
         sequence="20"
-        groups="project.group_project_manager"
+        groups="project.group_project_user"
     />
 
 </odoo>
