@@ -5,7 +5,7 @@
         Add internal ref to sale order.
     """,
     "author": "Mint System GmbH",
-    "website": "https://github.com/Mint-system/",
+    "website": "https://www.mint-system.ch/",
     "category": "Repository",
     "development_status": "Production/Stable",
     "version": "18.0.1.0.0",

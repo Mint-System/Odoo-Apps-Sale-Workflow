@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===============================
 Sale Subscription Invoice Draft
 ===============================
@@ -17,9 +13,9 @@ Sale Subscription Invoice Draft
 .. |badge1| image:: https://img.shields.io/badge/maturity-Production%2FStable-green.png
     :target: https://odoo-community.org/page/development-status
     :alt: Production/Stable
-.. |badge2| image:: https://img.shields.io/badge/github-Mint--System%2FOdoo--Apps--Sale--Workflow-lightgray.png?logo=github
-    :target: https://github.com/Mint-System/Odoo-Apps-Sale-Workflow/tree/18.0/sale_subscription_invoice_draft
-    :alt: Mint-System/Odoo-Apps-Sale-Workflow
+.. |badge2| image:: https://img.shields.io/badge/github-Mint--system%2F-lightgray.png?logo=github
+    :target: https://github.com/Mint-system//tree/18.0/sale_subscription_invoice_draft
+    :alt: Mint-system/
 
 |badge1| |badge2|
 
@@ -38,10 +34,10 @@ Usage
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/Mint-System/Odoo-Apps-Sale-Workflow/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/Mint-system//issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/Mint-System/Odoo-Apps-Sale-Workflow/issues/new?body=module:%20sale_subscription_invoice_draft%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/Mint-system//issues/new?body=module:%20sale_subscription_invoice_draft%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -61,6 +57,6 @@ Contributors
 Maintainers
 -----------
 
-This module is part of the `Mint-System/Odoo-Apps-Sale-Workflow <https://github.com/Mint-System/Odoo-Apps-Sale-Workflow/tree/18.0/sale_subscription_invoice_draft>`_ project on GitHub.
+This module is part of the `Mint-system/ <https://github.com/Mint-system//tree/18.0/sale_subscription_invoice_draft>`_ project on GitHub.
 
 You are welcome to contribute.

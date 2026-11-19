@@ -4,7 +4,7 @@
         Access group for shipping address on sale orders and invoices.
     """,
     "author": "Mint System GmbH",
-    "website": "https://github.com/Mint-system/",
+    "website": "https://www.mint-system.ch/",
     "category": "Technical",
     "version": "18.0.1.0.0",
     "license": "AGPL-3",

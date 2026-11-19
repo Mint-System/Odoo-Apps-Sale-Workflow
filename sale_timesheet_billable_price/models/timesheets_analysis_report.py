@@ -10,7 +10,6 @@ _logger = logging.getLogger(__name__)
 class TimesheetsAnalysisReport(models.Model):
     _inherit = ["timesheets.analysis.report"]
 
-
     @api.model
     def _select(self):
         select = super()._select()
@@ -28,4 +27,3 @@ class TimesheetsAnalysisReport(models.Model):
         )
 
         return select
-
