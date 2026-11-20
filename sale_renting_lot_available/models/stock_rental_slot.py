@@ -133,6 +133,7 @@ class StockRentalSlot(models.Model):
 
     @api.depends(
         "sale_order_id.name",
+        "sale_order_id.ref",
         "order_partner_id.name",
         "product_id.name",
         "lot_id.name",
