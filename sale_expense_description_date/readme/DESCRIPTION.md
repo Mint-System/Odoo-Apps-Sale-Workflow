@@ -1,0 +1,1 @@
+Append date of expense to sale order line description.
