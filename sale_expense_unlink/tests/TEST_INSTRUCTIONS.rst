@@ -1,0 +1,6 @@
+- Open expense "BreakFast"
+- Invoice to customer "S00016"
+- Approve, click on "Post Journal Entries" and post expense.
+- Check if sale order lines are created
+- Then reset and cancel the sheet
+- Check if sale order lines have been deleted
