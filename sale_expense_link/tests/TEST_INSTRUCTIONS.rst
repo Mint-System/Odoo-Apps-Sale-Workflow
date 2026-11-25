@@ -1,0 +1,5 @@
+- Open expense "BreakFast"
+- Invoice to customer "S00016"
+- Approve, click on "Post Journal Entries" and post expense.
+- Click on "Sale Order Lines"
+- Confirm that BreakFast line is shown.
