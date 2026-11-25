@@ -1,0 +1,1 @@
+Allow deletion of sale order expense lines.
