@@ -1,0 +1,10 @@
+- Open a sales order with a service product invoiced on timesheets, e.g. S00023
+- Add a 1h timesheet entry on the order's task and validate it
+- Create the invoice and confirm it
+- Go to Accounting > Customers > Credit Notes and create a new credit note for the same customer with the same total amount (do not use the "Reverse" button on the invoice)
+- Confirm the credit note, open the invoice and add the credit note under "Outstanding credits"
+- Check that the invoice now has the payment state "Reversed"
+- Add another 1h timesheet entry on the same task, validate it and create a new invoice from the order
+- Check that only the new 1h entry is invoiced, not 2h
+- Open the first timesheet entry and check that it still links to the first invoice
+- Add an unvalidated entry, create an invoice and check that it is not invoiced
