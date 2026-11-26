@@ -1,0 +1,1 @@
+Link only validated timesheet entries in sale order.
